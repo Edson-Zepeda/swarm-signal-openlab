@@ -21,6 +21,7 @@
   let csvObjectUrl;
   let lastSignature = '';
   let fetchFailures = 0;
+  let comparison = null;
   const text = (id, value) => { $(id).textContent = value; };
   const finite = (value) => typeof value === 'number' && Number.isFinite(value);
   const number = (value, digits = 2) => finite(value) ? value.toLocaleString('es-MX', { maximumFractionDigits: digits, minimumFractionDigits: digits }) : '—';
@@ -127,7 +128,7 @@
   }
 
   function drawSignal(data) {
-    const width = Math.max(270, Math.round($('signalChart').getBoundingClientRect().width) || 960);
+    const width = Math.max(200, Math.round($('signalChart').getBoundingClientRect().width) || 960);
     const dim = { width, height: width < 500 ? 225 : 240, left: 47, right: 13, top: 14, bottom: 32 };
     $('signalChart').setAttribute('viewBox', `0 0 ${width} ${dim.height}`);
     const values = samples.map((sample) => sample.rssi_dbm);
@@ -138,6 +139,16 @@
     const total = Math.max(actualDuration(samples), 1);
     grid('signalGrid', 'signalTicks', dim, bounds, total);
     const firstTime = samples[0]?._time || 0;
+    const analysisEnd = data.length ? data[data.length - 1]._time - firstTime : 0;
+    const analysisStart = Math.max(0, analysisEnd - 15);
+    const plotWidth = dim.width - dim.left - dim.right;
+    const windowRect = $('analysisWindow');
+    windowRect.setAttribute('x', dim.left + analysisStart / total * plotWidth);
+    windowRect.setAttribute('y', dim.top);
+    windowRect.setAttribute('width', Math.max(0, (analysisEnd - analysisStart) / total * plotWidth));
+    windowRect.setAttribute('height', dim.height - dim.top - dim.bottom);
+    text('analysisWindowLabel', data.length ? `Ventana analizada: ${number(analysisStart, 1)}–${number(analysisEnd, 1)} s` : 'Ventana analizada / hasta 15 s');
+    text('spectrumWindow', data.length ? `Misma ventana: ${number(analysisStart, 1)}–${number(analysisEnd, 1)} s` : 'Ventana / hasta 15 s');
     const plot = points(data.map((s) => ({ x: s._time - firstTime, y: s.rssi_dbm })), dim, bounds, total);
     const line = path(plot);
     $('signalLine').setAttribute('d', line);
@@ -156,7 +167,7 @@
   function drawVariance(data) {
     const values = rollingVariance(data);
     const max = values.length ? Math.max(...values.map((v) => v.y)) : 0;
-    const width = Math.max(250, Math.round($('varianceChart').getBoundingClientRect().width) || 600);
+    const width = Math.max(200, Math.round($('varianceChart').getBoundingClientRect().width) || 600);
     const dim = { width, height: 165, left: 38, right: 8, top: 8, bottom: 28 };
     $('varianceChart').setAttribute('viewBox', `0 0 ${width} 165`);
     const total = Math.max(actualDuration(samples), 1);
@@ -172,9 +183,8 @@
 
   function drawSpectrum(data) {
     const analysis = analysisAt(data);
-    const canUseBackend = Array.isArray(analysis.spectrum) && analysis.spectrum.length > 0;
-    const values = (canUseBackend ? analysis.spectrum : spectrum(data)).filter((item) => finite(item.hz) && finite(item.power) && item.hz > 0 && item.power >= 0);
-    const width = Math.max(250, Math.round($('spectrumChart').getBoundingClientRect().width) || 600);
+    const values = (Array.isArray(analysis.spectrum) ? analysis.spectrum : []).filter((item) => finite(item.hz) && finite(item.power) && item.hz > 0 && item.power >= 0);
+    const width = Math.max(200, Math.round($('spectrumChart').getBoundingClientRect().width) || 600);
     const dim = { width, height: 165, left: 38, right: 8, top: 8, bottom: 28 };
     $('spectrumChart').setAttribute('viewBox', `0 0 ${width} 165`);
     const maxPower = values.length ? Math.max(...values.map((v) => v.power)) : 0;
@@ -193,11 +203,15 @@
     });
     $('spectrumBars').replaceChildren(bars);
     const peak = maxPower > 0 ? values.reduce((best, item) => item.power > best.power ? item : best, values[0]) : null;
-    text('spectrumPeak', analysis.quality?.ready === false ? 'Orientativo / muestreo irregular' : peak ? `Pico ${number(peak.hz, 3)} Hz` : 'Sin frecuencia dominante');
+    text('spectrumPeak', !values.length ? 'FFT no disponible' : analysis.quality?.ready === false ? 'Solo exploración espectral' : peak ? `Pico ${number(peak.hz, 3)} Hz` : 'Sin frecuencia dominante');
     $('spectrumChart').setAttribute('aria-label', peak ? `Espectro de potencia. Frecuencia dominante ${number(peak.hz, 3)} Hz.` : 'Sin frecuencia dominante detectable.');
   }
 
   function renderClassification(data, features) {
+    if (backendAvailable && selectedSession === 'current' && fetchFailures >= 2) {
+      text('readingTag', 'LECTURA RETENIDA'); text('readingTitle', 'Receptor sin conexión.'); text('readingDescription', 'Se muestra el último dato recibido. Restablece la conexión para continuar.');
+      $('readingGlyph').classList.remove('active'); document.querySelector('.reading-panel').dataset.level = ''; return;
+    }
     const threshold = finite(state?.thresholds?.variance) ? state.thresholds.variance : .3;
     const analysis = analysisAt(data);
     const authoritative = analysis.classification;
@@ -218,7 +232,10 @@
     if (authoritative && finite(authoritative.confidence)) detail += ` Confianza heurística: ${number(authoritative.confidence <= 1 ? authoritative.confidence * 100 : authoritative.confidence, 0)}%.`;
     if (finite(quality?.jitter_cv)) detail += ` Irregularidad del muestreo: ${number(quality.jitter_cv * 100, 1)}%.`;
     if (quality?.reason) detail += ` Calidad: ${quality.reason}.`;
+    const band = quality?.motion_band;
+    if (band && finite(band.bins)) detail += ` Banda de movimiento: ${band.bins} intervalos espectrales; mínimo ${band.minimum_bins || 2}. Cobertura ${band.coverage === 'full' ? 'completa' : band.coverage === 'partial' ? 'parcial' : 'no disponible'}.`;
     text('classificationDetails', data.length ? detail : 'Se requiere una captura antes de interpretar la señal.');
+    $('qualityAction').textContent = comparison?.sessions?.length ? 'Comparar calidad de capturas' : backendAvailable ? 'Preparar otra captura' : 'Medir en mi equipo';
   }
 
   function renderCharts() {
@@ -234,6 +251,7 @@
     text('replayTime', durationText(actualDuration(samples) * position));
     text('replayEnd', durationText(actualDuration(samples)));
     $('replaySlider').value = Math.round(position * 1000);
+    $('replaySlider').setAttribute('aria-valuetext', `${number(actualDuration(samples) * position, 1)} de ${number(actualDuration(samples), 1)} segundos`);
     $('replaySlider').style.setProperty('--progress', `${position * 100}%`);
     $('playButton').disabled = samples.length < 2;
     $('replaySlider').disabled = samples.length < 2 || state?.status === 'collecting';
@@ -271,8 +289,22 @@
       const title = document.createElement('h3'); title.textContent = stage.title || stage.name || `Etapa ${index + 1}`;
       const summary = document.createElement('p'); summary.textContent = stage.summary || stage.description || stage.detail || 'Sin evidencia adjunta.';
       card.append(top, title, summary);
-      const artifact = safeLink(stage.artifact_url || stage.url);
-      if (artifact) { const link = document.createElement('a'); link.href = artifact; link.className = 'text-link'; link.textContent = 'Ver evidencia ↗'; link.target = '_blank'; link.rel = 'noopener'; card.append(link); }
+      const links = Array.isArray(stage.artifact_links) && stage.artifact_links.length ? stage.artifact_links : [{ url: stage.artifact_url || stage.url, label: 'Ver evidencia' }];
+      const linkGroup = document.createElement('div'); linkGroup.className = 'evidence-links';
+      links.forEach((artifact, linkIndex) => {
+        const url = safeLink(artifact.url || artifact.href || artifact.path);
+        if (!url) return;
+        const imageAsset = /\.(png|jpe?g|webp)(?:$|[?#])/i.test(url);
+        const link = document.createElement('a'); link.href = url; link.className = 'text-link';
+        const label = artifact.label || artifact.title || (imageAsset ? 'Ver captura' : 'Ver evidencia');
+        link.textContent = `${label} ↗`; link.setAttribute('aria-label', `${label}: etapa ${index + 1}, ${title.textContent}`); link.target = '_blank'; link.rel = 'noopener';
+        if (imageAsset && linkIndex === 0) {
+          const previewLink = document.createElement('a'); previewLink.href = url; previewLink.target = '_blank'; previewLink.rel = 'noopener'; previewLink.className = 'evidence-preview'; previewLink.setAttribute('aria-label', `Ampliar captura real de la etapa ${index + 1}`);
+          const preview = document.createElement('img'); preview.src = url; preview.alt = `Captura real: ${title.textContent}`; preview.loading = 'lazy'; previewLink.append(preview); card.append(previewLink);
+        }
+        linkGroup.append(link);
+      });
+      card.append(linkGroup);
       $('evidenceStages').append(card);
     });
     const condition = { unconfirmed: 'Sin etiqueta', still: 'Quietud', walking: 'Caminando' };
@@ -314,20 +346,103 @@
     $('sessionPicker').disabled = !backendAvailable || state?.status === 'collecting';
   }
 
+  function renderComparison() {
+    const entries = Array.isArray(comparison?.sessions) ? comparison.sessions : [];
+    text('comparisonSummary', entries.length ? `${entries.length} registros reales` : 'Sin registros disponibles');
+    text('comparisonPhysical', comparison?.physical?.comparison_ready ? comparison.physical.reason || 'Revisa las condiciones declaradas en las fuentes.' : 'Condiciones humanas sin confirmar. Compara calidad de datos, no detección de personas.');
+    text('comparisonWindow', `Ventanas disjuntas / ${comparison?.window_seconds || 15} s`);
+    const colors = ['#b9f45b', '#6ce0e9', '#b99bff'];
+    const legend = $('comparisonLegend'); legend.replaceChildren();
+    const rows = $('comparisonRows'); rows.replaceChildren();
+    const sources = $('comparisonSources'); sources.replaceChildren();
+    entries.forEach((session, index) => {
+      const item = document.createElement('span'); const dot = document.createElement('i'); dot.style.backgroundColor = colors[index % colors.length]; item.append(dot, document.createTextNode(session.label || session.id)); legend.append(item);
+      const row = document.createElement('tr');
+      const label = document.createElement('th'); label.scope = 'row'; label.textContent = session.label || session.id; row.append(label);
+      const eligible = finite(session.windows_eligible) ? session.windows_eligible : 0;
+      const labels = ['Muestras', 'Hz efectivos', 'Jitter', 'Ventanas válidas'];
+      [finite(session.count) ? String(session.count) : '—', number(session.effective_rate_hz), finite(session.jitter_cv) ? `${number(session.jitter_cv * 100, 1)}%` : '—', eligible ? `${session.windows_valid} / ${eligible}` : 'Sin elegibles'].forEach((value, cellIndex) => { const cell = document.createElement('td'); cell.textContent = value; cell.dataset.label = labels[cellIndex]; row.append(cell); });
+      rows.append(row);
+      const source = document.createElement('div'); source.className = 'comparison-source';
+      const title = document.createElement('strong'); title.textContent = session.label || session.id; source.append(title);
+      const reason = document.createElement('p'); const reasons = Object.entries(session.reasons || {}).map(([why, count]) => `${why}: ${count}`).join(' · '); reason.textContent = reasons || 'Consulta los resultados de cada ventana en la fuente.'; source.append(reason);
+      const url = safeLink(session.source);
+      if (url) { const link = document.createElement('a'); link.href = url; link.target = '_blank'; link.rel = 'noopener'; link.textContent = 'Datos originales ↗'; link.setAttribute('aria-label', `Datos originales: ${session.label || session.id}`); source.append(link); }
+      if (session.source_sha256) { const hash = document.createElement('code'); hash.textContent = `SHA-256 ${session.source_sha256}`; source.append(hash); }
+      sources.append(source);
+    });
+    drawComparison();
+  }
+
+  function drawComparison() {
+    const entries = Array.isArray(comparison?.sessions) ? comparison.sessions : [];
+    const series = entries.map(session => (session.windows || []).filter(window => finite(window.variance) && finite(window.end_seconds)).map(window => ({ x: window.end_seconds, y: window.variance, index: window.index })));
+    const all = series.flat();
+    const width = Math.max(200, Math.round($('comparisonChart').getBoundingClientRect().width) || 1000);
+    const dim = { width, height: 210, left: 48, right: 12, top: 14, bottom: 33 };
+    $('comparisonChart').setAttribute('viewBox', `0 0 ${width} 210`);
+    const maximum = all.length ? Math.max(...all.map(point => point.y)) : 1;
+    const maxTime = all.length ? Math.max(...all.map(point => point.x)) : 120;
+    const bounds = { min: 0, max: Math.max(.1, maximum * 1.13) };
+    grid('comparisonGrid', 'comparisonTicks', dim, bounds, maxTime);
+    const group = document.createDocumentFragment();
+    const colors = ['#b9f45b', '#6ce0e9', '#b99bff'];
+    series.forEach((values, index) => {
+      const mapped = points(values, dim, bounds, maxTime);
+      let d = '';
+      mapped.forEach(([x, y], pointIndex) => { d += `${pointIndex === 0 || values[pointIndex].index !== values[pointIndex - 1].index + 1 ? 'M' : 'L'}${x.toFixed(2)},${y.toFixed(2)} `; });
+      group.append(createSvg('path', { d, stroke: colors[index % colors.length], fill: 'none', 'stroke-width': 2, 'stroke-dasharray': index === 1 ? '6 4' : index === 2 ? '2 4' : '', 'vector-effect': 'non-scaling-stroke' }));
+      mapped.forEach(([x, y]) => group.append(createSvg('circle', { cx: x, cy: y, r: 3.5, fill: colors[index % colors.length] })));
+    });
+    $('comparisonSeries').replaceChildren(group);
+    $('comparisonChart').setAttribute('aria-label', `Varianza observada en ventanas disjuntas de ${comparison?.window_seconds || 15} segundos, ${entries.length} capturas. No es una medida de exactitud; los datos están en la tabla siguiente.`);
+  }
+
+  async function loadComparison() {
+    try { comparison = await fetchJson(backendAvailable ? '/api/comparison' : './data/comparison.json'); }
+    catch { comparison = null; }
+    renderComparison();
+    if (state) renderCharts();
+  }
+
+  function openLocalHelp() { $('localHelpDialog').showModal(); $('localHelpDialog').querySelector('.local-steps a').focus(); }
+
+  async function openCapture() {
+    if (!backendAvailable || fetchFailures >= 2) { openLocalHelp(); return; }
+    if (state?.pending_save) { toast('Guarda primero la captura pendiente.'); return; }
+    setHidden('captureError', true);
+    $('captureGroundTruth').value = 'unconfirmed';
+    document.querySelector('.dialog-note').textContent = 'Mantén el receptor fijo durante la captura.';
+    {
+      try {
+        const result = await fetchJson('/api/interfaces');
+        const entries = Array.isArray(result.interfaces) ? result.interfaces : [];
+        const select = $('captureInterface'); select.replaceChildren();
+        const auto = document.createElement('option'); auto.value = ''; auto.textContent = result.selection_required ? 'Selecciona un adaptador' : 'Automático'; select.append(auto);
+        entries.forEach(item => { const option = document.createElement('option'); option.value = typeof item === 'string' ? item : item.name; option.textContent = option.value; select.append(option); });
+        select.required = Boolean(result.selection_required);
+        setHidden('interfaceField', entries.length < 2 && !result.selection_required);
+      } catch { setHidden('interfaceField', true); }
+    }
+    $('captureDialog').showModal(); $('captureLabel').focus();
+  }
+
   function applyState(next, reset = false) {
     state = next || {};
     samples = cleanSamples(state.samples);
     const collecting = backendAvailable && state.status === 'collecting';
+    const pendingSave = Boolean(state.pending_save);
     const isReplay = !backendAvailable || state.mode === 'replay' || selectedSession !== 'current';
     if (collecting || reset) { pause(); position = 1; }
     $('connectionStatus').className = `status-pill ${state.error ? 'error' : collecting ? 'live' : isReplay ? 'replay' : ''}`;
     $('connectionStatus').replaceChildren();
-    $('connectionStatus').append(document.createElement('i'), document.createTextNode(state.error ? 'Captura interrumpida' : collecting ? 'Capturando en vivo' : isReplay ? 'Captura grabada' : 'Receptor listo'));
-    setHidden('captureButton', collecting); setHidden('stopButton', !collecting);
+    $('connectionStatus').append(document.createElement('i'), document.createTextNode(pendingSave ? 'Guardado pendiente' : state.error ? 'Captura interrumpida' : collecting ? 'Capturando en vivo' : isReplay ? 'Captura grabada' : 'Receptor listo'));
+    setHidden('captureButton', collecting || pendingSave); setHidden('stopButton', !collecting && !pendingSave);
+    $('stopButton').textContent = pendingSave ? 'Reintentar guardado' : 'Detener'; $('stopButton').disabled = false;
     $('captureButton').disabled = false;
     $('captureButton').replaceChildren();
     const dot = document.createElement('span'); dot.className = 'capture-dot';
-    $('captureButton').append(dot, document.createTextNode(backendAvailable ? 'Iniciar captura' : 'Reproducir captura'));
+    $('captureButton').append(dot, document.createTextNode(backendAvailable ? 'Iniciar captura' : playing ? 'Pausar reproducción' : 'Reproducir captura'));
     if (!backendAvailable && samples.length < 2) $('captureButton').disabled = true;
     setHidden('replayControls', collecting);
     text('sessionName', state.session?.label || 'Sin sesión');
@@ -358,6 +473,7 @@
 
   async function initialize() {
     try {
+      if (!['localhost', '127.0.0.1', '[::1]'].includes(location.hostname)) throw new Error('Public replay');
       const next = await fetchJson('/api/state');
       if (!Array.isArray(next.samples)) throw new Error('No hay API local');
       backendAvailable = true; applyState(next, true); lastSignature = JSON.stringify(next);
@@ -370,6 +486,7 @@
       try { const result = await fetchJson('/api/sessions'); updateSessions(Array.isArray(result) ? result : result.sessions); } catch { /* The current capture remains available. */ }
       window.setInterval(poll, 1000);
     }
+    loadComparison();
   }
 
   async function poll() {
@@ -383,7 +500,7 @@
       if (signature !== lastSignature || recoveringConnection) { const previousId = state?.session?.id; lastSignature = signature; applyState(next, previousId !== next.session?.id); }
     } catch {
       fetchFailures++;
-      if (fetchFailures >= 2) { text('notice', 'Se perdió la conexión con el receptor. Se conserva la última captura.'); setHidden('notice', false); $('connectionStatus').className = 'status-pill error'; $('connectionStatus').replaceChildren(document.createTextNode('Receptor sin conexión')); }
+      if (fetchFailures >= 2) { text('notice', 'Se perdió la conexión con el receptor. Se conserva la última lectura.'); setHidden('notice', false); $('connectionStatus').className = 'status-pill error'; $('connectionStatus').replaceChildren(document.createTextNode('Receptor sin conexión')); $('readingGlyph').classList.remove('active'); text('readingTag', 'LECTURA RETENIDA'); text('readingTitle', 'Receptor sin conexión.'); text('readingDescription', 'Se muestra el último dato recibido. Restablece la conexión para continuar.'); $('captureButton').disabled = true; $('stopButton').disabled = true; }
     } finally { busy = false; }
   }
 
@@ -392,6 +509,7 @@
     $('playButton').setAttribute('aria-label', 'Reproducir captura');
     $('playButton').innerHTML = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 9 6-9 6z"/></svg>';
     $('readingGlyph').classList.remove('active');
+    if (!backendAvailable) { text('captureButton', 'Reproducir captura'); $('captureButton').setAttribute('aria-pressed', 'false'); }
   }
 
   function play() {
@@ -400,6 +518,7 @@
     playing = true; animationTime = performance.now(); lastRender = 0;
     $('playButton').setAttribute('aria-label', 'Pausar reproducción');
     $('playButton').innerHTML = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 4h3v12H5zM12 4h3v12h-3z"/></svg>';
+    if (!backendAvailable) { text('captureButton', 'Pausar reproducción'); $('captureButton').setAttribute('aria-pressed', 'true'); }
     cancelAnimationFrame(animationFrame);
     animationFrame = requestAnimationFrame(animateReplay);
   }
@@ -416,39 +535,55 @@
 
   function toast(message) { text('toast', message); setHidden('toast', false); clearTimeout(toastTimer); toastTimer = setTimeout(() => setHidden('toast', true), 4000); }
 
-  function showTab(id) {
+  function requestedView() { return new URLSearchParams(location.search).get('view') || location.hash.slice(1) || 'monitor'; }
+
+  function showTab(id, { historyMode = 'push', initial = false } = {}) {
     if (!['monitor', 'evidencia', 'propuesta'].includes(id)) id = 'monitor';
     document.querySelectorAll('.view').forEach((view) => { const active = view.id === id; view.hidden = !active; view.classList.toggle('active', active); });
     document.querySelectorAll('.tab').forEach((tab) => { const active = tab.dataset.tab === id; tab.classList.toggle('active', active); active ? tab.setAttribute('aria-current', 'page') : tab.removeAttribute('aria-current'); });
-    history.replaceState(null, '', `${location.pathname}${location.search}#${id}`);
+    const url = new URL(location.href);
+    url.hash = '';
+    id === 'monitor' ? url.searchParams.delete('view') : url.searchParams.set('view', id);
+    if (historyMode !== 'none') history[historyMode === 'replace' ? 'replaceState' : 'pushState']({ view: id }, '', url.pathname + url.search);
+    if (!initial && document.querySelector('.intro').getBoundingClientRect().bottom < 0) document.querySelector('.workspace-nav').scrollIntoView({ block: 'start', behavior: reducedMotion ? 'instant' : 'smooth' });
     if (id === 'monitor' && state) renderCharts();
   }
 
   document.querySelectorAll('.tab').forEach((button) => button.addEventListener('click', () => showTab(button.dataset.tab)));
-  document.querySelector('.brand').addEventListener('click', (event) => { event.preventDefault(); showTab('monitor'); });
-  addEventListener('hashchange', () => showTab(location.hash.slice(1)));
+  document.querySelectorAll('[data-open-view]').forEach(link => link.addEventListener('click', event => { event.preventDefault(); showTab(link.dataset.openView); }));
+  document.querySelector('.brand').addEventListener('click', (event) => { event.preventDefault(); showTab('monitor'); window.scrollTo({ top: 0, behavior: reducedMotion ? 'instant' : 'smooth' }); });
+  addEventListener('popstate', () => showTab(requestedView(), { historyMode: 'none', initial: true }));
+  addEventListener('hashchange', () => { if (['monitor', 'evidencia', 'propuesta'].includes(location.hash.slice(1))) showTab(requestedView(), { historyMode: 'replace', initial: true }); });
   let resizeTimer;
-  addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { if (state) renderCharts(); }, 120); });
+  addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { if (state) renderCharts(); if ($('comparisonPanel').open) drawComparison(); }, 120); });
   $('playButton').addEventListener('click', () => playing ? pause() : play());
   $('replaySlider').addEventListener('input', () => { pause(); position = Number($('replaySlider').value) / 1000; renderCharts(); });
   $('replaySpeed').addEventListener('change', () => { animationTime = performance.now(); });
   document.addEventListener('visibilitychange', () => { if (document.hidden && playing) pause(); });
   $('fullscreenButton').addEventListener('click', async () => { try { if (document.fullscreenElement) await document.exitFullscreen(); else await document.documentElement.requestFullscreen(); } catch { toast('La pantalla completa no está disponible.'); } });
-  $('captureButton').addEventListener('click', () => { if (!backendAvailable) { showTab('monitor'); play(); } else { setHidden('captureError', true); $('captureDialog').showModal(); } });
+  $('captureButton').addEventListener('click', () => { if (!backendAvailable) { playing ? pause() : play(); } else openCapture(); });
+  document.querySelectorAll('.local-help-trigger').forEach(button => button.addEventListener('click', openLocalHelp));
+  $('closeLocalHelp').addEventListener('click', () => $('localHelpDialog').close());
+  $('localHelpDialog').addEventListener('click', event => { if (event.target !== $('localHelpDialog')) return; const r = event.target.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) event.target.close(); });
+  $('qualityAction').addEventListener('click', () => {
+    if (comparison?.sessions?.length) { $('comparisonPanel').open = true; drawComparison(); $('comparisonPanel').scrollIntoView({ block: 'start', behavior: reducedMotion ? 'instant' : 'smooth' }); $('comparisonPanel').querySelector('summary').focus({ preventScroll: true }); }
+    else backendAvailable ? openCapture() : openLocalHelp();
+  });
+  $('comparisonPanel').addEventListener('toggle', () => { if ($('comparisonPanel').open) drawComparison(); });
   $('captureGroundTruth').addEventListener('change', () => { document.querySelector('.dialog-note').textContent = $('captureGroundTruth').value === 'walking' ? 'Laptop fija; cruza entre laptop y router.' : 'Mantén el receptor fijo durante la captura.'; });
   $('closeDialog').addEventListener('click', () => $('captureDialog').close());
   $('captureDialog').addEventListener('click', (event) => { if (event.target === $('captureDialog')) { const rect = $('captureDialog').getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) $('captureDialog').close(); } });
   $('captureForm').addEventListener('submit', async (event) => {
     event.preventDefault(); $('submitCapture').disabled = true; setHidden('captureError', true);
     try {
-      const result = await fetchJson('/api/start', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ label: $('captureLabel').value.trim() || 'Captura Wi-Fi', duration_seconds: Number($('captureDuration').value), ground_truth: $('captureGroundTruth').value }) });
+      const result = await fetchJson('/api/start', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ label: $('captureLabel').value.trim() || 'Captura Wi-Fi', duration_seconds: Number($('captureDuration').value), ground_truth: $('captureGroundTruth').value, interface: $('captureInterface').value || null }) });
       if (result.error) throw new Error(result.error);
       selectedSession = 'current'; $('sessionPicker').value = 'current'; position = 1; $('captureDialog').close(); toast('Captura iniciada.');
       if (Array.isArray(result.samples)) applyState(result, true); else await poll();
     } catch (error) { text('captureError', error.message === 'Failed to fetch' ? 'No se pudo conectar con el receptor.' : error.message); setHidden('captureError', false); }
     finally { $('submitCapture').disabled = false; }
   });
-  $('stopButton').addEventListener('click', async () => { $('stopButton').disabled = true; try { const result = await fetchJson('/api/stop', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' }); if (result.error) throw new Error(result.error); if (Array.isArray(result.samples)) applyState(result, true); else await poll(); toast('Captura detenida.'); } catch { toast('No se pudo detener la captura. Revisa el receptor.'); } finally { $('stopButton').disabled = false; } });
+  $('stopButton').addEventListener('click', async () => { const retry = Boolean(state?.pending_save); $('stopButton').disabled = true; try { const result = await fetchJson('/api/stop', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' }); if (Array.isArray(result.samples)) applyState(result, true); else await poll(); if (result.error || result.pending_save) throw new Error(result.error || 'El guardado sigue pendiente.'); toast(retry ? 'Captura guardada.' : 'Captura detenida y guardada.'); } catch (error) { toast(error.message || 'No se pudo guardar la captura. Reintenta.'); } finally { $('stopButton').disabled = false; } });
   $('sessionPicker').addEventListener('change', async () => {
     const selected = $('sessionPicker').value; pause();
     try {
@@ -458,6 +593,12 @@
       $('sessionPicker').value = selected;
     } catch { $('sessionPicker').value = selectedSession; toast('No se pudo abrir esta captura.'); }
   });
-  showTab(location.hash.slice(1));
+  const initialView = requestedView();
+  showTab(initialView, { historyMode: 'replace', initial: true });
+  // A named section hash can otherwise scroll the page after this deferred script.
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+  window.addEventListener('load', () => window.scrollTo(0, 0), { once: true });
   initialize();
 })();
+

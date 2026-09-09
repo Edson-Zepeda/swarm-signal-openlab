@@ -1,0 +1,64 @@
+{
+  "at": "2026-09-09T07:50:30.195779+00:00",
+  "status": "PASS",
+  "executions": [
+    {
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "command": [
+        "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests",
+        "-q",
+        "--junitxml=C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\outputs\\SwarmSignal\\evidence\\revision\\own_tests.xml"
+      ],
+      "exit_code": 0,
+      "total": 125,
+      "passed": 125,
+      "report": "evidence/revision/own_tests.xml",
+      "sha256": "af6e7ddb305b31cbfdd5c635b21e87f55f0d2054dcb40d13233ec01b910e36b1"
+    },
+    {
+      "environment": {
+        "python": "3.11.9",
+        "numpy": "2.2.6",
+        "scipy": "1.15.3"
+      },
+      "command": [
+        "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\outputs\\SwarmSignal\\tmp\\installation-20260909T073126\\clean\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests",
+        "-q",
+        "--junitxml=C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\outputs\\SwarmSignal\\evidence\\revision\\python311_tests.xml"
+      ],
+      "exit_code": 0,
+      "total": 125,
+      "passed": 125,
+      "report": "evidence/revision/python311_tests.xml",
+      "sha256": "e13dc3f8936ad3810e1d76fbc30efb40159c36d61b7bf87545b436d5f917051e"
+    }
+  ],
+  "test_report": "evidence/revision/own_tests.xml",
+  "test_report_sha256": "af6e7ddb305b31cbfdd5c635b21e87f55f0d2054dcb40d13233ec01b910e36b1",
+  "tested_sources": {
+    "scripts/capture.py": "a6ccd201a89103fb8e6bcf5b0ffc7b92e9fbeb4b3745f0d4865bcfbecda39970",
+    "swarm_signal/__init__.py": "6a079d6c020b8034d3be2e653c356071b76309f96712f3656fb3e0ab5015fa8e",
+    "swarm_signal/analysis.py": "f6b62ea968a311926d22a72713ca0eba52a737bc59d4f0881589f6976660b6c7",
+    "swarm_signal/collector.py": "aea57af4ab717f616be20a5f18a3b8faf75d1e135d36edf69ff8505275d6a9ec",
+    "swarm_signal/evidence.py": "596ed95d8fc9423a31a803d4e8762fedc354729bc0cd270d31740488f03b284b",
+    "swarm_signal/experiment.py": "2d71f086bbcea2a36491b2bc243fd4ee8e02403ba14b9aa4d4fff4fa5349bdd0",
+    "swarm_signal/server.py": "d06da08a72537924b2bf90ee617cfc12b770f38dd72ecd2757cb8404db1976f7",
+    "tests/test_audit_regressions.py": "e86f7e49c256076a0d84c0d75a8698fc2ea8ca18d44fcb05fbc2611fa215fc42",
+    "tests/test_evidence.py": "684dc3de81a255fe92ee52aaabab0157447ddab4fdbd6fc43b837840280adeb3",
+    "tests/test_lifecycle.py": "89bd3c49eba2c1dbbcb9a891e19a859de79c34581e701f1cd3f582843198e10e",
+    "tests/test_media_http.py": "8aaefffea02e8a197686d8952d3534c17aebede6d05d83d23041a55d433bdb40",
+    "tests/test_signal.py": "202a6ff0da330acb6b1b0e9fe881e9450193f3af9961b7639467e8f87dbecaa6"
+  },
+  "sources_unchanged_during_test": true,
+  "scope": "Synthetic regression tests. No WiFi capture; no physical movement confirmation."
+}

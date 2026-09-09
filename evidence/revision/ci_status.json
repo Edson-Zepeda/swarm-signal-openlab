@@ -1,0 +1,11 @@
+{
+  "run_url": "https://github.com/Edson-Zepeda/swarm-signal-openlab/actions/runs/34324619560",
+  "commit": "49cae4f51ce2514bcc6a0e670255c615f581b674",
+  "observed_at": "2026-09-09T07:41:00Z",
+  "status": "BLOCKED_BEFORE_START",
+  "annotation": "The job was not started because your account is locked due to a billing issue.",
+  "jobs_started": 0,
+  "matrix_requested": ["Windows Python 3.10", "Windows Python 3.11", "Ubuntu Python 3.12"],
+  "interpretation": "No remote tests ran. This is not a software test failure and is not a passing CI result.",
+  "local_evidence": ["own_tests.xml", "installation.json", "python311_tests.xml"]
+}

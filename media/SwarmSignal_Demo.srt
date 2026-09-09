@@ -1,113 +1,111 @@
-WEBVTT
-
 1
-00:00:00.349 --> 00:00:03.686
+00:00:00,349 --> 00:00:03,686
 Swarm Signal transforma lecturas reales de Wi-Fi en evidencia
 
 2
-00:00:03.698 --> 00:00:07.920
+00:00:03,698 --> 00:00:07,920
 reproducible Esta edición incorpora la auditoría técnica y sus
 
 3
-00:00:07.932 --> 00:00:08.733
+00:00:07,932 --> 00:00:08,733
 correcciones
 
 4
-00:00:10.615 --> 00:00:15.153
+00:00:10,615 --> 00:00:15,153
 El tutorial registró 30 muestras con el recolector original El
 
 5
-00:00:15.165 --> 00:00:20.055
+00:00:15,165 --> 00:00:20,055
 sistema conecta lectura extracción de características y clasificación conservando
 
 6
-00:00:20.068 --> 00:00:20.723
+00:00:20,068 --> 00:00:20,723
 los datos
 
 7
-00:00:22.582 --> 00:00:27.762
+00:00:22,582 --> 00:00:27,762
 La captura de ciento veinte segundos contiene 233 lecturas La
 
 8
-00:00:27.775 --> 00:00:31.076
+00:00:27,775 --> 00:00:31,076
 señal varía pero estas mediciones no tienen etiquetas de
 
 9
-00:00:31.088 --> 00:00:32.847
+00:00:31,088 --> 00:00:32,847
 movimiento humano verificadas
 
 10
-00:00:34.715 --> 00:00:37.361
+00:00:34,715 --> 00:00:37,361
 Las tres capturas cumplen calidad en tres de ocho
 
 11
-00:00:37.652 --> 00:00:40.395
+00:00:37,652 --> 00:00:40,395
 cero de tres y dos de cuatro ventanas elegibles
 
 12
-00:00:41.231 --> 00:00:44.422
+00:00:41,231 --> 00:00:44,422
 Esta comparación describe el muestreo no mide precisión de
 
 13
-00:00:44.435 --> 00:00:45.381
+00:00:44,435 --> 00:00:45,381
 detección humana
 
 14
-00:00:47.249 --> 00:00:50.076
+00:00:47,249 --> 00:00:50,076
 La última ventana excede el límite de irregularidad del
 
 15
-00:00:50.088 --> 00:00:53.533
+00:00:50,088 --> 00:00:53,533
 cinco por ciento Se conservan las lecturas y se
 
 16
-00:00:53.546 --> 00:00:55.560
+00:00:53,546 --> 00:00:55,560
 omiten el espectro y la clasificación
 
 17
-00:00:58.249 --> 00:01:01.161
+00:00:58,249 --> 00:01:01,161
 A dos muestras por segundo el límite teórico es
 
 18
-00:01:01.173 --> 00:01:04.533
+00:01:01,173 --> 00:01:04,533
 un hertz La banda original de movimiento llega a
 
 19
-00:01:04.546 --> 00:01:07.264
+00:01:04,546 --> 00:01:07,264
 tres Su cobertura es parcial
 
 20
-00:01:09.115 --> 00:01:14.575
+00:01:09,115 --> 00:01:14,575
 La revisión aprueba 125 pruebas propias Se conservan las 45
 
 21
-00:01:14.587 --> 00:01:19.089
+00:01:14,587 --> 00:01:19,089
 unitarias y 5 integraciones originales con su evidencia histórica separada
 
 22
-00:01:20.949 --> 00:01:25.583
+00:01:20,949 --> 00:01:25,583
 La referencia sintética CSI conserva su hash exacto Al
 
 23
-00:01:25.595 --> 00:01:29.175
+00:01:25,595 --> 00:01:29,175
 identificar el cliente de consulta la nueva verificación pasa
 
 24
-00:01:29.187 --> 00:01:33.071
+00:01:29,187 --> 00:01:33,071
 seis fases y omite tres El error cuatrocientos tres
 
 25
-00:01:33.083 --> 00:01:34.928
+00:01:33,083 --> 00:01:34,928
 anterior permanece documentado
 
 26
-00:01:36.782 --> 00:01:40.228
+00:01:36,782 --> 00:01:40,228
 Un receptor fijo permite comparar quietud y cruces declarados
 
 27
-00:01:41.064 --> 00:01:45.142
+00:01:41,064 --> 00:01:45,142
 Esa prueba física sigue pendiente Después se podrá evaluar
 
 28
-00:01:45.154 --> 00:01:46.768
+00:01:45,154 --> 00:01:46,768
 el efecto de nodos móviles

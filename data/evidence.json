@@ -4,60 +4,129 @@
       "id": "01",
       "title": "Entorno reproducible",
       "status": "complete",
-      "summary": "Python y RuView fijados por versión.",
-      "artifact_url": "evidence/tutorial/01_environment.json"
+      "summary": "Python, dependencias y commit registrados.",
+      "artifact_url": "evidence/tutorial/01_environment.json",
+      "artifact_links": []
     },
     {
       "id": "02",
       "title": "Conexión WiFi",
       "status": "complete",
-      "summary": "Adaptador real conectado; identificadores omitidos.",
-      "artifact_url": "evidence/tutorial/02_netsh.txt"
+      "summary": "Salida real de Windows con identificadores omitidos.",
+      "artifact_url": "evidence/tutorial/02_netsh.txt",
+      "artifact_links": []
     },
     {
       "id": "03",
       "title": "Lectura individual",
       "status": "complete",
-      "summary": "−60 dBm con WindowsWifiCollector.",
-      "artifact_url": "evidence/tutorial/03_single_reading.json"
+      "summary": "-60 dBm con el colector original.",
+      "artifact_url": "evidence/tutorial/03_single_reading.json",
+      "artifact_links": []
     },
     {
       "id": "04",
       "title": "Pipeline de 15 s",
       "status": "complete",
       "summary": "30 muestras · 1.99 Hz · salida active.",
-      "artifact_url": "evidence/tutorial/04_pipeline_15s.json"
+      "artifact_url": "evidence/tutorial/04_pipeline_15s.json",
+      "artifact_links": []
     },
     {
       "id": "05",
       "title": "Monitor y movimiento",
       "status": "partial",
-      "summary": "Monitor con RSSI real. Cruce humano pendiente de confirmar.",
-      "artifact_url": "evidence/sessions/20260909T062522_420b46.json"
+      "summary": "Monitor real. Falta confirmar el movimiento del participante.",
+      "artifact_url": "evidence/ui/monitor-live.png",
+      "artifact_links": [
+        {
+          "label": "Captura del monitor",
+          "url": "evidence/ui/monitor-live.png"
+        },
+        {
+          "label": "Datos de la captura",
+          "url": "evidence/ui/monitor-live-state.json"
+        }
+      ]
     },
     {
       "id": "06",
       "title": "CommodityBackend",
       "status": "complete",
-      "summary": "Integración propia con el colector validado.",
-      "artifact_url": "evidence/tutorial/06_commodity_backend.json"
+      "summary": "5 comprobaciones con el adaptador real.",
+      "artifact_url": "evidence/tutorial/06_commodity_backend.json",
+      "artifact_links": [
+        {
+          "label": "Código de integración",
+          "url": "code/check_backend.py"
+        }
+      ]
     },
     {
       "id": "07",
       "title": "Pruebas",
       "status": "complete",
-      "summary": "45 unitarias + 5 de hardware + 31 propias.",
-      "artifact_url": "evidence/upstream/verification_summary.json"
+      "summary": "45 unitarias · 5 integraciones adaptadas · 125 propias.",
+      "artifact_url": "evidence/revision/own_tests.xml",
+      "artifact_links": [
+        {
+          "label": "Pruebas originales",
+          "url": "evidence/upstream/verification_summary.json"
+        },
+        {
+          "label": "Pruebas de la revisión",
+          "url": "evidence/revision/own_tests.xml"
+        }
+      ]
     },
     {
       "id": "08",
       "title": "Verificación determinística",
-      "status": "partial",
-      "summary": "CSI: hash exacto. ./verify ampliado: error HTTP 403 y 3 omisiones.",
-      "artifact_url": "evidence/upstream/verification_summary.json"
+      "status": "complete",
+      "summary": "6 fases PASS · 3 SKIP. CSI: hash exacto.",
+      "artifact_url": "evidence/revision/verify_identified.json",
+      "artifact_links": [
+        {
+          "label": "Ejecución actual",
+          "url": "evidence/revision/verify_identified.log"
+        },
+        {
+          "label": "Fallo inicial conservado",
+          "url": "evidence/upstream/03_verify_original_shell.log"
+        }
+      ]
     }
   ],
+  "completed": 7,
+  "total": 8,
   "movement_ground_truth": "unconfirmed",
-  "own_tests_passed": 31,
-  "advanced": "Pendiente de repositorio y tutorial asignados por VantTec."
+  "physical_evidence_complete": false,
+  "own_tests_passed": 125,
+  "tests": {
+    "unit": {
+      "total": 45,
+      "passed": 45,
+      "failed": 0,
+      "skipped": 0
+    },
+    "live_adapted": {
+      "total": 5,
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    },
+    "own": {
+      "total": 125,
+      "passed": 125,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "verification": {
+    "passed": 6,
+    "failed": 0,
+    "skipped": 3,
+    "scope": "Only phases that ran; skipped phases are not verified."
+  },
+  "advanced": "Faltan el repositorio asignado y el tutorial del show."
 }
