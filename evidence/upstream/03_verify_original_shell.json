@@ -1,0 +1,18 @@
+{
+  "label": "03_verify_original_shell",
+  "started_at_utc": "2026-09-09T06:18:51.629932+00:00",
+  "ended_at_utc": "2026-09-09T06:19:16.629067+00:00",
+  "argv": [
+    "C:\\Program Files\\Git\\bin\\bash.exe",
+    "-c",
+    "./verify"
+  ],
+  "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+  "env_overrides": {},
+  "exit_code": 1,
+  "timed_out": false,
+  "duration_seconds": 25.0,
+  "log": "03_verify_original_shell.log",
+  "log_sha256": "d277a97472f942e54086b04a8c401938d17bb672f8a30db6375c858fae4b14ea",
+  "note": "Exact ./verify under installed Git Bash; no upstream modifications."
+}

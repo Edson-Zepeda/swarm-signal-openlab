@@ -1,0 +1,18 @@
+--- upstream/test_windows_live_sensing.py
++++ adapted/test_windows_live_sensing_es.py
+@@ -30,7 +30,14 @@
+             ["netsh", "wlan", "show", "interfaces"],
+             capture_output=True, text=True, timeout=5,
+         )
+-        return "connected" in r.stdout.lower() and "disconnected" not in r.stdout.lower().split("state")[1][:30]
++        # Locale-only adaptation: match the complete connection-state value.
++        # All collectors and test assertions remain the original upstream code.
++        for line in r.stdout.lower().splitlines():
++            key, separator, value = line.partition(":")
++            if separator and key.strip() in {"state", "estado"}:
++                if value.strip() in {"connected", "conectado"}:
++                    return True
++        return False
+     except Exception:
+         return False
+ 

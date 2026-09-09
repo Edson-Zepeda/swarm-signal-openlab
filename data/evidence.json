@@ -1,0 +1,63 @@
+{
+  "stages": [
+    {
+      "id": "01",
+      "title": "Entorno reproducible",
+      "status": "complete",
+      "summary": "Python y RuView fijados por versión.",
+      "artifact_url": "evidence/tutorial/01_environment.json"
+    },
+    {
+      "id": "02",
+      "title": "Conexión WiFi",
+      "status": "complete",
+      "summary": "Adaptador real conectado; identificadores omitidos.",
+      "artifact_url": "evidence/tutorial/02_netsh.txt"
+    },
+    {
+      "id": "03",
+      "title": "Lectura individual",
+      "status": "complete",
+      "summary": "−60 dBm con WindowsWifiCollector.",
+      "artifact_url": "evidence/tutorial/03_single_reading.json"
+    },
+    {
+      "id": "04",
+      "title": "Pipeline de 15 s",
+      "status": "complete",
+      "summary": "30 muestras · 1.99 Hz · salida active.",
+      "artifact_url": "evidence/tutorial/04_pipeline_15s.json"
+    },
+    {
+      "id": "05",
+      "title": "Monitor y movimiento",
+      "status": "partial",
+      "summary": "Monitor con RSSI real. Cruce humano pendiente de confirmar.",
+      "artifact_url": "evidence/sessions/20260909T062522_420b46.json"
+    },
+    {
+      "id": "06",
+      "title": "CommodityBackend",
+      "status": "complete",
+      "summary": "Integración propia con el colector validado.",
+      "artifact_url": "evidence/tutorial/06_commodity_backend.json"
+    },
+    {
+      "id": "07",
+      "title": "Pruebas",
+      "status": "complete",
+      "summary": "45 unitarias + 5 de hardware + 31 propias.",
+      "artifact_url": "evidence/upstream/verification_summary.json"
+    },
+    {
+      "id": "08",
+      "title": "Verificación determinística",
+      "status": "partial",
+      "summary": "CSI: hash exacto. ./verify ampliado: error HTTP 403 y 3 omisiones.",
+      "artifact_url": "evidence/upstream/verification_summary.json"
+    }
+  ],
+  "movement_ground_truth": "unconfirmed",
+  "own_tests_passed": 31,
+  "advanced": "Pendiente de repositorio y tutorial asignados por VantTec."
+}
