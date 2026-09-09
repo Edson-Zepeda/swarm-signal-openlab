@@ -129,7 +129,7 @@ const server = http.createServer((req, res) => {
       await page.setViewportSize({ width, height: width > 1000 ? 1000 : 900 });
       await page.locator('[data-tab="monitor"]').click();
       await page.waitForTimeout(550);
-      const measurements = await page.evaluate(() => ({ viewport: innerWidth, pageWidth: document.documentElement.scrollWidth, bodyFont: parseFloat(getComputedStyle(document.body).fontSize), labelFonts: [...document.querySelectorAll('.metric-label')].map(el => parseFloat(getComputedStyle(el).fontSize)), axisFonts: [...document.querySelectorAll('#signalTicks .axis-text')].map(el => parseFloat(getComputedStyle(el).fontSize)) }));
+      const measurements = await page.evaluate(() => ({ viewport: innerWidth, pageWidth: document.documentElement.scrollWidth, bodyFont: parseFloat(getComputedStyle(document.body).fontSize), labelFonts: [...document.querySelectorAll('.metric-label, #captureButton, #sessionPicker')].map(el => parseFloat(getComputedStyle(el).fontSize)), axisFonts: [...document.querySelectorAll('#signalTicks .axis-text')].map(el => parseFloat(getComputedStyle(el).fontSize)) }));
       await screenshot('monitor-' + width);
       assert(measurements.pageWidth <= measurements.viewport, `Overflow ${measurements.pageWidth - measurements.viewport}px`);
       assert(measurements.bodyFont >= 16);

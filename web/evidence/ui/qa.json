@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-09-09T06:44:42.016Z",
-  "browser": "Microsoft Edge, isolated headless context",
+  "timestamp": "2026-09-09T06:49:17.313Z",
+  "browser": "Isolated Chromium-compatible headless context",
   "sources": [
     "http://127.0.0.1:8766",
     "http://127.0.0.1:8767/swarm-signal-openlab/"
@@ -24,7 +24,10 @@
     {
       "name": "API loss does not keep an alive status",
       "passed": true,
-      "detail": "Receptor sin conexión"
+      "detail": {
+        "disconnectedStatus": "Receptor sin conexión",
+        "recoveredStatus": "Captura grabada"
+      }
     },
     {
       "name": "Static subpath fallback loads actual capture",
@@ -110,6 +113,8 @@
           14,
           14,
           14,
+          14,
+          14,
           14
         ],
         "axisFonts": [
@@ -133,6 +138,8 @@
         "pageWidth": 390,
         "bodyFont": 16,
         "labelFonts": [
+          14,
+          14,
           14,
           14,
           14,
@@ -164,6 +171,8 @@
           14,
           14,
           14,
+          14,
+          14,
           14
         ],
         "axisFonts": [
@@ -187,6 +196,8 @@
         "pageWidth": 1440,
         "bodyFont": 16,
         "labelFonts": [
+          14,
+          14,
           14,
           14,
           14,
@@ -352,8 +363,24 @@
     },
     {
       "name": "Demo duration, chapter seek, playback and audio track",
-      "passed": false,
-      "error": "page.waitForFunction: Timeout 30000ms exceeded."
+      "passed": true,
+      "detail": {
+        "duration": 104.8,
+        "width": 1920,
+        "height": 1080,
+        "captions": [
+          {
+            "language": "es",
+            "label": "Español"
+          }
+        ],
+        "time": 63.511456,
+        "paused": false,
+        "audioDecodedBytes": 66783,
+        "muted": false,
+        "volume": 1,
+        "videoError": null
+      }
     },
     {
       "name": "Responsive 320px demo no overflow",
@@ -405,15 +432,28 @@
     "evidence\\ui\\propuesta-390.png",
     "evidence\\ui\\evidencia-768.png",
     "evidence\\ui\\propuesta-768.png",
+    "evidence\\ui\\demo-1440.png",
     "evidence\\ui\\demo-320.png",
     "evidence\\ui\\demo-390.png",
     "evidence\\ui\\demo-768.png"
   ],
   "pageErrors": [],
   "networkFailures": [],
-  "passed": false,
+  "browserVersion": "152.0.4191.66",
+  "videoMetadata": {
+    "duration": 104.8,
+    "width": 1920,
+    "height": 1080,
+    "captions": [
+      {
+        "language": "es",
+        "label": "Español"
+      }
+    ]
+  },
+  "passed": true,
   "summary": {
-    "passed": 28,
-    "failed": 1
+    "passed": 29,
+    "failed": 0
   }
 }

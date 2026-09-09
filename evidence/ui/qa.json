@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-09T06:47:05.367Z",
+  "timestamp": "2026-09-09T06:49:17.313Z",
   "browser": "Isolated Chromium-compatible headless context",
   "sources": [
     "http://127.0.0.1:8766",
@@ -24,7 +24,10 @@
     {
       "name": "API loss does not keep an alive status",
       "passed": true,
-      "detail": "Receptor sin conexión"
+      "detail": {
+        "disconnectedStatus": "Receptor sin conexión",
+        "recoveredStatus": "Captura grabada"
+      }
     },
     {
       "name": "Static subpath fallback loads actual capture",
@@ -110,6 +113,8 @@
           14,
           14,
           14,
+          14,
+          14,
           14
         ],
         "axisFonts": [
@@ -133,6 +138,8 @@
         "pageWidth": 390,
         "bodyFont": 16,
         "labelFonts": [
+          14,
+          14,
           14,
           14,
           14,
@@ -164,6 +171,8 @@
           14,
           14,
           14,
+          14,
+          14,
           14
         ],
         "axisFonts": [
@@ -187,6 +196,8 @@
         "pageWidth": 1440,
         "bodyFont": 16,
         "labelFonts": [
+          14,
+          14,
           14,
           14,
           14,
@@ -363,7 +374,7 @@
             "label": "Español"
           }
         ],
-        "time": 63.511375,
+        "time": 63.511456,
         "paused": false,
         "audioDecodedBytes": 66783,
         "muted": false,

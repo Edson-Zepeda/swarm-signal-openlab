@@ -2,6 +2,8 @@
 
 Laboratorio de sensado WiFi para el Open Lab de VantTec. Lee RSSI real en Windows, ejecuta el pipeline de RuView y conserva evidencia reproducible.
 
+[Abrir laboratorio](https://edson-zepeda.github.io/swarm-signal-openlab/) · [Ver video](https://edson-zepeda.github.io/swarm-signal-openlab/demo.html) · [Descargar entrega](https://github.com/Edson-Zepeda/swarm-signal-openlab/releases/latest)
+
 ## Abrir
 
 Windows 10/11, WiFi conectado y Python 3.12+. El reto admite 3.10; las versiones fijadas en esta entrega requieren 3.12.
@@ -39,6 +41,21 @@ Para marcar una condición física usa `--condition still` o `--condition walkin
 - `evidence/upstream/`: comandos, errores originales, adaptaciones y verificación.
 - `evidence/ui/`: capturas reales y revisión de interfaz.
 - `web/`: laboratorio interactivo y reproducción.
+- `media/SwarmSignal_Demo.mp4`: demostración narrada de 1:45, con subtítulos.
+
+La prueba física de movimiento sigue pendiente. Los resultados completos y las limitaciones se conservan en los documentos y en `docs/PRUEBA_PENDIENTE.md`.
+
+## Comprobar la interfaz
+
+Con el servidor local abierto:
+
+```powershell
+npm install
+npx playwright install chromium
+npm run test:ui
+```
+
+La comprobación pública se ejecuta con `node scripts/verify_public_ui.cjs`.
 
 ## Qué concluye
 
