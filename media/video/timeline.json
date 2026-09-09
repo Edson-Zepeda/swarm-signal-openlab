@@ -22,7 +22,10 @@
     },
     {
       "path": "evidence/own_tests.xml",
-      "sha256": "3b1b19578b1ad0bacf339e5b31525e133b8ea7d50e4c0e135402e3a7a2abb4dc"
+      "sha256": "3b1b19578b1ad0bacf339e5b31525e133b8ea7d50e4c0e135402e3a7a2abb4dc",
+      "snapshot_path": "media/video/sources/own_tests.xml",
+      "snapshot_recovered_from_commit": "b6dae0c",
+      "original_source_still_matches_snapshot": true
     },
     {
       "path": "swarm_signal/analysis.py",
@@ -142,6 +145,7 @@
     "tests": 31,
     "passed": 31,
     "source": "evidence/own_tests.xml",
-    "source_sha256": "3b1b19578b1ad0bacf339e5b31525e133b8ea7d50e4c0e135402e3a7a2abb4dc"
+    "source_sha256": "3b1b19578b1ad0bacf339e5b31525e133b8ea7d50e4c0e135402e3a7a2abb4dc",
+    "snapshot_path": "media/video/sources/own_tests.xml"
   }
 }

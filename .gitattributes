@@ -8,3 +8,6 @@ web/evidence/** -text
 *.webm -text
 *.mp3 -text
 *.wav -text
+swarm_signal/analysis.py -text
+scripts/build_video.py -text
+media/video/sources/** -text

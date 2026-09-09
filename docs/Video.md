@@ -19,6 +19,8 @@ Las curvas representan exclusivamente las muestras guardadas del tutorial y de l
 
 La prueba CSI utiliza la referencia **sintética** del repositorio. Su coincidencia de hash se distingue del resultado global de `./verify`: cinco fases PASS, una FAIL y tres SKIP. Las 31 pruebas propias corresponden al XML guardado que figura en la procedencia del video.
 
+El XML utilizado está congelado en [sources/own_tests.xml](../media/video/sources/own_tests.xml), recuperado sin cambios del commit `b6dae0c`. Su SHA-256 coincide con el registrado al construir el video. La [auditoría de procedencia](../media/video/provenance_audit.json) comprueba las cinco fuentes contra sus bytes locales y los objetos de Git; las reglas `-text` conservan los bytes de las fuentes verificadas al descargar o clonar.
+
 La voz es **sintética**, `es-MX-JorgeNeural`, generada con Microsoft Edge TTS a partir del guion del video. Solo se envió el texto explicativo al servicio; las muestras y los identificadores de red no se enviaron. El MP4 incluye audio AAC y subtítulos opcionales en español, también entregados como SRT y VTT.
 
 ## Reproducción y revisión
