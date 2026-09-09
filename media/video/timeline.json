@@ -1,0 +1,151 @@
+{
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": 30,
+  "duration_seconds": 104.80000000000001,
+  "voice": "es-MX-JorgeNeural",
+  "generated_voice": true,
+  "source_provenance": [
+    {
+      "path": "evidence/tutorial/04_pipeline_15s.json",
+      "sha256": "b12e3640ff48f90fe1a39d0c3f9505f41045dfbf4f0ef15b86fdc8097a128d38"
+    },
+    {
+      "path": "evidence/sessions/20260909T062522_420b46.json",
+      "sha256": "803d7abb4909d968ac786dab594212c5361efcb561c62c24335625dc976f1c2e"
+    },
+    {
+      "path": "evidence/upstream/verification_summary.json",
+      "sha256": "2b8486857bd1f12ff5642ec2de2b6dc578eeeff81cc2ca978d027428ff83760e"
+    },
+    {
+      "path": "evidence/own_tests.xml",
+      "sha256": "3b1b19578b1ad0bacf339e5b31525e133b8ea7d50e4c0e135402e3a7a2abb4dc",
+      "snapshot_path": "media/video/sources/own_tests.xml",
+      "snapshot_recovered_from_commit": "b6dae0c",
+      "original_source_still_matches_snapshot": true
+    },
+    {
+      "path": "swarm_signal/analysis.py",
+      "sha256": "9cd8f9a95d70b16bd00f86148a7b6cf09bc5d53c9d43a96c1f98903dde75f7fa"
+    }
+  ],
+  "capture_summary": {
+    "samples": 233,
+    "duration_requested_seconds": 120,
+    "duration_observed_seconds": 119.5956711769104,
+    "mean_dbm": -58.918454935622314,
+    "min_dbm": -61.0,
+    "max_dbm": -56.0,
+    "effective_hz": 1.939869543077499,
+    "last_window_samples": 29,
+    "jitter_cv": 0.335915710447241,
+    "max_gap_seconds": 1.4339532852172852,
+    "nyquist_hz": 0.9355089812612888,
+    "quality_ready": false,
+    "ground_truth": "unconfirmed"
+  },
+  "scenes": [
+    {
+      "title": "La señal. La evidencia.",
+      "label": "SWARM SIGNAL",
+      "kind": "intro",
+      "minimum": 11,
+      "narration": "Swarm Signal convierte el Wi-Fi de una laptop en evidencia reproducible. Esta es una reproducción de lecturas reales, sin etiquetas humanas verificadas.",
+      "start": 0,
+      "end": 11.133333333333333,
+      "duration": 11.133333333333333,
+      "audio_duration": 10.224
+    },
+    {
+      "title": "Del Wi-Fi al análisis.",
+      "label": "PIPELINE REAL",
+      "kind": "pipeline",
+      "minimum": 11,
+      "narration": "El tutorial conecta el recolector con el extractor y Commodity Backend. La primera ventana registró 30 muestras. Son datos observados, no señales inventadas.",
+      "start": 11.133333333333333,
+      "end": 23.866666666666667,
+      "duration": 12.733333333333333,
+      "audio_duration": 11.808
+    },
+    {
+      "title": "Una captura, muestra a muestra.",
+      "label": "REPRODUCCIÓN ACELERADA",
+      "kind": "trace",
+      "minimum": 12,
+      "narration": "La sesión de ciento veinte segundos reunió 233 lecturas reales. Aquí se recorre su evolución completa. La variación de señal, por sí sola, no prueba movimiento humano.",
+      "start": 23.866666666666667,
+      "end": 37.833333333333336,
+      "duration": 13.966666666666667,
+      "audio_duration": 13.056
+    },
+    {
+      "title": "La calidad decide.",
+      "label": "VENTANA FINAL",
+      "kind": "quality",
+      "minimum": 11,
+      "narration": "El muestreo irregular de la última ventana activa una abstención. Swarm Signal conserva la evidencia y deja la clasificación vacía, en lugar de convertir datos débiles en una afirmación.",
+      "start": 37.833333333333336,
+      "end": 50.96666666666667,
+      "duration": 13.133333333333333,
+      "audio_duration": 12.216
+    },
+    {
+      "title": "Frecuencias, con límites.",
+      "label": "ESPECTRO OBSERVADO",
+      "kind": "spectrum",
+      "minimum": 11,
+      "narration": "El espectro describe las variaciones del RSSI. Su límite depende de la frecuencia efectiva de muestreo. Estos picos no son una medición de respiración.",
+      "start": 50.96666666666667,
+      "end": 63.266666666666666,
+      "duration": 12.3,
+      "audio_duration": 11.4
+    },
+    {
+      "title": "Pruebas que puedes repetir.",
+      "label": "VERIFICACIÓN DE SOFTWARE",
+      "kind": "tests",
+      "minimum": 11,
+      "narration": "Pasaron 45 pruebas unitarias, 5 de integración y 31 propias. La adaptación de idioma conserva todas las aserciones.",
+      "start": 63.266666666666666,
+      "end": 74.26666666666667,
+      "duration": 11.0,
+      "audio_duration": 9.696
+    },
+    {
+      "title": "Una prueba, un hash.",
+      "label": "CSI · REFERENCIA SINTÉTICA",
+      "kind": "proof",
+      "minimum": 13,
+      "narration": "La referencia sintética CSI reproduce exactamente el hash publicado. La verificación global sigue fallando: el registro externo respondió cuatrocientos tres. Ambos resultados permanecen visibles, sin esconder las omisiones.",
+      "start": 74.26666666666667,
+      "end": 91.36666666666667,
+      "duration": 17.1,
+      "audio_duration": 16.2
+    },
+    {
+      "title": "Primero, una base estable.",
+      "label": "PROPUESTA SWARM",
+      "kind": "proposal",
+      "minimum": 12,
+      "narration": "Para SWARM proponemos comenzar con un receptor fijo y comparar escenarios etiquetados. Después, evaluar nodos móviles y su interferencia. La prioridad es medir antes de afirmar.",
+      "start": 91.36666666666667,
+      "end": 104.80000000000001,
+      "duration": 13.433333333333334,
+      "audio_duration": 12.528
+    }
+  ],
+  "all_quantitative_traces_are_measured_replays": true,
+  "ground_truth": "unconfirmed",
+  "csi_reference_kind": "SYNTHETIC",
+  "upstream_commit": "d613a576ea848f96a9b15bac4e7f60b6be7c08e7",
+  "own_tests_snapshot": {
+    "tests": 31,
+    "passed": 31,
+    "source": "evidence/own_tests.xml",
+    "source_sha256": "3b1b19578b1ad0bacf339e5b31525e133b8ea7d50e4c0e135402e3a7a2abb4dc",
+    "snapshot_path": "media/video/sources/own_tests.xml"
+  }
+}

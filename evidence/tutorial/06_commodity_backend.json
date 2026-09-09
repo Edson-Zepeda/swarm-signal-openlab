@@ -1,0 +1,305 @@
+{
+  "time_utc": "2026-09-09T06:32:11.360766+00:00",
+  "capabilities": [
+    "MOTION",
+    "PRESENCE"
+  ],
+  "checks_passed": 5,
+  "ground_truth": "unconfirmed",
+  "samples": [
+    {
+      "timestamp": 1788935516.6770015,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935517.1809244,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935517.6261547,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935518.1556036,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935518.669682,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935519.1707687,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935519.6415896,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935520.1473417,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935520.635045,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935521.1530108,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935521.6792653,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935522.1874056,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935522.7243931,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935523.1975846,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935523.740094,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935524.21786,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935524.7326534,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935525.2591815,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935525.7723112,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935526.2719767,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935526.7736604,
+      "rssi_dbm": -57.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935527.2805696,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935527.809812,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935528.321863,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935528.815475,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935529.308875,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935529.8177047,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935530.34778,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935530.8474958,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935531.356761,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    }
+  ],
+  "raw_backend_result": {
+    "motion_level": "active",
+    "confidence": 1.0,
+    "presence_detected": true,
+    "rssi_variance": 0.7172413793103448,
+    "motion_band_energy": 1.3849736615628458,
+    "breathing_band_energy": 1.2653916784435155,
+    "n_change_points": 0,
+    "details": "var=0.7172 (thresh=0.3), motion_energy=1.3850 (thresh=0.1), breathing_energy=1.2654, change_points=0"
+  },
+  "application_result": {
+    "features": {
+      "mean": -58.8,
+      "variance": 0.7172413793103448,
+      "std": 0.8469010445797932,
+      "skewness": -0.4087299789854509,
+      "kurtosis": 0.4834695219310663,
+      "range": 4.0,
+      "iqr": 1.0,
+      "dominant_freq_hz": 0.06585030677838481,
+      "breathing_band_power": 1.2653916784435155,
+      "motion_band_power": 1.3849736615628458,
+      "total_spectral_power": 3.2122998998377956,
+      "change_points": [],
+      "n_change_points": 0,
+      "n_samples": 30,
+      "duration_seconds": 14.679759502410889,
+      "sample_rate_hz": 1.9755092033515442
+    },
+    "classification": {
+      "motion_level": "active",
+      "confidence": 1.0,
+      "presence_detected": true,
+      "rssi_variance": 0.7172413793103448,
+      "motion_band_energy": 1.3849736615628458,
+      "breathing_band_energy": 1.2653916784435155,
+      "n_change_points": 0,
+      "details": "var=0.7172 (thresh=0.3), motion_energy=1.3850 (thresh=0.1), breathing_energy=1.2654, change_points=0"
+    },
+    "spectrum": [
+      {
+        "hz": 0.06585030677838481,
+        "power": 0.5619345598314341
+      },
+      {
+        "hz": 0.13170061355676962,
+        "power": 0.502097809560889
+      },
+      {
+        "hz": 0.19755092033515442,
+        "power": 0.0076970663787249705
+      },
+      {
+        "hz": 0.26340122711353925,
+        "power": 0.34389399371775087
+      },
+      {
+        "hz": 0.3292515338919241,
+        "power": 0.385772032508098
+      },
+      {
+        "hz": 0.39510184067030885,
+        "power": 0.01689660014440796
+      },
+      {
+        "hz": 0.46095214744869367,
+        "power": 0.00903417613364475
+      },
+      {
+        "hz": 0.5268024542270785,
+        "power": 0.030346772841113687
+      },
+      {
+        "hz": 0.5926527610054633,
+        "power": 0.21843439228878134
+      },
+      {
+        "hz": 0.6585030677838482,
+        "power": 0.3953845888305324
+      },
+      {
+        "hz": 0.7243533745622329,
+        "power": 0.3599335123663934
+      },
+      {
+        "hz": 0.7902036813406177,
+        "power": 0.1468235208187974
+      },
+      {
+        "hz": 0.8560539881190026,
+        "power": 0.15607285164924764
+      },
+      {
+        "hz": 0.9219042948973873,
+        "power": 0.07588619204339955
+      },
+      {
+        "hz": 0.9877546016757722,
+        "power": 0.002091830724580646
+      }
+    ],
+    "quality": {
+      "ready": true,
+      "nyquist_hz": 0.9877546016757721,
+      "max_gap_seconds": 0.5425093173980713,
+      "jitter_cv": 0.04145238458332159,
+      "full_window": true,
+      "reason": null
+    },
+    "capabilities": [
+      "MOTION",
+      "PRESENCE"
+    ]
+  }
+}

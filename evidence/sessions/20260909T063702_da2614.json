@@ -1,0 +1,2771 @@
+{
+  "mode": "replay",
+  "status": "ready",
+  "error": null,
+  "session": {
+    "id": "20260909T063702_da2614",
+    "label": "Validacion del monitor en vivo",
+    "started_at": "2026-09-09T06:37:02.954416+00:00",
+    "duration_seconds": 60,
+    "ground_truth": "unconfirmed",
+    "ground_truth_source": "not_observed",
+    "stopped_at": "2026-09-09T06:38:06.246427+00:00"
+  },
+  "samples": [
+    {
+      "timestamp": 1788935827.5682464,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935829.453465,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935830.698289,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935833.0354862,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935835.0576448,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935837.1616564,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935838.5045846,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935839.6044705,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935840.8588247,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935842.1213536,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935842.987906,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935844.3978026,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935845.4492486,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935846.5460052,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935847.7174442,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935848.7472515,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935850.1145926,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935851.4223373,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935852.5408292,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935854.0514624,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935855.2744982,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935856.4056373,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935857.53724,
+      "rssi_dbm": -56.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935858.9779656,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935860.509304,
+      "rssi_dbm": -57.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935861.616543,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935863.1184406,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935864.5426,
+      "rssi_dbm": -57.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935866.47385,
+      "rssi_dbm": -57.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935868.5052068,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935871.2158039,
+      "rssi_dbm": -56.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935874.6586382,
+      "rssi_dbm": -56.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935875.7193942,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935877.05259,
+      "rssi_dbm": -57.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935878.1159306,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935879.178058,
+      "rssi_dbm": -56.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935880.16354,
+      "rssi_dbm": -56.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935881.0083077,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935881.89791,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935882.680005,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935883.4454904,
+      "rssi_dbm": -57.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935884.2473624,
+      "rssi_dbm": -57.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788935885.0487013,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    }
+  ],
+  "thresholds": {
+    "variance": 0.3,
+    "motion": 0.1
+  },
+  "features": {
+    "mean": -57.15384615384615,
+    "variance": 0.8076923076923075,
+    "std": 0.898717034272917,
+    "skewness": 0.3419978654437838,
+    "kurtosis": -1.7783549783549788,
+    "range": 2.0,
+    "iqr": 2.0,
+    "dominant_freq_hz": 0.20019166514503756,
+    "breathing_band_power": 1.937868210449412,
+    "motion_band_power": 0.0,
+    "total_spectral_power": 2.075544734328348,
+    "change_points": [],
+    "n_change_points": 0,
+    "n_samples": 13,
+    "duration_seconds": 13.832897424697876,
+    "sample_rate_hz": 0.867497215628496
+  },
+  "classification": null,
+  "spectrum": [
+    {
+      "hz": 0.06673055504834585,
+      "power": 0.13767652387893647
+    },
+    {
+      "hz": 0.1334611100966917,
+      "power": 0.6239049854593299
+    },
+    {
+      "hz": 0.20019166514503756,
+      "power": 0.6442849473196186
+    },
+    {
+      "hz": 0.2669222201933834,
+      "power": 0.3142311835615026
+    },
+    {
+      "hz": 0.33365277524172926,
+      "power": 0.27011241262320473
+    },
+    {
+      "hz": 0.4003833302900751,
+      "power": 0.08533468148575575
+    }
+  ],
+  "quality": {
+    "ready": false,
+    "nyquist_hz": 0.433748607814248,
+    "max_gap_seconds": 3.4428343772888184,
+    "jitter_cv": 0.614830504312619,
+    "full_window": false,
+    "reason": "Completando ventana de 15 s"
+  },
+  "capabilities": [
+    "MOTION",
+    "PRESENCE"
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "features": {
+        "n_samples": 1
+      },
+      "classification": null,
+      "spectrum": [],
+      "quality": {
+        "ready": false,
+        "reason": "Datos insuficientes"
+      }
+    },
+    {
+      "index": 1,
+      "features": {
+        "n_samples": 2
+      },
+      "classification": null,
+      "spectrum": [],
+      "quality": {
+        "ready": false,
+        "reason": "Datos insuficientes"
+      }
+    },
+    {
+      "index": 2,
+      "features": {
+        "n_samples": 3
+      },
+      "classification": null,
+      "spectrum": [],
+      "quality": {
+        "ready": false,
+        "reason": "Datos insuficientes"
+      }
+    },
+    {
+      "index": 3,
+      "features": {
+        "mean": -59.0,
+        "variance": 0.6666666666666666,
+        "std": 0.816496580927726,
+        "skewness": 0.0,
+        "kurtosis": 1.5,
+        "range": 2.0,
+        "iqr": 0.5,
+        "dominant_freq_hz": 0.13718073829853092,
+        "breathing_band_power": 0.28125,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 0.28125,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 4,
+        "duration_seconds": 5.467239856719971,
+        "sample_rate_hz": 0.5487229531941237
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.13718073829853092,
+          "power": 0.140625
+        },
+        {
+          "hz": 0.27436147659706184,
+          "power": 0.140625
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.27436147659706184,
+        "max_gap_seconds": 2.3371973037719727,
+        "jitter_cv": 0.24591861707594143,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 4,
+      "features": {
+        "mean": -59.0,
+        "variance": 0.5,
+        "std": 0.7071067811865476,
+        "skewness": 0.0,
+        "kurtosis": 2.0,
+        "range": 2.0,
+        "iqr": 0.0,
+        "dominant_freq_hz": 0.10681765727833234,
+        "breathing_band_power": 0.25,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 0.25,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 5,
+        "duration_seconds": 7.48939847946167,
+        "sample_rate_hz": 0.5340882863916617
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.10681765727833234,
+          "power": 0.18090169943749473
+        },
+        {
+          "hz": 0.21363531455666468,
+          "power": 0.06909830056250525
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.26704414319583086,
+        "max_gap_seconds": 2.3371973037719727,
+        "jitter_cv": 0.21237653294792422,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 5,
+      "features": {
+        "mean": -59.166666666666664,
+        "variance": 0.5666666666666667,
+        "std": 0.752772652709081,
+        "skewness": 0.3125699596023726,
+        "kurtosis": -0.10380622837370979,
+        "range": 2.0,
+        "iqr": 0.75,
+        "dominant_freq_hz": 0.08686518474881512,
+        "breathing_band_power": 0.2700910267596167,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 0.5579653232928153,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 6,
+        "duration_seconds": 9.593410015106201,
+        "sample_rate_hz": 0.5211911084928907
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.08686518474881512,
+          "power": 0.2878742965331988
+        },
+        {
+          "hz": 0.17373036949763024,
+          "power": 0.21800769342628346
+        },
+        {
+          "hz": 0.26059555424644537,
+          "power": 0.05208333333333334
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.26059555424644537,
+        "max_gap_seconds": 2.3371973037719727,
+        "jitter_cv": 0.19155655820819606,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 6,
+      "features": {
+        "mean": -59.285714285714285,
+        "variance": 0.5714285714285713,
+        "std": 0.7559289460184544,
+        "skewness": 0.5952940449895273,
+        "kurtosis": -0.3500000000000041,
+        "range": 2.0,
+        "iqr": 1.0,
+        "dominant_freq_hz": 0.07837567223546749,
+        "breathing_band_power": 0.3921031708200147,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 0.7727769679300283,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 7,
+        "duration_seconds": 10.936338186264038,
+        "sample_rate_hz": 0.5486297056482724
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.07837567223546749,
+          "power": 0.3806737971100135
+        },
+        {
+          "hz": 0.15675134447093497,
+          "power": 0.32664503742841805
+        },
+        {
+          "hz": 0.23512701670640246,
+          "power": 0.06545813339159669
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.2743148528241362,
+        "max_gap_seconds": 2.3371973037719727,
+        "jitter_cv": 0.21849629813216637,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 7,
+      "features": {
+        "mean": -59.125,
+        "variance": 0.6964285714285714,
+        "std": 0.8345229603962802,
+        "skewness": 0.27652831823782065,
+        "kurtosis": -1.3917159763313611,
+        "range": 2.0,
+        "iqr": 1.25,
+        "dominant_freq_hz": 0.14539443446397218,
+        "breathing_band_power": 0.5038989914774734,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 0.7490218356060727,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 8,
+        "duration_seconds": 12.036224126815796,
+        "sample_rate_hz": 0.5815777378558887
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.07269721723198609,
+          "power": 0.24512284412859928
+        },
+        {
+          "hz": 0.14539443446397218,
+          "power": 0.39647578303755093
+        },
+        {
+          "hz": 0.2180916516959583,
+          "power": 0.09303909596880565
+        },
+        {
+          "hz": 0.29078886892794437,
+          "power": 0.014384112471116829
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.29078886892794437,
+        "max_gap_seconds": 2.3371973037719727,
+        "jitter_cv": 0.26004388339018025,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 8,
+      "features": {
+        "mean": -59.111111111111114,
+        "variance": 0.6111111111111112,
+        "std": 0.7817359599705717,
+        "skewness": 0.21596955682777666,
+        "kurtosis": -1.0413223140495822,
+        "range": 2.0,
+        "iqr": 1.0,
+        "dominant_freq_hz": 0.13376225841426584,
+        "breathing_band_power": 0.6639197470021764,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 0.8655692729766806,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 9,
+        "duration_seconds": 13.290578365325928,
+        "sample_rate_hz": 0.6019301628641963
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.06688112920713292,
+          "power": 0.20164952597450425
+        },
+        {
+          "hz": 0.13376225841426584,
+          "power": 0.5197555412501789
+        },
+        {
+          "hz": 0.20064338762139877,
+          "power": 0.12800061157820833
+        },
+        {
+          "hz": 0.2675245168285317,
+          "power": 0.01616359417378916
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.30096508143209816,
+        "max_gap_seconds": 2.3371973037719727,
+        "jitter_cv": 0.2682469113044795,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 9,
+      "features": {
+        "mean": -59.2,
+        "variance": 0.6222222222222222,
+        "std": 0.7888106377466155,
+        "skewness": 0.4074850871012626,
+        "kurtosis": -1.074161807580165,
+        "range": 2.0,
+        "iqr": 1.0,
+        "dominant_freq_hz": 0.12368492636224587,
+        "breathing_band_power": 0.9550029577106488,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.067366842767302,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 10,
+        "duration_seconds": 14.553107261657715,
+        "sample_rate_hz": 0.6184246318112293
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.061842463181122936,
+          "power": 0.11236388505665307
+        },
+        {
+          "hz": 0.12368492636224587,
+          "power": 0.5698164778358964
+        },
+        {
+          "hz": 0.1855273895433688,
+          "power": 0.31229772802978223
+        },
+        {
+          "hz": 0.24736985272449175,
+          "power": 0.004603018417651756
+        },
+        {
+          "hz": 0.3092123159056147,
+          "power": 0.0682857334273185
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.30921231590561465,
+        "max_gap_seconds": 2.3371973037719727,
+        "jitter_cv": 0.27114926408798334,
+        "full_window": true,
+        "reason": "Pérdida de muestras"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 10,
+      "features": {
+        "mean": -59.3,
+        "variance": 0.6777777777777777,
+        "std": 0.8232726023485646,
+        "skewness": 0.6869823784714444,
+        "kurtosis": -1.0434982915499056,
+        "range": 2.0,
+        "iqr": 1.0,
+        "dominant_freq_hz": 0.13299404096283157,
+        "breathing_band_power": 1.1295610145326833,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.1617306358219297,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 10,
+        "duration_seconds": 13.534440994262695,
+        "sample_rate_hz": 0.6649702048141579
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.06649702048141579,
+          "power": 0.03216962128924637
+        },
+        {
+          "hz": 0.13299404096283157,
+          "power": 0.5156964633590988
+        },
+        {
+          "hz": 0.19949106144424736,
+          "power": 0.4306305436230026
+        },
+        {
+          "hz": 0.26598808192566314,
+          "power": 0.07378095425863986
+        },
+        {
+          "hz": 0.33248510240707896,
+          "power": 0.10945305329194191
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.33248510240707896,
+        "max_gap_seconds": 2.3371973037719727,
+        "jitter_cv": 0.3216784552649068,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 11,
+      "features": {
+        "mean": -59.18181818181818,
+        "variance": 0.7636363636363634,
+        "std": 0.8738628975053029,
+        "skewness": 0.4086943823366557,
+        "kurtosis": -1.6213151927437686,
+        "range": 2.0,
+        "iqr": 1.5,
+        "dominant_freq_hz": 0.18249539050156843,
+        "breathing_band_power": 1.298420819734657,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.3189873441846525,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 11,
+        "duration_seconds": 14.944337606430054,
+        "sample_rate_hz": 0.6691497651724176
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.060831796833856144,
+          "power": 0.020566524449995585
+        },
+        {
+          "hz": 0.12166359366771229,
+          "power": 0.4222145981021211
+        },
+        {
+          "hz": 0.18249539050156843,
+          "power": 0.6180202883969197
+        },
+        {
+          "hz": 0.24332718733542458,
+          "power": 0.15915502056194283
+        },
+        {
+          "hz": 0.3041589841692807,
+          "power": 0.09903091267367357
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.3345748825862088,
+        "max_gap_seconds": 2.3371973037719727,
+        "jitter_cv": 0.3076674368836179,
+        "full_window": true,
+        "reason": "Pérdida de muestras"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 12,
+      "features": {
+        "mean": -59.09090909090909,
+        "variance": 0.6909090909090909,
+        "std": 0.8312094145936335,
+        "skewness": 0.18995783020492762,
+        "kurtosis": -1.485457063711908,
+        "range": 2.0,
+        "iqr": 1.5,
+        "dominant_freq_hz": 0.18488781711815996,
+        "breathing_band_power": 1.3099445316094849,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.3132680366209668,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 11,
+        "duration_seconds": 14.750959634780884,
+        "sample_rate_hz": 0.6779219960999198
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.061629272372719986,
+          "power": 0.003323505011481973
+        },
+        {
+          "hz": 0.12325854474543997,
+          "power": 0.37293353430439247
+        },
+        {
+          "hz": 0.18488781711815996,
+          "power": 0.6548479807209657
+        },
+        {
+          "hz": 0.24651708949087994,
+          "power": 0.1777774468537637
+        },
+        {
+          "hz": 0.30814636186359995,
+          "power": 0.10438556973036298
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.3389609980499599,
+        "max_gap_seconds": 2.3371973037719727,
+        "jitter_cv": 0.3211554289506974,
+        "full_window": true,
+        "reason": "Pérdida de muestras"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 13,
+      "features": {
+        "mean": -59.0,
+        "variance": 0.8,
+        "std": 0.8944271909999159,
+        "skewness": 0.0,
+        "kurtosis": -1.875,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.20186291301460096,
+        "breathing_band_power": 1.2532497862853313,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.2879938505468593,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 11,
+        "duration_seconds": 13.510519027709961,
+        "sample_rate_hz": 0.7401640143868702
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.06728763767153366,
+          "power": 0.034744064261527846
+        },
+        {
+          "hz": 0.13457527534306732,
+          "power": 0.37465576732998424
+        },
+        {
+          "hz": 0.20186291301460096,
+          "power": 0.6754341286476531
+        },
+        {
+          "hz": 0.26915055068613464,
+          "power": 0.09290240087101699
+        },
+        {
+          "hz": 0.3364381883576683,
+          "power": 0.110257489436677
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.3700820071934351,
+        "max_gap_seconds": 2.1040115356445312,
+        "jitter_cv": 0.2857360801309176,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 14,
+      "features": {
+        "mean": -58.916666666666664,
+        "variance": 0.8106060606060606,
+        "std": 0.90033663737852,
+        "skewness": -0.18476993302338024,
+        "kurtosis": -1.8654554982967917,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.18730471831264378,
+        "breathing_band_power": 1.514286999047448,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.631284228048614,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 12,
+        "duration_seconds": 14.681957960128784,
+        "sample_rate_hz": 0.7492188732505751
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.062434906104214594,
+          "power": 0.1169972290011659
+        },
+        {
+          "hz": 0.12486981220842919,
+          "power": 0.3009550171072783
+        },
+        {
+          "hz": 0.18730471831264378,
+          "power": 0.7217746774074395
+        },
+        {
+          "hz": 0.24973962441685837,
+          "power": 0.25219677456798156
+        },
+        {
+          "hz": 0.31217453052107297,
+          "power": 0.024822881621801286
+        },
+        {
+          "hz": 0.37460943662528756,
+          "power": 0.2145376483429473
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.37460943662528756,
+        "max_gap_seconds": 2.1040115356445312,
+        "jitter_cv": 0.2784718324016343,
+        "full_window": true,
+        "reason": "Pérdida de muestras"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 15,
+      "features": {
+        "mean": -59.0,
+        "variance": 0.7272727272727273,
+        "std": 0.8528028654224418,
+        "skewness": 0.0,
+        "kurtosis": -1.6500000000000001,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.20088232386665372,
+        "breathing_band_power": 1.5285069150338877,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.6826489583729458,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 12,
+        "duration_seconds": 13.689606666564941,
+        "sample_rate_hz": 0.8035292954666148
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.0669607746222179,
+          "power": 0.15414204333905798
+        },
+        {
+          "hz": 0.1339215492444358,
+          "power": 0.40094920863643096
+        },
+        {
+          "hz": 0.20088232386665372,
+          "power": 0.5092894801614716
+        },
+        {
+          "hz": 0.2678430984888716,
+          "power": 0.27642219120597583
+        },
+        {
+          "hz": 0.3348038731110895,
+          "power": 0.06446842287995153
+        },
+        {
+          "hz": 0.40176464773330745,
+          "power": 0.2773776121500578
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.4017646477333074,
+        "max_gap_seconds": 2.1040115356445312,
+        "jitter_cv": 0.24831677122526857,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 16,
+      "features": {
+        "mean": -59.083333333333336,
+        "variance": 0.8106060606060606,
+        "std": 0.90033663737852,
+        "skewness": 0.18476993302338016,
+        "kurtosis": -1.8654554982967912,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.1415380504404633,
+        "breathing_band_power": 1.4165169478169022,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.6636462820394904,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 12,
+        "duration_seconds": 12.952936172485352,
+        "sample_rate_hz": 0.8492283026427798
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.07076902522023165,
+          "power": 0.24712933422258843
+        },
+        {
+          "hz": 0.1415380504404633,
+          "power": 0.41851611131681277
+        },
+        {
+          "hz": 0.21230707566069495,
+          "power": 0.24315041747688615
+        },
+        {
+          "hz": 0.2830761008809266,
+          "power": 0.30476614868850177
+        },
+        {
+          "hz": 0.35384512610115826,
+          "power": 0.18528104297419534
+        },
+        {
+          "hz": 0.4246141513213899,
+          "power": 0.26480322736050604
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.4246141513213899,
+        "max_gap_seconds": 1.4098966121673584,
+        "jitter_cv": 0.1348891147134918,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 17,
+      "features": {
+        "mean": -59.0,
+        "variance": 0.8333333333333334,
+        "std": 0.9128709291752769,
+        "skewness": 0.0,
+        "kurtosis": -1.9418181818181819,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.1294576224863938,
+        "breathing_band_power": 1.3491758337932804,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.6405510970944248,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 13,
+        "duration_seconds": 14.260680913925171,
+        "sample_rate_hz": 0.8414745461615597
+      },
+      "classification": {
+        "motion_level": "present_still",
+        "confidence": 1.0,
+        "presence_detected": true,
+        "rssi_variance": 0.8333333333333334,
+        "motion_band_energy": 0.0,
+        "breathing_band_energy": 1.3491758337932804,
+        "n_change_points": 0,
+        "details": "var=0.8333 (thresh=0.3), motion_energy=0.0000 (thresh=0.1), breathing_energy=1.3492, change_points=0"
+      },
+      "spectrum": [
+        {
+          "hz": 0.0647288112431969,
+          "power": 0.2913752633011441
+        },
+        {
+          "hz": 0.1294576224863938,
+          "power": 0.4676072270588107
+        },
+        {
+          "hz": 0.1941864337295907,
+          "power": 0.12338120804105042
+        },
+        {
+          "hz": 0.2589152449727876,
+          "power": 0.31561372911775193
+        },
+        {
+          "hz": 0.3236440562159845,
+          "power": 0.21438451560558228
+        },
+        {
+          "hz": 0.3883728674591814,
+          "power": 0.22818915397008535
+        }
+      ],
+      "quality": {
+        "ready": true,
+        "nyquist_hz": 0.42073727308077985,
+        "max_gap_seconds": 1.4098966121673584,
+        "jitter_cv": 0.13150147469678186,
+        "full_window": true,
+        "reason": null
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 18,
+      "features": {
+        "mean": -58.84615384615385,
+        "variance": 0.8076923076923076,
+        "std": 0.898717034272917,
+        "skewness": -0.34199786544378374,
+        "kurtosis": -1.7783549783549792,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.13152761972394006,
+        "breathing_band_power": 1.1620216670820274,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.4217398725534827,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 13,
+        "duration_seconds": 14.036244630813599,
+        "sample_rate_hz": 0.8549295282056103
+      },
+      "classification": {
+        "motion_level": "present_still",
+        "confidence": 1.0,
+        "presence_detected": true,
+        "rssi_variance": 0.8076923076923076,
+        "motion_band_energy": 0.0,
+        "breathing_band_energy": 1.1620216670820274,
+        "n_change_points": 0,
+        "details": "var=0.8077 (thresh=0.3), motion_energy=0.0000 (thresh=0.1), breathing_energy=1.1620, change_points=0"
+      },
+      "spectrum": [
+        {
+          "hz": 0.06576380986197003,
+          "power": 0.2597182054714552
+        },
+        {
+          "hz": 0.13152761972394006,
+          "power": 0.44624927467748254
+        },
+        {
+          "hz": 0.1972914295859101,
+          "power": 0.005501283421818602
+        },
+        {
+          "hz": 0.2630552394478801,
+          "power": 0.2913664814304443
+        },
+        {
+          "hz": 0.3288190493098502,
+          "power": 0.21312849279146648
+        },
+        {
+          "hz": 0.3945828591718202,
+          "power": 0.2057761347608157
+        }
+      ],
+      "quality": {
+        "ready": true,
+        "nyquist_hz": 0.42746476410280515,
+        "max_gap_seconds": 1.4098966121673584,
+        "jitter_cv": 0.1282082638716092,
+        "full_window": true,
+        "reason": null
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 19,
+      "features": {
+        "mean": -58.84615384615385,
+        "variance": 0.8076923076923078,
+        "std": 0.8987170342729172,
+        "skewness": -0.34199786544378363,
+        "kurtosis": -1.7783549783549801,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.12778811369984025,
+        "breathing_band_power": 1.0630649013290565,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.2601274465179797,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 13,
+        "duration_seconds": 14.446991920471191,
+        "sample_rate_hz": 0.8306227390489617
+      },
+      "classification": {
+        "motion_level": "present_still",
+        "confidence": 1.0,
+        "presence_detected": true,
+        "rssi_variance": 0.8076923076923078,
+        "motion_band_energy": 0.0,
+        "breathing_band_energy": 1.0630649013290565,
+        "n_change_points": 0,
+        "details": "var=0.8077 (thresh=0.3), motion_energy=0.0000 (thresh=0.1), breathing_energy=1.0631, change_points=0"
+      },
+      "spectrum": [
+        {
+          "hz": 0.06389405684992013,
+          "power": 0.19706254518892324
+        },
+        {
+          "hz": 0.12778811369984025,
+          "power": 0.38498454230162693
+        },
+        {
+          "hz": 0.1916821705497604,
+          "power": 0.07262312860840027
+        },
+        {
+          "hz": 0.2555762273996805,
+          "power": 0.31853669227414527
+        },
+        {
+          "hz": 0.3194702842496006,
+          "power": 0.11408638767222236
+        },
+        {
+          "hz": 0.3833643410995208,
+          "power": 0.17283415047266176
+        }
+      ],
+      "quality": {
+        "ready": true,
+        "nyquist_hz": 0.41531136952448083,
+        "max_gap_seconds": 1.5106332302093506,
+        "jitter_cv": 0.14529596466277825,
+        "full_window": true,
+        "reason": null
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 20,
+      "features": {
+        "mean": -58.92307692307692,
+        "variance": 0.7435897435897435,
+        "std": 0.8623164985025762,
+        "skewness": -0.16358939086284138,
+        "kurtosis": -1.6804021186898672,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.25613147341035825,
+        "breathing_band_power": 1.1423221880394188,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.311490668848566,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 13,
+        "duration_seconds": 14.41567349433899,
+        "sample_rate_hz": 0.8324272885836642
+      },
+      "classification": {
+        "motion_level": "present_still",
+        "confidence": 1.0,
+        "presence_detected": true,
+        "rssi_variance": 0.7435897435897435,
+        "motion_band_energy": 0.0,
+        "breathing_band_energy": 1.1423221880394188,
+        "n_change_points": 0,
+        "details": "var=0.7436 (thresh=0.3), motion_energy=0.0000 (thresh=0.1), breathing_energy=1.1423, change_points=0"
+      },
+      "spectrum": [
+        {
+          "hz": 0.06403286835258956,
+          "power": 0.16916848080914715
+        },
+        {
+          "hz": 0.12806573670517912,
+          "power": 0.2978600890312949
+        },
+        {
+          "hz": 0.19209860505776868,
+          "power": 0.2917689621970872
+        },
+        {
+          "hz": 0.25613147341035825,
+          "power": 0.3883676782239913
+        },
+        {
+          "hz": 0.32016434176294783,
+          "power": 0.03369316511254765
+        },
+        {
+          "hz": 0.38419721011553737,
+          "power": 0.13063229347449787
+        }
+      ],
+      "quality": {
+        "ready": true,
+        "nyquist_hz": 0.4162136442918321,
+        "max_gap_seconds": 1.5106332302093506,
+        "jitter_cv": 0.14516277582199105,
+        "full_window": true,
+        "reason": null
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 21,
+      "features": {
+        "mean": -58.92307692307692,
+        "variance": 0.7435897435897435,
+        "std": 0.8623164985025762,
+        "skewness": -0.16358939086284138,
+        "kurtosis": -1.6804021186898672,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.19386556857942688,
+        "breathing_band_power": 1.3606477525462608,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.4473675818055218,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 13,
+        "duration_seconds": 14.284283638000488,
+        "sample_rate_hz": 0.8400841305108498
+      },
+      "classification": {
+        "motion_level": "present_still",
+        "confidence": 1.0,
+        "presence_detected": true,
+        "rssi_variance": 0.7435897435897435,
+        "motion_band_energy": 0.0,
+        "breathing_band_energy": 1.3606477525462608,
+        "n_change_points": 0,
+        "details": "var=0.7436 (thresh=0.3), motion_energy=0.0000 (thresh=0.1), breathing_energy=1.3606, change_points=0"
+      },
+      "spectrum": [
+        {
+          "hz": 0.0646218561931423,
+          "power": 0.08671982925926115
+        },
+        {
+          "hz": 0.1292437123862846,
+          "power": 0.18522827135476716
+        },
+        {
+          "hz": 0.19386556857942688,
+          "power": 0.5314105918905965
+        },
+        {
+          "hz": 0.2584874247725692,
+          "power": 0.5060648528810131
+        },
+        {
+          "hz": 0.3231092809657115,
+          "power": 0.05454646643086835
+        },
+        {
+          "hz": 0.38773113715885377,
+          "power": 0.08339756998901557
+        }
+      ],
+      "quality": {
+        "ready": true,
+        "nyquist_hz": 0.4200420652554249,
+        "max_gap_seconds": 1.5106332302093506,
+        "jitter_cv": 0.14644512984088914,
+        "full_window": true,
+        "reason": null
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 22,
+      "features": {
+        "mean": -58.61538461538461,
+        "variance": 1.2564102564102564,
+        "std": 1.12089707663561,
+        "skewness": 0.7597280893890376,
+        "kurtosis": 1.1928438908030667,
+        "range": 4.0,
+        "iqr": 1.0,
+        "dominant_freq_hz": 0.19033385032343156,
+        "breathing_band_power": 1.61167356641131,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.673133818843879,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 13,
+        "duration_seconds": 14.549334049224854,
+        "sample_rate_hz": 0.8247800180682033
+      },
+      "classification": {
+        "motion_level": "present_still",
+        "confidence": 1.0,
+        "presence_detected": true,
+        "rssi_variance": 1.2564102564102564,
+        "motion_band_energy": 0.0,
+        "breathing_band_energy": 1.61167356641131,
+        "n_change_points": 0,
+        "details": "var=1.2564 (thresh=0.3), motion_energy=0.0000 (thresh=0.1), breathing_energy=1.6117, change_points=0"
+      },
+      "spectrum": [
+        {
+          "hz": 0.06344461677447719,
+          "power": 0.06146025243256911
+        },
+        {
+          "hz": 0.12688923354895437,
+          "power": 0.11536887608870283
+        },
+        {
+          "hz": 0.19033385032343156,
+          "power": 0.6508089055854659
+        },
+        {
+          "hz": 0.25377846709790874,
+          "power": 0.6334736803457274
+        },
+        {
+          "hz": 0.31722308387238596,
+          "power": 0.16461576860724747
+        },
+        {
+          "hz": 0.3806677006468631,
+          "power": 0.04740633578416636
+        }
+      ],
+      "quality": {
+        "ready": true,
+        "nyquist_hz": 0.41239000903410167,
+        "max_gap_seconds": 1.5106332302093506,
+        "jitter_cv": 0.1207972284727649,
+        "full_window": true,
+        "reason": null
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 23,
+      "features": {
+        "mean": -58.53846153846154,
+        "variance": 1.1025641025641024,
+        "std": 1.0500305245868342,
+        "skewness": 0.884903299409054,
+        "kurtosis": 1.8906534244554898,
+        "range": 4.0,
+        "iqr": 1.0,
+        "dominant_freq_hz": 0.1899313998648861,
+        "breathing_band_power": 1.7495854726363116,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.8605335612870377,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 13,
+        "duration_seconds": 14.58016300201416,
+        "sample_rate_hz": 0.8230360660811731
+      },
+      "classification": {
+        "motion_level": "present_still",
+        "confidence": 1.0,
+        "presence_detected": true,
+        "rssi_variance": 1.1025641025641024,
+        "motion_band_energy": 0.0,
+        "breathing_band_energy": 1.7495854726363116,
+        "n_change_points": 0,
+        "details": "var=1.1026 (thresh=0.3), motion_energy=0.0000 (thresh=0.1), breathing_energy=1.7496, change_points=0"
+      },
+      "spectrum": [
+        {
+          "hz": 0.0633104666216287,
+          "power": 0.11094808865072593
+        },
+        {
+          "hz": 0.1266209332432574,
+          "power": 0.056940130678634855
+        },
+        {
+          "hz": 0.1899313998648861,
+          "power": 0.7340635108061456
+        },
+        {
+          "hz": 0.2532418664865148,
+          "power": 0.6210921940380071
+        },
+        {
+          "hz": 0.3165523331081435,
+          "power": 0.2808963648234792
+        },
+        {
+          "hz": 0.3798627997297722,
+          "power": 0.05659327229004477
+        }
+      ],
+      "quality": {
+        "ready": true,
+        "nyquist_hz": 0.41151803304058654,
+        "max_gap_seconds": 1.5106332302093506,
+        "jitter_cv": 0.12355867128208635,
+        "full_window": true,
+        "reason": null
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 24,
+      "features": {
+        "mean": -58.416666666666664,
+        "variance": 1.3560606060606057,
+        "std": 1.1645001528813148,
+        "skewness": 0.5881632556446014,
+        "kurtosis": 0.36171155706750113,
+        "range": 4.0,
+        "iqr": 1.0,
+        "dominant_freq_hz": 0.19694486523995364,
+        "breathing_band_power": 1.8900009042399284,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 2.122437252977875,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 12,
+        "duration_seconds": 13.963298797607422,
+        "sample_rate_hz": 0.7877794609598144
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.06564828841331788,
+          "power": 0.23243634873794727
+        },
+        {
+          "hz": 0.13129657682663576,
+          "power": 0.30691840325593167
+        },
+        {
+          "hz": 0.19694486523995364,
+          "power": 0.79931271359211
+        },
+        {
+          "hz": 0.2625931536532715,
+          "power": 0.2204982620179375
+        },
+        {
+          "hz": 0.3282414420665894,
+          "power": 0.37145802289731317
+        },
+        {
+          "hz": 0.3938897304799073,
+          "power": 0.19181350247663606
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.3938897304799072,
+        "max_gap_seconds": 1.5313384532928467,
+        "jitter_cv": 0.1294995221370103,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 25,
+      "features": {
+        "mean": -58.5,
+        "variance": 1.3636363636363635,
+        "std": 1.1677484162422844,
+        "skewness": 0.8220948850345682,
+        "kurtosis": 0.6062222222222222,
+        "range": 4.0,
+        "iqr": 1.0,
+        "dominant_freq_hz": 0.19785455338508917,
+        "breathing_band_power": 2.586629180889274,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 2.8528089063851385,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 12,
+        "duration_seconds": 13.899098873138428,
+        "sample_rate_hz": 0.7914182135403568
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.06595151779502972,
+          "power": 0.2661797254958645
+        },
+        {
+          "hz": 0.13190303559005945,
+          "power": 0.5965543339736092
+        },
+        {
+          "hz": 0.19785455338508917,
+          "power": 0.7799798211160981
+        },
+        {
+          "hz": 0.2638060711801189,
+          "power": 0.021443807835362733
+        },
+        {
+          "hz": 0.3297575889751486,
+          "power": 0.5278553852722206
+        },
+        {
+          "hz": 0.39570910677017834,
+          "power": 0.6607958326919835
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.3957091067701784,
+        "max_gap_seconds": 1.5313384532928467,
+        "jitter_cv": 0.13362221295467838,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 26,
+      "features": {
+        "mean": -58.5,
+        "variance": 1.3636363636363635,
+        "std": 1.1677484162422844,
+        "skewness": 0.8220948850345682,
+        "kurtosis": 0.6062222222222222,
+        "range": 4.0,
+        "iqr": 1.0,
+        "dominant_freq_hz": 0.38271015397944586,
+        "breathing_band_power": 3.6507083223287182,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 4.041106092578042,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 12,
+        "duration_seconds": 14.37118911743164,
+        "sample_rate_hz": 0.7654203079588917
+      },
+      "classification": {
+        "motion_level": "present_still",
+        "confidence": 1.0,
+        "presence_detected": true,
+        "rssi_variance": 1.3636363636363635,
+        "motion_band_energy": 0.0,
+        "breathing_band_energy": 3.6507083223287182,
+        "n_change_points": 0,
+        "details": "var=1.3636 (thresh=0.3), motion_energy=0.0000 (thresh=0.1), breathing_energy=3.6507, change_points=0"
+      },
+      "spectrum": [
+        {
+          "hz": 0.06378502566324097,
+          "power": 0.3903977702493237
+        },
+        {
+          "hz": 0.12757005132648194,
+          "power": 0.8056368310042981
+        },
+        {
+          "hz": 0.19135507698972293,
+          "power": 0.6400843091237151
+        },
+        {
+          "hz": 0.2551401026529639,
+          "power": 0.10913114642144571
+        },
+        {
+          "hz": 0.31892512831620484,
+          "power": 0.699257430120542
+        },
+        {
+          "hz": 0.38271015397944586,
+          "power": 1.3965986056587172
+        }
+      ],
+      "quality": {
+        "ready": true,
+        "nyquist_hz": 0.38271015397944586,
+        "max_gap_seconds": 1.5313384532928467,
+        "jitter_cv": 0.12544942844494936,
+        "full_window": true,
+        "reason": null
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 27,
+      "features": {
+        "mean": -58.333333333333336,
+        "variance": 1.515151515151515,
+        "std": 1.2309149097933272,
+        "skewness": 0.4159507663173684,
+        "kurtosis": -0.4487999999999941,
+        "range": 4.0,
+        "iqr": 1.25,
+        "dominant_freq_hz": 0.3812030213970651,
+        "breathing_band_power": 4.488998087779263,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 4.9134142953124265,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 12,
+        "duration_seconds": 14.428007364273071,
+        "sample_rate_hz": 0.7624060427941302
+      },
+      "classification": {
+        "motion_level": "present_still",
+        "confidence": 1.0,
+        "presence_detected": true,
+        "rssi_variance": 1.515151515151515,
+        "motion_band_energy": 0.0,
+        "breathing_band_energy": 4.488998087779263,
+        "n_change_points": 0,
+        "details": "var=1.5152 (thresh=0.3), motion_energy=0.0000 (thresh=0.1), breathing_energy=4.4890, change_points=0"
+      },
+      "spectrum": [
+        {
+          "hz": 0.06353383689951085,
+          "power": 0.4244162075331645
+        },
+        {
+          "hz": 0.1270676737990217,
+          "power": 0.7400135093509291
+        },
+        {
+          "hz": 0.19060151069853254,
+          "power": 0.4421064456496593
+        },
+        {
+          "hz": 0.2541353475980434,
+          "power": 0.3018182919686179
+        },
+        {
+          "hz": 0.31766918449755427,
+          "power": 0.9673042866368345
+        },
+        {
+          "hz": 0.3812030213970651,
+          "power": 2.0377555541732217
+        }
+      ],
+      "quality": {
+        "ready": true,
+        "nyquist_hz": 0.3812030213970651,
+        "max_gap_seconds": 1.5313384532928467,
+        "jitter_cv": 0.12702142504116412,
+        "full_window": true,
+        "reason": null
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 28,
+      "features": {
+        "mean": -58.09090909090909,
+        "variance": 1.4909090909090907,
+        "std": 1.2210278829367864,
+        "skewness": 0.20641012694896893,
+        "kurtosis": -0.9188479079912719,
+        "range": 4.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.32623611210119524,
+        "breathing_band_power": 2.994142504111476,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 3.1064013654974625,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 11,
+        "duration_seconds": 13.933020830154419,
+        "sample_rate_hz": 0.7177194466226295
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.06524722242023905,
+          "power": 0.11225886138598663
+        },
+        {
+          "hz": 0.1304944448404781,
+          "power": 0.29692658370391983
+        },
+        {
+          "hz": 0.19574166726071712,
+          "power": 0.11290772752210755
+        },
+        {
+          "hz": 0.2609888896809562,
+          "power": 0.7219888852600662
+        },
+        {
+          "hz": 0.32623611210119524,
+          "power": 1.8623193076253826
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.35885972331131477,
+        "max_gap_seconds": 1.9312500953674316,
+        "jitter_cv": 0.17362900523507735,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 29,
+      "features": {
+        "mean": -58.09090909090909,
+        "variance": 1.4909090909090907,
+        "std": 1.2210278829367864,
+        "skewness": 0.20641012694896885,
+        "kurtosis": -0.9188479079912719,
+        "range": 4.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.31448283683831413,
+        "breathing_band_power": 2.2784197733006186,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 2.2975056943333674,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 11,
+        "duration_seconds": 14.453744411468506,
+        "sample_rate_hz": 0.6918622410442912
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.06289656736766283,
+          "power": 0.01908592103274838
+        },
+        {
+          "hz": 0.12579313473532566,
+          "power": 0.20303837902454988
+        },
+        {
+          "hz": 0.1886897021029885,
+          "power": 0.00222826300296172
+        },
+        {
+          "hz": 0.2515862694706513,
+          "power": 0.6338437480082637
+        },
+        {
+          "hz": 0.31448283683831413,
+          "power": 1.4393093832648436
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.3459311205221456,
+        "max_gap_seconds": 2.0313568115234375,
+        "jitter_cv": 0.21341157275066638,
+        "full_window": true,
+        "reason": "Pérdida de muestras"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 30,
+      "features": {
+        "mean": -57.6,
+        "variance": 1.3777777777777775,
+        "std": 1.1737877907772671,
+        "skewness": 0.04122303635664631,
+        "kurtosis": -1.4566299985134517,
+        "range": 3.0,
+        "iqr": 1.75,
+        "dominant_freq_hz": 0.303845332894515,
+        "breathing_band_power": 1.333517000757714,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.5685992910621707,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 10,
+        "duration_seconds": 14.810166597366333,
+        "sample_rate_hz": 0.60769066578903
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.06076906657890299,
+          "power": 0.2350822903044568
+        },
+        {
+          "hz": 0.12153813315780598,
+          "power": 0.2597334165164633
+        },
+        {
+          "hz": 0.18230719973670897,
+          "power": 0.3070458162197801
+        },
+        {
+          "hz": 0.24307626631561197,
+          "power": 0.3545853676789606
+        },
+        {
+          "hz": 0.303845332894515,
+          "power": 0.41215240034251
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.303845332894515,
+        "max_gap_seconds": 2.710597038269043,
+        "jitter_cv": 0.2895570960105106,
+        "full_window": true,
+        "reason": "Pérdida de muestras"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 31,
+      "features": {
+        "mean": -57.25,
+        "variance": 1.0714285714285714,
+        "std": 1.0350983390135313,
+        "skewness": -0.3864367132317183,
+        "kurtosis": -0.44799999999999995,
+        "range": 3.0,
+        "iqr": 1.25,
+        "dominant_freq_hz": 0.12368073127817632,
+        "breathing_band_power": 0.3146252493823138,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 0.3505848821894358,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 8,
+        "duration_seconds": 14.149334192276001,
+        "sample_rate_hz": 0.49472292511270527
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.06184036563908816,
+          "power": 0.035959632807122
+        },
+        {
+          "hz": 0.12368073127817632,
+          "power": 0.15799562603981096
+        },
+        {
+          "hz": 0.18552109691726448,
+          "power": 0.11675964322564719
+        },
+        {
+          "hz": 0.24736146255635263,
+          "power": 0.03986998011685568
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.24736146255635263,
+        "max_gap_seconds": 3.4428343772888184,
+        "jitter_cv": 0.37238089810740643,
+        "full_window": true,
+        "reason": "Pérdida de muestras"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 32,
+      "features": {
+        "mean": -57.375,
+        "variance": 1.125,
+        "std": 1.0606601717798212,
+        "skewness": 0.04489566864676492,
+        "kurtosis": -0.9396825396825399,
+        "range": 3.0,
+        "iqr": 1.25,
+        "dominant_freq_hz": 0.18613257501122749,
+        "breathing_band_power": 0.6485079578725832,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 0.6884670074173811,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 8,
+        "duration_seconds": 14.102851152420044,
+        "sample_rate_hz": 0.4963535333632733
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.062044191670409164,
+          "power": 0.03995904954479773
+        },
+        {
+          "hz": 0.12408838334081833,
+          "power": 0.1631550322313967
+        },
+        {
+          "hz": 0.18613257501122749,
+          "power": 0.30975526305453704
+        },
+        {
+          "hz": 0.24817676668163666,
+          "power": 0.1755976625866495
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.24817676668163666,
+        "max_gap_seconds": 3.4428343772888184,
+        "jitter_cv": 0.3776760572479124,
+        "full_window": true,
+        "reason": "Pérdida de muestras"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 33,
+      "features": {
+        "mean": -57.125,
+        "variance": 0.6964285714285714,
+        "std": 0.8345229603962802,
+        "skewness": 0.27652831823782065,
+        "kurtosis": -1.3917159763313611,
+        "range": 2.0,
+        "iqr": 1.25,
+        "dominant_freq_hz": 0.1255907315676129,
+        "breathing_band_power": 1.003931832596899,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.2002886821102208,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 8,
+        "duration_seconds": 13.934149265289307,
+        "sample_rate_hz": 0.5023629262704516
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.06279536578380646,
+          "power": 0.19635684951332136
+        },
+        {
+          "hz": 0.1255907315676129,
+          "power": 0.4650652420924234
+        },
+        {
+          "hz": 0.18838609735141937,
+          "power": 0.3872166684839432
+        },
+        {
+          "hz": 0.2511814631352258,
+          "power": 0.15164992202053262
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.2511814631352258,
+        "max_gap_seconds": 3.4428343772888184,
+        "jitter_cv": 0.3914476809460376,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 34,
+      "features": {
+        "mean": -57.22222222222222,
+        "variance": 0.6944444444444443,
+        "std": 0.8333333333333333,
+        "skewness": 0.500571428571425,
+        "kurtosis": -1.275428571428573,
+        "range": 2.0,
+        "iqr": 1.0,
+        "dominant_freq_hz": 0.1778075317440171,
+        "breathing_band_power": 1.2186081840728153,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.487126778796291,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 9,
+        "duration_seconds": 14.997489929199219,
+        "sample_rate_hz": 0.5334225952320513
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.0592691772480057,
+          "power": 0.26851859472347556
+        },
+        {
+          "hz": 0.1185383544960114,
+          "power": 0.5089556284203822
+        },
+        {
+          "hz": 0.1778075317440171,
+          "power": 0.5758302081850724
+        },
+        {
+          "hz": 0.2370767089920228,
+          "power": 0.13382234746736074
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.26671129761602563,
+        "max_gap_seconds": 3.4428343772888184,
+        "jitter_cv": 0.4218143209861845,
+        "full_window": true,
+        "reason": "Pérdida de muestras"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 35,
+      "features": {
+        "mean": -57.0,
+        "variance": 0.75,
+        "std": 0.8660254037844386,
+        "skewness": 0.0,
+        "kurtosis": -1.7142857142857142,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.18220589120090566,
+        "breathing_band_power": 1.189730944245246,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.3573322508521921,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 9,
+        "duration_seconds": 14.635457992553711,
+        "sample_rate_hz": 0.546617673602717
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.060735297066968556,
+          "power": 0.16760130660694605
+        },
+        {
+          "hz": 0.12147059413393711,
+          "power": 0.47718675222476015
+        },
+        {
+          "hz": 0.18220589120090566,
+          "power": 0.5412578159510714
+        },
+        {
+          "hz": 0.24294118826787423,
+          "power": 0.17128637606941463
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.2733088368013585,
+        "max_gap_seconds": 3.4428343772888184,
+        "jitter_cv": 0.45089436655681686,
+        "full_window": true,
+        "reason": "Pérdida de muestras"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 36,
+      "features": {
+        "mean": -56.888888888888886,
+        "variance": 0.8611111111111112,
+        "std": 0.927960727138337,
+        "skewness": -0.2632003965185127,
+        "kurtosis": -2.01754125167236,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.25972506229960934,
+        "breathing_band_power": 0.942268379852936,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.165005211071444,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 9,
+        "duration_seconds": 13.689689874649048,
+        "sample_rate_hz": 0.584381390174121
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.06493126557490234,
+          "power": 0.22273683121850796
+        },
+        {
+          "hz": 0.12986253114980467,
+          "power": 0.31430275540141495
+        },
+        {
+          "hz": 0.194793796724707,
+          "power": 0.22584323542628437
+        },
+        {
+          "hz": 0.25972506229960934,
+          "power": 0.40212238902523667
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.2921906950870605,
+        "max_gap_seconds": 3.4428343772888184,
+        "jitter_cv": 0.5075000290056287,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 37,
+      "features": {
+        "mean": -57.0,
+        "variance": 0.8888888888888888,
+        "std": 0.9428090415820634,
+        "skewness": 0.0,
+        "kurtosis": -2.129464285714286,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.30960907506641766,
+        "breathing_band_power": 1.3285540394010273,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.4661299067854163,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 10,
+        "duration_seconds": 14.534457683563232,
+        "sample_rate_hz": 0.6192181501328353
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.06192181501328353,
+          "power": 0.13757586738438904
+        },
+        {
+          "hz": 0.12384363002656706,
+          "power": 0.3759539359948688
+        },
+        {
+          "hz": 0.1857654450398506,
+          "power": 0.04797279247336515
+        },
+        {
+          "hz": 0.24768726005313413,
+          "power": 0.40470656476877764
+        },
+        {
+          "hz": 0.30960907506641766,
+          "power": 0.49992074616401566
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.30960907506641766,
+        "max_gap_seconds": 3.4428343772888184,
+        "jitter_cv": 0.5343011565710217,
+        "full_window": true,
+        "reason": "Pérdida de muestras"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 38,
+      "features": {
+        "mean": -57.1,
+        "variance": 0.9888888888888887,
+        "std": 0.9944289260117531,
+        "skewness": 0.23727694358821563,
+        "kurtosis": -2.300034266957633,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.3360038597855496,
+        "breathing_band_power": 1.3229007497432521,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.4194198388834873,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 10,
+        "duration_seconds": 13.392703294754028,
+        "sample_rate_hz": 0.6720077195710991
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.06720077195710991,
+          "power": 0.09651908914023509
+        },
+        {
+          "hz": 0.13440154391421982,
+          "power": 0.3693251029367709
+        },
+        {
+          "hz": 0.20160231587132973,
+          "power": 0.04870607242223203
+        },
+        {
+          "hz": 0.26880308782843965,
+          "power": 0.40494882822023365
+        },
+        {
+          "hz": 0.3360038597855496,
+          "power": 0.49992074616401566
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.33600385978554953,
+        "max_gap_seconds": 3.4428343772888184,
+        "jitter_cv": 0.5887764989365207,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 39,
+      "features": {
+        "mean": -57.18181818181818,
+        "variance": 0.9636363636363635,
+        "std": 0.9816498172140428,
+        "skewness": 0.42926065936082675,
+        "kurtosis": -2.0950516197935256,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.12826862055383217,
+        "breathing_band_power": 1.3918444122810238,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.4647610463340648,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 11,
+        "duration_seconds": 14.174798250198364,
+        "sample_rate_hz": 0.7054774130460769
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.06413431027691609,
+          "power": 0.07291663405304104
+        },
+        {
+          "hz": 0.12826862055383217,
+          "power": 0.4696497391137896
+        },
+        {
+          "hz": 0.19240293083074828,
+          "power": 0.21885617735125001
+        },
+        {
+          "hz": 0.25653724110766435,
+          "power": 0.3273073243177047
+        },
+        {
+          "hz": 0.3206715513845804,
+          "power": 0.37603117149827947
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.35273870652303846,
+        "max_gap_seconds": 3.4428343772888184,
+        "jitter_cv": 0.6051190520656848,
+        "full_window": true,
+        "reason": "Pérdida de muestras"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 40,
+      "features": {
+        "mean": -57.166666666666664,
+        "variance": 0.8787878787878788,
+        "std": 0.937436866561092,
+        "skewness": 0.3825544977452548,
+        "kurtosis": -1.9305588585017888,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.12271074566984995,
+        "breathing_band_power": 1.8004646421857413,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.8688758180089171,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 12,
+        "duration_seconds": 14.94028353691101,
+        "sample_rate_hz": 0.7362644740190997
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.061355372834924975,
+          "power": 0.06841117582317578
+        },
+        {
+          "hz": 0.12271074566984995,
+          "power": 0.5121459818762562
+        },
+        {
+          "hz": 0.18406611850477492,
+          "power": 0.4338056269538466
+        },
+        {
+          "hz": 0.2454214913396999,
+          "power": 0.28000472753533207
+        },
+        {
+          "hz": 0.30677686417462485,
+          "power": 0.37225364583196646
+        },
+        {
+          "hz": 0.36813223700954983,
+          "power": 0.20225465998833977
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.36813223700954983,
+        "max_gap_seconds": 3.4428343772888184,
+        "jitter_cv": 0.617748598962607,
+        "full_window": true,
+        "reason": "Pérdida de muestras"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 41,
+      "features": {
+        "mean": -57.083333333333336,
+        "variance": 0.8106060606060606,
+        "std": 0.90033663737852,
+        "skewness": 0.18476993302338016,
+        "kurtosis": -1.8654554982967912,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.14068411935642317,
+        "breathing_band_power": 1.8265548030663945,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 1.9290806294001328,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 12,
+        "duration_seconds": 13.031558513641357,
+        "sample_rate_hz": 0.8441047161385391
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.07034205967821158,
+          "power": 0.10252582633373804
+        },
+        {
+          "hz": 0.14068411935642317,
+          "power": 0.6176578225804296
+        },
+        {
+          "hz": 0.21102617903463475,
+          "power": 0.5720268155386248
+        },
+        {
+          "hz": 0.28136823871284633,
+          "power": 0.3470322239965402
+        },
+        {
+          "hz": 0.35171029839105794,
+          "power": 0.25457209677332704
+        },
+        {
+          "hz": 0.4220523580692695,
+          "power": 0.03526584417747316
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.42205235806926955,
+        "max_gap_seconds": 3.4428343772888184,
+        "jitter_cv": 0.6178314718272916,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    },
+    {
+      "index": 42,
+      "features": {
+        "mean": -57.15384615384615,
+        "variance": 0.8076923076923075,
+        "std": 0.898717034272917,
+        "skewness": 0.3419978654437838,
+        "kurtosis": -1.7783549783549788,
+        "range": 2.0,
+        "iqr": 2.0,
+        "dominant_freq_hz": 0.20019166514503756,
+        "breathing_band_power": 1.937868210449412,
+        "motion_band_power": 0.0,
+        "total_spectral_power": 2.075544734328348,
+        "change_points": [],
+        "n_change_points": 0,
+        "n_samples": 13,
+        "duration_seconds": 13.832897424697876,
+        "sample_rate_hz": 0.867497215628496
+      },
+      "classification": null,
+      "spectrum": [
+        {
+          "hz": 0.06673055504834585,
+          "power": 0.13767652387893647
+        },
+        {
+          "hz": 0.1334611100966917,
+          "power": 0.6239049854593299
+        },
+        {
+          "hz": 0.20019166514503756,
+          "power": 0.6442849473196186
+        },
+        {
+          "hz": 0.2669222201933834,
+          "power": 0.3142311835615026
+        },
+        {
+          "hz": 0.33365277524172926,
+          "power": 0.27011241262320473
+        },
+        {
+          "hz": 0.4003833302900751,
+          "power": 0.08533468148575575
+        }
+      ],
+      "quality": {
+        "ready": false,
+        "nyquist_hz": 0.433748607814248,
+        "max_gap_seconds": 3.4428343772888184,
+        "jitter_cv": 0.614830504312619,
+        "full_window": false,
+        "reason": "Completando ventana de 15 s"
+      },
+      "capabilities": [
+        "MOTION",
+        "PRESENCE"
+      ]
+    }
+  ],
+  "sessions": [
+    {
+      "id": "20260909T062522_420b46",
+      "label": "Observacion ambiental",
+      "started_at": "2026-09-09T06:25:22.734256+00:00",
+      "duration_seconds": 120,
+      "ground_truth": "unconfirmed",
+      "ground_truth_source": "not_observed",
+      "stopped_at": "2026-09-09T06:27:23.132699+00:00",
+      "samples": 233
+    }
+  ],
+  "evidence": {
+    "stages": [
+      {
+        "id": "01",
+        "title": "Entorno reproducible",
+        "status": "complete",
+        "summary": "Python y RuView fijados por versión.",
+        "artifact_url": "evidence/tutorial/01_environment.json"
+      },
+      {
+        "id": "02",
+        "title": "Conexión WiFi",
+        "status": "complete",
+        "summary": "Adaptador real conectado; identificadores omitidos.",
+        "artifact_url": "evidence/tutorial/02_netsh.txt"
+      },
+      {
+        "id": "03",
+        "title": "Lectura individual",
+        "status": "complete",
+        "summary": "−60 dBm con WindowsWifiCollector.",
+        "artifact_url": "evidence/tutorial/03_single_reading.json"
+      },
+      {
+        "id": "04",
+        "title": "Pipeline de 15 s",
+        "status": "complete",
+        "summary": "30 muestras · 1.99 Hz · salida active.",
+        "artifact_url": "evidence/tutorial/04_pipeline_15s.json"
+      },
+      {
+        "id": "05",
+        "title": "Monitor y movimiento",
+        "status": "partial",
+        "summary": "Monitor con RSSI real. Cruce humano pendiente de confirmar.",
+        "artifact_url": "evidence/sessions/20260909T062522_420b46.json"
+      },
+      {
+        "id": "06",
+        "title": "CommodityBackend",
+        "status": "complete",
+        "summary": "Integración propia con el colector validado.",
+        "artifact_url": "evidence/tutorial/06_commodity_backend.json"
+      },
+      {
+        "id": "07",
+        "title": "Pruebas",
+        "status": "complete",
+        "summary": "45 unitarias + 5 de hardware + 31 propias.",
+        "artifact_url": "evidence/upstream/verification_summary.json"
+      },
+      {
+        "id": "08",
+        "title": "Verificación determinística",
+        "status": "partial",
+        "summary": "CSI: hash exacto. ./verify ampliado: error HTTP 403 y 3 omisiones.",
+        "artifact_url": "evidence/upstream/verification_summary.json"
+      }
+    ],
+    "movement_ground_truth": "unconfirmed",
+    "own_tests_passed": 31,
+    "advanced": "Pendiente de repositorio y tutorial asignados por VantTec."
+  },
+  "capture_diagnostics": {
+    "netsh_error_count": 0,
+    "mean_netsh_latency_seconds": 1.3664772727272727,
+    "raw_rssi_only": true,
+    "noise_and_byte_counters": "not_measured"
+  }
+}

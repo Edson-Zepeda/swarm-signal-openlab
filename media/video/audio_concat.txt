@@ -1,0 +1,8 @@
+file 'padded_01.wav'
+file 'padded_02.wav'
+file 'padded_03.wav'
+file 'padded_04.wav'
+file 'padded_05.wav'
+file 'padded_06.wav'
+file 'padded_07.wav'
+file 'padded_08.wav'

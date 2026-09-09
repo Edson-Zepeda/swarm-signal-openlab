@@ -1,0 +1,22 @@
+{
+  "label": "12_crates_http_diagnostic",
+  "started_at_utc": "2026-09-09T06:20:06.945734+00:00",
+  "ended_at_utc": "2026-09-09T06:20:07.093228+00:00",
+  "argv": [
+    "curl.exe",
+    "-sS",
+    "-D",
+    "-",
+    "--max-time",
+    "20",
+    "https://crates.io/api/v1/crates/wifi-densepose-core"
+  ],
+  "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+  "env_overrides": {},
+  "exit_code": 0,
+  "timed_out": false,
+  "duration_seconds": 0.14099999999984902,
+  "log": "12_crates_http_diagnostic.log",
+  "log_sha256": "a75f2e186c6f242ef05d628518bfaf99b744cf66af454a9abacad725921e93c0",
+  "note": "Read-only HTTP diagnostic for first crate. 403 must not be represented as proof that a crate does not exist."
+}

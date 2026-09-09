@@ -1,0 +1,19 @@
+{
+  "label": "05_csi_proof_original",
+  "started_at_utc": "2026-09-09T06:19:10.873674+00:00",
+  "ended_at_utc": "2026-09-09T06:19:13.042149+00:00",
+  "argv": [
+    "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+    "archive/v1/data/proof/verify.py",
+    "--verbose",
+    "--audit"
+  ],
+  "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+  "env_overrides": {},
+  "exit_code": 0,
+  "timed_out": false,
+  "duration_seconds": 2.1720000000000255,
+  "log": "05_csi_proof_original.log",
+  "log_sha256": "df556ef20ef5d1c14848ef33f1720ef5c0c529ac4874ffc9ed21d35befad03a8",
+  "note": "Original committed verifier, synthetic reference, hash and tolerance vector; no regenerated expectations."
+}

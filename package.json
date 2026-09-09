@@ -1,0 +1,13 @@
+{
+  "name": "swarm-signal-openlab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SWARM SIGNAL browser verification tools",
+  "scripts": {
+    "test:ui": "node scripts/verify_ui.cjs"
+  },
+  "devDependencies": {
+    "axe-core": "4.11.1",
+    "playwright": "1.62.1"
+  }
+}

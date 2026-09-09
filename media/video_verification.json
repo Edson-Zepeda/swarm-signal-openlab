@@ -1,0 +1,295 @@
+{
+  "output": "media/SwarmSignal_Demo.mp4",
+  "sha256": "7d091fa1b2a84cd90b9f7a1aa179c6346a5691e33c9ec1930534e8f5ec254b7a",
+  "duration_seconds": 104.8,
+  "width": 1920,
+  "height": 1080,
+  "fps": "30/1",
+  "audio_present": true,
+  "subtitles_present": true,
+  "probe": {
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+        "profile": "High",
+        "codec_type": "video",
+        "codec_tag_string": "avc1",
+        "codec_tag": "0x31637661",
+        "width": 1920,
+        "height": 1080,
+        "coded_width": 1920,
+        "coded_height": 1080,
+        "has_b_frames": 2,
+        "pix_fmt": "yuv420p",
+        "level": 40,
+        "chroma_location": "left",
+        "field_order": "progressive",
+        "refs": 1,
+        "is_avc": "true",
+        "nal_length_size": "4",
+        "id": "0x1",
+        "r_frame_rate": "30/1",
+        "avg_frame_rate": "30/1",
+        "time_base": "1/15360",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 1609728,
+        "duration": "104.800000",
+        "bit_rate": "218737",
+        "bits_per_raw_sample": "8",
+        "nb_frames": "3144",
+        "extradata_size": 47,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "language": "und",
+          "handler_name": "VideoHandler",
+          "vendor_id": "[0][0][0][0]",
+          "encoder": "Lavc62.11.100 libx264"
+        }
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_long_name": "AAC (Advanced Audio Coding)",
+        "profile": "LC",
+        "codec_type": "audio",
+        "codec_tag_string": "mp4a",
+        "codec_tag": "0x6134706d",
+        "sample_fmt": "fltp",
+        "sample_rate": "96000",
+        "channels": 1,
+        "channel_layout": "mono",
+        "bits_per_sample": 0,
+        "initial_padding": 0,
+        "id": "0x2",
+        "r_frame_rate": "0/0",
+        "avg_frame_rate": "0/0",
+        "time_base": "1/96000",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 10060800,
+        "duration": "104.800000",
+        "bit_rate": "134693",
+        "nb_frames": "9826",
+        "extradata_size": 5,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "language": "und",
+          "handler_name": "SoundHandler",
+          "vendor_id": "[0][0][0][0]"
+        }
+      },
+      {
+        "index": 2,
+        "codec_name": "mov_text",
+        "codec_long_name": "MOV text",
+        "codec_type": "subtitle",
+        "codec_tag_string": "tx3g",
+        "codec_tag": "0x67337874",
+        "id": "0x3",
+        "r_frame_rate": "0/0",
+        "avg_frame_rate": "0/0",
+        "time_base": "1/1000000",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 103304000,
+        "duration": "103.304000",
+        "bit_rate": "109",
+        "nb_frames": "51",
+        "extradata_size": 68,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "language": "spa",
+          "handler_name": "SubtitleHandler"
+        }
+      }
+    ],
+    "format": {
+      "filename": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\outputs\\SwarmSignal\\media\\SwarmSignal_Demo.mp4",
+      "nb_streams": 3,
+      "nb_programs": 0,
+      "nb_stream_groups": 0,
+      "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+      "format_long_name": "QuickTime / MOV",
+      "start_time": "0.000000",
+      "duration": "104.800000",
+      "size": "4745935",
+      "bit_rate": "362285",
+      "probe_score": 100,
+      "tags": {
+        "major_brand": "isom",
+        "minor_version": "512",
+        "compatible_brands": "isomiso2avc1mp41",
+        "title": "Swarm Signal | Evidencia Wi-Fi",
+        "encoder": "Lavf62.3.100"
+      }
+    }
+  },
+  "representative_frames": [
+    "media/video/preview_01.png",
+    "media/video/preview_02.png",
+    "media/video/preview_03.png",
+    "media/video/preview_04.png",
+    "media/video/preview_05.png",
+    "media/video/preview_06.png",
+    "media/video/preview_07.png",
+    "media/video/preview_08.png"
+  ],
+  "visual_review_status": "PASS: all 8 representative decoded MP4 frames manually inspected; legible titles and labels, correct source marks, no clipping or sensitive network identifiers visible.",
+  "decoded_without_errors": true,
+  "decode_exit_code": 0,
+  "audio_decode_exit_code": 0,
+  "actual_extracted_frames": [
+    {
+      "file": "media/video/final_01.png",
+      "at_seconds": 6,
+      "sha256": "f1811b738c4267f6a70788a35d55a720615de711ec62b4d670872e5fb0221e5a"
+    },
+    {
+      "file": "media/video/final_02.png",
+      "at_seconds": 17.133333333333333,
+      "sha256": "a63324d35aac7812e7aed3617dd03fefa3488db5c9343b9590bb63ad644e0ef5"
+    },
+    {
+      "file": "media/video/final_03.png",
+      "at_seconds": 29.866666666666667,
+      "sha256": "6d42a3cede1bb02051b12433b82af86b8e057f6e60e644443d427c23ab4d58e8"
+    },
+    {
+      "file": "media/video/final_04.png",
+      "at_seconds": 43.833333333333336,
+      "sha256": "bb2fa1c0f2b6b23c1d56cd58f16a9fe08a5897bbc32b06e743bf0018dd911664"
+    },
+    {
+      "file": "media/video/final_05.png",
+      "at_seconds": 56.96666666666667,
+      "sha256": "bfcc06531cc5d1c6f70724e838dc869cab49b45ee69b308b235ca464fe644710"
+    },
+    {
+      "file": "media/video/final_06.png",
+      "at_seconds": 69.26666666666667,
+      "sha256": "5a9de2f7a3938ca51278a76ee2517f7dde10da77d54f29738e741556422a87e3"
+    },
+    {
+      "file": "media/video/final_07.png",
+      "at_seconds": 80.26666666666667,
+      "sha256": "95b58f9cc03c054af102777a22750769a0ca6465003313033502ff9de8d32c77"
+    },
+    {
+      "file": "media/video/final_08.png",
+      "at_seconds": 97.36666666666667,
+      "sha256": "8db7b45e107009ba39d60b8f5cc9deb9461ad3d62db08179c450776380203545"
+    }
+  ],
+  "consecutive_frame_difference_mean": [
+    0.0014536716043949127,
+    1.2179557085037231
+  ],
+  "frames_total": "3144",
+  "verified_at_utc": "2026-09-09T06:39:52.353455+00:00",
+  "encoder_note": "Initial final encode used FFmpeg default thread count. Reproduction script caps future video encodes at 2 threads; final decode used 2 threads.",
+  "visual_review_frames_count": 8,
+  "audio_validation": {
+    "mean_db": -17.4,
+    "peak_db": -1.3,
+    "clipping_observed": false,
+    "evidence": "media/video/audio_validation.log"
+  },
+  "build_script_sha256": "2476fa7dac8fb16a7a1405a153e714960521521a2b54dd20714356d764a65d1c",
+  "voice_assets": [
+    {
+      "path": "media/video/voice_01.mp3",
+      "sha256": "d4ca12d173ee1409dbb4ab7e714cdafced4202f16839eda0cb6ebe463a4191ae"
+    },
+    {
+      "path": "media/video/voice_02.mp3",
+      "sha256": "b1b80cea766abf9076f15228ee53749f672334d51e0e48a26dee1f3891fe3cf6"
+    },
+    {
+      "path": "media/video/voice_03.mp3",
+      "sha256": "5f732a804e7bf512de81f73c97b0e7ffbb2ba92a46d202b762815b2759004547"
+    },
+    {
+      "path": "media/video/voice_04.mp3",
+      "sha256": "75cb6a5d684b769d17ffda3989de6101c95855a3bea8864083e508c45686cc19"
+    },
+    {
+      "path": "media/video/voice_05.mp3",
+      "sha256": "4046317b49c891398fabb545ab3ee1f4f4c93f268ab5374201acd1f5ce3e7bd6"
+    },
+    {
+      "path": "media/video/voice_06.mp3",
+      "sha256": "5ac2502ba2287a3761a44fa5e7289667712c1b8bcbcb2e684fbafa2781692ab4"
+    },
+    {
+      "path": "media/video/voice_07.mp3",
+      "sha256": "f7f95fd7ef2bc5dc1534364f28198e048f24de1da72cdf6a5d722a22818c7f1d"
+    },
+    {
+      "path": "media/video/voice_08.mp3",
+      "sha256": "8d54cf66da72c1b2e81517f4c3011e4babe461039a53db4fcaf9703935cd01b5"
+    }
+  ]
+}

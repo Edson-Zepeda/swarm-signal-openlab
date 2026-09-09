@@ -1,0 +1,73 @@
+UTC START: 2026-09-09T06:19:08.069222+00:00
+CWD: C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView
+ARGV: ["C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe", "-m", "pytest", "archive/v1/tests/unit/test_sensing.py", "-v", "-o", "addopts=", "--junitxml=C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\outputs\\SwarmSignal\\evidence\\upstream\\unit.xml"]
+ENV OVERRIDES: {"PYTHONPATH": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView\\archive"}
+NOTE: Only import root adapted for archived v1 location; source tests unchanged.
+--- RAW COMBINED STDOUT/STDERR ---
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView
+configfile: pyproject.toml
+collecting ... collected 45 items
+
+archive/v1/tests/unit/test_sensing.py::TestRingBuffer::test_append_and_get_all PASSED [  2%]
+archive/v1/tests/unit/test_sensing.py::TestRingBuffer::test_ring_buffer_overflow PASSED [  4%]
+archive/v1/tests/unit/test_sensing.py::TestRingBuffer::test_get_last_n PASSED [  6%]
+archive/v1/tests/unit/test_sensing.py::TestRingBuffer::test_clear PASSED [  8%]
+archive/v1/tests/unit/test_sensing.py::TestSimulatedCollector::test_deterministic_output_same_seed PASSED [ 11%]
+archive/v1/tests/unit/test_sensing.py::TestSimulatedCollector::test_different_seeds_differ PASSED [ 13%]
+archive/v1/tests/unit/test_sensing.py::TestSimulatedCollector::test_sinusoidal_component PASSED [ 15%]
+archive/v1/tests/unit/test_sensing.py::TestSimulatedCollector::test_step_change_injection PASSED [ 17%]
+archive/v1/tests/unit/test_sensing.py::TestSimulatedCollector::test_sample_count PASSED [ 20%]
+archive/v1/tests/unit/test_sensing.py::TestFeatureExtractor::test_time_domain_from_known_sine PASSED [ 22%]
+archive/v1/tests/unit/test_sensing.py::TestFeatureExtractor::test_frequency_domain_dominant_frequency PASSED [ 24%]
+archive/v1/tests/unit/test_sensing.py::TestFeatureExtractor::test_breathing_band_power PASSED [ 26%]
+archive/v1/tests/unit/test_sensing.py::TestFeatureExtractor::test_motion_band_power PASSED [ 28%]
+archive/v1/tests/unit/test_sensing.py::TestFeatureExtractor::test_band_isolation_multi_frequency PASSED [ 31%]
+archive/v1/tests/unit/test_sensing.py::TestFeatureExtractor::test_constant_signal_features PASSED [ 33%]
+archive/v1/tests/unit/test_sensing.py::TestFeatureExtractor::test_too_few_samples PASSED [ 35%]
+archive/v1/tests/unit/test_sensing.py::TestFeatureExtractor::test_extract_from_wifi_samples PASSED [ 37%]
+archive/v1/tests/unit/test_sensing.py::TestCusum::test_step_change_detected PASSED [ 40%]
+archive/v1/tests/unit/test_sensing.py::TestCusum::test_no_change_point_in_constant PASSED [ 42%]
+archive/v1/tests/unit/test_sensing.py::TestCusum::test_multiple_step_changes PASSED [ 44%]
+archive/v1/tests/unit/test_sensing.py::TestCusum::test_cusum_with_feature_extractor PASSED [ 46%]
+archive/v1/tests/unit/test_sensing.py::TestPresenceClassifier::test_absent_when_low_variance PASSED [ 48%]
+archive/v1/tests/unit/test_sensing.py::TestPresenceClassifier::test_present_still_when_high_variance_low_motion PASSED [ 51%]
+archive/v1/tests/unit/test_sensing.py::TestPresenceClassifier::test_active_when_high_variance_high_motion PASSED [ 53%]
+archive/v1/tests/unit/test_sensing.py::TestPresenceClassifier::test_confidence_for_absent_decreases_with_rising_variance PASSED [ 55%]
+archive/v1/tests/unit/test_sensing.py::TestPresenceClassifier::test_confidence_bounded_0_to_1 PASSED [ 57%]
+archive/v1/tests/unit/test_sensing.py::TestPresenceClassifier::test_cross_receiver_agreement_boosts_confidence PASSED [ 60%]
+archive/v1/tests/unit/test_sensing.py::TestPresenceClassifier::test_result_dataclass_fields PASSED [ 62%]
+archive/v1/tests/unit/test_sensing.py::TestCommodityBackend::test_capabilities PASSED [ 64%]
+archive/v1/tests/unit/test_sensing.py::TestCommodityBackend::test_is_capable PASSED [ 66%]
+archive/v1/tests/unit/test_sensing.py::TestCommodityBackend::test_protocol_conformance PASSED [ 68%]
+archive/v1/tests/unit/test_sensing.py::TestCommodityBackend::test_full_pipeline PASSED [ 71%]
+archive/v1/tests/unit/test_sensing.py::TestCommodityBackend::test_absent_with_constant_signal PASSED [ 73%]
+archive/v1/tests/unit/test_sensing.py::TestCommodityBackend::test_repr PASSED [ 75%]
+archive/v1/tests/unit/test_sensing.py::TestBandPower::test_band_power_single_frequency PASSED [ 77%]
+archive/v1/tests/unit/test_sensing.py::TestBandPower::test_band_power_zero_for_empty_band PASSED [ 80%]
+archive/v1/tests/unit/test_sensing.py::TestLinuxWifiCollectorAvailability::test_unavailable_when_proc_missing PASSED [ 82%]
+archive/v1/tests/unit/test_sensing.py::TestLinuxWifiCollectorAvailability::test_unavailable_when_interface_not_listed PASSED [ 84%]
+archive/v1/tests/unit/test_sensing.py::TestLinuxWifiCollectorAvailability::test_available_when_interface_listed PASSED [ 86%]
+archive/v1/tests/unit/test_sensing.py::TestLinuxWifiCollectorAvailability::test_unavailable_when_file_unreadable PASSED [ 88%]
+archive/v1/tests/unit/test_sensing.py::TestCreateCollector::test_returns_simulated_when_no_wifi PASSED [ 91%]
+archive/v1/tests/unit/test_sensing.py::TestCreateCollector::test_returns_simulated_for_explicit_preference PASSED [ 93%]
+archive/v1/tests/unit/test_sensing.py::TestCreateCollector::test_returns_linux_collector_when_available PASSED [ 95%]
+archive/v1/tests/unit/test_sensing.py::TestCreateCollector::test_never_raises PASSED [ 97%]
+archive/v1/tests/unit/test_sensing.py::TestCreateCollector::test_windows_default_interface_mapping PASSED [100%]
+
+============================== warnings summary ===============================
+..\venv\Lib\site-packages\_pytest\config\__init__.py:1464
+  C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\venv\Lib\site-packages\_pytest\config\__init__.py:1464: PytestConfigWarning: Unknown config option: asyncio_mode
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\Lenovo\Documents\Codex\2026-09-04\real\outputs\SwarmSignal\evidence\upstream\unit.xml -
+======================== 45 passed, 1 warning in 1.99s ========================
+
+--- END RAW OUTPUT ---
+UTC END: 2026-09-09T06:19:10.871675+00:00
+EXIT CODE: 0
+TIMED OUT: False

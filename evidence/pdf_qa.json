@@ -1,0 +1,18 @@
+[
+  {
+    "file": "SwarmSignal_Informe.pdf",
+    "pages": 9,
+    "sha256": "0297501555111f73485f9c36625d11b4fce2eb333cd6ada9995c205d10b7802d",
+    "bytes": 394172,
+    "source_links": 6,
+    "visual_review": "All 10 pages rendered and visually inspected; changed screenshot caption rechecked; no clipping or overlap."
+  },
+  {
+    "file": "SwarmSignal_Propuesta.pdf",
+    "pages": 1,
+    "sha256": "baadc4aeceff864dd2341e9b0b790af10f845f79035af670441b54931d13ae5a",
+    "bytes": 43945,
+    "source_links": 0,
+    "visual_review": "All 10 pages rendered and visually inspected; changed screenshot caption rechecked; no clipping or overlap."
+  }
+]

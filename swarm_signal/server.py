@@ -36,8 +36,10 @@ class Lab:
         self.session = None
         self.rows = []
         self.active = False
+        self.stopping = False
         self.error = None
         self.timer = None
+        self.replay_frames = []
 
     def sessions(self):
         result = []
@@ -54,7 +56,7 @@ class Lab:
 
     def start(self, label='Observación WiFi', duration_seconds=60, ground_truth='unconfirmed'):
         with self.lock:
-            if self.active:
+            if self.active or self.stopping:
                 raise ValueError('Ya hay una medición en curso.')
             if not isinstance(duration_seconds, (float, int)) or not 15 <= duration_seconds <= 300:
                 raise ValueError('Elige una duración entre 15 y 300 segundos.')
@@ -66,8 +68,10 @@ class Lab:
                             'duration_seconds': duration_seconds, 'ground_truth': ground_truth,
                             'ground_truth_source': 'operator_label' if ground_truth != 'unconfirmed' else 'not_observed'}
             self.rows = []
+            self.replay_frames = []
             self.error = None
-            self.collector = VerifiedWindowsCollector(on_sample=self.append)
+            ident = self.session['id']
+            self.collector = VerifiedWindowsCollector(on_sample=lambda sample: self.append(sample, ident))
             try:
                 self.collector.start()
             except Exception as exc:
@@ -75,36 +79,45 @@ class Lab:
                 self.collector = None
                 raise ValueError(self.error) from exc
             self.active = True
-            self.timer = threading.Timer(duration_seconds, self.stop)
+            self.timer = threading.Timer(duration_seconds, lambda: self.stop(ident))
             self.timer.daemon = True
             self.timer.start()
         return self.snapshot()
 
-    def append(self, sample):
+    def append(self, sample, ident):
         with self.lock:
+            if not self.active or not self.session or ident != self.session['id'] or self.stopping:
+                return
             self.rows.append({'timestamp': sample.timestamp, 'rssi_dbm': sample.rssi_dbm,
                               'quality': sample.link_quality if math.isfinite(sample.link_quality) else None,
                               'phase': self.session['ground_truth']})
 
-    def stop(self):
+    def stop(self, ident=None):
         with self.lock:
-            if not self.active:
+            if not self.active or self.stopping or (ident and ident != self.session['id']):
                 return self.snapshot()
             self.active = False
+            self.stopping = True
             collector = self.collector
             if self.timer:
                 self.timer.cancel()
-        if collector:
-            collector.stop()
-        state = self.snapshot()
-        if self.session:
-            state['session']['stopped_at'] = datetime.now(timezone.utc).isoformat()
-            state['capture_diagnostics'] = {
-                'netsh_error_count': collector.error_count if collector else 0,
-                'mean_netsh_latency_seconds': sum(collector.latencies) / len(collector.latencies) if collector and collector.latencies else None,
-                'raw_rssi_only': True, 'noise_and_byte_counters': 'not_measured'}
-            write_json(self.directory / (self.session['id'] + '.json'), state)
-        return state
+        try:
+            if collector:
+                collector.stop()
+            with self.lock:
+                recorded = from_rows(self.rows)
+                self.replay_frames = [{'index': i, **analyze(recorded[:i+1])} for i in range(len(recorded))]
+                state = self.snapshot()
+                state['session']['stopped_at'] = datetime.now(timezone.utc).isoformat()
+                state['capture_diagnostics'] = {
+                    'netsh_error_count': collector.error_count if collector else 0,
+                    'mean_netsh_latency_seconds': sum(collector.latencies) / len(collector.latencies) if collector and collector.latencies else None,
+                    'raw_rssi_only': True, 'noise_and_byte_counters': 'not_measured'}
+                write_json(self.directory / (self.session['id'] + '.json'), state)
+                return state
+        finally:
+            with self.lock:
+                self.stopping = False
 
     def snapshot(self):
         with self.lock:
@@ -113,6 +126,12 @@ class Lab:
                 if available:
                     saved = self.saved(available[0]['id'])
                     saved.update(mode='replay', status='ready', sessions=available)
+                    stagefile = ROOT / 'web' / 'data' / 'evidence.json'
+                    if stagefile.exists():
+                        saved['evidence'] = json.loads(stagefile.read_text(encoding='utf-8'))
+                    if not saved.get('frames'):
+                        recorded = from_rows(saved['samples'])
+                        saved['frames'] = [{'index':i, **analyze(recorded[:i+1])} for i in range(len(recorded))]
                     return saved
             rows = list(self.rows)
             error = self.error or (self.collector.last_error if self.collector else None)
@@ -126,6 +145,7 @@ class Lab:
                     'status': 'error' if error else ('collecting' if self.active else ('ready' if rows else 'idle')),
                     'error': error, 'session': dict(self.session) if self.session else None,
                     'samples': rows, 'thresholds': THRESHOLDS, **calculated,
+                    'frames': self.replay_frames if not self.active else [],
                     'sessions': self.sessions(), 'evidence': evidence}
 
 
@@ -144,6 +164,8 @@ class Handler(SimpleHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_GET(self):
+        if self.headers.get('Host', '').split(':')[0] not in {'127.0.0.1', 'localhost'}:
+            return self.send_json({'error': 'Host no permitido'}, 403)
         parsed = urlparse(self.path)
         try:
             if parsed.path == '/api/state':

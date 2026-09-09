@@ -1,0 +1,128 @@
+{
+  "voice": "es-MX-JorgeNeural",
+  "generated_voice": true,
+  "text_hash": "999c89f30c4e8d8638e2426e295d9cca3065bcfe3f1cdf60772d97201a6c5142",
+  "text": "El espectro describe las variaciones del RSSI. Su límite depende de la frecuencia efectiva de muestreo. Estos picos no son una medición de respiración.",
+  "words": [
+    {
+      "text": "El",
+      "start": 0.098541,
+      "end": 0.268457
+    },
+    {
+      "text": "espectro",
+      "start": 0.280583,
+      "end": 0.729624
+    },
+    {
+      "text": "describe",
+      "start": 0.74175,
+      "end": 1.202916
+    },
+    {
+      "text": "las",
+      "start": 1.215041,
+      "end": 1.384957
+    },
+    {
+      "text": "variaciones",
+      "start": 1.397083,
+      "end": 2.040291
+    },
+    {
+      "text": "del",
+      "start": 2.052416,
+      "end": 2.234457
+    },
+    {
+      "text": "RSSI",
+      "start": 2.246583,
+      "end": 3.302416
+    },
+    {
+      "text": "Su",
+      "start": 4.138333,
+      "end": 4.368916
+    },
+    {
+      "text": "límite",
+      "start": 4.381083,
+      "end": 4.757291
+    },
+    {
+      "text": "depende",
+      "start": 4.769416,
+      "end": 5.194166
+    },
+    {
+      "text": "de",
+      "start": 5.206291,
+      "end": 5.303374
+    },
+    {
+      "text": "la",
+      "start": 5.315541,
+      "end": 5.412624
+    },
+    {
+      "text": "frecuencia",
+      "start": 5.42475,
+      "end": 5.910166
+    },
+    {
+      "text": "efectiva",
+      "start": 5.922333,
+      "end": 6.371374
+    },
+    {
+      "text": "de",
+      "start": 6.3835,
+      "end": 6.480583
+    },
+    {
+      "text": "muestreo",
+      "start": 6.492708,
+      "end": 7.050958
+    },
+    {
+      "text": "Estos",
+      "start": 7.888333,
+      "end": 8.264541
+    },
+    {
+      "text": "picos",
+      "start": 8.276708,
+      "end": 8.677208
+    },
+    {
+      "text": "no",
+      "start": 8.689333,
+      "end": 8.859249
+    },
+    {
+      "text": "son",
+      "start": 8.871375,
+      "end": 9.077666
+    },
+    {
+      "text": "una",
+      "start": 9.089791,
+      "end": 9.259707
+    },
+    {
+      "text": "medición",
+      "start": 9.271833,
+      "end": 9.720874
+    },
+    {
+      "text": "de",
+      "start": 9.733,
+      "end": 9.805833
+    },
+    {
+      "text": "respiración",
+      "start": 9.817958,
+      "end": 10.546124
+    }
+  ]
+}

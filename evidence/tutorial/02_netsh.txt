@@ -1,0 +1,27 @@
+
+Hay 1 interfaz en el sistema: 
+
+    Nombre                   : Wi-Fi
+    Descripción            : Realtek 8822CE Wireless LAN 802.11ac PCI-E NIC
+    GUID                   : [omitido: identificador de red]
+    Dirección       : [omitido: identificador de red]
+    Tipo de interfaz         : Principal
+    Estado                  : conectado
+    SSID                   : [omitido: identificador de red]
+    AP BSSID               : [omitido: identificador de red]
+    Banda                 : 5 GHz
+    Canal: 161
+    cifrado Akm conectado: [ akm = 00-0f-ac:01, cifrado = 00-0f-ac:04 ]
+    Tipo de red            : Infraestructura
+    Tipo de radio          : 802.11ac
+    Autenticación          : WPA2-Enterprise
+    Cifrado                : CCMP
+    Modo de conexión       : Conexión automática
+    Velocidad de recepción (Mbps)   : 270
+    Velocidad de transmisión (Mbps) : 270
+    Señal                           : 100% 
+    Rssi           : -59
+    Perfil                 : [omitido: identificador de red]
+    MSCS de QoS configurado: 0
+    Asignación de QoS configurada: 0
+    Asignación de QoS permitida por la directiva : 0

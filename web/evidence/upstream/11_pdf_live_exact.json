@@ -1,0 +1,25 @@
+{
+  "label": "11_pdf_live_exact",
+  "started_at_utc": "2026-09-09T06:20:05.427548+00:00",
+  "ended_at_utc": "2026-09-09T06:20:06.794806+00:00",
+  "argv": [
+    "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "archive/v1/tests/integration/test_windows_live_sensing.py",
+    "-v",
+    "-o",
+    "addopts=",
+    "-s"
+  ],
+  "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+  "env_overrides": {
+    "PYTHONPATH": "archive/v1"
+  },
+  "exit_code": 2,
+  "timed_out": false,
+  "duration_seconds": 1.359000000000151,
+  "log": "11_pdf_live_exact.log",
+  "log_sha256": "28a3f8bb467692d68bd7abbf081522f045d3e93130f7fc6df1056b0c5a898653",
+  "note": "Exact PDF tutorial command. Original current upstream test and precheck retained."
+}

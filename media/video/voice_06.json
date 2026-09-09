@@ -1,0 +1,93 @@
+{
+  "voice": "es-MX-JorgeNeural",
+  "generated_voice": true,
+  "text_hash": "171bc5072ad58160c31295437283b4f310bb3a8aaf8f34bee96a9f8dc63971cb",
+  "text": "Pasaron 45 pruebas unitarias, 5 de integración y 31 propias. La adaptación de idioma conserva todas las aserciones.",
+  "words": [
+    {
+      "text": "Pasaron",
+      "start": 0.098541,
+      "end": 0.535416
+    },
+    {
+      "text": "45 pruebas",
+      "start": 0.547583,
+      "end": 1.688374
+    },
+    {
+      "text": "unitarias",
+      "start": 1.7005,
+      "end": 2.295166
+    },
+    {
+      "text": "5",
+      "start": 2.55,
+      "end": 2.926208
+    },
+    {
+      "text": "de",
+      "start": 2.938333,
+      "end": 3.011166
+    },
+    {
+      "text": "integración",
+      "start": 3.023291,
+      "end": 3.642207
+    },
+    {
+      "text": "y",
+      "start": 3.654375,
+      "end": 3.727208
+    },
+    {
+      "text": "31",
+      "start": 3.739333,
+      "end": 4.3582489
+    },
+    {
+      "text": "propias",
+      "start": 4.370375,
+      "end": 4.965041
+    },
+    {
+      "text": "La",
+      "start": 5.800958,
+      "end": 5.970874
+    },
+    {
+      "text": "adaptación",
+      "start": 5.983,
+      "end": 6.517
+    },
+    {
+      "text": "de",
+      "start": 6.529125,
+      "end": 6.614083
+    },
+    {
+      "text": "idioma",
+      "start": 6.626208,
+      "end": 6.978166
+    },
+    {
+      "text": "conserva",
+      "start": 6.990291,
+      "end": 7.524291
+    },
+    {
+      "text": "todas",
+      "start": 7.536416,
+      "end": 7.936916
+    },
+    {
+      "text": "las",
+      "start": 7.949041,
+      "end": 8.082541
+    },
+    {
+      "text": "aserciones",
+      "start": 8.094666,
+      "end": 8.847082
+    }
+  ]
+}

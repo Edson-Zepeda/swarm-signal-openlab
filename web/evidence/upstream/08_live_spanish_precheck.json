@@ -1,0 +1,26 @@
+{
+  "label": "08_live_spanish_precheck",
+  "started_at_utc": "2026-09-09T06:21:26.715161+00:00",
+  "ended_at_utc": "2026-09-09T06:22:04.722924+00:00",
+  "argv": [
+    "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\verification\\test_windows_live_sensing_es.py",
+    "-v",
+    "-o",
+    "addopts=",
+    "-s",
+    "--junitxml=C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\outputs\\SwarmSignal\\evidence\\upstream\\live_adapted.xml"
+  ],
+  "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+  "env_overrides": {
+    "PYTHONPATH": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView\\archive"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "duration_seconds": 38.016000000000076,
+  "log": "08_live_spanish_precheck.log",
+  "log_sha256": "5a21b074b232bd5a3c3aa773b1ae289976a51111c95f6d8d84f43e6b6f952378",
+  "note": "Only Wi-Fi precheck localized in separate test copy; original collector and all assertions retained."
+}
