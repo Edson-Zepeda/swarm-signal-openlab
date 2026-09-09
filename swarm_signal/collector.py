@@ -6,6 +6,7 @@ unavailable placeholders, NEVER published or used as measurements.
 """
 from __future__ import annotations
 import ctypes
+import math
 import re
 import subprocess
 import threading
@@ -60,7 +61,7 @@ class Reading:
     quality: float | None
 
 
-def parse_netsh(output: str, interface: str = 'Wi-Fi') -> Reading:
+def interface_blocks(output: str) -> list[dict[str, str]]:
     blocks: list[dict[str, str]] = []
     current: dict[str, str] | None = None
     for line in output.splitlines():
@@ -73,7 +74,33 @@ def parse_netsh(output: str, interface: str = 'Wi-Fi') -> Reading:
             blocks.append(current)
         elif current is not None:
             current[field] = value.strip()
-    block = next((b for b in blocks if b['name'].casefold() == interface.casefold()), None)
+    return blocks
+
+
+def connected_interfaces(output: str) -> list[str]:
+    return [b['name'] for b in interface_blocks(output)
+            if key(b.get('estado', b.get('state', ''))) in {'connected', 'conectado', 'conectada'}]
+
+
+def select_interface(output: str, interface: str | None = None) -> str:
+    if interface is not None:
+        if not isinstance(interface, str) or not interface.strip() or len(interface) > 100:
+            raise ValueError('Nombre de interfaz inválido.')
+        return interface.strip()
+    available = connected_interfaces(output)
+    if not available:
+        raise ValueError('No hay una interfaz Wi-Fi conectada.')
+    if len(available) > 1:
+        raise ValueError('Hay varias interfaces conectadas. Selecciona una interfaz antes de medir.')
+    return available[0]
+
+
+def parse_netsh(output: str, interface: str = 'Wi-Fi') -> Reading:
+    blocks = interface_blocks(output)
+    selected = [b for b in blocks if b['name'].casefold() == interface.casefold()]
+    if len(selected) > 1:
+        raise ValueError('Nombre de interfaz ambiguo.')
+    block = selected[0] if selected else None
     if block is None:
         raise ValueError(f'No se encontró la interfaz {interface}.')
     state = key(block.get('estado', block.get('state', '')))
@@ -94,15 +121,17 @@ def parse_netsh(output: str, interface: str = 'Wi-Fi') -> Reading:
             raise ValueError('Porcentaje de señal inválido.') from exc
         if not 0 <= quality <= 1:
             raise ValueError('Porcentaje de señal fuera de rango.')
-    return Reading(interface, rssi, quality)
+    return Reading(block['name'], rssi, quality)
 
 
 class VerifiedWindowsCollector(WindowsWifiCollector):
     """Retains upstream collector interface, with strict OS validation."""
-    def __init__(self, interface='Wi-Fi', sample_rate_hz=2.0, on_sample=None):
-        if not 0 < sample_rate_hz <= 2:
+    def __init__(self, interface=None, sample_rate_hz=2.0, on_sample=None):
+        if (isinstance(sample_rate_hz, bool) or not isinstance(sample_rate_hz, (float, int))
+                or not math.isfinite(sample_rate_hz) or not 0 < sample_rate_hz <= 2):
             raise ValueError('La frecuencia debe estar entre 0 y 2 Hz.')
-        super().__init__(interface, sample_rate_hz, buffer_seconds=3600)
+        self._requested_interface = interface
+        super().__init__(interface or '', sample_rate_hz, buffer_seconds=3600)
         self.on_sample = on_sample
         self.last_error = None
         self.error_count = 0
@@ -110,11 +139,21 @@ class VerifiedWindowsCollector(WindowsWifiCollector):
         self._halt = threading.Event()
 
     def _validate_interface(self):
-        parse_netsh(read_netsh(), self._interface)
+        output = read_netsh()
+        selected = select_interface(output, self._requested_interface)
+        reading = parse_netsh(output, selected)
+        self._interface = reading.interface
+
+    @property
+    def selected_interface(self):
+        return self._interface
 
     def _read_sample(self):
         began = time.monotonic()
-        r = parse_netsh(read_netsh(), self._interface)
+        output = read_netsh()
+        if not self._interface:
+            self._interface = select_interface(output, self._requested_interface)
+        r = parse_netsh(output, self._interface)
         self.latencies.append(time.monotonic() - began)
         # Fields below are compatibility placeholders, not observations.
         sample = WifiSample(time.time(), r.rssi_dbm, float('nan'),
@@ -132,6 +171,8 @@ class VerifiedWindowsCollector(WindowsWifiCollector):
         self._running = False
         if self._thread:
             self._thread.join(timeout=6)
+            if self._thread.is_alive():
+                raise RuntimeError('El lector Wi-Fi sigue cerrando. Vuelve a detener antes de iniciar otra captura.')
             self._thread = None
 
     def _sample_loop(self):

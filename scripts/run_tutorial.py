@@ -7,12 +7,14 @@ from pathlib import Path
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import dataclasses
+import argparse
 from datetime import datetime, timezone
 import importlib.metadata
 import json
 import platform
 import time
 import traceback
+from uuid import uuid4
 from swarm_signal import ROOT
 from swarm_signal.collector import read_netsh, redact_netsh, parse_netsh
 from swarm_signal.analysis import analyze
@@ -23,8 +25,12 @@ from v1.src.sensing.classifier import PresenceClassifier
 
 
 def main():
-    evidence = ROOT / 'evidence' / 'tutorial'
-    evidence.mkdir(parents=True, exist_ok=True)
+    parser = argparse.ArgumentParser(description='Ejecuta el tutorial sin sobrescribir la evidencia publicada.')
+    parser.add_argument('--output', type=Path, help='Carpeta nueva para esta ejecucion.')
+    args = parser.parse_args()
+    run_id = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S') + '_' + uuid4().hex[:6]
+    evidence = args.output or ROOT / 'evidence' / 'runs' / run_id / 'tutorial'
+    evidence.mkdir(parents=True, exist_ok=False)
     raw = read_netsh()
     (evidence / '02_netsh.txt').write_text(redact_netsh(raw), encoding='utf-8')
     env = {'time_utc': datetime.now(timezone.utc).isoformat(),
@@ -61,6 +67,7 @@ def main():
                             'quality': None, 'phase': 'unconfirmed'} for s in samples]}
     write_json(evidence / '04_pipeline_15s.json', payload)
     print(json.dumps({k: payload[k] for k in ('features', 'classification')}, indent=2), flush=True)
+    print('Nueva evidencia:', evidence, flush=True)
 
 
 if __name__ == '__main__':

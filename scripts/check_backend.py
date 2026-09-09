@@ -6,6 +6,7 @@ from dataclasses import asdict
 from datetime import datetime, timezone
 import json
 import time
+from uuid import uuid4
 from swarm_signal import ROOT
 from swarm_signal.collector import VerifiedWindowsCollector
 from swarm_signal.analysis import analyze
@@ -38,5 +39,8 @@ payload = {'time_utc': datetime.now(timezone.utc).isoformat(),
            'samples': [{'timestamp': s.timestamp, 'rssi_dbm': s.rssi_dbm,
                         'quality': s.link_quality, 'phase': 'unconfirmed'} for s in samples],
            'raw_backend_result': raw_result, 'application_result': analyze(samples)}
-write_json(ROOT / 'evidence' / 'tutorial' / '06_commodity_backend.json', payload)
+run_id = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S') + '_' + uuid4().hex[:6]
+destination = ROOT / 'evidence' / 'runs' / run_id / '06_commodity_backend.json'
+write_json(destination, payload)
+print('Nueva evidencia:', destination, flush=True)
 print(json.dumps({k:v for k,v in payload.items() if k != 'samples'}, indent=2, ensure_ascii=True), flush=True)

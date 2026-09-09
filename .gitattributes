@@ -1,4 +1,10 @@
 evidence/** -text
+Iniciar.ps1 -text
+requirements*.txt -text
+swarm_signal/server.py -text
+swarm_signal/collector.py -text
+scripts/capture.py -text
+tests/test_audit_regressions.py -text
 vendor/** -text
 web/evidence/** -text
 *.pdf -text
