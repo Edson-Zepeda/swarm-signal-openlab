@@ -1,0 +1,35 @@
+{
+  "observed_at": "2026-09-09T07:44:23Z",
+  "url": "http://127.0.0.1:8766/demo.html",
+  "method": "Fresh isolated headless Edge context; real local server, no API fixtures",
+  "media_response": {
+    "status": 200,
+    "content_length": 5220258,
+    "content_type": "video/mp4",
+    "server": "SimpleHTTP/0.6 Python/3.12.14",
+    "accept_ranges": null,
+    "content_range": null
+  },
+  "before_click": {
+    "readyState": 4,
+    "networkState": 1,
+    "duration": 108,
+    "currentTime": 0,
+    "buffered": [[0, 21.693]],
+    "seekable": [[0, 0]]
+  },
+  "requested_chapter_seconds": 46.9,
+  "after_2500ms": {
+    "readyState": 4,
+    "networkState": 1,
+    "duration": 108,
+    "currentTime": 2.51007,
+    "seeking": false,
+    "paused": false,
+    "decodedAudioBytes": 51197,
+    "buffered": [[0, 86.774]],
+    "seekable": [[0, 0]]
+  },
+  "finding": "The media decodes, but the chapter starts at the beginning instead of the requested position. HTTP range delivery is missing on the local server.",
+  "status": "Referred to backend owner for correction and fresh browser verification"
+}

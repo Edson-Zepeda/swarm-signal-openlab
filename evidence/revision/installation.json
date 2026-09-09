@@ -1,0 +1,33 @@
+{
+  "at": "2026-09-09T07:32:27.872265+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "case": "clean",
+      "exit_code": 0,
+      "status": "PASS",
+      "environment": {
+        "python": "3.11.9",
+        "numpy": "2.2.6",
+        "scipy": "1.15.3"
+      },
+      "log": "installation_clean.log",
+      "log_sha256": "c634028bd38d581b2f68f576a3af4ca8f8e9257f12b84d375cae6700288d8b01"
+    },
+    {
+      "case": "repair",
+      "exit_code": 0,
+      "status": "PASS",
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "log": "installation_repair.log",
+      "log_sha256": "9b9eb414fa3075682c4b72d7a8f7249f6908b857fb4ea98e4d132c6c554d9f19"
+    }
+  ],
+  "scope": "Creates environments and imports the application; no WiFi capture.",
+  "bootstrap_sha256": "5d89b596f2e480666c62350bfc1bab8ad4364716ab2b5845e148e491dfe9eceb",
+  "requirements_sha256": "f00c554c0a60a1b3befffd4f1a9b194cf5dcd1dcc743701ffd1a0bda768461cd"
+}

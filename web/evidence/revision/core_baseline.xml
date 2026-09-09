@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="3" failures="49" skipped="0" tests="62" time="14.460" timestamp="2026-09-09T01:29:33.636900-06:00" hostname="LAPTOP-8TK2EBJS"><testcase classname="tests.test_audit_regressions" name="test_failed_save_can_retry_without_replacing_or_losing_session" time="0.013"><failure message="AssertionError: assert 'ready' == 'save_error'&#10;  &#10;  - save_error&#10;  + ready">lab = &lt;swarm_signal.server.Lab object at 0x000002007F70BEC0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002007F70BE00&gt;
+
+    def test_failed_save_can_retry_without_replacing_or_losing_session(lab, monkeypatch):
+        lab.start(duration_seconds=15)
+        lab.collector.on_sample(sample())
+        ident = lab.session['id']
+        writer = server.write_json
+        def failed_write(*args):
+            raise OSError('synthetic disk failure')
+        with monkeypatch.context() as patch:
+            patch.setattr(server, 'write_json', failed_write)
+            with pytest.raises(OSError):
+                lab.stop()
+            status = lab.snapshot()
+&gt;           assert status['status'] == 'save_error'
+E           AssertionError: assert 'ready' == 'save_error'
+E             
+E             - save_error
+E             + ready
+
+tests\test_audit_regressions.py:104: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_failed_http_stop_exposes_retry_state" time="0.474"><failure message="http.client.RemoteDisconnected: Remote end closed connection without response">http = 62597, lab = &lt;swarm_signal.server.Lab object at 0x000002007F7086E0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002007F708CB0&gt;
+
+    def test_failed_http_stop_exposes_retry_state(http, lab, monkeypatch):
+        lab.start(duration_seconds=15)
+        lab.collector.on_sample(sample())
+        with monkeypatch.context() as patch:
+            def fail(*args):
+                raise OSError('synthetic persistence failure')
+            patch.setattr(server, 'write_json', fail)
+&gt;           status, data = request(http, 'POST', '/api/stop')
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_audit_regressions.py:129: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_audit_regressions.py:85: in request
+    response = client.getresponse()
+               ^^^^^^^^^^^^^^^^^^^^
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py:1478: in getresponse
+    response.begin()
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py:343: in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;http.client.HTTPResponse object at 0x000002007F77C700&gt;
+
+    def _read_status(self):
+        line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+        if len(line) &gt; _MAXLINE:
+            raise LineTooLong("status line")
+        if self.debuglevel &gt; 0:
+            print("reply:", repr(line))
+        if not line:
+            # Presumably, the server closed the connection before
+            # sending a valid response.
+&gt;           raise RemoteDisconnected("Remote end closed connection without"
+                                     " response")
+E           http.client.RemoteDisconnected: Remote end closed connection without response
+
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py:312: RemoteDisconnected</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_completed_snapshot_keeps_stop_time_and_diagnostics" time="0.008"><failure message="KeyError: 'stopped_at'">lab = &lt;swarm_signal.server.Lab object at 0x000002007F708980&gt;
+
+    def test_completed_snapshot_keeps_stop_time_and_diagnostics(lab):
+        lab.start(duration_seconds=15)
+        lab.collector.on_sample(sample())
+        final = lab.stop()
+        latest = lab.snapshot()
+        disk = lab.saved(final['session']['id'])
+&gt;       assert latest['session']['stopped_at'] == final['session']['stopped_at'] == disk['session']['stopped_at']
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'stopped_at'
+
+tests\test_audit_regressions.py:142: KeyError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_invalid_catalog_does_not_start_hidden_capture_or_block_state[{ broken]" time="0.505"><failure message="assert (404 == 200)">http = 63789, lab = &lt;swarm_signal.server.Lab object at 0x000002007F77DEB0&gt;
+invalid = '{ broken'
+
+    @pytest.mark.parametrize('invalid', ['{ broken', '{}', '[]', '{"session":{"id":"bad"},"samples":[]}'])
+    def test_invalid_catalog_does_not_start_hidden_capture_or_block_state(http, lab, invalid):
+        broken = lab.directory / 'invalid.json'
+        broken.write_text(invalid, encoding='utf-8')
+        status, data = request(http, 'GET', '/api/state')
+&gt;       assert status == 200 and data['catalog_errors']
+E       assert (404 == 200)
+
+tests\test_audit_regressions.py:151: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_invalid_catalog_does_not_start_hidden_capture_or_block_state[{}]" time="0.458"><failure message="http.client.RemoteDisconnected: Remote end closed connection without response">http = 63791, lab = &lt;swarm_signal.server.Lab object at 0x000002007F77D1F0&gt;
+invalid = '{}'
+
+    @pytest.mark.parametrize('invalid', ['{ broken', '{}', '[]', '{"session":{"id":"bad"},"samples":[]}'])
+    def test_invalid_catalog_does_not_start_hidden_capture_or_block_state(http, lab, invalid):
+        broken = lab.directory / 'invalid.json'
+        broken.write_text(invalid, encoding='utf-8')
+&gt;       status, data = request(http, 'GET', '/api/state')
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_audit_regressions.py:150: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_audit_regressions.py:85: in request
+    response = client.getresponse()
+               ^^^^^^^^^^^^^^^^^^^^
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py:1478: in getresponse
+    response.begin()
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py:343: in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;http.client.HTTPResponse object at 0x000002007F77F550&gt;
+
+    def _read_status(self):
+        line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+        if len(line) &gt; _MAXLINE:
+            raise LineTooLong("status line")
+        if self.debuglevel &gt; 0:
+            print("reply:", repr(line))
+        if not line:
+            # Presumably, the server closed the connection before
+            # sending a valid response.
+&gt;           raise RemoteDisconnected("Remote end closed connection without"
+                                     " response")
+E           http.client.RemoteDisconnected: Remote end closed connection without response
+
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py:312: RemoteDisconnected</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_invalid_catalog_does_not_start_hidden_capture_or_block_state[[]]" time="0.011"><failure message="http.client.RemoteDisconnected: Remote end closed connection without response">http = 52459, lab = &lt;swarm_signal.server.Lab object at 0x000002007F77F3E0&gt;
+invalid = '[]'
+
+    @pytest.mark.parametrize('invalid', ['{ broken', '{}', '[]', '{"session":{"id":"bad"},"samples":[]}'])
+    def test_invalid_catalog_does_not_start_hidden_capture_or_block_state(http, lab, invalid):
+        broken = lab.directory / 'invalid.json'
+        broken.write_text(invalid, encoding='utf-8')
+&gt;       status, data = request(http, 'GET', '/api/state')
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_audit_regressions.py:150: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_audit_regressions.py:85: in request
+    response = client.getresponse()
+               ^^^^^^^^^^^^^^^^^^^^
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py:1478: in getresponse
+    response.begin()
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py:343: in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;http.client.HTTPResponse object at 0x000002007F77EC80&gt;
+
+    def _read_status(self):
+        line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+        if len(line) &gt; _MAXLINE:
+            raise LineTooLong("status line")
+        if self.debuglevel &gt; 0:
+            print("reply:", repr(line))
+        if not line:
+            # Presumably, the server closed the connection before
+            # sending a valid response.
+&gt;           raise RemoteDisconnected("Remote end closed connection without"
+                                     " response")
+E           http.client.RemoteDisconnected: Remote end closed connection without response
+
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py:312: RemoteDisconnected</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_invalid_catalog_does_not_start_hidden_capture_or_block_state[[]]" time="0.447"><error message="failed on teardown with &quot;TypeError: list indices must be integers or slices, not str&quot;">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002007F77F380&gt;
+tmp_path = WindowsPath('C:/Users/Lenovo/AppData/Local/Temp/pytest-of-Lenovo/pytest-10/test_invalid_catalog_does_not_2')
+
+    @pytest.fixture
+    def lab(monkeypatch, tmp_path):
+        monkeypatch.setattr(server, 'VerifiedWindowsCollector', FakeCollector)
+        monkeypatch.setattr(server.threading, 'Timer', FakeTimer)
+        monkeypatch.setattr(server, 'ROOT', tmp_path)
+        instance = server.Lab(tmp_path / 'sessions')
+        yield instance
+        try:
+&gt;           instance.stop()
+
+tests\test_audit_regressions.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+swarm_signal\server.py:98: in stop
+    return self.snapshot()
+           ^^^^^^^^^^^^^^^
+swarm_signal\server.py:125: in snapshot
+    available = self.sessions()
+                ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;swarm_signal.server.Lab object at 0x000002007F77F3E0&gt;
+
+    def sessions(self):
+        result = []
+        for p in sorted(self.directory.glob('*.json'), reverse=True):
+            s = json.loads(p.read_text(encoding='utf-8'))
+&gt;           result.append({**s['session'], 'samples': len(s['samples'])})
+                             ^^^^^^^^^^^^
+E           TypeError: list indices must be integers or slices, not str
+
+swarm_signal\server.py:48: TypeError</error></testcase><testcase classname="tests.test_audit_regressions" name="test_invalid_catalog_does_not_start_hidden_capture_or_block_state[{&quot;session&quot;:{&quot;id&quot;:&quot;bad&quot;},&quot;samples&quot;:[]}]" time="0.010"><failure message="assert (404 == 200)">http = 52461, lab = &lt;swarm_signal.server.Lab object at 0x000002007ED8D730&gt;
+invalid = '{"session":{"id":"bad"},"samples":[]}'
+
+    @pytest.mark.parametrize('invalid', ['{ broken', '{}', '[]', '{"session":{"id":"bad"},"samples":[]}'])
+    def test_invalid_catalog_does_not_start_hidden_capture_or_block_state(http, lab, invalid):
+        broken = lab.directory / 'invalid.json'
+        broken.write_text(invalid, encoding='utf-8')
+        status, data = request(http, 'GET', '/api/state')
+&gt;       assert status == 200 and data['catalog_errors']
+E       assert (404 == 200)
+
+tests\test_audit_regressions.py:151: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_invalid_catalog_does_not_start_hidden_capture_or_block_state[{&quot;session&quot;:{&quot;id&quot;:&quot;bad&quot;},&quot;samples&quot;:[]}]" time="0.489"><error message="failed on teardown with &quot;FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Lenovo\\AppData\\Local\\Temp\\pytest-of-Lenovo\\pytest-10\\test_invalid_catalog_does_not_3\\sessions\\bad.json'&quot;">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002007F33E030&gt;
+tmp_path = WindowsPath('C:/Users/Lenovo/AppData/Local/Temp/pytest-of-Lenovo/pytest-10/test_invalid_catalog_does_not_3')
+
+    @pytest.fixture
+    def lab(monkeypatch, tmp_path):
+        monkeypatch.setattr(server, 'VerifiedWindowsCollector', FakeCollector)
+        monkeypatch.setattr(server.threading, 'Timer', FakeTimer)
+        monkeypatch.setattr(server, 'ROOT', tmp_path)
+        instance = server.Lab(tmp_path / 'sessions')
+        yield instance
+        try:
+&gt;           instance.stop()
+
+tests\test_audit_regressions.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+swarm_signal\server.py:98: in stop
+    return self.snapshot()
+           ^^^^^^^^^^^^^^^
+swarm_signal\server.py:127: in snapshot
+    saved = self.saved(available[0]['id'])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+swarm_signal\server.py:55: in saved
+    return json.loads(p.read_text(encoding='utf-8'))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/Lenovo/AppData/Local/Temp/pytest-of-Lenovo/pytest-10/test_invalid_catalog_does_not_3/sessions/bad.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+&gt;       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Lenovo\\AppData\\Local\\Temp\\pytest-of-Lenovo\\pytest-10\\test_invalid_catalog_does_not_3\\sessions\\bad.json'
+
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1013: FileNotFoundError</error></testcase><testcase classname="tests.test_audit_regressions" name="test_valid_catalog_survives_bad_neighbor_and_recomputes_legacy_replay" time="0.035"><failure message="TypeError: list indices must be integers or slices, not str">lab = &lt;swarm_signal.server.Lab object at 0x000002007F7B4950&gt;
+
+    def test_valid_catalog_survives_bad_neighbor_and_recomputes_legacy_replay(lab):
+        lab.start(duration_seconds=15)
+        for i in range(11):
+            lab.collector.on_sample(sample(1000 + i * 1.5, -60 + math.sin(i)))
+        ident = lab.stop()['session']['id']
+        path = lab.directory / (ident + '.json')
+        content = json.loads(path.read_text(encoding='utf-8'))
+        content['classification'] = {'motion_level': 'present_still', 'confidence': 1.0}
+        content['frames'] = [{'index': 0, 'classification': {'motion_level': 'present_still'}}]
+        path.write_text(json.dumps(content), encoding='utf-8')
+        original = path.read_bytes()
+        (lab.directory / 'broken.json').write_text('[]', encoding='utf-8')
+        fresh = server.Lab(lab.directory)
+&gt;       state = fresh.snapshot()
+                ^^^^^^^^^^^^^^^^
+
+tests\test_audit_regressions.py:172: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+swarm_signal\server.py:125: in snapshot
+    available = self.sessions()
+                ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;swarm_signal.server.Lab object at 0x000002007F7B6540&gt;
+
+    def sessions(self):
+        result = []
+        for p in sorted(self.directory.glob('*.json'), reverse=True):
+            s = json.loads(p.read_text(encoding='utf-8'))
+&gt;           result.append({**s['session'], 'samples': len(s['samples'])})
+                             ^^^^^^^^^^^^
+E           TypeError: list indices must be integers or slices, not str
+
+swarm_signal\server.py:48: TypeError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_valid_catalog_survives_bad_neighbor_and_recomputes_legacy_replay" time="0.004"><error message="failed on teardown with &quot;TypeError: list indices must be integers or slices, not str&quot;">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002007F7B5400&gt;
+tmp_path = WindowsPath('C:/Users/Lenovo/AppData/Local/Temp/pytest-of-Lenovo/pytest-10/test_valid_catalog_survives_ba0')
+
+    @pytest.fixture
+    def lab(monkeypatch, tmp_path):
+        monkeypatch.setattr(server, 'VerifiedWindowsCollector', FakeCollector)
+        monkeypatch.setattr(server.threading, 'Timer', FakeTimer)
+        monkeypatch.setattr(server, 'ROOT', tmp_path)
+        instance = server.Lab(tmp_path / 'sessions')
+        yield instance
+        try:
+&gt;           instance.stop()
+
+tests\test_audit_regressions.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+swarm_signal\server.py:98: in stop
+    return self.snapshot()
+           ^^^^^^^^^^^^^^^
+swarm_signal\server.py:149: in snapshot
+    'sessions': self.sessions(), 'evidence': evidence}
+                ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;swarm_signal.server.Lab object at 0x000002007F7B4950&gt;
+
+    def sessions(self):
+        result = []
+        for p in sorted(self.directory.glob('*.json'), reverse=True):
+            s = json.loads(p.read_text(encoding='utf-8'))
+&gt;           result.append({**s['session'], 'samples': len(s['samples'])})
+                             ^^^^^^^^^^^^
+E           TypeError: list indices must be integers or slices, not str
+
+swarm_signal\server.py:48: TypeError</error></testcase><testcase classname="tests.test_audit_regressions" name="test_active_session_csv_and_json_resolve_current_id" time="0.498"><failure message="assert (404 == 200)">http = 53406, lab = &lt;swarm_signal.server.Lab object at 0x000002007F2C2870&gt;
+
+    def test_active_session_csv_and_json_resolve_current_id(http, lab):
+        lab.start(duration_seconds=15)
+        lab.collector.on_sample(sample())
+        ident = lab.session['id']
+        status, csv_text = request(http, 'GET', f'/api/export.csv?id={ident}')
+&gt;       assert status == 200 and '1000.0,-60.0,0.8,unconfirmed' in csv_text
+E       assert (404 == 200)
+
+tests\test_audit_regressions.py:184: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_bad_start_json_never_mutates_lab[[]]" time="0.499"><failure message="assert 200 == 400">http = 53408, lab = &lt;swarm_signal.server.Lab object at 0x000002007F77D940&gt;
+raw = '[]'
+
+    @pytest.mark.parametrize('raw', ['[]', 'null', '12', '"hello"', '{"duration_seconds":NaN}',
+        '{"label":"one","label":"two"}', '{"label": []}', '{"ground_truth": []}',
+        '{"duration_seconds":true}', '{"interface": 42}', '{"unexpected":1}', '{"label":""}'])
+    def test_bad_start_json_never_mutates_lab(http, lab, raw):
+        status, _ = request(http, 'POST', '/api/start', raw=raw)
+&gt;       assert status == 400
+E       assert 200 == 400
+
+tests\test_audit_regressions.py:197: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_bad_start_json_never_mutates_lab[null]" time="0.508" /><testcase classname="tests.test_audit_regressions" name="test_bad_start_json_never_mutates_lab[12]" time="0.510" /><testcase classname="tests.test_audit_regressions" name="test_bad_start_json_never_mutates_lab[&quot;hello&quot;]" time="0.503"><failure message="assert 200 == 400">http = 63937, lab = &lt;swarm_signal.server.Lab object at 0x000002007F995880&gt;
+raw = '"hello"'
+
+    @pytest.mark.parametrize('raw', ['[]', 'null', '12', '"hello"', '{"duration_seconds":NaN}',
+        '{"label":"one","label":"two"}', '{"label": []}', '{"ground_truth": []}',
+        '{"duration_seconds":true}', '{"interface": 42}', '{"unexpected":1}', '{"label":""}'])
+    def test_bad_start_json_never_mutates_lab(http, lab, raw):
+        status, _ = request(http, 'POST', '/api/start', raw=raw)
+&gt;       assert status == 400
+E       assert 200 == 400
+
+tests\test_audit_regressions.py:197: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_bad_start_json_never_mutates_lab[{&quot;duration_seconds&quot;:NaN}]" time="0.510" /><testcase classname="tests.test_audit_regressions" name="test_bad_start_json_never_mutates_lab[{&quot;label&quot;:&quot;one&quot;,&quot;label&quot;:&quot;two&quot;}]" time="0.510"><failure message="assert 200 == 400">http = 53100, lab = &lt;swarm_signal.server.Lab object at 0x000002007F9966C0&gt;
+raw = '{"label":"one","label":"two"}'
+
+    @pytest.mark.parametrize('raw', ['[]', 'null', '12', '"hello"', '{"duration_seconds":NaN}',
+        '{"label":"one","label":"two"}', '{"label": []}', '{"ground_truth": []}',
+        '{"duration_seconds":true}', '{"interface": 42}', '{"unexpected":1}', '{"label":""}'])
+    def test_bad_start_json_never_mutates_lab(http, lab, raw):
+        status, _ = request(http, 'POST', '/api/start', raw=raw)
+&gt;       assert status == 400
+E       assert 200 == 400
+
+tests\test_audit_regressions.py:197: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_bad_start_json_never_mutates_lab[{&quot;label&quot;: []}]" time="0.497"><failure message="assert 200 == 400">http = 53102, lab = &lt;swarm_signal.server.Lab object at 0x000002007F997CB0&gt;
+raw = '{"label": []}'
+
+    @pytest.mark.parametrize('raw', ['[]', 'null', '12', '"hello"', '{"duration_seconds":NaN}',
+        '{"label":"one","label":"two"}', '{"label": []}', '{"ground_truth": []}',
+        '{"duration_seconds":true}', '{"interface": 42}', '{"unexpected":1}', '{"label":""}'])
+    def test_bad_start_json_never_mutates_lab(http, lab, raw):
+        status, _ = request(http, 'POST', '/api/start', raw=raw)
+&gt;       assert status == 400
+E       assert 200 == 400
+
+tests\test_audit_regressions.py:197: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_bad_start_json_never_mutates_lab[{&quot;ground_truth&quot;: []}]" time="0.520" /><testcase classname="tests.test_audit_regressions" name="test_bad_start_json_never_mutates_lab[{&quot;duration_seconds&quot;:true}]" time="0.510" /><testcase classname="tests.test_audit_regressions" name="test_bad_start_json_never_mutates_lab[{&quot;interface&quot;: 42}]" time="0.496"><failure message="assert 200 == 400">http = 60383, lab = &lt;swarm_signal.server.Lab object at 0x000002007F7B5700&gt;
+raw = '{"interface": 42}'
+
+    @pytest.mark.parametrize('raw', ['[]', 'null', '12', '"hello"', '{"duration_seconds":NaN}',
+        '{"label":"one","label":"two"}', '{"label": []}', '{"ground_truth": []}',
+        '{"duration_seconds":true}', '{"interface": 42}', '{"unexpected":1}', '{"label":""}'])
+    def test_bad_start_json_never_mutates_lab(http, lab, raw):
+        status, _ = request(http, 'POST', '/api/start', raw=raw)
+&gt;       assert status == 400
+E       assert 200 == 400
+
+tests\test_audit_regressions.py:197: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_bad_start_json_never_mutates_lab[{&quot;unexpected&quot;:1}]" time="0.500"><failure message="assert 200 == 400">http = 60385, lab = &lt;swarm_signal.server.Lab object at 0x000002007F960A40&gt;
+raw = '{"unexpected":1}'
+
+    @pytest.mark.parametrize('raw', ['[]', 'null', '12', '"hello"', '{"duration_seconds":NaN}',
+        '{"label":"one","label":"two"}', '{"label": []}', '{"ground_truth": []}',
+        '{"duration_seconds":true}', '{"interface": 42}', '{"unexpected":1}', '{"label":""}'])
+    def test_bad_start_json_never_mutates_lab(http, lab, raw):
+        status, _ = request(http, 'POST', '/api/start', raw=raw)
+&gt;       assert status == 400
+E       assert 200 == 400
+
+tests\test_audit_regressions.py:197: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_bad_start_json_never_mutates_lab[{&quot;label&quot;:&quot;&quot;}]" time="0.497"><failure message="assert 200 == 400">http = 54030, lab = &lt;swarm_signal.server.Lab object at 0x000002007F963C50&gt;
+raw = '{"label":""}'
+
+    @pytest.mark.parametrize('raw', ['[]', 'null', '12', '"hello"', '{"duration_seconds":NaN}',
+        '{"label":"one","label":"two"}', '{"label": []}', '{"ground_truth": []}',
+        '{"duration_seconds":true}', '{"interface": 42}', '{"unexpected":1}', '{"label":""}'])
+    def test_bad_start_json_never_mutates_lab(http, lab, raw):
+        status, _ = request(http, 'POST', '/api/start', raw=raw)
+&gt;       assert status == 400
+E       assert 200 == 400
+
+tests\test_audit_regressions.py:197: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_stop_also_requires_valid_empty_object" time="0.510"><failure message="assert 200 == 400">http = 54032, lab = &lt;swarm_signal.server.Lab object at 0x000002007F904620&gt;
+
+    def test_stop_also_requires_valid_empty_object(http, lab):
+        lab.start(duration_seconds=15)
+&gt;       assert request(http, 'POST', '/api/stop', raw='[]')[0] == 400
+E       assert 200 == 400
+
+tests\test_audit_regressions.py:203: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_explicit_interface_reaches_collector" time="0.499"><failure message="AssertionError: assert None == 'Wi-Fi 2'&#10; +  where None = &lt;test_audit_regressions.FakeCollector object at 0x000002007F905550&gt;.selected_interface&#10; +    where &lt;test_audit_regressions.FakeCollector object at 0x000002007F905550&gt; = &lt;swarm_signal.server.Lab object at 0x000002007F904350&gt;.collector">http = 62778, lab = &lt;swarm_signal.server.Lab object at 0x000002007F904350&gt;
+
+    def test_explicit_interface_reaches_collector(http, lab):
+        status, data = request(http, 'POST', '/api/start', {'interface': 'Wi-Fi 2'})
+        assert status == 200
+&gt;       assert lab.collector.selected_interface == 'Wi-Fi 2'
+E       AssertionError: assert None == 'Wi-Fi 2'
+E        +  where None = &lt;test_audit_regressions.FakeCollector object at 0x000002007F905550&gt;.selected_interface
+E        +    where &lt;test_audit_regressions.FakeCollector object at 0x000002007F905550&gt; = &lt;swarm_signal.server.Lab object at 0x000002007F904350&gt;.collector
+
+tests\test_audit_regressions.py:212: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_connected_renamed_interface_is_discovered_without_hardware" time="0.001"><failure message="ValueError: No se encontró la interfaz Wi-Fi.">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002007F905BB0&gt;
+
+    def test_connected_renamed_interface_is_discovered_without_hardware(monkeypatch):
+        monkeypatch.setattr(collector_module, 'read_netsh', lambda: RENAMED)
+        instance = collector_module.VerifiedWindowsCollector()
+&gt;       instance._validate_interface()
+
+tests\test_audit_regressions.py:222: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+swarm_signal\collector.py:113: in _validate_interface
+    parse_netsh(read_netsh(), self._interface)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+output = 'Nombre : Wi-Fi 2\nEstado : conectado\nSeñal : 80%\nRssi : -58\n'
+interface = 'Wi-Fi'
+
+    def parse_netsh(output: str, interface: str = 'Wi-Fi') -&gt; Reading:
+        blocks: list[dict[str, str]] = []
+        current: dict[str, str] | None = None
+        for line in output.splitlines():
+            if ':' not in line:
+                continue
+            left, value = line.split(':', 1)
+            field = key(left)
+            if field in {'nombre', 'name'}:
+                current = {'name': value.strip()}
+                blocks.append(current)
+            elif current is not None:
+                current[field] = value.strip()
+        block = next((b for b in blocks if b['name'].casefold() == interface.casefold()), None)
+        if block is None:
+&gt;           raise ValueError(f'No se encontró la interfaz {interface}.')
+E           ValueError: No se encontró la interfaz Wi-Fi.
+
+swarm_signal\collector.py:78: ValueError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_ambiguous_connected_interfaces_require_explicit_choice" time="0.001"><failure message="AssertionError: Regex pattern did not match.&#10;  Expected regex: 'varias'&#10;  Actual message: 'No se encontró la interfaz Wi-Fi.'">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002007F9635F0&gt;
+
+    def test_ambiguous_connected_interfaces_require_explicit_choice(monkeypatch):
+        text = RENAMED + RENAMED.replace('Wi-Fi 2', 'Other Wi-Fi').replace('-58', '-90')
+        monkeypatch.setattr(collector_module, 'read_netsh', lambda: text)
+&gt;       with pytest.raises(ValueError, match='varias'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'varias'
+E         Actual message: 'No se encontró la interfaz Wi-Fi.'
+
+tests\test_audit_regressions.py:230: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_disconnect_cannot_reuse_other_interface_reading" time="0.001" /><testcase classname="tests.test_audit_regressions" name="test_invalid_collection_rates_are_rejected[True]" time="0.001"><failure message="Failed: DID NOT RAISE ValueError">bad = True
+
+    @pytest.mark.parametrize('bad', [True, 3, float('nan'), '2'])
+    def test_invalid_collection_rates_are_rejected(bad):
+&gt;       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests\test_audit_regressions.py:247: Failed</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_invalid_collection_rates_are_rejected[3]" time="0.001" /><testcase classname="tests.test_audit_regressions" name="test_invalid_collection_rates_are_rejected[nan]" time="0.001" /><testcase classname="tests.test_audit_regressions" name="test_invalid_collection_rates_are_rejected[2]" time="0.001"><failure message="TypeError: '&lt;' not supported between instances of 'int' and 'str'">bad = '2'
+
+    @pytest.mark.parametrize('bad', [True, 3, float('nan'), '2'])
+    def test_invalid_collection_rates_are_rejected(bad):
+        with pytest.raises(ValueError):
+&gt;           collector_module.VerifiedWindowsCollector(sample_rate_hz=bad)
+
+tests\test_audit_regressions.py:248: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;swarm_signal.collector.VerifiedWindowsCollector object at 0x000002007F7B41A0&gt;
+interface = 'Wi-Fi', sample_rate_hz = '2', on_sample = None
+
+    def __init__(self, interface='Wi-Fi', sample_rate_hz=2.0, on_sample=None):
+&gt;       if not 0 &lt; sample_rate_hz &lt;= 2:
+               ^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: '&lt;' not supported between instances of 'int' and 'str'
+
+swarm_signal\collector.py:103: TypeError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_netsh_errors_never_fabricate_or_reuse_samples" time="0.508" /><testcase classname="tests.test_audit_regressions" name="test_invalid_rssi_blocks_analysis_instead_of_being_dropped[60.0]" time="0.005"><failure message="AssertionError: assert ({'motion_level': 'active', 'confidence': 1.0, 'presence_detected': True, 'rssi_variance': 480.0, ...} is None)">bad = 60.0
+
+    @pytest.mark.parametrize('bad', [60., -121., 0., float('nan'), float('inf'), True])
+    def test_invalid_rssi_blocks_analysis_instead_of_being_dropped(bad):
+        readings = [sample(1000 + i/2) for i in range(30)]
+        readings[10] = replace(readings[10], rssi_dbm=bad)
+        result = analysis.analyze(readings)
+&gt;       assert result['classification'] is None and not result['quality']['ready']
+E       AssertionError: assert ({'motion_level': 'active', 'confidence': 1.0, 'presence_detected': True, 'rssi_variance': 480.0, ...} is None)
+
+tests\test_audit_regressions.py:270: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_invalid_rssi_blocks_analysis_instead_of_being_dropped[-121.0]" time="0.004"><failure message="AssertionError: assert ({'motion_level': 'active', 'confidence': 1.0, 'presence_detected': True, 'rssi_variance': 124.03333333333332, ...} is None)">bad = -121.0
+
+    @pytest.mark.parametrize('bad', [60., -121., 0., float('nan'), float('inf'), True])
+    def test_invalid_rssi_blocks_analysis_instead_of_being_dropped(bad):
+        readings = [sample(1000 + i/2) for i in range(30)]
+        readings[10] = replace(readings[10], rssi_dbm=bad)
+        result = analysis.analyze(readings)
+&gt;       assert result['classification'] is None and not result['quality']['ready']
+E       AssertionError: assert ({'motion_level': 'active', 'confidence': 1.0, 'presence_detected': True, 'rssi_variance': 124.03333333333332, ...} is None)
+
+tests\test_audit_regressions.py:270: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_invalid_rssi_blocks_analysis_instead_of_being_dropped[0.0]" time="0.004"><failure message="AssertionError: assert ({'motion_level': 'active', 'confidence': 1.0, 'presence_detected': True, 'rssi_variance': 120.0, ...} is None)">bad = 0.0
+
+    @pytest.mark.parametrize('bad', [60., -121., 0., float('nan'), float('inf'), True])
+    def test_invalid_rssi_blocks_analysis_instead_of_being_dropped(bad):
+        readings = [sample(1000 + i/2) for i in range(30)]
+        readings[10] = replace(readings[10], rssi_dbm=bad)
+        result = analysis.analyze(readings)
+&gt;       assert result['classification'] is None and not result['quality']['ready']
+E       AssertionError: assert ({'motion_level': 'active', 'confidence': 1.0, 'presence_detected': True, 'rssi_variance': 120.0, ...} is None)
+
+tests\test_audit_regressions.py:270: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_invalid_rssi_blocks_analysis_instead_of_being_dropped[nan]" time="0.002"><failure message="AssertionError: assert ({'motion_level': 'absent', 'confidence': 1.0, 'presence_detected': False, 'rssi_variance': 0.0, ...} is None)">bad = nan
+
+    @pytest.mark.parametrize('bad', [60., -121., 0., float('nan'), float('inf'), True])
+    def test_invalid_rssi_blocks_analysis_instead_of_being_dropped(bad):
+        readings = [sample(1000 + i/2) for i in range(30)]
+        readings[10] = replace(readings[10], rssi_dbm=bad)
+        result = analysis.analyze(readings)
+&gt;       assert result['classification'] is None and not result['quality']['ready']
+E       AssertionError: assert ({'motion_level': 'absent', 'confidence': 1.0, 'presence_detected': False, 'rssi_variance': 0.0, ...} is None)
+
+tests\test_audit_regressions.py:270: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_invalid_rssi_blocks_analysis_instead_of_being_dropped[inf]" time="0.002"><failure message="AssertionError: assert ({'motion_level': 'absent', 'confidence': 1.0, 'presence_detected': False, 'rssi_variance': 0.0, ...} is None)">bad = inf
+
+    @pytest.mark.parametrize('bad', [60., -121., 0., float('nan'), float('inf'), True])
+    def test_invalid_rssi_blocks_analysis_instead_of_being_dropped(bad):
+        readings = [sample(1000 + i/2) for i in range(30)]
+        readings[10] = replace(readings[10], rssi_dbm=bad)
+        result = analysis.analyze(readings)
+&gt;       assert result['classification'] is None and not result['quality']['ready']
+E       AssertionError: assert ({'motion_level': 'absent', 'confidence': 1.0, 'presence_detected': False, 'rssi_variance': 0.0, ...} is None)
+
+tests\test_audit_regressions.py:270: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_invalid_rssi_blocks_analysis_instead_of_being_dropped[True]" time="0.004"><failure message="AssertionError: assert ({'motion_level': 'active', 'confidence': 1.0, 'presence_detected': True, 'rssi_variance': 124.03333333333332, ...} is None)">bad = True
+
+    @pytest.mark.parametrize('bad', [60., -121., 0., float('nan'), float('inf'), True])
+    def test_invalid_rssi_blocks_analysis_instead_of_being_dropped(bad):
+        readings = [sample(1000 + i/2) for i in range(30)]
+        readings[10] = replace(readings[10], rssi_dbm=bad)
+        result = analysis.analyze(readings)
+&gt;       assert result['classification'] is None and not result['quality']['ready']
+E       AssertionError: assert ({'motion_level': 'active', 'confidence': 1.0, 'presence_detected': True, 'rssi_variance': 124.03333333333332, ...} is None)
+
+tests\test_audit_regressions.py:270: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_loaded_rows_are_strictly_validated[row0]" time="0.001"><failure message="Failed: DID NOT RAISE ValueError">row = {'timestamp': 1, 'rssi_dbm': 60}
+
+    @pytest.mark.parametrize('row', [
+        {'timestamp': 1, 'rssi_dbm': 60}, {'timestamp': float('nan'), 'rssi_dbm': -60},
+        {'timestamp': 1, 'rssi_dbm': '-60'}, {'timestamp': True, 'rssi_dbm': -60},
+        {'timestamp': 1, 'rssi_dbm': -60, 'quality': float('nan')},
+        {'timestamp': 1, 'rssi_dbm': -60, 'quality': 80},
+        {'timestamp': 1, 'rssi_dbm': -60, 'phase': []}, None,
+    ])
+    def test_loaded_rows_are_strictly_validated(row):
+&gt;       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests\test_audit_regressions.py:283: Failed</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_loaded_rows_are_strictly_validated[row1]" time="0.001"><failure message="Failed: DID NOT RAISE ValueError">row = {'timestamp': nan, 'rssi_dbm': -60}
+
+    @pytest.mark.parametrize('row', [
+        {'timestamp': 1, 'rssi_dbm': 60}, {'timestamp': float('nan'), 'rssi_dbm': -60},
+        {'timestamp': 1, 'rssi_dbm': '-60'}, {'timestamp': True, 'rssi_dbm': -60},
+        {'timestamp': 1, 'rssi_dbm': -60, 'quality': float('nan')},
+        {'timestamp': 1, 'rssi_dbm': -60, 'quality': 80},
+        {'timestamp': 1, 'rssi_dbm': -60, 'phase': []}, None,
+    ])
+    def test_loaded_rows_are_strictly_validated(row):
+&gt;       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests\test_audit_regressions.py:283: Failed</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_loaded_rows_are_strictly_validated[row2]" time="0.001"><failure message="Failed: DID NOT RAISE ValueError">row = {'timestamp': 1, 'rssi_dbm': '-60'}
+
+    @pytest.mark.parametrize('row', [
+        {'timestamp': 1, 'rssi_dbm': 60}, {'timestamp': float('nan'), 'rssi_dbm': -60},
+        {'timestamp': 1, 'rssi_dbm': '-60'}, {'timestamp': True, 'rssi_dbm': -60},
+        {'timestamp': 1, 'rssi_dbm': -60, 'quality': float('nan')},
+        {'timestamp': 1, 'rssi_dbm': -60, 'quality': 80},
+        {'timestamp': 1, 'rssi_dbm': -60, 'phase': []}, None,
+    ])
+    def test_loaded_rows_are_strictly_validated(row):
+&gt;       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests\test_audit_regressions.py:283: Failed</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_loaded_rows_are_strictly_validated[row3]" time="0.001"><failure message="Failed: DID NOT RAISE ValueError">row = {'timestamp': True, 'rssi_dbm': -60}
+
+    @pytest.mark.parametrize('row', [
+        {'timestamp': 1, 'rssi_dbm': 60}, {'timestamp': float('nan'), 'rssi_dbm': -60},
+        {'timestamp': 1, 'rssi_dbm': '-60'}, {'timestamp': True, 'rssi_dbm': -60},
+        {'timestamp': 1, 'rssi_dbm': -60, 'quality': float('nan')},
+        {'timestamp': 1, 'rssi_dbm': -60, 'quality': 80},
+        {'timestamp': 1, 'rssi_dbm': -60, 'phase': []}, None,
+    ])
+    def test_loaded_rows_are_strictly_validated(row):
+&gt;       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests\test_audit_regressions.py:283: Failed</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_loaded_rows_are_strictly_validated[row4]" time="0.001"><failure message="Failed: DID NOT RAISE ValueError">row = {'timestamp': 1, 'rssi_dbm': -60, 'quality': nan}
+
+    @pytest.mark.parametrize('row', [
+        {'timestamp': 1, 'rssi_dbm': 60}, {'timestamp': float('nan'), 'rssi_dbm': -60},
+        {'timestamp': 1, 'rssi_dbm': '-60'}, {'timestamp': True, 'rssi_dbm': -60},
+        {'timestamp': 1, 'rssi_dbm': -60, 'quality': float('nan')},
+        {'timestamp': 1, 'rssi_dbm': -60, 'quality': 80},
+        {'timestamp': 1, 'rssi_dbm': -60, 'phase': []}, None,
+    ])
+    def test_loaded_rows_are_strictly_validated(row):
+&gt;       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests\test_audit_regressions.py:283: Failed</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_loaded_rows_are_strictly_validated[row5]" time="0.001"><failure message="Failed: DID NOT RAISE ValueError">row = {'timestamp': 1, 'rssi_dbm': -60, 'quality': 80}
+
+    @pytest.mark.parametrize('row', [
+        {'timestamp': 1, 'rssi_dbm': 60}, {'timestamp': float('nan'), 'rssi_dbm': -60},
+        {'timestamp': 1, 'rssi_dbm': '-60'}, {'timestamp': True, 'rssi_dbm': -60},
+        {'timestamp': 1, 'rssi_dbm': -60, 'quality': float('nan')},
+        {'timestamp': 1, 'rssi_dbm': -60, 'quality': 80},
+        {'timestamp': 1, 'rssi_dbm': -60, 'phase': []}, None,
+    ])
+    def test_loaded_rows_are_strictly_validated(row):
+&gt;       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests\test_audit_regressions.py:283: Failed</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_loaded_rows_are_strictly_validated[row6]" time="0.001"><failure message="Failed: DID NOT RAISE ValueError">row = {'timestamp': 1, 'rssi_dbm': -60, 'phase': []}
+
+    @pytest.mark.parametrize('row', [
+        {'timestamp': 1, 'rssi_dbm': 60}, {'timestamp': float('nan'), 'rssi_dbm': -60},
+        {'timestamp': 1, 'rssi_dbm': '-60'}, {'timestamp': True, 'rssi_dbm': -60},
+        {'timestamp': 1, 'rssi_dbm': -60, 'quality': float('nan')},
+        {'timestamp': 1, 'rssi_dbm': -60, 'quality': 80},
+        {'timestamp': 1, 'rssi_dbm': -60, 'phase': []}, None,
+    ])
+    def test_loaded_rows_are_strictly_validated(row):
+&gt;       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests\test_audit_regressions.py:283: Failed</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_loaded_rows_are_strictly_validated[None]" time="0.001"><failure message="TypeError: 'NoneType' object is not subscriptable">row = None
+
+    @pytest.mark.parametrize('row', [
+        {'timestamp': 1, 'rssi_dbm': 60}, {'timestamp': float('nan'), 'rssi_dbm': -60},
+        {'timestamp': 1, 'rssi_dbm': '-60'}, {'timestamp': True, 'rssi_dbm': -60},
+        {'timestamp': 1, 'rssi_dbm': -60, 'quality': float('nan')},
+        {'timestamp': 1, 'rssi_dbm': -60, 'quality': 80},
+        {'timestamp': 1, 'rssi_dbm': -60, 'phase': []}, None,
+    ])
+    def test_loaded_rows_are_strictly_validated(row):
+        with pytest.raises(ValueError):
+&gt;           analysis.from_rows([row])
+
+tests\test_audit_regressions.py:284: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rows = [None]
+
+    def from_rows(rows):
+&gt;       return [WifiSample(r['timestamp'], r['rssi_dbm'], float('nan'),
+                           ^^^^^^^^^^^^^^
+                           r.get('quality') if r.get('quality') is not None else float('nan'),
+                           0, 0, 0, 'Wi-Fi') for r in rows]
+E       TypeError: 'NoneType' object is not subscriptable
+
+swarm_signal\analysis.py:66: TypeError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_row_bounds_and_order_are_checked" time="0.001"><failure message="Failed: DID NOT RAISE ValueError">def test_row_bounds_and_order_are_checked():
+        row = {'timestamp': 1, 'rssi_dbm': -60, 'quality': None}
+        assert math.isnan(analysis.from_rows([row])[0].link_quality)
+        for invalid in ([row, row], [row] * 10_001, {'samples': []}):
+&gt;           with pytest.raises(ValueError):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ValueError
+
+tests\test_audit_regressions.py:291: Failed</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_no_motion_bins_cannot_mean_still" time="0.003"><failure message="KeyError: 'motion_band'">def test_no_motion_bins_cannot_mean_still():
+        readings = [sample(1000 + i*1.5, -60+3*math.sin(2*math.pi*.1*i*1.5)) for i in range(11)]
+        result = analysis.analyze(readings)
+        assert result['quality']['nyquist_hz'] == pytest.approx(1/3)
+&gt;       assert result['quality']['motion_band']['bins'] == 0
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'motion_band'
+
+tests\test_audit_regressions.py:299: KeyError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_only_one_motion_bin_is_explicitly_insufficient" time="0.002"><failure message="KeyError: 'motion_band'">def test_only_one_motion_bin_is_explicitly_insufficient():
+        result = analysis.analyze([sample(1000+i*.92) for i in range(17)])
+&gt;       assert result['quality']['motion_band']['bins'] == 1
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'motion_band'
+
+tests\test_audit_regressions.py:308: KeyError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_partial_motion_coverage_and_known_frequency_recovery" time="0.004"><failure message="KeyError: 'motion_band'">def test_partial_motion_coverage_and_known_frequency_recovery():
+        frequency = .7
+        result = analysis.analyze([sample(1000+i/2, -60+4*math.sin(2*math.pi*frequency*i/2)) for i in range(30)])
+&gt;       band = result['quality']['motion_band']
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'motion_band'
+
+tests\test_audit_regressions.py:316: KeyError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_small_controlled_jitter_preserves_frequency_within_one_bin[0.01]" time="0.004" /><testcase classname="tests.test_audit_regressions" name="test_small_controlled_jitter_preserves_frequency_within_one_bin[0.04]" time="0.003"><failure message="assert not True">jitter = 0.04
+
+    @pytest.mark.parametrize('jitter', [.01, .04])
+    def test_small_controlled_jitter_preserves_frequency_within_one_bin(jitter):
+        stamps = [1000+i/2 + (jitter if i % 2 else 0) for i in range(30)]
+        result = analysis.analyze([sample(t, -60+3*math.sin(2*math.pi*.7*(t-1000))) for t in stamps])
+        if jitter == .01:
+            assert result['quality']['ready']
+            peak = max(result['spectrum'], key=lambda x: x['power'])['hz']
+            assert abs(peak-.7) &lt;= .07
+        else:
+&gt;           assert not result['quality']['ready']
+E           assert not True
+
+tests\test_audit_regressions.py:335: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_single_large_interval_deviation_abstains_even_with_low_cv" time="0.002"><failure message="KeyError: 'max_interval_deviation'">def test_single_large_interval_deviation_abstains_even_with_low_cv():
+        stamps = [1000+i/2 for i in range(30)]
+        stamps[-1] += .09
+        result = analysis.analyze([sample(t) for t in stamps])
+        assert result['quality']['jitter_cv'] &lt; .05
+&gt;       assert result['quality']['max_interval_deviation'] &gt; .15
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'max_interval_deviation'
+
+tests\test_audit_regressions.py:344: KeyError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_comparison_route_returns_object_and_uses_lab_directory" time="0.508"><failure message="assert (404 == 200)">http = 64130, lab = &lt;swarm_signal.server.Lab object at 0x000002007F905BE0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002007F9049B0&gt;
+
+    def test_comparison_route_returns_object_and_uses_lab_directory(http, lab, monkeypatch):
+        module = types.ModuleType('swarm_signal.experiment')
+        paths = []
+        def comparison(directory):
+            paths.append(directory)
+            return {'status': 'synthetic_test_only', 'groups': []}
+        module.build_comparison = comparison
+        monkeypatch.setitem(sys.modules, 'swarm_signal.experiment', module)
+        status, data = request(http, 'GET', '/api/comparison')
+&gt;       assert status == 200 and data == {'status': 'synthetic_test_only', 'groups': []}
+E       assert (404 == 200)
+
+tests\test_audit_regressions.py:357: AssertionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_collect_once_auto_selects_without_prior_start" time="0.001"><failure message="ValueError: No se encontró la interfaz Wi-Fi.">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002007F904980&gt;
+
+    def test_collect_once_auto_selects_without_prior_start(monkeypatch):
+        monkeypatch.setattr(collector_module, 'read_netsh', lambda: RENAMED)
+&gt;       reading = collector_module.VerifiedWindowsCollector().collect_once()
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_audit_regressions.py:363: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\outputs\SwarmSignal\vendor\ruview\v1\src\sensing\rssi_collector.py:542: in collect_once
+    return self._read_sample()
+           ^^^^^^^^^^^^^^^^^^^
+swarm_signal\collector.py:117: in _read_sample
+    r = parse_netsh(read_netsh(), self._interface)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+output = 'Nombre : Wi-Fi 2\nEstado : conectado\nSeñal : 80%\nRssi : -58\n'
+interface = 'Wi-Fi'
+
+    def parse_netsh(output: str, interface: str = 'Wi-Fi') -&gt; Reading:
+        blocks: list[dict[str, str]] = []
+        current: dict[str, str] | None = None
+        for line in output.splitlines():
+            if ':' not in line:
+                continue
+            left, value = line.split(':', 1)
+            field = key(left)
+            if field in {'nombre', 'name'}:
+                current = {'name': value.strip()}
+                blocks.append(current)
+            elif current is not None:
+                current[field] = value.strip()
+        block = next((b for b in blocks if b['name'].casefold() == interface.casefold()), None)
+        if block is None:
+&gt;           raise ValueError(f'No se encontró la interfaz {interface}.')
+E           ValueError: No se encontró la interfaz Wi-Fi.
+
+swarm_signal\collector.py:78: ValueError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_capture_cli_writes_verified_recovery_on_persistent_save_failure" time="0.009"><failure message="SystemExit: 2">lab = &lt;swarm_signal.server.Lab object at 0x000002007F935CD0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002007F9359A0&gt;
+tmp_path = WindowsPath('C:/Users/Lenovo/AppData/Local/Temp/pytest-of-Lenovo/pytest-10/test_capture_cli_writes_verifi0')
+
+    def test_capture_cli_writes_verified_recovery_on_persistent_save_failure(lab, monkeypatch, tmp_path):
+&gt;       from scripts.capture import finish_capture
+
+tests\test_audit_regressions.py:368: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\capture.py:14: in &lt;module&gt;
+    args = parser.parse_args()
+           ^^^^^^^^^^^^^^^^^^^
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py:1908: in parse_args
+    self.error(msg)
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py:2650: in error
+    self.exit(2, _('%(prog)s: error: %(message)s\n') % args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = ArgumentParser(prog='__main__.py', usage=None, description='Mide RSSI directo. No genera datos simulados.', formatter_class=&lt;class 'argparse.HelpFormatter'&gt;, conflict_handler='error', add_help=True)
+status = 2
+message = '__main__.py: error: unrecognized arguments: tests/test_audit_regressions.py -q -o addopts= --junitxml=C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\tmp\\swarm-audit-technical/core_baseline.xml\n'
+
+    def exit(self, status=0, message=None):
+        if message:
+            self._print_message(message, _sys.stderr)
+&gt;       _sys.exit(status)
+E       SystemExit: 2
+
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py:2637: SystemExit</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_capture_cli_never_announces_missing_file" time="0.010"><failure message="SystemExit: 2">lab = &lt;swarm_signal.server.Lab object at 0x000002007F937E30&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002007F936FF0&gt;
+tmp_path = WindowsPath('C:/Users/Lenovo/AppData/Local/Temp/pytest-of-Lenovo/pytest-10/test_capture_cli_never_announc0')
+capsys = &lt;_pytest.capture.CaptureFixture object at 0x000002007F936660&gt;
+
+    def test_capture_cli_never_announces_missing_file(lab, monkeypatch, tmp_path, capsys):
+&gt;       import scripts.capture as capture
+
+tests\test_audit_regressions.py:387: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\capture.py:14: in &lt;module&gt;
+    args = parser.parse_args()
+           ^^^^^^^^^^^^^^^^^^^
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py:1908: in parse_args
+    self.error(msg)
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py:2650: in error
+    self.exit(2, _('%(prog)s: error: %(message)s\n') % args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = ArgumentParser(prog='__main__.py', usage=None, description='Mide RSSI directo. No genera datos simulados.', formatter_class=&lt;class 'argparse.HelpFormatter'&gt;, conflict_handler='error', add_help=True)
+status = 2
+message = '__main__.py: error: unrecognized arguments: tests/test_audit_regressions.py -q -o addopts= --junitxml=C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\tmp\\swarm-audit-technical/core_baseline.xml\n'
+
+    def exit(self, status=0, message=None):
+        if message:
+            self._print_message(message, _sys.stderr)
+&gt;       _sys.exit(status)
+E       SystemExit: 2
+
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py:2637: SystemExit</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_replay_cache_uses_bytes_not_only_file_timestamp_and_size" time="0.029"><failure message="AttributeError: 'Lab' object has no attribute 'resolve'">lab = &lt;swarm_signal.server.Lab object at 0x000002007F928E00&gt;
+
+    def test_replay_cache_uses_bytes_not_only_file_timestamp_and_size(lab):
+        lab.start(duration_seconds=15)
+        for i in range(30):
+            lab.collector.on_sample(sample(1000+i/2))
+        ident = lab.stop()['session']['id']
+        path = lab.directory / (ident + '.json')
+        fresh = server.Lab(lab.directory)
+&gt;       first = fresh.resolve(ident)
+                ^^^^^^^^^^^^^
+E       AttributeError: 'Lab' object has no attribute 'resolve'
+
+tests\test_audit_regressions.py:410: AttributeError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_extreme_tiny_timestamp_intervals_abstain_without_nonfinite_output" time="0.001"><failure message="ZeroDivisionError: float division by zero">def test_extreme_tiny_timestamp_intervals_abstain_without_nonfinite_output():
+&gt;       result = analysis.analyze([sample(i * 1e-310) for i in range(4)])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_audit_regressions.py:424: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+swarm_signal\analysis.py:48: in analyze
+    hz = np.fft.rfftfreq(len(values), 1 / features.sample_rate_hz)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+n = 4, d = 0.0, device = None
+
+    @set_module('numpy.fft')
+    def rfftfreq(n, d=1.0, device=None):
+        """
+        Return the Discrete Fourier Transform sample frequencies
+        (for usage with rfft, irfft).
+    
+        The returned float array `f` contains the frequency bin centers in cycles
+        per unit of the sample spacing (with zero at the start).  For instance, if
+        the sample spacing is in seconds, then the frequency unit is cycles/second.
+    
+        Given a window length `n` and a sample spacing `d`::
+    
+          f = [0, 1, ...,     n/2-1,     n/2] / (d*n)   if n is even
+          f = [0, 1, ..., (n-1)/2-1, (n-1)/2] / (d*n)   if n is odd
+    
+        Unlike `fftfreq` (but like `scipy.fftpack.rfftfreq`)
+        the Nyquist frequency component is considered to be positive.
+    
+        Parameters
+        ----------
+        n : int
+            Window length.
+        d : scalar, optional
+            Sample spacing (inverse of the sampling rate). Defaults to 1.
+        device : str, optional
+            The device on which to place the created array. Default: ``None``.
+            For Array-API interoperability only, so must be ``"cpu"`` if passed.
+    
+            .. versionadded:: 2.0.0
+    
+        Returns
+        -------
+        f : ndarray
+            Array of length ``n//2 + 1`` containing the sample frequencies.
+    
+        Examples
+        --------
+        &gt;&gt;&gt; import numpy as np
+        &gt;&gt;&gt; signal = np.array([-2, 8, 6, 4, 1, 0, 3, 5, -3, 4], dtype=np.float64)
+        &gt;&gt;&gt; fourier = np.fft.rfft(signal)
+        &gt;&gt;&gt; n = signal.size
+        &gt;&gt;&gt; sample_rate = 100
+        &gt;&gt;&gt; freq = np.fft.fftfreq(n, d=1./sample_rate)
+        &gt;&gt;&gt; freq
+        array([  0.,  10.,  20., ..., -30., -20., -10.])
+        &gt;&gt;&gt; freq = np.fft.rfftfreq(n, d=1./sample_rate)
+        &gt;&gt;&gt; freq
+        array([  0.,  10.,  20.,  30.,  40.,  50.])
+    
+        """
+        if not isinstance(n, integer_types):
+            raise ValueError("n should be an integer")
+&gt;       val = 1.0 / (n * d)
+              ^^^^^^^^^^^^^
+E       ZeroDivisionError: float division by zero
+
+..\..\..\work\swarm\venv\Lib\site-packages\numpy\fft\_helper.py:232: ZeroDivisionError</failure></testcase><testcase classname="tests.test_audit_regressions" name="test_failed_start_cleanup_remains_retryable" time="0.004"><failure message="AttributeError: 'Lab' object has no attribute 'pending_save'">lab = &lt;swarm_signal.server.Lab object at 0x000002007F9378F0&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002007F936450&gt;
+
+    def test_failed_start_cleanup_remains_retryable(lab, monkeypatch):
+        class FailingStart(FakeCollector):
+            def start(self):
+                raise RuntimeError('synthetic startup failure')
+            def stop(self):
+                self.stops += 1
+                if self.stops == 1:
+                    raise RuntimeError('synthetic delayed shutdown')
+        monkeypatch.setattr(server, 'VerifiedWindowsCollector', FailingStart)
+        with pytest.raises(ValueError):
+            lab.start(duration_seconds=15)
+&gt;       assert lab.pending_save and not lab.active and not lab.stopping
+               ^^^^^^^^^^^^^^^^
+E       AttributeError: 'Lab' object has no attribute 'pending_save'
+
+tests\test_audit_regressions.py:441: AttributeError</failure></testcase></testsuite></testsuites>

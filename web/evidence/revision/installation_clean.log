@@ -1,0 +1,13 @@
+Preparando las dependencias del laboratorio...
+Ignoring numpy: markers 'python_version >= "3.12"' don't match your environment
+Ignoring scipy: markers 'python_version >= "3.12"' don't match your environment
+Collecting numpy==2.2.6 (from -r requirements.txt (line 1))
+  Using cached numpy-2.2.6-cp311-cp311-win_amd64.whl.metadata (60 kB)
+Collecting scipy==1.15.3 (from -r requirements.txt (line 2))
+  Using cached scipy-1.15.3-cp311-cp311-win_amd64.whl.metadata (60 kB)
+Using cached numpy-2.2.6-cp311-cp311-win_amd64.whl (12.9 MB)
+Using cached scipy-1.15.3-cp311-cp311-win_amd64.whl (41.2 MB)
+Installing collected packages: numpy, scipy
+Successfully installed numpy-2.2.6 scipy-1.15.3
+No broken requirements found.
+Entorno verificado.

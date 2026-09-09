@@ -1,118 +1,108 @@
 {
   "voice": "es-MX-JorgeNeural",
   "generated_voice": true,
-  "text_hash": "aedf92725db987b0f9b3c123011e19d846ac755e12eddf54d8d30b2eb8cba991",
-  "text": "El tutorial conecta el recolector con el extractor y Commodity Backend. La primera ventana registró 30 muestras. Son datos observados, no señales inventadas.",
+  "text_hash": "4640a4276ebaa6b49c9651ac5c67359bc9608d8af7b4ee00dc96804006e03033",
+  "text": "El tutorial registró 30 muestras con el recolector original. El sistema conecta lectura, extracción de características y clasificación, conservando los datos.",
   "words": [
     {
       "text": "El",
       "start": 0.098541,
-      "end": 0.304832
+      "end": 0.280582
     },
     {
       "text": "tutorial",
-      "start": 0.317,
-      "end": 0.766041
-    },
-    {
-      "text": "conecta",
-      "start": 0.778166,
-      "end": 1.178666
-    },
-    {
-      "text": "el",
-      "start": 1.190791,
-      "end": 1.263624
-    },
-    {
-      "text": "recolector",
-      "start": 1.275708,
-      "end": 1.858249
-    },
-    {
-      "text": "con",
-      "start": 1.870375,
-      "end": 2.028125
-    },
-    {
-      "text": "el",
-      "start": 2.040291,
-      "end": 2.137374
-    },
-    {
-      "text": "extractor",
-      "start": 2.1495,
-      "end": 2.6835
-    },
-    {
-      "text": "y",
-      "start": 2.695625,
-      "end": 2.756291
-    },
-    {
-      "text": "Commodity",
-      "start": 2.768458,
-      "end": 3.253874
-    },
-    {
-      "text": "Backend",
-      "start": 3.266,
-      "end": 3.787833
-    },
-    {
-      "text": "La",
-      "start": 4.623791,
-      "end": 4.793707
-    },
-    {
-      "text": "primera",
-      "start": 4.805833,
-      "end": 5.133499
-    },
-    {
-      "text": "ventana",
-      "start": 5.145625,
-      "end": 5.618916
+      "start": 0.292708,
+      "end": 0.802416
     },
     {
       "text": "registró",
-      "start": 5.631083,
-      "end": 6.140791
+      "start": 0.814583,
+      "end": 1.312166
     },
     {
       "text": "30 muestras",
-      "start": 6.152916,
-      "end": 7.1723329
+      "start": 1.324291,
+      "end": 2.161666
     },
     {
-      "text": "Son",
-      "start": 8.009708,
-      "end": 8.313124
+      "text": "con",
+      "start": 2.173791,
+      "end": 2.343707
+    },
+    {
+      "text": "el",
+      "start": 2.355833,
+      "end": 2.452916
+    },
+    {
+      "text": "recolector",
+      "start": 2.465041,
+      "end": 3.035416
+    },
+    {
+      "text": "original",
+      "start": 3.047583,
+      "end": 3.630124
+    },
+    {
+      "text": "El",
+      "start": 4.466,
+      "end": 4.635916
+    },
+    {
+      "text": "sistema",
+      "start": 4.648041,
+      "end": 5.072791
+    },
+    {
+      "text": "conecta",
+      "start": 5.084958,
+      "end": 5.485458
+    },
+    {
+      "text": "lectura",
+      "start": 5.497583,
+      "end": 5.958749
+    },
+    {
+      "text": "extracción",
+      "start": 6.225708,
+      "end": 6.771833
+    },
+    {
+      "text": "de",
+      "start": 6.784,
+      "end": 6.868958
+    },
+    {
+      "text": "características",
+      "start": 6.881083,
+      "end": 7.779124
+    },
+    {
+      "text": "y",
+      "start": 7.79125,
+      "end": 7.851916
+    },
+    {
+      "text": "clasificación",
+      "start": 7.864083,
+      "end": 8.665041
+    },
+    {
+      "text": "conservando",
+      "start": 8.895625,
+      "end": 9.538833
+    },
+    {
+      "text": "los",
+      "start": 9.550958,
+      "end": 9.708708
     },
     {
       "text": "datos",
-      "start": 8.32525,
-      "end": 8.628666
-    },
-    {
-      "text": "observados",
-      "start": 8.640791,
-      "end": 9.283999
-    },
-    {
-      "text": "no",
-      "start": 9.502416,
-      "end": 9.672332
-    },
-    {
-      "text": "señales",
-      "start": 9.684458,
+      "start": 9.720875,
       "end": 10.206291
-    },
-    {
-      "text": "inventadas",
-      "start": 10.218458,
-      "end": 10.970874
     }
   ]
 }

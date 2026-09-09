@@ -1,138 +1,113 @@
 {
   "voice": "es-MX-JorgeNeural",
   "generated_voice": true,
-  "text_hash": "fbcc78b262ddafb34e39740ac79a4e59146a26e0c4f6f4b674ebb668b1559d5b",
-  "text": "La sesión de ciento veinte segundos reunió 233 lecturas reales. Aquí se recorre su evolución completa. La variación de señal, por sí sola, no prueba movimiento humano.",
+  "text_hash": "f2d4ed4f5e4529d167563b801db403fa91855e35cc444c8a7b182a78f86bc57a",
+  "text": "La captura de ciento veinte segundos contiene 233 lecturas. La señal varía, pero estas mediciones no tienen etiquetas de movimiento humano verificadas.",
   "words": [
     {
       "text": "La",
       "start": 0.098541,
-      "end": 0.244166
+      "end": 0.256291
     },
     {
-      "text": "sesión",
-      "start": 0.256291,
-      "end": 0.620374
+      "text": "captura",
+      "start": 0.268458,
+      "end": 0.681083
     },
     {
       "text": "de",
-      "start": 0.632541,
-      "end": 0.717499
+      "start": 0.693208,
+      "end": 0.802416
     },
     {
       "text": "ciento",
-      "start": 0.729625,
-      "end": 1.093708
+      "start": 0.814583,
+      "end": 1.166541
     },
     {
       "text": "veinte",
-      "start": 1.105833,
-      "end": 1.409249
+      "start": 1.178625,
+      "end": 1.482041
     },
     {
       "text": "segundos",
-      "start": 1.421375,
-      "end": 1.955375
+      "start": 1.494166,
+      "end": 1.979582
     },
     {
-      "text": "reunió",
-      "start": 1.967458,
-      "end": 2.319416
+      "text": "contiene",
+      "start": 1.99175,
+      "end": 2.39225
     },
     {
       "text": "233 lecturas",
-      "start": 2.331541,
-      "end": 4.091249
-    },
-    {
-      "text": "reales",
-      "start": 4.103416,
-      "end": 4.649541
-    },
-    {
-      "text": "Aquí",
-      "start": 5.485416,
-      "end": 5.788832
-    },
-    {
-      "text": "se",
-      "start": 5.800958,
-      "end": 5.946583
-    },
-    {
-      "text": "recorre",
-      "start": 5.95875,
-      "end": 6.35925
-    },
-    {
-      "text": "su",
-      "start": 6.371375,
-      "end": 6.480583
-    },
-    {
-      "text": "evolución",
-      "start": 6.492708,
-      "end": 6.978124
-    },
-    {
-      "text": "completa",
-      "start": 6.990291,
-      "end": 7.536416
+      "start": 2.404375,
+      "end": 4.285458
     },
     {
       "text": "La",
-      "start": 8.373791,
-      "end": 8.531541
-    },
-    {
-      "text": "variación",
-      "start": 8.543708,
-      "end": 9.004874
-    },
-    {
-      "text": "de",
-      "start": 9.017,
-      "end": 9.089833
+      "start": 5.121375,
+      "end": 5.279125
     },
     {
       "text": "señal",
-      "start": 9.101958,
-      "end": 9.538833
+      "start": 5.29125,
+      "end": 5.667458
     },
     {
-      "text": "por",
-      "start": 9.757291,
-      "end": 9.927207
+      "text": "varía",
+      "start": 5.679625,
+      "end": 6.067958
     },
     {
-      "text": "sí",
-      "start": 9.939333,
-      "end": 10.084958
+      "text": "pero",
+      "start": 6.3835,
+      "end": 6.553416
     },
     {
-      "text": "sola",
-      "start": 10.097083,
-      "end": 10.461166
+      "text": "estas",
+      "start": 6.565541,
+      "end": 6.844666
+    },
+    {
+      "text": "mediciones",
+      "start": 6.856791,
+      "end": 7.463582
     },
     {
       "text": "no",
-      "start": 10.776708,
-      "end": 10.898083
+      "start": 7.475708,
+      "end": 7.657749
     },
     {
-      "text": "prueba",
-      "start": 10.910208,
-      "end": 11.189333
+      "text": "tienen",
+      "start": 7.669916,
+      "end": 7.985457
+    },
+    {
+      "text": "etiquetas",
+      "start": 7.997583,
+      "end": 8.519416
+    },
+    {
+      "text": "de",
+      "start": 8.531541,
+      "end": 8.592207
     },
     {
       "text": "movimiento",
-      "start": 11.201458,
-      "end": 11.759708
+      "start": 8.604375,
+      "end": 9.162625
     },
     {
       "text": "humano",
-      "start": 11.771833,
-      "end": 12.208708
+      "start": 9.17475,
+      "end": 9.538833
+    },
+    {
+      "text": "verificadas",
+      "start": 9.550958,
+      "end": 10.364083
     }
   ]
 }

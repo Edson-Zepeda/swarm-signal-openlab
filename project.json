@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "version": "1.1.0",
+  "upstream_commit": "d613a576ea848f96a9b15bac4e7f60b6be7c08e7",
+  "reference_session": "20260909T062522_420b46",
+  "recordings": [
+    {
+      "id": "20260909T062522_420b46",
+      "label": "Referencia de 120 s",
+      "source": "evidence/sessions/20260909T062522_420b46.json",
+      "sha256": "803d7abb4909d968ac786dab594212c5361efcb561c62c24335625dc976f1c2e",
+      "kind": "recorded_real_wifi",
+      "ground_truth": "unconfirmed"
+    },
+    {
+      "id": "20260909T063702_da2614",
+      "label": "Carga simultánea de CPU",
+      "source": "evidence/sessions/20260909T063702_da2614.json",
+      "sha256": "8caf4d6e62d21e0071768583e90fcf7479389291163a222774834a22c12a4a3d",
+      "kind": "recorded_real_wifi",
+      "ground_truth": "unconfirmed"
+    },
+    {
+      "id": "20260909T064317_318983",
+      "label": "Captura de 60 s",
+      "source": "evidence/sessions/20260909T064317_318983.json",
+      "sha256": "eae37175f4016341846804656625c52df31852d3050abd88970fb38ce311179a",
+      "kind": "recorded_real_wifi",
+      "ground_truth": "unconfirmed"
+    }
+  ],
+  "own_tests": "evidence/revision/own_tests.xml",
+  "verification": "evidence/revision/verify_identified.json",
+  "physical_evidence": null,
+  "advanced": {
+    "required_for_base": false,
+    "status": "not_attempted",
+    "reason": "Faltan el repositorio asignado y el tutorial del show."
+  }
+}

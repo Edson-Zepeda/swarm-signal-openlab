@@ -1,0 +1,32 @@
+[
+  {
+    "file": "SwarmSignal_Informe.pdf",
+    "pages": 10,
+    "sha256": "9f461a3eeb21f21eb0beffa01dced37d0f2821527ee401a73afc2cef20eb878b",
+    "bytes": 398956,
+    "source_links": 6,
+    "own_tests_passed": 125,
+    "visual_review": "All 16 final pages rendered. Changed report pages1/7 and audit page2 visually inspected; other13 renders pixel-identical to previously inspected final pages. No clipping, overlap or broken glyphs.",
+    "physical_ground_truth": "unconfirmed"
+  },
+  {
+    "file": "SwarmSignal_Propuesta.pdf",
+    "pages": 1,
+    "sha256": "16032aa9216c70e58228b7c642257e0e9cec06889055ed7cecf9e740df4b4ca7",
+    "bytes": 43924,
+    "source_links": 0,
+    "own_tests_passed": 125,
+    "visual_review": "All 16 final pages rendered. Changed report pages1/7 and audit page2 visually inspected; other13 renders pixel-identical to previously inspected final pages. No clipping, overlap or broken glyphs.",
+    "physical_ground_truth": "unconfirmed"
+  },
+  {
+    "file": "SwarmSignal_Auditoria.pdf",
+    "pages": 5,
+    "sha256": "b2fad95c05a8b148d9eb1db5814b7c2f508fb4fffaa2ca7cd3415b69b069e849",
+    "bytes": 631988,
+    "source_links": 0,
+    "own_tests_passed": 125,
+    "visual_review": "All 16 final pages rendered. Changed report pages1/7 and audit page2 visually inspected; other13 renders pixel-identical to previously inspected final pages. No clipping, overlap or broken glyphs.",
+    "physical_ground_truth": "unconfirmed"
+  }
+]

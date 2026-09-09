@@ -1,5 +1,4 @@
-numpy==2.5.3
-scipy==1.18.1
-pytest==9.1.1
-reportlab==5.0.1
-pillow==12.3.0
+numpy==2.2.6; python_version < "3.12"
+scipy==1.15.3; python_version < "3.12"
+numpy==2.5.3; python_version >= "3.12"
+scipy==1.18.1; python_version >= "3.12"

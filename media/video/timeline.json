@@ -4,32 +4,69 @@
     1080
   ],
   "fps": 30,
-  "duration_seconds": 104.80000000000001,
+  "duration_seconds": 108.26666666666665,
   "voice": "es-MX-JorgeNeural",
   "generated_voice": true,
   "source_provenance": [
     {
-      "path": "evidence/tutorial/04_pipeline_15s.json",
-      "sha256": "b12e3640ff48f90fe1a39d0c3f9505f41045dfbf4f0ef15b86fdc8097a128d38"
+      "path": "project.json",
+      "sha256": "dd9a1fa0bed08a3f5fbd0920ac529ccdaaa505028927788d2886894d659db9bb",
+      "snapshot_path": "media/video/sources/revision/project.json"
     },
     {
-      "path": "evidence/sessions/20260909T062522_420b46.json",
-      "sha256": "803d7abb4909d968ac786dab594212c5361efcb561c62c24335625dc976f1c2e"
+      "path": "evidence/tutorial/04_pipeline_15s.json",
+      "sha256": "b12e3640ff48f90fe1a39d0c3f9505f41045dfbf4f0ef15b86fdc8097a128d38",
+      "snapshot_path": "media/video/sources/revision/evidence/tutorial/04_pipeline_15s.json"
     },
     {
       "path": "evidence/upstream/verification_summary.json",
-      "sha256": "2b8486857bd1f12ff5642ec2de2b6dc578eeeff81cc2ca978d027428ff83760e"
+      "sha256": "2b8486857bd1f12ff5642ec2de2b6dc578eeeff81cc2ca978d027428ff83760e",
+      "snapshot_path": "media/video/sources/revision/evidence/upstream/verification_summary.json"
     },
     {
-      "path": "evidence/own_tests.xml",
-      "sha256": "3b1b19578b1ad0bacf339e5b31525e133b8ea7d50e4c0e135402e3a7a2abb4dc",
-      "snapshot_path": "media/video/sources/own_tests.xml",
-      "snapshot_recovered_from_commit": "b6dae0c",
-      "original_source_still_matches_snapshot": true
+      "path": "evidence/revision/verify_identified.json",
+      "sha256": "01802aa753b5027f9e6b1b91991effa4a687938f47534c0a2bf36ef1e2463aa4",
+      "snapshot_path": "media/video/sources/revision/evidence/revision/verify_identified.json"
+    },
+    {
+      "path": "web/data/comparison.json",
+      "sha256": "216a72e58c296b576b5a48eb3d82e23f8446b96b8126bdfe2432a062f6f152f3",
+      "snapshot_path": "media/video/sources/revision/web/data/comparison.json"
+    },
+    {
+      "path": "evidence/revision/own_tests.xml",
+      "sha256": "af6e7ddb305b31cbfdd5c635b21e87f55f0d2054dcb40d13233ec01b910e36b1",
+      "snapshot_path": "media/video/sources/revision/evidence/revision/own_tests.xml"
     },
     {
       "path": "swarm_signal/analysis.py",
-      "sha256": "9cd8f9a95d70b16bd00f86148a7b6cf09bc5d53c9d43a96c1f98903dde75f7fa"
+      "sha256": "f6b62ea968a311926d22a72713ca0eba52a737bc59d4f0881589f6976660b6c7",
+      "snapshot_path": "media/video/sources/revision/swarm_signal/analysis.py"
+    },
+    {
+      "path": "swarm_signal/collector.py",
+      "sha256": "aea57af4ab717f616be20a5f18a3b8faf75d1e135d36edf69ff8505275d6a9ec",
+      "snapshot_path": "media/video/sources/revision/swarm_signal/collector.py"
+    },
+    {
+      "path": "swarm_signal/experiment.py",
+      "sha256": "2d71f086bbcea2a36491b2bc243fd4ee8e02403ba14b9aa4d4fff4fa5349bdd0",
+      "snapshot_path": "media/video/sources/revision/swarm_signal/experiment.py"
+    },
+    {
+      "path": "evidence/sessions/20260909T062522_420b46.json",
+      "sha256": "803d7abb4909d968ac786dab594212c5361efcb561c62c24335625dc976f1c2e",
+      "snapshot_path": "media/video/sources/revision/evidence/sessions/20260909T062522_420b46.json"
+    },
+    {
+      "path": "evidence/sessions/20260909T063702_da2614.json",
+      "sha256": "8caf4d6e62d21e0071768583e90fcf7479389291163a222774834a22c12a4a3d",
+      "snapshot_path": "media/video/sources/revision/evidence/sessions/20260909T063702_da2614.json"
+    },
+    {
+      "path": "evidence/sessions/20260909T064317_318983.json",
+      "sha256": "eae37175f4016341846804656625c52df31852d3050abd88970fb38ce311179a",
+      "snapshot_path": "media/video/sources/revision/evidence/sessions/20260909T064317_318983.json"
     }
   ],
   "capture_summary": {
@@ -45,107 +82,528 @@
     "max_gap_seconds": 1.4339532852172852,
     "nyquist_hz": 0.9355089812612888,
     "quality_ready": false,
-    "ground_truth": "unconfirmed"
+    "ground_truth": "unconfirmed",
+    "analysis_policy_version": "2.0-quality-audit",
+    "max_jitter_cv": 0.05,
+    "max_interval_deviation": 0.15,
+    "motion_band_hz": [
+      0.5,
+      3.0
+    ],
+    "nominal_collector_hz": 2.0,
+    "nominal_nyquist_hz": 1.0
   },
   "scenes": [
     {
       "title": "La señal. La evidencia.",
-      "label": "SWARM SIGNAL",
+      "label": "SWARM SIGNAL · REVISIÓN 1.1",
       "kind": "intro",
-      "minimum": 11,
-      "narration": "Swarm Signal convierte el Wi-Fi de una laptop en evidencia reproducible. Esta es una reproducción de lecturas reales, sin etiquetas humanas verificadas.",
+      "minimum": 9,
+      "narration": "Swarm Signal transforma lecturas reales de Wi-Fi en evidencia reproducible. Esta edición incorpora la auditoría técnica y sus correcciones.",
       "start": 0,
-      "end": 11.133333333333333,
-      "duration": 11.133333333333333,
-      "audio_duration": 10.224
+      "end": 10.266666666666667,
+      "duration": 10.266666666666667,
+      "audio_duration": 9.336
     },
     {
       "title": "Del Wi-Fi al análisis.",
       "label": "PIPELINE REAL",
       "kind": "pipeline",
-      "minimum": 11,
-      "narration": "El tutorial conecta el recolector con el extractor y Commodity Backend. La primera ventana registró 30 muestras. Son datos observados, no señales inventadas.",
-      "start": 11.133333333333333,
-      "end": 23.866666666666667,
-      "duration": 12.733333333333333,
-      "audio_duration": 11.808
+      "minimum": 9,
+      "narration": "El tutorial registró 30 muestras con el recolector original. El sistema conecta lectura, extracción de características y clasificación, conservando los datos.",
+      "start": 10.266666666666667,
+      "end": 22.233333333333334,
+      "duration": 11.966666666666667,
+      "audio_duration": 11.064
     },
     {
-      "title": "Una captura, muestra a muestra.",
+      "title": "Cada lectura cuenta.",
       "label": "REPRODUCCIÓN ACELERADA",
       "kind": "trace",
-      "minimum": 12,
-      "narration": "La sesión de ciento veinte segundos reunió 233 lecturas reales. Aquí se recorre su evolución completa. La variación de señal, por sí sola, no prueba movimiento humano.",
-      "start": 23.866666666666667,
-      "end": 37.833333333333336,
-      "duration": 13.966666666666667,
-      "audio_duration": 13.056
+      "minimum": 10,
+      "narration": "La captura de ciento veinte segundos contiene 233 lecturas. La señal varía, pero estas mediciones no tienen etiquetas de movimiento humano verificadas.",
+      "start": 22.233333333333334,
+      "end": 34.36666666666667,
+      "duration": 12.133333333333333,
+      "audio_duration": 11.208
     },
     {
-      "title": "La calidad decide.",
-      "label": "VENTANA FINAL",
+      "title": "La calidad cambia entre capturas.",
+      "label": "COMPARACIÓN · VENTANAS DE 15 s",
+      "kind": "comparison",
+      "minimum": 12,
+      "narration": "Las tres capturas cumplen calidad en tres de ocho, cero de tres y dos de cuatro ventanas elegibles. Esta comparación describe el muestreo; no mide precisión de detección humana.",
+      "start": 34.36666666666667,
+      "end": 46.9,
+      "duration": 12.533333333333333,
+      "audio_duration": 11.616
+    },
+    {
+      "title": "Abstenerse también es un resultado.",
+      "label": "ÚLTIMA VENTANA · REFERENCIA DE 120 s",
       "kind": "quality",
       "minimum": 11,
-      "narration": "El muestreo irregular de la última ventana activa una abstención. Swarm Signal conserva la evidencia y deja la clasificación vacía, en lugar de convertir datos débiles en una afirmación.",
-      "start": 37.833333333333336,
-      "end": 50.96666666666667,
-      "duration": 13.133333333333333,
-      "audio_duration": 12.216
+      "narration": "La última ventana excede el límite de irregularidad del cinco por ciento. Se conservan las lecturas y se omiten el espectro y la clasificación.",
+      "start": 46.9,
+      "end": 57.9,
+      "duration": 11.0,
+      "audio_duration": 9.264
     },
     {
-      "title": "Frecuencias, con límites.",
-      "label": "ESPECTRO OBSERVADO",
-      "kind": "spectrum",
-      "minimum": 11,
-      "narration": "El espectro describe las variaciones del RSSI. Su límite depende de la frecuencia efectiva de muestreo. Estos picos no son una medición de respiración.",
-      "start": 50.96666666666667,
-      "end": 63.266666666666666,
-      "duration": 12.3,
-      "audio_duration": 11.4
+      "title": "La banda completa no está observada.",
+      "label": "COBERTURA · ESQUEMA TEÓRICO",
+      "kind": "coverage",
+      "minimum": 10,
+      "narration": "A dos muestras por segundo, el límite teórico es un hertz. La banda original de movimiento llega a tres. Su cobertura es parcial.",
+      "start": 57.9,
+      "end": 68.76666666666667,
+      "duration": 10.866666666666667,
+      "audio_duration": 9.96
     },
     {
-      "title": "Pruebas que puedes repetir.",
+      "title": "Correcciones comprobadas.",
       "label": "VERIFICACIÓN DE SOFTWARE",
       "kind": "tests",
-      "minimum": 11,
-      "narration": "Pasaron 45 pruebas unitarias, 5 de integración y 31 propias. La adaptación de idioma conserva todas las aserciones.",
-      "start": 63.266666666666666,
-      "end": 74.26666666666667,
-      "duration": 11.0,
-      "audio_duration": 9.696
+      "minimum": 10,
+      "narration": "La revisión aprueba 125 pruebas propias. Se conservan las 45 unitarias y 5 integraciones originales, con su evidencia histórica separada.",
+      "start": 68.76666666666667,
+      "end": 80.6,
+      "duration": 11.833333333333334,
+      "audio_duration": 10.92
     },
     {
-      "title": "Una prueba, un hash.",
+      "title": "Verificación con límites visibles.",
       "label": "CSI · REFERENCIA SINTÉTICA",
       "kind": "proof",
-      "minimum": 13,
-      "narration": "La referencia sintética CSI reproduce exactamente el hash publicado. La verificación global sigue fallando: el registro externo respondió cuatrocientos tres. Ambos resultados permanecen visibles, sin esconder las omisiones.",
-      "start": 74.26666666666667,
-      "end": 91.36666666666667,
-      "duration": 17.1,
-      "audio_duration": 16.2
+      "minimum": 14,
+      "narration": "La referencia sintética CSI conserva su hash exacto. Al identificar el cliente de consulta, la nueva verificación pasa seis fases y omite tres. El error cuatrocientos tres anterior permanece documentado.",
+      "start": 80.6,
+      "end": 96.43333333333332,
+      "duration": 15.833333333333334,
+      "audio_duration": 14.928
     },
     {
-      "title": "Primero, una base estable.",
+      "title": "El siguiente paso: validar.",
       "label": "PROPUESTA SWARM",
       "kind": "proposal",
-      "minimum": 12,
-      "narration": "Para SWARM proponemos comenzar con un receptor fijo y comparar escenarios etiquetados. Después, evaluar nodos móviles y su interferencia. La prioridad es medir antes de afirmar.",
-      "start": 91.36666666666667,
-      "end": 104.80000000000001,
-      "duration": 13.433333333333334,
-      "audio_duration": 12.528
+      "minimum": 10,
+      "narration": "Un receptor fijo permite comparar quietud y cruces declarados. Esa prueba física sigue pendiente. Después se podrá evaluar el efecto de nodos móviles.",
+      "start": 96.43333333333332,
+      "end": 108.26666666666665,
+      "duration": 11.833333333333334,
+      "audio_duration": 10.92
     }
   ],
-  "all_quantitative_traces_are_measured_replays": true,
+  "all_recorded_signal_traces_are_measured_replays": true,
+  "non_measurement_visuals": [
+    "configured_frequency_coverage",
+    "proposed_receiver_nodes"
+  ],
   "ground_truth": "unconfirmed",
   "csi_reference_kind": "SYNTHETIC",
   "upstream_commit": "d613a576ea848f96a9b15bac4e7f60b6be7c08e7",
   "own_tests_snapshot": {
-    "tests": 31,
-    "passed": 31,
-    "source": "evidence/own_tests.xml",
-    "source_sha256": "3b1b19578b1ad0bacf339e5b31525e133b8ea7d50e4c0e135402e3a7a2abb4dc",
-    "snapshot_path": "media/video/sources/own_tests.xml"
-  }
+    "tests": 125,
+    "passed": 125,
+    "source": "evidence/revision/own_tests.xml",
+    "source_sha256": "af6e7ddb305b31cbfdd5c635b21e87f55f0d2054dcb40d13233ec01b910e36b1",
+    "snapshot_path": "media/video/sources/revision/evidence/revision/own_tests.xml"
+  },
+  "revision": "1.1.0",
+  "analysis_policy_version": "2.0-quality-audit",
+  "verification_current": {
+    "at": "2026-09-09T07:09:26.482575+00:00",
+    "exit_code": 0,
+    "verify_sha256": "f67c92dbebe2ef843636588e85bb9f6ec602bbd7607f467c72675f601e91ce2a",
+    "source_unchanged": true,
+    "env_override": {
+      "CURL_HOME": "project/tmp/identified-api"
+    },
+    "curl_config": "user-agent = \"SwarmSignal/1.1 (+https://github.com/Edson-Zepeda/swarm-signal-openlab)\"\nmax-time = 25\n",
+    "log": "verify_identified.log",
+    "schema_version": 1,
+    "phases": [
+      {
+        "phase": 1,
+        "status": "PASS",
+        "detail": "v1 pipeline hash matches expected"
+      },
+      {
+        "phase": 2,
+        "status": "PASS",
+        "detail": "no random generators in production code"
+      },
+      {
+        "phase": 3,
+        "status": "SKIP",
+        "detail": "cargo or v2/ not present"
+      },
+      {
+        "phase": 4,
+        "status": "SKIP",
+        "detail": "cargo or python/ not present"
+      },
+      {
+        "phase": 5,
+        "status": "PASS",
+        "detail": "identity_risk_score is None at every gateway script"
+      },
+      {
+        "phase": 6,
+        "status": "PASS",
+        "detail": "12/12 crates on crates.io"
+      },
+      {
+        "phase": 7,
+        "status": "PASS",
+        "detail": "@ruvnet/rvagent v0.2.0 on npm"
+      },
+      {
+        "phase": 8,
+        "status": "PASS",
+        "detail": "multi-arch manifest (amd64 + arm64) live"
+      },
+      {
+        "phase": 9,
+        "status": "SKIP",
+        "detail": "docker pull or run unavailable"
+      }
+    ],
+    "counts": {
+      "pass": 6,
+      "fail": 0,
+      "skip": 3
+    },
+    "status": "PASS_WITH_SKIPS",
+    "expected_csi_sha256": "f8e76f21a0f9852b70b6d9dd5318239f6b20cbcb4cdd995863263cecdc446f7a",
+    "log_sha256": "d19738264c45511a698c18d5b6568c35c7a7ebfa322ce1e688679a58dab0b900",
+    "user_agent": "SwarmSignal/1.1 (+https://github.com/Edson-Zepeda/swarm-signal-openlab)",
+    "historical_failure": "evidence/upstream/03_verify_original_shell.log"
+  },
+  "comparison_current": {
+    "version": 1,
+    "window_seconds": 15,
+    "method": {
+      "variance": "sample, ddof=1",
+      "jitter": "population CV of all inter-sample intervals",
+      "windows": "disjoint [start,end), 15 seconds, all samples retained",
+      "eligible": "nominal window horizon within observed recording >=14 seconds; gaps stay in denominator",
+      "valid_fraction": "ready windows / eligible windows; not detection accuracy",
+      "scope": "Descriptive technical comparison; repeated windows are not independent human trials."
+    },
+    "sessions": [
+      {
+        "id": "20260909T062522_420b46",
+        "label": "Referencia de 120 s",
+        "source": "evidence/sessions/20260909T062522_420b46.json",
+        "source_sha256": "803d7abb4909d968ac786dab594212c5361efcb561c62c24335625dc976f1c2e",
+        "source_kind": "recorded_real_wifi",
+        "ground_truth": "unconfirmed",
+        "ground_truth_source": "not_observed",
+        "count": 233,
+        "coverage_seconds": 119.5956711769104,
+        "effective_rate_hz": 1.939869543077499,
+        "mean_dbm": -58.918454935622314,
+        "sample_variance": 1.057976912831138,
+        "jitter_cv": 0.18512732399917944,
+        "max_gap_seconds": 1.4927515983581543,
+        "windows_total": 8,
+        "windows_eligible": 8,
+        "windows_valid": 3,
+        "windows_abstained": 5,
+        "valid_fraction": 0.375,
+        "reasons": {
+          "Muestreo irregular: espectro no disponible": 5
+        },
+        "windows": [
+          {
+            "index": 0,
+            "start_seconds": 0,
+            "end_seconds": 15,
+            "count": 30,
+            "coverage_seconds": 14.722669839859009,
+            "eligible": true,
+            "ready": false,
+            "reason": "Muestreo irregular: espectro no disponible",
+            "motion_level": null,
+            "variance": 0.9896551724137931,
+            "effective_rate_hz": 1.9697514320050606,
+            "ground_truth": "unconfirmed"
+          },
+          {
+            "index": 1,
+            "start_seconds": 15,
+            "end_seconds": 30,
+            "count": 30,
+            "coverage_seconds": 14.706819534301758,
+            "eligible": true,
+            "ready": false,
+            "reason": "Muestreo irregular: espectro no disponible",
+            "motion_level": null,
+            "variance": 1.0126436781609196,
+            "effective_rate_hz": 1.9718743357366455,
+            "ground_truth": "unconfirmed"
+          },
+          {
+            "index": 2,
+            "start_seconds": 30,
+            "end_seconds": 45,
+            "count": 29,
+            "coverage_seconds": 14.215946912765503,
+            "eligible": true,
+            "ready": true,
+            "reason": null,
+            "motion_level": "active",
+            "variance": 0.7783251231527094,
+            "effective_rate_hz": 1.9696190603284276,
+            "ground_truth": "unconfirmed"
+          },
+          {
+            "index": 3,
+            "start_seconds": 45,
+            "end_seconds": 60,
+            "count": 29,
+            "coverage_seconds": 14.354283571243286,
+            "eligible": true,
+            "ready": true,
+            "reason": null,
+            "motion_level": "active",
+            "variance": 0.7438423645320197,
+            "effective_rate_hz": 1.9506372338981735,
+            "ground_truth": "unconfirmed"
+          },
+          {
+            "index": 4,
+            "start_seconds": 60,
+            "end_seconds": 75,
+            "count": 30,
+            "coverage_seconds": 14.722517728805542,
+            "eligible": true,
+            "ready": true,
+            "reason": null,
+            "motion_level": "active",
+            "variance": 0.7137931034482758,
+            "effective_rate_hz": 1.9697717832093118,
+            "ground_truth": "unconfirmed"
+          },
+          {
+            "index": 5,
+            "start_seconds": 75,
+            "end_seconds": 90,
+            "count": 30,
+            "coverage_seconds": 14.709571361541748,
+            "eligible": true,
+            "ready": false,
+            "reason": "Muestreo irregular: espectro no disponible",
+            "motion_level": null,
+            "variance": 0.7402298850574712,
+            "effective_rate_hz": 1.971505442763659,
+            "ground_truth": "unconfirmed"
+          },
+          {
+            "index": 6,
+            "start_seconds": 90,
+            "end_seconds": 105,
+            "count": 27,
+            "coverage_seconds": 14.21790361404419,
+            "eligible": true,
+            "ready": false,
+            "reason": "Muestreo irregular: espectro no disponible",
+            "motion_level": null,
+            "variance": 0.9857549857549858,
+            "effective_rate_hz": 1.8286802826766717,
+            "ground_truth": "unconfirmed"
+          },
+          {
+            "index": 7,
+            "start_seconds": 105,
+            "end_seconds": 119.5956711769104,
+            "count": 28,
+            "coverage_seconds": 14.471142530441284,
+            "eligible": true,
+            "ready": false,
+            "reason": "Muestreo irregular: espectro no disponible",
+            "motion_level": null,
+            "variance": 1.0727513227513228,
+            "effective_rate_hz": 1.8657821898445954,
+            "ground_truth": "unconfirmed"
+          }
+        ]
+      },
+      {
+        "id": "20260909T063702_da2614",
+        "label": "Carga simultánea de CPU",
+        "source": "evidence/sessions/20260909T063702_da2614.json",
+        "source_sha256": "8caf4d6e62d21e0071768583e90fcf7479389291163a222774834a22c12a4a3d",
+        "source_kind": "recorded_real_wifi",
+        "ground_truth": "unconfirmed",
+        "ground_truth_source": "not_observed",
+        "count": 43,
+        "coverage_seconds": 57.48045492172241,
+        "effective_rate_hz": 0.73068315233754,
+        "mean_dbm": -58.18604651162791,
+        "sample_variance": 1.4883720930232558,
+        "jitter_cv": 0.3962556176560033,
+        "max_gap_seconds": 3.4428343772888184,
+        "windows_total": 4,
+        "windows_eligible": 3,
+        "windows_valid": 0,
+        "windows_abstained": 4,
+        "valid_fraction": 0.0,
+        "reasons": {
+          "Pérdida de muestras": 1,
+          "Muestreo irregular: espectro no disponible": 1,
+          "Completando ventana de 15 s": 2
+        },
+        "windows": [
+          {
+            "index": 0,
+            "start_seconds": 0,
+            "end_seconds": 15,
+            "count": 10,
+            "coverage_seconds": 14.553107261657715,
+            "eligible": true,
+            "ready": false,
+            "reason": "Pérdida de muestras",
+            "motion_level": null,
+            "variance": 0.6222222222222222,
+            "effective_rate_hz": 0.6184246318112293,
+            "ground_truth": "unconfirmed"
+          },
+          {
+            "index": 1,
+            "start_seconds": 15,
+            "end_seconds": 30,
+            "count": 13,
+            "coverage_seconds": 14.549334049224854,
+            "eligible": true,
+            "ready": false,
+            "reason": "Muestreo irregular: espectro no disponible",
+            "motion_level": null,
+            "variance": 1.2564102564102564,
+            "effective_rate_hz": 0.8247800180682033,
+            "ground_truth": "unconfirmed"
+          },
+          {
+            "index": 2,
+            "start_seconds": 30,
+            "end_seconds": 45,
+            "count": 8,
+            "coverage_seconds": 12.23783826828003,
+            "eligible": true,
+            "ready": false,
+            "reason": "Completando ventana de 15 s",
+            "motion_level": null,
+            "variance": 1.125,
+            "effective_rate_hz": 0.5719964463122307,
+            "ground_truth": "unconfirmed"
+          },
+          {
+            "index": 3,
+            "start_seconds": 45,
+            "end_seconds": 57.48045492172241,
+            "count": 12,
+            "coverage_seconds": 10.390063047409058,
+            "eligible": false,
+            "ready": false,
+            "reason": "Completando ventana de 15 s",
+            "motion_level": null,
+            "variance": 0.75,
+            "effective_rate_hz": 1.0587038740581118,
+            "ground_truth": "unconfirmed"
+          }
+        ]
+      },
+      {
+        "id": "20260909T064317_318983",
+        "label": "Captura de 60 s",
+        "source": "evidence/sessions/20260909T064317_318983.json",
+        "source_sha256": "eae37175f4016341846804656625c52df31852d3050abd88970fb38ce311179a",
+        "source_kind": "recorded_real_wifi",
+        "ground_truth": "unconfirmed",
+        "ground_truth_source": "not_observed",
+        "count": 118,
+        "coverage_seconds": 59.49649620056152,
+        "effective_rate_hz": 1.966502356804261,
+        "mean_dbm": -59.83898305084746,
+        "sample_variance": 0.7174416920179632,
+        "jitter_cv": 0.06350342030165691,
+        "max_gap_seconds": 0.7484438419342041,
+        "windows_total": 4,
+        "windows_eligible": 4,
+        "windows_valid": 2,
+        "windows_abstained": 2,
+        "valid_fraction": 0.5,
+        "reasons": {
+          "Muestreo irregular: espectro no disponible": 2
+        },
+        "windows": [
+          {
+            "index": 0,
+            "start_seconds": 0,
+            "end_seconds": 15,
+            "count": 30,
+            "coverage_seconds": 14.671059608459473,
+            "eligible": true,
+            "ready": true,
+            "reason": null,
+            "motion_level": "active",
+            "variance": 0.906896551724138,
+            "effective_rate_hz": 1.9766806743310021,
+            "ground_truth": "unconfirmed"
+          },
+          {
+            "index": 1,
+            "start_seconds": 15,
+            "end_seconds": 30,
+            "count": 29,
+            "coverage_seconds": 14.35314679145813,
+            "eligible": true,
+            "ready": false,
+            "reason": "Muestreo irregular: espectro no disponible",
+            "motion_level": null,
+            "variance": 0.9802955665024631,
+            "effective_rate_hz": 1.9507917258021363,
+            "ground_truth": "unconfirmed"
+          },
+          {
+            "index": 2,
+            "start_seconds": 30,
+            "end_seconds": 45,
+            "count": 30,
+            "coverage_seconds": 14.774538040161133,
+            "eligible": true,
+            "ready": true,
+            "reason": null,
+            "motion_level": "active",
+            "variance": 0.5333333333333333,
+            "effective_rate_hz": 1.962836328362367,
+            "ground_truth": "unconfirmed"
+          },
+          {
+            "index": 3,
+            "start_seconds": 45,
+            "end_seconds": 59.49649620056152,
+            "count": 29,
+            "coverage_seconds": 14.179292917251587,
+            "eligible": true,
+            "ready": false,
+            "reason": "Muestreo irregular: espectro no disponible",
+            "motion_level": null,
+            "variance": 0.49507389162561577,
+            "effective_rate_hz": 1.9747105982931707,
+            "ground_truth": "unconfirmed"
+          }
+        ]
+      }
+    ],
+    "ignored_sessions": [],
+    "physical": {
+      "confirmed_sessions": 0,
+      "conditions": [],
+      "comparison_ready": false,
+      "reason": "Faltan capturas con quietud y cruces confirmados por el participante."
+    }
+  },
+  "spectral_peaks_from_irregular_windows_shown": false
 }

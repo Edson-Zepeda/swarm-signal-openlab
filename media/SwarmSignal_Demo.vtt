@@ -1,101 +1,113 @@
 WEBVTT
 
 1
-00:00:00.349 --> 00:00:02.946
-Swarm Signal convierte el Wi-Fi de una laptop en
+00:00:00.349 --> 00:00:03.686
+Swarm Signal transforma lecturas reales de Wi-Fi en evidencia
 
 2
-00:00:02.958 --> 00:00:07.362
-evidencia reproducible Esta es una reproducción de lecturas reales
+00:00:03.698 --> 00:00:07.920
+reproducible Esta edición incorpora la auditoría técnica y sus
 
 3
-00:00:07.580 --> 00:00:09.619
-sin etiquetas humanas verificadas
+00:00:07.932 --> 00:00:08.733
+correcciones
 
 4
-00:00:11.482 --> 00:00:14.140
-El tutorial conecta el recolector con el extractor y
+00:00:10.615 --> 00:00:15.153
+El tutorial registró 30 muestras con el recolector original El
 
 5
-00:00:14.152 --> 00:00:20.012
-Commodity Backend La primera ventana registró 30 muestras Son datos
+00:00:15.165 --> 00:00:20.055
+sistema conecta lectura extracción de características y clasificación conservando
 
 6
-00:00:20.024 --> 00:00:22.354
-observados no señales inventadas
+00:00:20.068 --> 00:00:20.723
+los datos
 
 7
-00:00:24.215 --> 00:00:28.766
-La sesión de ciento veinte segundos reunió 233 lecturas reales
+00:00:22.582 --> 00:00:27.762
+La captura de ciento veinte segundos contiene 233 lecturas La
 
 8
-00:00:29.602 --> 00:00:33.206
-Aquí se recorre su evolución completa La variación de
+00:00:27.775 --> 00:00:31.076
+señal varía pero estas mediciones no tienen etiquetas de
 
 9
-00:00:33.219 --> 00:00:36.325
-señal por sí sola no prueba movimiento humano
+00:00:31.088 --> 00:00:32.847
+movimiento humano verificadas
 
 10
-00:00:38.182 --> 00:00:41.058
-El muestreo irregular de la última ventana activa una
+00:00:34.715 --> 00:00:37.361
+Las tres capturas cumplen calidad en tres de ocho
 
 11
-00:00:41.070 --> 00:00:45.025
-abstención Swarm Signal conserva la evidencia y deja la
+00:00:37.652 --> 00:00:40.395
+cero de tres y dos de cuatro ventanas elegibles
 
 12
-00:00:45.037 --> 00:00:48.569
-clasificación vacía en lugar de convertir datos débiles en
+00:00:41.231 --> 00:00:44.422
+Esta comparación describe el muestreo no mide precisión de
 
 13
-00:00:48.581 --> 00:00:49.443
-una afirmación
+00:00:44.435 --> 00:00:45.381
+detección humana
 
 14
-00:00:51.315 --> 00:00:55.974
-El espectro describe las variaciones del RSSI Su límite
+00:00:47.249 --> 00:00:50.076
+La última ventana excede el límite de irregularidad del
 
 15
-00:00:55.986 --> 00:00:59.894
-depende de la frecuencia efectiva de muestreo Estos picos
+00:00:50.088 --> 00:00:53.533
+cinco por ciento Se conservan las lecturas y se
 
 16
-00:00:59.906 --> 00:01:01.763
-no son una medición de respiración
+00:00:53.546 --> 00:00:55.560
+omiten el espectro y la clasificación
 
 17
-00:01:03.615 --> 00:01:08.482
-Pasaron 45 pruebas unitarias 5 de integración y 31 propias
+00:00:58.249 --> 00:01:01.161
+A dos muestras por segundo el límite teórico es
 
 18
-00:01:09.318 --> 00:01:12.364
-La adaptación de idioma conserva todas las aserciones
+00:01:01.173 --> 00:01:04.533
+un hertz La banda original de movimiento llega a
 
 19
-00:01:14.615 --> 00:01:19.118
-La referencia sintética CSI reproduce exactamente el hash publicado
+00:01:04.546 --> 00:01:07.264
+tres Su cobertura es parcial
 
 20
-00:01:19.954 --> 00:01:23.910
-La verificación global sigue fallando el registro externo respondió
+00:01:09.115 --> 00:01:14.575
+La revisión aprueba 125 pruebas propias Se conservan las 45
 
 21
-00:01:23.922 --> 00:01:29.153
-cuatrocientos tres Ambos resultados permanecen visibles sin esconder las
+00:01:14.587 --> 00:01:19.089
+unitarias y 5 integraciones originales con su evidencia histórica separada
 
 22
-00:01:29.165 --> 00:01:29.869
-omisiones
+00:01:20.949 --> 00:01:25.583
+La referencia sintética CSI conserva su hash exacto Al
 
 23
-00:01:31.715 --> 00:01:34.591
-Para SWARM proponemos comenzar con un receptor fijo y
+00:01:25.595 --> 00:01:29.175
+identificar el cliente de consulta la nueva verificación pasa
 
 24
-00:01:34.604 --> 00:01:39.602
-comparar escenarios etiquetados Después evaluar nodos móviles y su
+00:01:29.187 --> 00:01:33.071
+seis fases y omite tres El error cuatrocientos tres
 
 25
-00:01:39.614 --> 00:01:43.304
-interferencia La prioridad es medir antes de afirmar
+00:01:33.083 --> 00:01:34.928
+anterior permanece documentado
+
+26
+00:01:36.782 --> 00:01:40.228
+Un receptor fijo permite comparar quietud y cruces declarados
+
+27
+00:01:41.064 --> 00:01:45.142
+Esa prueba física sigue pendiente Después se podrá evaluar
+
+28
+00:01:45.154 --> 00:01:46.768
+el efecto de nodos móviles

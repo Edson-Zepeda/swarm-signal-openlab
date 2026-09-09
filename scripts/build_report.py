@@ -9,6 +9,8 @@ import json
 import math
 from pathlib import Path
 import statistics
+import hashlib
+import shutil
 import xml.etree.ElementTree as ET
 from html import escape
 
@@ -53,15 +55,29 @@ dt = [b['timestamp'] - a['timestamp'] for a, b in zip(rows, rows[1:])]
 duration = rows[-1]['timestamp'] - rows[0]['timestamp']
 observed_rate = (len(rows) - 1) / duration
 source_commit = verification['upstream']['commit']
+comparison = read('web/data/comparison.json')
+identified_verify = read('evidence/revision/verify_identified.json')
+for recording in comparison['sessions']:
+    captured=(ROOT/recording['source']).read_bytes()
+    assert hashlib.sha256(captured).hexdigest()==recording['source_sha256'], 'Comparación desactualizada.'
+    assert len(json.loads(captured)['samples'])==recording['count'], 'Conteo de comparación incoherente.'
+assert len(comparison['sessions'])==3, 'El informe evalúa tres sesiones de referencia.'
+assert comparison['physical']['confirmed_sessions']==0, 'Revisar las conclusiones al incorporar evidencia física.'
+original_verify_hash=next(x['sha256_worktree_bytes'] for x in verification['upstream']['source_files_sha256'] if x['path']=='verify')
+assert identified_verify['verify_sha256']==original_verify_hash, 'El verificador cambió desde la ejecución original.'
+assert identified_verify['expected_csi_sha256']==verification['csi_proof']['expected_sha256'], 'Cambió la expectativa CSI.'
 
 def own_count():
-    for path in [ROOT / 'evidence/own_tests.xml', ROOT / 'evidence/tests/own.xml', ROOT / 'evidence/tests/project.xml', ROOT / 'evidence/own.xml']:
+    for path in [ROOT / 'evidence/revision/own_tests.xml']:
         if path.exists():
             node = ET.parse(path).getroot()
             cases = list(node.iter('testcase'))
             passed = sum(not any(c.tag in {'failure', 'error', 'skipped'} for c in case) for case in cases)
+            failed = sum(any(c.tag in {'failure', 'error'} for c in case) for case in cases)
+            if failed:
+                raise ValueError('La evidencia final contiene fallos; no generar un resumen de aprobación.')
             return passed, path.relative_to(ROOT).as_posix()
-    raise FileNotFoundError('Falta evidencia XML de las pruebas propias. Ejecuta pytest --junitxml=evidence/own_tests.xml.')
+    raise FileNotFoundError('Falta evidence/revision/own_tests.xml; conservar las pruebas históricas.')
 
 OWN, OWN_EVIDENCE = own_count()
 
@@ -153,7 +169,7 @@ class Report:
             top -= rh
         return top
 
-    def chart(self, xs, ys, top, height, title, ylabel, color='#237c87', points=False, ymax=None, ymin=None):
+    def chart(self, xs, ys, top, height, title, ylabel, color='#237c87', points=False, ymax=None, ymin=None, shade=None):
         self.text(title, M, top, 12, True)
         left, right, bottom, plot_top = M+43, W-M-10, top-height+31, top-24
         low = math.floor(min(ys)) if ymin is None else ymin
@@ -161,12 +177,19 @@ class Report:
         if high == low: high += 1
         xmin,xmax = min(xs),max(xs)
         if xmax == xmin: xmax += 1
-        for i in range(5):
-            y = bottom+(plot_top-bottom)*i/4
-            val = low+(high-low)*i/4
+        if shade:
+            lo, hi = max(xmin, shade[0]), min(xmax, shade[1])
+            if hi > lo:
+                self.c.setFillColor(HexColor('#e0ebd4'))
+                self.c.rect(left+(lo-xmin)/(xmax-xmin)*(right-left), bottom,
+                            (hi-lo)/(xmax-xmin)*(right-left), plot_top-bottom, fill=1, stroke=0)
+        ticks=int(high-low)+1 if ylabel=='dBm' and high-low<=8 else 5
+        for i in range(ticks):
+            y = bottom+(plot_top-bottom)*i/(ticks-1)
+            val = low+(high-low)*i/(ticks-1)
             self.c.setStrokeColor(HexColor('#d8e2e7')); self.c.setLineWidth(.55)
             self.c.line(left,y,right,y)
-            self.text(f'{val:.1f}' if abs(high-low)<5 else f'{val:.0f}', M+2,y-3,8.5,color=MUTED)
+            self.text(f'{val:.0f}' if ylabel=='dBm' else f'{val:.1f}', M+2,y-3,8.5,color=MUTED)
         for i in range(5):
             val=xmin+(xmax-xmin)*i/4
             self.text(f'{val:.1f}', left+(right-left)*i/4-7,bottom-16,8.5,color=MUTED)
@@ -192,6 +215,46 @@ class Report:
         self.footer();self.c.save()
 
 
+def math_note(r, y):
+    return r.para('<b>Definiciones.</b> Tasa = (n − 1) / cobertura. Varianza muestral = suma de desviaciones al cuadrado / (n − 1). Jitter = desviación estándar poblacional de los intervalos / intervalo medio. La tasa global no describe cada ventana.', M, y, size=10.5, color=MUTED)
+
+
+def comparison_table(r, y):
+    entries=[]
+    for i,s in enumerate(comparison['sessions'], 1):
+        entries.append((f'S{i}', str(s['count']), f"{s['coverage_seconds']:.2f}",
+                        f"{s['effective_rate_hz']:.3f}", f"{s['sample_variance']:.3f}",
+                        f"{s['windows_valid']}/{s['windows_eligible']}"))
+    return r.table(['Sesión','n','Segundos','Hz','Var. dBm²','Aptas / elegibles'],entries,[53,44,86,77,94,CW-354],y,font=10.5)
+
+
+def window_map(r, y):
+    r.text('Ventanas de 15 s, sin solapamiento',M,y,12,True)
+    y-=25
+    max_windows=max(len(s['windows']) for s in comparison['sessions'])
+    bw=min(42,(CW-70)/max_windows)
+    for i,s in enumerate(comparison['sessions'],1):
+        r.text(f'S{i}',M,y-17,11,True)
+        for j,window in enumerate(s['windows']):
+            fill=LIME if window['ready'] else ('#e8c99c' if window['eligible'] else '#dde5e9')
+            r.box(M+43+j*bw,y,bw-5,29,fill)
+            r.text(str(j+1),M+52+j*bw,y-19,9,True)
+        y-=41
+    return r.para('Verde: apta. Arena: abstención. Gris: tramo final corto. Elegibilidad por horizonte nominal ≥14 s; las pérdidas interiores no se eliminan del denominador. Apta no significa presencia confirmada.',M,y,size=10.2,color=MUTED)-17
+
+
+def add_comparison_page(r):
+    y=r.new('Tres capturas, una regla','Comparación · Calidad y variabilidad')
+    y=r.para('La revisión vuelve a analizar las mismas muestras con reglas explícitas. No son capturas nuevas ni una comparación de exactitud humana.',M,y,size=12)-19
+    y=comparison_table(r,y)-22
+    y=window_map(r,y)
+    y=math_note(r,y)-18
+    y=r.note('<b>Política revisada.</b> Sin remuestrear: cobertura ≥14 s, hueco ≤2 s, CV de intervalos ≤5% y desviación máxima del intervalo ≤15%. La banda de movimiento requiere al menos dos bins observados. Son guardas iniciales de ingeniería, no umbrales de precisión calibrados.',y)-18
+    for i,s in enumerate(comparison['sessions'],1):
+        y=r.para(f"S{i}: {escape(s['source'])}",M,y,size=8.9,color=MUTED)-4
+    r.para('Fuente derivada: web/data/comparison.json. Criterio idéntico para todas las sesiones. Todas las condiciones humanas permanecen sin confirmar.',M,y-6,size=9.3,color=MUTED)
+
+
 def build_report():
     r=Report(DOCS/'SwarmSignal_Informe.pdf','SWARM SIGNAL | Informe de evidencia')
     y=r.new('WiFi medido.\nEvidencia verificable.'.replace('\n','<br/>'),'Informe técnico · Reto de Software',True)
@@ -199,7 +262,8 @@ def build_report():
     y=r.para('Sensado RSSI en Windows y propuesta de integración a SWARM.',M,y,CW,14,color='#aabac5')-24
     y=r.kpis([(str(len(p_rows)),'muestras en el tutorial'),(str(len(rows)),'muestras en sesión extendida'),(f"{verification['unit']['passed']} + {verification['live_adapted']['passed']}",'unitarias + live adaptadas')],y,True)
     y=r.para('El pipeline ejecutó la clasificación <b>ACTIVE</b> en la ventana del tutorial. El movimiento físico y la presencia humana no fueron confirmados.',M,y,CW,13,color=WHITE)-22
-    stage=[('01-02','Entorno y WiFi','Windows 11 conectado. Evidencia del SO.'),('03-04','Lectura y pipeline','RSSI directo; 15 s solicitados.'),('05','Monitor','Captura real; entorno sin etiqueta física.'),('06-07','Integración y pruebas',f'CommodityBackend; {OWN} pruebas propias.'),('08','Verificación','CSI: PASS. ./verify completo: FAIL.')]
+    vc=identified_verify['counts']
+    stage=[('01-02','Entorno y WiFi','Windows 11 conectado. Output real incluido.'),('03-04','Lectura y pipeline','RSSI directo; 15 s solicitados.'),('05','Monitor','Captura real; falta ensayo humano confirmado.'),('06-07','Integración y pruebas',f'CommodityBackend; {OWN} pruebas propias.'),('08','Verificación',f"Original: FAIL. Revisión: {vc['pass']} PASS, {vc['skip']} SKIP.")]
     for num,title,desc in stage:
         r.text(num,M,y-10,10,True,CYAN);r.text(title,M+55,y-10,12,True,WHITE)
         y=r.para(desc,M+55,y-17,CW-55,10.5,color='#aabac5')-18
@@ -207,18 +271,25 @@ def build_report():
     r.para('Pendiente: ensayo humano etiquetado. Avanzado Skybrush: falta la copia asignada de VantTec y su tutorial.',M+13,107,CW-26,10.6,color='#d4e0e7',leading=14)
 
     y=r.new('Entorno y lectura directa','Etapas 01 · 02 · 03')
-    y=r.para('Se clonó y fijó RuView. La captura usa el adaptador WiFi del equipo mediante netsh; no se instaló hardware de sensado adicional.',M,y)-20
+    y=r.para('RuView usa el adaptador WiFi de la laptop mediante netsh. No se añadió hardware de sensado.',M,y,size=11.5)-15
     y=r.table(['Componente','Evidencia observada'],[
         ('Sistema',env['os']),('Python',env['python'].split(' (')[0]),
         ('Dependencias',f"NumPy {env['packages']['numpy']} · SciPy {env['packages']['scipy']} · pytest {env['packages']['pytest']}"),
-        ('Adaptador','Realtek 8822CE · Wi-Fi · 5 GHz · canal 161'),
-        ('Conectividad','Estado: conectado. Identificadores de red omitidos.')],[131,CW-131],y)-22
+        ('Adaptador','Realtek 8822CE · Wi-Fi · 5 GHz · canal 161')],[131,CW-131],y,font=10.5)-17
     r.text('Commit de origen',M,y,10,True);y-=16
-    r.text(source_commit,M,y,9.2,font='Mono');y-=28
-    y=r.kpis([(f"{single['sample']['rssi_dbm']:.0f} dBm",'lectura individual original'),(f"{env['strict_netsh_reading']['rssi_dbm']:.0f} dBm",'verificación del SO'),('100 %','calidad del SO')],y)
-    y=r.note('Son lecturas consecutivas, no simultáneas. El valor 0 de calidad que entrega el colector original es un error de idioma: ignora “Señal”. No representa calidad real nula.',y)-19
-    y=r.para('<b>Adaptación local.</b> Se decodifica UTF-8 con alternativa OEM, se selecciona la interfaz conectada y se exige RSSI directo. Una lectura ausente genera error; nunca se sustituye por -80 dBm. Ruido y contadores de bytes no medidos quedan excluidos.',M,y,size=11.5)-16
-    r.para('Fuentes de evidencia: 01_environment.json, 02_netsh.txt y 03_single_reading.json, en evidence/tutorial/. El RSSI de la lectura original se conserva.',M,y,size=9.5,color=MUTED)
+    r.text(source_commit,M,y,9.2,font='Mono');y-=27
+    r.text('Output real · netsh wlan show interfaces',M,y,11.5,True);y-=15
+    raw=(ROOT/'evidence/tutorial/02_netsh.txt').read_text(encoding='utf-8').splitlines()
+    keys=('Nombre','Estado','Banda','Canal','Señal','Rssi')
+    excerpt=[line for line in raw if any(line.lstrip().startswith(k) for k in keys)]
+    assert len(excerpt)==6, 'Revisar extracto netsh; no sustituir por valores recreados.'
+    r.box(M,y,CW,105,NAVY)
+    for j,line in enumerate(excerpt):
+        r.text(line,M+7,y-18-j*14,9,font='Mono',color=WHITE)
+    y-=119
+    y=r.note(f"<b>Lectura individual original: {single['sample']['rssi_dbm']:.0f} dBm.</b> El output de arriba registra otra lectura, {env['strict_netsh_reading']['rssi_dbm']:.0f} dBm; no son simultáneas. La calidad 0 del colector original es un error de idioma: ignora ‘Señal’. El SO reportó 100%.",y)-15
+    y=r.para('<b>Adaptación local.</b> UTF-8 con alternativa OEM; selección de interfaz conectada y RSSI directo obligatorio. Una lectura ausente produce un error, nunca −80 dBm de relleno. Ruido y contadores no medidos quedan excluidos.',M,y,size=11)-13
+    r.para('Extracto literal de 02_netsh.txt; se conservó el archivo completo sanitizado. Entorno y lectura: evidence/tutorial/01_environment.json y 03_single_reading.json.',M,y,size=9.4,color=MUTED)
 
     y=r.new('La ventana de 15 segundos','Etapa 04 · Datos del pipeline original')
     y=r.kpis([(f"{pf['mean']:.2f}",'RSSI medio (dBm)'),(f"{pf['variance']:.3f}",'varianza (dBm²)'),(f"{pf['sample_rate_hz']:.3f}",'tasa efectiva (Hz)')],y)
@@ -227,19 +298,21 @@ def build_report():
     n=len(py);signal=[(v-statistics.mean(py))*.5*(1-math.cos(2*math.pi*i/(n-1))) for i,v in enumerate(py)]
     frequencies=[k*pf['sample_rate_hz']/n for k in range(1,n//2+1)]
     powers=[abs(sum(v*cmath.exp(-2j*math.pi*k*t/n) for t,v in enumerate(signal)))**2/n for k in range(1,n//2+1)]
-    y=r.chart(frequencies,powers,y,157,'Figura 2. Espectro Hann de la misma ventana','Energía relativa',color='#5365a1',ymin=0)-2
+    y=r.chart(frequencies,powers,y,157,'Figura 2. Espectro Hann de la misma ventana','Energía relativa',color='#5365a1',ymin=0,shade=(.5,3)) - 2
     y=r.note(f"<b>Salida algorítmica: {pipeline['classification']['motion_level'].upper()}.</b> Varianza {pf['variance']:.3f} ≥ 0.3; energía de movimiento {pf['motion_band_power']:.3f} ≥ 0.1. El score 100% es heurístico, no exactitud medida.",y)-14
-    r.para(f"15 s solicitados; {pf['duration_seconds']:.2f} s entre primera y última muestra. Nyquist: {pf['sample_rate_hz']/2:.3f} Hz. La banda nominal 0.5-3 Hz queda truncada por el muestreo. No se infieren signos vitales ni causas de la variación. Datos: evidence/tutorial/04_pipeline_15s.json.",M,y,size=10.1,color=MUTED)
+    r.para(f"15 s solicitados; {pf['duration_seconds']:.2f} s de cobertura. Nyquist: {pf['sample_rate_hz']/2:.3f} Hz. Verde: parte observable de la banda nominal 0.5-3 Hz. No se infieren signos vitales ni causas. Datos: evidence/tutorial/04_pipeline_15s.json.",M,y,size=10.1,color=MUTED)
 
     y=r.new('El muestreo también importa','Etapa 05 · Monitor y sesión extendida')
     y=r.kpis([(str(len(rows)),'muestras reales'),(f'{duration:.2f} s','cobertura temporal'),(f'{observed_rate:.3f} Hz','tasa de toda la sesión')],y)
     sx=[v['timestamp']-rows[0]['timestamp'] for v in rows];sy=[v['rssi_dbm'] for v in rows]
-    y=r.chart(sx,sy,y,172,'Figura 3. Sesión solicitada de 120 s','dBm')
-    y=r.note(f"<b>Ventana final sin veredicto.</b> Su jitter relativo es {session['quality'].get('jitter_cv',0):.3f}, superior al límite 0.25. La aplicación rechaza la clasificación aunque conserva los datos. netsh registró {session['capture_diagnostics']['netsh_error_count']} errores.",y)-15
-    y=r.chart(sx[1:],dt,y,174,'Figura 4. Intervalos entre muestras consecutivas','Segundos',color='#5365a1',ymin=0)
+    y=r.chart(sx,sy,y,172,'Figura 3. Sesión solicitada de 120 s','dBm',shade=(duration-15,duration))
+    y=r.note(f"<b>Resultado histórico: sin veredicto.</b> En los últimos 15 s, resaltados, el jitter fue {session['quality'].get('jitter_cv',0):.3f}; excedió el límite 0.25 de aquella versión. netsh registró {session['capture_diagnostics']['netsh_error_count']} errores. La revisión posterior usa guardas más estrictas.",y)-15
+    y=r.chart(sx[1:],dt,y,174,'Figura 4. Intervalos entre muestras consecutivas','Segundos',color='#5365a1',ymin=0,shade=(duration-15,duration))
     r.para(f"Condición: no confirmada. Latencia media de netsh: {session['capture_diagnostics']['mean_netsh_latency_seconds']:.3f} s. Datos: evidence/sessions/{session_file.name}. Las figuras son reconstrucciones de mediciones guardadas, no señales sintéticas.",M,y,size=9.8,color=MUTED)
 
-    y=r.new('El monitor en funcionamiento','Etapa 05 · Evidencia visual')
+    add_comparison_page(r)
+
+    y=r.new('El monitor en funcionamiento','Etapa 05 · Evidencia visual histórica')
     live_candidates=[ROOT/'evidence/ui/monitor-live.png',ROOT/'evidence/ui/live.png']
     live_image=next((p for p in live_candidates if p.exists()),None)
     image=live_image or ROOT/'evidence/ui/replay.png'
@@ -261,23 +334,26 @@ def build_report():
         ('Integración localizada','5 PASS','Solo precheck adaptado en una copia. 15 aserciones intactas; WiFi real.'),
         ('Pruebas propias',f'{OWN} PASS','Parser, ventanas, ciclo de sesiones, integridad y origen HTTP. Fixtures sintéticos.')],[125,76,CW-201],y,font=10.2)-20
     y=r.note('Los comandos del tutorial con PYTHONPATH=archive/v1 fallaron por imports v1.src. Se cambió el directorio de importación a archive; las pruebas unitarias originales no se modificaron.',y)-17
-    y=r.para('<b>Mejoras verificadas.</b> Se impide iniciar otra sesión mientras se guarda la anterior; callbacks y temporizadores obsoletos se descartan. Ventanas incompletas, huecos y muestreo irregular suspenden el veredicto. El servidor acepta acceso local y rechaza origen externo.',M,y,size=11.5)-15
+    y=r.para('<b>Revisión del software.</b> Se comprueban guardado recuperable, catálogo aislado, filas e interfaz válidas y cobertura espectral. La revisión final añade rangos HTTP para buscar capítulos del video local y límites temporales que evitan recorridos desmedidos del comparador. Detalle: SwarmSignal_Auditoria.pdf.',M,y,size=11.5)-15
     y=r.para('La prueba live de “variación” original imprime valores pero no contiene una aserción. Aprobar la batería demuestra ejecución e invariantes de software; no sensibilidad, especificidad ni validación en personas.',M,y,size=10.5,color=MUTED)-15
     r.para('Trazabilidad: evidence/upstream/verification_summary.json, unit.xml, live_original.xml, live_adapted.xml y live_precheck_locale.patch. Pruebas propias: '+escape(OWN_EVIDENCE)+'.',M,y,size=9.3,color=MUTED)
 
-    y=r.new('Verificar sin ocultar los fallos','Etapa 08 · ./verify sin modificaciones')
-    y=r.kpis([('5','fases PASS'),('1','fase FAIL'),('3','fases SKIP')],y)
-    descriptions=[('1','PASS','Hash del pipeline Python'),('2','PASS','Revisión de generadores aleatorios'),('3','SKIP','Rust: Cargo / v2 no disponibles'),('4','SKIP','PyO3: Cargo / binding no disponibles'),('5','PASS','Invariante identity_risk_score'),('6','FAIL','Registro crates: primer endpoint HTTP 403'),('7','PASS','Paquete npm publicado'),('8','PASS','Manifiesto Docker amd64 + arm64'),('9','SKIP','Daemon Docker no disponible')]
-    y=r.table(['Fase','Estado','Resultado observado'],descriptions,[48,70,CW-118],y,font=10.2)-17
-    y=r.para('<b>Resultado global: FAIL, salida 1.</b> El script interpreta fallos HTTP como paquetes ausentes; el 403 observado no prueba que no existan los 12 crates. No se afirma haber ejecutado Rust ni el contenedor.',M,y,size=11)-16
+    y=r.new('El fallo quedó explicado','Etapa 08 · Original y nueva ejecución')
+    vc=identified_verify['counts']
+    y=r.kpis([(str(vc['pass']),'PASS en revisión'),(str(vc['fail']),'FAIL en revisión'),(str(vc['skip']),'SKIP en revisión')],y)+8
+    brief=['Hash del pipeline Python','Revisión de generadores aleatorios','Rust no ejecutado','Binding PyO3 no ejecutado','Invariante de identidad','Registro crates: cliente identificado','Paquete npm publicado','Manifiesto Docker multiarch','Contenedor no ejecutado']
+    revised={int(p['phase']):p for p in identified_verify['phases']}
+    descriptions=[(str(p['phase']),p['status'],revised[p['phase']]['status'],brief[p['phase']-1]) for p in verification['full_verify']['phases']]
+    y=r.table(['Fase','Antes','Revisión','Alcance'],descriptions,[42,64,69,CW-175],y,font=10.1)-16
+    y=r.para(f"<b>Original: FAIL, salida 1.</b> El primer endpoint devolvió HTTP 403. <b>Nueva ejecución: salida {identified_verify['exit_code']}.</b> Se identificó el cliente mediante User-Agent y configuración curl documentada; no se modificó ./verify. Las fases omitidas siguen sin ejecución.",M,y,size=10.8)-15
     y=r.note('<b>La prueba CSI específica sí pasó.</b> 100 frames de una referencia sintética versionada en Git produjeron 100 vectores y un hash idéntico. No se regeneró la expectativa ni se usó tolerancia.',y)-13
     r.text('SHA-256 calculado = esperado',M,y,9.7,True);y-=16
     digest=verification['csi_proof']['computed_sha256']
     r.text(digest[:32],M,y,9.7,font='Mono');y-=13;r.text(digest[32:],M,y,9.7,font='Mono');y-=22
-    r.para('Evidencia: 03_verify_original_shell.log y 05_csi_proof_original.log. Esta repetibilidad matemática es independiente de la captura física RSSI.',M,y,size=9.3,color=MUTED)
+    r.para('Original: evidence/upstream/03_verify_original_shell.log. Revisión: evidence/revision/verify_identified.json y su log. CSI: 05_csi_proof_original.log. No se reemplazaron los resultados históricos.',M,y,size=9.3,color=MUTED)
 
     y=r.new('Del escritorio a SWARM','Propuesta · Investigación aplicada')
-    y=r.para('Un nodo transportado por dron puede ayudar a priorizar inspecciones. La primera versión mide con el receptor apoyado y un transmisor controlado. Cada alerta solicita revisión; ninguna salida negativa declara un sector seguro.',M,y,size=13)-20
+    y=r.para('<b>Escenario inicial:</b> un paso despejado en un simulacro, con router propio a un lado y receptor fijo al opuesto. El dron transportaría el nodo. La hipótesis es que los cruces produzcan más ventanas ACTIVE que la quietud.',M,y,size=12.3)-20
     steps=[('01','TRANSPORTAR','Dron lleva el nodo.'),('02','APOYAR','Geometría estable.'),('03','MEDIR','Ventanas de 15 s.'),('04','CONTRASTAR','Inspección adicional.')]
     kw=(CW-24)/4
     for i,(num,title,desc) in enumerate(steps):
@@ -285,12 +361,12 @@ def build_report():
     y-=125
     y=r.para(f"<b>Fundamento observado.</b> En la ventana original hubo {pf['range']:.0f} dBm de rango y clasificación ACTIVE sin etiqueta humana. En la sesión extendida el filtro rechazó el resultado final por jitter. La prioridad es separar cambios de radio, del receptor y de personas; aún no medir alcance de rescate.",M,y,size=11.8)-20
     y=r.table(['Prueba siguiente','Qué resolvería'],[
-        ('Quietud / cruce humano','Registrar etiquetas independientes, repetidas y sincronizadas.'),
-        ('Mover solo el receptor','Cuantificar falsas alarmas por posición y orientación.'),
-        ('Obstáculos y geometrías','Comparar condiciones específicas con calibración separada.'),
-        ('Criterio de avance','Conteos de aciertos, omisiones, falsas alarmas, latencia y pérdida de muestras.')],[160,CW-160],y,font=10.5)-20
-    y=r.note('No hay validación de presencia, localización, respiración o pulso. CSI y varios receptores son investigación futura, no prestaciones demostradas.',y)-15
-    r.para('NIST describe atenuación, multitrayectoria e interferencias en emergencias [4]. El control de posición del dron requiere estimación válida [5]; no garantiza canal radioeléctrico constante. Espressif ofrece CSI por subportadora [6], con validación propia pendiente.',M,y,size=10.2,color=MUTED)
+        ('Contraste fijo','Un par de ensayo; luego tres pares nuevos quietud/cruces de 60 s, con orden alternado y configuración fija.'),
+        ('Control del receptor','Mover o girar el sensor sin el cruce humano. Declarar si una persona lo sostiene.'),
+        ('Avanzar a otra geometría','≥75% de ventanas elegibles aptas en cada sesión y más ACTIVE en cruces en los tres pares.'),
+        ('Si no se cumple','Detener la extrapolación y revisar muestreo, geometría o utilidad del RSSI.')],[148,CW-148],y,font=10.2)-17
+    y=r.note('Regla exploratoria propuesta; no es exactitud lograda ni criterio de seguridad. Una alerta pide inspección complementaria; una salida negativa no declara un sector vacío.',y)-13
+    r.para('NIST documenta problemas de propagación [4]. PX4 no garantiza canal estable por mantener posición [5]. CSI [6] y sensado en vuelo exigirían validación propia. El ensayo humano permanece pendiente.',M,y,size=9.9,color=MUTED)
 
     y=r.new('Reproducible y defendible','Entrega · Evidencias y fuentes')
     y=r.table(['Etapa','Archivo principal'],[
@@ -298,10 +374,11 @@ def build_report():
         ('03-04','evidence/tutorial/03_single_reading.json · 04_pipeline_15s.json'),
         ('05','evidence/sessions/ + evidence/ui/monitor-live.png'),
         ('06','evidence/tutorial/06_commodity_backend.json'),
-        ('07-08','evidence/upstream/verification_summary.json y logs'),
-        ('Propuesta','docs/SwarmSignal_Propuesta.pdf')],[65,CW-65],y,font=10.1)-18
+        ('07-08','evidence/upstream/ y evidence/revision/'),
+        ('Comparación','web/data/comparison.json; sesiones fuente intactas'),
+        ('Propuesta','docs/SwarmSignal_Propuesta.pdf')],[88,CW-88],y,font=10.1)-18
     r.text('Reproducción local',M,y,12,True);y-=18
-    commands=['python -m pytest tests -q', 'python -m swarm_signal.server', 'python scripts/capture.py --seconds 120', 'python scripts/build_report.py']
+    commands=['python -m pytest tests -q', 'python -m swarm_signal.server', 'python scripts/capture.py --seconds 120']
     for command in commands:r.text(command,M,y,9.5,font='Mono');y-=17
     y-=4
     y=r.para('La reproducción pública utiliza registros guardados. La medición en vivo requiere Windows conectado a WiFi. Skybrush continúa pendiente de la copia asignada por VantTec y del tutorial del show real.',M,y,size=10.6)-18
@@ -321,10 +398,10 @@ def build_report():
 
 def proposal_paragraphs():
     return [
-        'Proponemos evaluar un nodo WiFi transportado por un dron de SWARM para priorizar la inspección de sectores accesibles después de un desastre. El dron coloca el nodo o se apoya, y un transmisor controlado establece el enlace. El sistema registra ventanas de 15 segundos y entrega alertas para una inspección complementaria. No identifica personas ni certifica que un sector esté vacío.',
-        f'La prueba original registró {len(p_rows)} muestras en {pf["duration_seconds"]:.2f} segundos entre primera y última lectura, a {pf["sample_rate_hz"]:.3f} Hz. El RSSI medio fue {pf["mean"]:.2f} dBm, con varianza {pf["variance"]:.3f} dBm², y el clasificador produjo ACTIVE. Como no hubo etiquetas físicas, no podemos atribuir esa salida a movimiento humano. En la sesión extendida de {len(rows)} muestras, la ventana final se rechazó por muestreo irregular. Ambas observaciones justifican controlar la calidad antes de emitir una alerta.',
-        'El primer ensayo usaría receptor inmóvil. Desplazarlo o girarlo modifica la propagación; el control de vuelo no elimina ese factor. Compararemos quietud, cruces humanos y movimiento del receptor sin personas, con etiquetas sincronizadas, repeticiones y calibración separada de la evaluación. Después variaremos obstáculos y geometrías. Registraremos aciertos, omisiones, falsas alarmas, latencia y muestras perdidas antes de proponer alcance operativo.',
-        'La integración requiere portar el colector Windows a un nodo ligero, sincronizar telemetría, evaluar masa y energía, disponer de transmisor propio y descartar ventanas durante desplazamientos. El RSSI cuantizado y el muestreo cercano a 2 Hz limitan la información; un único enlace no ofrece coordenadas ni signos vitales confiables. CSI y varios receptores serían una etapa posterior con validación independiente. El beneficio esperado es aportar evidencia complementaria para decidir dónde inspeccionar primero, manteniendo la decisión final en el equipo de rescate.'
+        'Proponemos ensayar un enlace WiFi sobre un paso despejado de un simulacro: router propio a un lado y receptor fijo al opuesto. Un dron de SWARM transportaría y depositaría el nodo; mediría inmóvil. La hipótesis es que los cruces humanos produzcan más ventanas ACTIVE que la quietud. Una alerta pediría inspección complementaria; no identificaría personas ni declararía un sector vacío.',
+        f'La ventana original tuvo {len(p_rows)} muestras, {pf["duration_seconds"]:.2f} segundos de cobertura y {pf["sample_rate_hz"]:.3f} Hz; produjo ACTIVE con varianza {pf["variance"]:.3f} dBm². No hubo condición humana confirmada. En la sesión de {len(rows)} muestras, la ventana final se rechazó por irregularidad temporal. Observamos funcionamiento y límites de muestreo, pero todavía no eficacia de detección humana.',
+        'Tras un par de ensayo, fijaremos geometría y configuración. Compararemos tres pares nuevos de 60 segundos, quietud y cruces, alternando el orden; registraremos también el movimiento del receptor como posible confusor. Usaremos ventanas de 15 segundos sin solapamiento. Avanzaremos a otra geometría solo si al menos 75% de las ventanas elegibles son aptas en cada sesión y la fracción ACTIVE es mayor durante cruces en los tres pares. Si no se cumple, revisaremos muestreo, geometría o utilidad del RSSI. Esta regla es exploratoria, no exactitud alcanzada ni un estándar de seguridad.',
+        'Mover o girar el receptor cambia el canal; el control de vuelo no elimina ese efecto. Integrarlo exige portar el colector Windows, evaluar masa y energía, sincronizar telemetría y descartar mediciones durante desplazamientos. La cuantización de 1 dBm y el muestreo cercano a 2 Hz limitan la información: no se validan coordenadas, signos vitales, víctimas inmóviles ni alcance entre escombros. Sensar en vuelo o usar CSI requiere experimentos posteriores. La decisión de rescate seguirá en manos del equipo humano.'
     ]
 
 def build_proposal():
@@ -332,25 +409,123 @@ def build_proposal():
     y=r.new('Un nodo que llega con el dron','Propuesta de aplicación · SWARM')
     for paragraph in proposal_paragraphs():y=r.para(escape(paragraph),M,y,size=11.5,leading=16.7)-17
     y=r.note('Estado: propuesta experimental. Movimiento humano no confirmado. Ensayo físico etiquetado pendiente.',y,fill='#e8f0e5')-13
-    r.para('Base: mediciones incluidas en el informe; RuView issue #36; NIST TN 1713; documentación oficial de PX4 y ESP-CSI. Los enlaces completos aparecen en el informe técnico.',M,y,size=9.3,color=MUTED)
+    r.para('Base: mediciones del informe; RuView #36; NIST TN 1713 y documentación PX4. Protocolo: docs/PRUEBA_PENDIENTE.md. Las fuentes completas están enlazadas en el informe.',M,y,size=9.3,color=MUTED)
     r.finish()
     (DOCS/'Propuesta.md').write_text('# Un nodo que llega con el dron\n\n'+'\n\n'.join(proposal_paragraphs())+'\n\nEstado: propuesta experimental; movimiento humano no confirmado.\n',encoding='utf-8')
 
 
+def build_audit():
+    installation=read('evidence/revision/installation.json')
+    ui_qa=read('evidence/revision/ui/qa.json')
+    assert installation['status']=='PASS' and all(x['status']=='PASS' for x in installation['checks'])
+    assert ui_qa['summary']['failed']==0
+    technical_after=ROOT/'docs/audit/TECNICA_DESPUES.md'
+    if not technical_after.exists():
+        raise FileNotFoundError('Esperar la aceptación técnica antes de publicar mejoras como verificadas.')
+    before=ROOT/'docs/audit/screens/01-public-entry.png'
+    after=ROOT/'evidence/revision/ui/01-public-entry.png'
+    if not before.exists() or not after.exists():
+        raise FileNotFoundError('Faltan capturas comparables antes/después de la revisión.')
+    r=Report(DOCS/'SwarmSignal_Auditoria.pdf','SWARM SIGNAL | Evaluación crítica y revisión')
+    y=r.new('Por qué aún no era 10/10','Evaluación independiente · Antes de mejorar',True)
+    y=r.kpis([('7.8/10','rúbrica propia; no oficial'),('394','muestras en tres sesiones'),('0','sesiones con condición física confirmada')],y,True)
+    y=r.para('Había mediciones auténticas, cálculos correctos y una propuesta prudente. Faltaban el ensayo físico exigido, una decisión experimental concreta y pruebas de varios fallos de recuperación y muestreo.',M,y,size=13,color=WHITE)-22
+    for title,body in [
+        ('Cumplimiento parcial','La captura del monitor demuestra adquisición. No demuestra que el participante se movió frente al enlace.'),
+        ('Software que debía resistir errores','Una instalación interrumpida, un guardado fallido o una sesión corrupta podían romper la entrega.'),
+        ('Una propuesta aún demasiado amplia','Enumeraba métricas sin definir un escenario, una hipótesis contrastable ni cuándo avanzar.')]:
+        r.text(title,M,y,12,True,LIME);y-=12
+        y=r.para(body,M,y,size=11.3,color='#c0cdd5')-24
+    y=r.para('La auditoría se cerró antes de modificar la aplicación. Base: 99de7de05c98. Documento consolidado: docs/AUDITORIA_CRITICA.md; evaluación y reproducciones: docs/audit/.',M,y,size=10.1,color='#b6c5cf')-17
+    r.para('<b>Rúbrica propia:</b> tutorial 30/40; propuesta 30/40; rigor 14/15; claridad 4/5. Total: 78/100. Tutorial y propuesta tienen igual peso; los criterios y descuentos están en EVALUACION_ANTES.md.',M,y,size=10.4,color='#c0cdd5')
+    r.box(M,116,CW,61,PANEL)
+    r.para('Skybrush es opcional y no resta puntos al reto base. La evidencia de movimiento sí es obligatoria. No se asigna una nota oficial ni se acredita la defensa oral del participante.',M+13,104,CW-26,10.8,color=WHITE,leading=14.5)
+
+    y=r.new('Qué cambió y cómo se prueba','Después · Correcciones de software')
+    y=r.para(f'La batería final registra <b>{OWN} pruebas propias aprobadas</b>, incluidas correcciones del cierre. Los casos usan fixtures sintéticos; no son nuevas capturas ni ensayos con personas.',M,y,size=12)-18
+    y=r.table(['Antes','Revisión comprobada'],[
+        ('Guardado fallido sin recuperación','Datos pendientes conservados; error visible y reintento antes de reemplazar la sesión.'),
+        ('JSON corrupto rompe catálogo','Archivos inválidos aislados; solicitudes y estado de captura coherentes.'),
+        ('Banda sin información produce veredicto','Cobertura espectral explícita; abstención sin suficientes bins y ante irregularidad.'),
+        ('Datos o horizontes inválidos','Validación de valores, orden y duración; límites que impiden recorridos desmedidos y descartes silenciosos.'),
+        ('CSV vivo o interfaz renombrada falla','Exportación consistente de la captura activa; selección de adaptador conectado.'),
+        ('Cuerpo JSON incorrecto inicia captura','Tipos y estructura validados antes de cambiar el estado del laboratorio.'),
+        ('El video local no permite buscar','Respuestas HTTP Range para avanzar por capítulos; rangos inválidos rechazados.')],[175,CW-175],y,font=10.7)-19
+    y=r.note('<b>La evidencia histórica se preserva.</b> Los registros iniciales mantienen sus resultados. La revisión analiza los datos con una política identificada; no reescribe el pasado para mostrar más aprobaciones.',y)-18
+    y=r.para('Aceptación detallada: docs/audit/TECNICA_DESPUES.md. Resultados automatizados: '+OWN_EVIDENCE+'. El iniciador y la exportación se revisan además con los registros de operación de evidence/revision/.',M,y,size=10.2,color=MUTED)-16
+    r.para('<b>Instalación:</b> limpia en Python 3.11.9 y recuperación en 3.12.14 aprobadas. Registro: evidence/revision/installation.json. Se instalaron dependencias y se importó la aplicación; no hubo captura física.',M,y,size=10.5)
+
+    y=r.new('Una entrega fácil de recorrer','Antes / después · Interfaz real')
+    y=r.para('Mismo tamaño de ventana: 1440 × 900. Las capturas muestran la entrada real antes y después de corregir el recorrido. Son vistas de registros guardados, no una nueva prueba humana.',M,y,size=11.5)-24
+    width=(CW-14)/2
+    for x,label,path in [(M,'ANTES',before),(M+width+14,'DESPUÉS',after)]:
+        r.text(label,x,y,10.5,True)
+        im=ImageReader(str(path));iw,ih=im.getSize();height=width*ih/iw
+        r.c.drawImage(im,x,y-13-height,width,height,mask='auto')
+    y-=width*900/1440+34
+    y=r.table(['Problema de recorrido','Mejora'],[
+        ('Salto inicial de 342 px','Entrada desde la cabecera; navegación disponible.'),
+        ('Entrega y fuentes dispersas','Accesos directos a informe, propuesta, video y evidencia.'),
+        ('Monitor enlazado solo a datos','Captura visual enlazada junto con el registro fuente.'),
+        ('Reproducción inconsistente','Controles alineados con el estado y navegación accesible.'),
+        ('Comparación ausente','Tres sesiones reales, calidad temporal y ventanas sin solapar.')],[185,CW-185],y,font=10.5)-19
+    y=r.note('El contenido adicional tiene una función: permitir que el evaluador encuentre el requisito, el resultado y su evidencia. El diseño no cambia qué se midió.',y)-15
+    r.para(f"QA registrada: {ui_qa['summary']['passed']} comprobaciones, cero fallos; evidence/revision/ui/qa.json. Capturas: docs/audit/screens/01-public-entry.png y evidence/revision/ui/01-public-entry.png. El monitor vivo histórico se conserva por separado.",M,y,size=9.6,color=MUTED)
+
+    y=r.new('Resultados que se pueden auditar','Después · Cifras y verificación')
+    y=r.para('La comparación usa los tres JSON originales y ventanas consecutivas. La variabilidad se describe sin atribuirla a actividad humana ni convertir las muestras en ensayos independientes.',M,y,size=11.8)-18
+    y=comparison_table(r,y)-19
+    y=window_map(r,y)
+    vc=identified_verify['counts']
+    y=r.table(['Verificación','PASS','FAIL','SKIP','Salida'],[
+        ('Original','5','1','3','1'),
+        ('Cliente identificado',str(vc['pass']),str(vc['fail']),str(vc['skip']),str(identified_verify['exit_code']))],
+        [CW-240,60,60,60,60],y,font=10.7)-18
+    y=r.note('El HTTP 403 se resolvió identificando el cliente en curl. El verificador original y la expectativa CSI no se modificaron. Tres fases siguen omitidas; una salida global exitosa no las convierte en ejecutadas.',y)-16
+    r.para('Datos: web/data/comparison.json. Verificación: evidence/upstream/verification_summary.json y evidence/revision/verify_identified.json. La comparación es técnica; no permite calcular sensibilidad, precisión o capacidad de rescate.',M,y,size=10.1,color=MUTED)
+
+    y=r.new('La mejora no sustituye la prueba','Cierre · Criterio y pendientes reales')
+    y=r.para('<b>Propuesta refinada:</b> enlace fijo sobre un paso despejado de un simulacro; router conocido y nodo que el dron transportaría. Hipótesis: más ventanas ACTIVE durante cruces que durante quietud.',M,y,size=12)-20
+    y=r.table(['Decisión','Condición propuesta'],[
+        ('Preparar','Un par de ensayo y después tres pares nuevos de 60 s. Configuración fija, orden alternado y etiquetas reales.'),
+        ('Avanzar a otra geometría','≥75% de ventanas elegibles aptas por sesión y más ACTIVE en cruces en los tres pares.'),
+        ('Detener y revisar','Si no se cumple, estudiar muestreo, geometría o utilidad del RSSI. No cambiar la regla después para aparentar éxito.'),
+        ('Mantener alcance limitado','Una alerta pide otra inspección. Un resultado negativo no descarta personas, víctimas inmóviles ni riesgos.')],[145,CW-145],y,font=10.8)-19
+    y=r.note('<b>Falta ejecutar el ensayo físico.</b> La regla del 75% es exploratoria; no expresa precisión lograda, requisito oficial ni seguridad. Ninguna de las sesiones entregadas acredita movimiento humano confirmado.',y)-18
+    y=r.para('<b>Defensa oral y IA.</b> Se prepararon un recorrido por el código y un ejercicio con una ventana no vista. Codex apoyó implementación y documentación; la comprensión personal debe demostrarse por el participante. No está acreditada por este PDF.',M,y,size=11.2)-17
+    y=r.para('<b>Base de evaluación.</b> Guía SWARM, pp. 3-4: ocho etapas y propuesta de media a una cuartilla; p. 6: documentar fallos es válido. La propuesta final conserva una página. Skybrush depende de los recursos asignados y permanece opcional.',M,y,size=10.6)-17
+    r.para('La revisión mejora la calidad técnica y la claridad. La nota previa de 7.8/10 se conserva como registro de una rúbrica propia; no se reemplaza por un 10/10 automático. Cumplimiento físico y utilidad operativa siguen sujetos a evidencia futura.',M,y,size=10.8,color=MUTED)
+    r.finish()
+
+
 def render_and_check():
     summary=[]
-    for name,expected in [('SwarmSignal_Informe',9),('SwarmSignal_Propuesta',1)]:
+    for name,expected in [('SwarmSignal_Informe',10),('SwarmSignal_Propuesta',1),('SwarmSignal_Auditoria',5)]:
         document=pymupdf.open(DOCS/(name+'.pdf'))
         assert len(document)==expected,(name,len(document))
+        changed=[]
         for index,page in enumerate(document):
-            page.get_pixmap(matrix=pymupdf.Matrix(1.35,1.35)).save(REVIEW/f'{name}-{index+1:02d}.png')
+            rendered=REVIEW/f'{name}-{index+1:02d}.png'
+            previous=hashlib.sha256(rendered.read_bytes()).hexdigest() if rendered.exists() else None
+            page.get_pixmap(matrix=pymupdf.Matrix(1.35,1.35)).save(rendered)
+            if hashlib.sha256(rendered.read_bytes()).hexdigest()!=previous:
+                changed.append(index+1)
             text=page.get_text()
             assert '\ufffd' not in text and len(text)>100
         summary.append({'file':name+'.pdf','pages':len(document),'rendered':len(document),
-                        'physical_ground_truth':'unconfirmed','input_session':session_file.name})
+                        'sha256':hashlib.sha256((DOCS/(name+'.pdf')).read_bytes()).hexdigest(),
+                        'changed_pages':changed,'own_tests_passed':OWN,'own_tests_evidence':OWN_EVIDENCE,
+                        'physical_ground_truth':'unconfirmed','input_session':session_file.name,
+                        'source_links':sum(len(page.get_links()) for page in document)})
     (REVIEW/'render_check.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
     print(json.dumps(summary,indent=2))
 
 
 if __name__=='__main__':
-    build_report();build_proposal();render_and_check()
+    backup=ROOT/'tmp/pdf-before-revision'
+    backup.mkdir(exist_ok=True)
+    for name in ['SwarmSignal_Informe.pdf','SwarmSignal_Propuesta.pdf']:
+        if (DOCS/name).exists() and not (backup/name).exists():
+            shutil.copy2(DOCS/name,backup/name)
+    assert identified_verify['source_unchanged'], 'No describir el verificador como original si cambió.'
+    build_report();build_proposal();build_audit();render_and_check()

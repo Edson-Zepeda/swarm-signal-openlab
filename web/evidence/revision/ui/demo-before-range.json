@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-09-09T07:43:31.171Z",
+  "browser": "Isolated Chromium-compatible headless context",
+  "sources": [
+    "http://127.0.0.1:8766/demo.html"
+  ],
+  "checks": [
+    {
+      "name": "Demo playback, seek, audio and captions",
+      "passed": false,
+      "error": "page.waitForFunction: Timeout 12000ms exceeded."
+    },
+    {
+      "name": "Axe WCAG demo",
+      "passed": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "name": "Demo responsive 320",
+      "passed": true,
+      "detail": {
+        "width": 320,
+        "pageWidth": 320
+      }
+    },
+    {
+      "name": "Demo responsive 390",
+      "passed": true,
+      "detail": {
+        "width": 390,
+        "pageWidth": 390
+      }
+    },
+    {
+      "name": "Demo responsive 768",
+      "passed": true,
+      "detail": {
+        "width": 768,
+        "pageWidth": 768
+      }
+    },
+    {
+      "name": "No JavaScript exceptions",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "All requested static assets resolve",
+      "passed": true,
+      "detail": {
+        "resourceErrors": 0,
+        "expectedLocalStaticApiProbes": 0
+      }
+    }
+  ],
+  "screenshots": [
+    "evidence\\revision\\ui\\demo-updated-390.png"
+  ],
+  "pageErrors": [],
+  "resourceErrors": [],
+  "expectedStaticApiProbes": [],
+  "scope": "Updated demo only; dashboard QA is preserved in qa.json.",
+  "browserVersion": "152.0.4191.66",
+  "passed": false,
+  "summary": {
+    "passed": 6,
+    "failed": 1
+  }
+}

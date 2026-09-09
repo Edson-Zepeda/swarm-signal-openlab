@@ -1,0 +1,517 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-09-09T06:25:11.280192+00:00",
+  "upstream": {
+    "repository": "https://github.com/ruvnet/RuView",
+    "commit": "d613a576ea848f96a9b15bac4e7f60b6be7c08e7",
+    "worktree_clean_after_execution": true,
+    "source_and_expectations_modified": false,
+    "sparse_checkout": [
+      "archive/v1/data/proof",
+      "archive/v1/src",
+      "archive/v1/tests/integration",
+      "archive/v1/tests/unit",
+      "crates",
+      "docs/adr",
+      "scripts"
+    ],
+    "source_files_sha256": [
+      {
+        "path": "verify",
+        "sha256_worktree_bytes": "f67c92dbebe2ef843636588e85bb9f6ec602bbd7607f467c72675f601e91ce2a",
+        "bytes": 15684
+      },
+      {
+        "path": "archive/v1/tests/unit/test_sensing.py",
+        "sha256_worktree_bytes": "22d11f8337b072de26c73c31475cb3e4f5041180178c8efc8d047221ade7b7cf",
+        "bytes": 31871
+      },
+      {
+        "path": "archive/v1/tests/integration/test_windows_live_sensing.py",
+        "sha256_worktree_bytes": "1536c34915be3dbc9897f9cb53be195d7cc4e5c6146770f6b82ccf57d1dbddaf",
+        "bytes": 6380
+      },
+      {
+        "path": "archive/v1/src/sensing/rssi_collector.py",
+        "sha256_worktree_bytes": "bc236d4386c0aadcea566af69ff346f53277715f8f695d4414992997f29d1493",
+        "bytes": 31578
+      },
+      {
+        "path": "archive/v1/src/sensing/feature_extractor.py",
+        "sha256_worktree_bytes": "66213d85e41badf3d272faefce6b079d017beb28cca3948552caf61e0900a5c7",
+        "bytes": 10926
+      },
+      {
+        "path": "archive/v1/src/sensing/classifier.py",
+        "sha256_worktree_bytes": "46e3bbb0d44df502087a0a2f02631b78de68ab515c137737170ed873572ac49b",
+        "bytes": 7196
+      },
+      {
+        "path": "archive/v1/src/sensing/backend.py",
+        "sha256_worktree_bytes": "15578ee11df4e05aab4f92e249b613f69a9e7d32427ca7f010a4245ef06c1e09",
+        "bytes": 5633
+      },
+      {
+        "path": "archive/v1/src/core/csi_processor.py",
+        "sha256_worktree_bytes": "5458f638d47675390e2d6043870d568836bcd7a24489196f0d146dd3acf3ab8f",
+        "bytes": 18209
+      },
+      {
+        "path": "archive/v1/src/hardware/csi_extractor.py",
+        "sha256_worktree_bytes": "24304718c4c59996e1e4e2cd42660b7b58f097f3635dde54fd13ec11af9175fd",
+        "bytes": 25552
+      },
+      {
+        "path": "archive/v1/data/proof/verify.py",
+        "sha256_worktree_bytes": "526815e1d81e9ac2f4f24179cbd760da198f5fa89addb750966c0528e94a2130",
+        "bytes": 29291
+      },
+      {
+        "path": "archive/v1/data/proof/sample_csi_data.json",
+        "sha256_worktree_bytes": "a35fa2b94ed3ba31871f785388da2abc63c21f0a3f1edc43521d3729b1f12a94",
+        "bytes": 10745444
+      },
+      {
+        "path": "archive/v1/data/proof/expected_features.sha256",
+        "sha256_worktree_bytes": "56ca259ae2875acb802384483926fc62845db230fdc9eaa650287dc5351897f0",
+        "bytes": 66
+      },
+      {
+        "path": "archive/v1/data/proof/expected_features_reference.npz",
+        "sha256_worktree_bytes": "987c04562bf308f54bcd16a6d4448e1f1e7575a4e1d66ac9a14fce21c8aebdee",
+        "bytes": 163106
+      }
+    ]
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "pytest": "9.1.1",
+    "root_verify_environment": {
+      "python": "3.11.9",
+      "numpy": "2.3.4",
+      "scipy": "1.16.2",
+      "source": "03_verify_original_shell.log"
+    }
+  },
+  "unit": {
+    "tests": 45,
+    "passed": 45,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_seconds": 0.069,
+    "evidence": "unit.xml",
+    "tutorial_expected_historical": 36,
+    "current_added_linux_and_factory_tests": 9,
+    "adaptation": "PYTHONPATH=archive instead of archive/v1; no tests modified.",
+    "claim_level": "MEASURED software test results; synthetic inputs and mocks supplied by original unit tests, no physical detection validation."
+  },
+  "live_original": {
+    "tests": 5,
+    "passed": 0,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 5,
+    "duration_seconds": 0.0,
+    "evidence": "live_original.xml",
+    "reason": "English-only connected/state precheck skips Spanish Windows."
+  },
+  "live_adapted": {
+    "tests": 5,
+    "passed": 5,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_seconds": 35.533,
+    "evidence": "live_adapted.xml",
+    "adaptation": {
+      "original_source": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView\\archive\\v1\\tests\\integration\\test_windows_live_sensing.py",
+      "adapted_copy": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\verification\\test_windows_live_sensing_es.py",
+      "original_source_sha256": "1536c34915be3dbc9897f9cb53be195d7cc4e5c6146770f6b82ccf57d1dbddaf",
+      "adapted_copy_sha256": "a899b73601bd9965f6663abce9df3a905d83adda150a5252f8b487642037fd88",
+      "assertions_unchanged": true,
+      "assertions_count": 15,
+      "changed_scope": "Only _wifi_connected return/precheck; collector and all assertions unchanged.",
+      "packaged_copy": "adapted_test_windows_live_sensing_es.py",
+      "packaged_copy_sha256": "a899b73601bd9965f6663abce9df3a905d83adda150a5252f8b487642037fd88"
+    },
+    "observed_pipeline_window": {
+      "samples": 20,
+      "mean_dbm": -57.0,
+      "sample_variance_dbm2": 0.9474,
+      "motion_level": "active",
+      "upstream_confidence": 1.0
+    },
+    "claim_level": "MEASURED real Wi-Fi pipeline execution. Occupancy/movement ground truth was not recorded; this does not establish presence accuracy.",
+    "limitations": [
+      "Original collector still reports Spanish link quality as0; its tests accept0 as valid.",
+      "Original noise=-95dBm and tx/rx byte increments are placeholders, not measurements.",
+      "test_rssi_varies_between_samples prints variation but contains no assertion.",
+      "Classifier confidence is an uncalibrated heuristic, not empirical accuracy."
+    ]
+  },
+  "csi_proof": {
+    "status": "PASS",
+    "mode": "MATCH (bit-exact)",
+    "reference_kind": "SYNTHETIC",
+    "frames_in_source": 1000,
+    "frames_processed": 100,
+    "feature_vectors_extracted": 100,
+    "bytes_hashed": 243200,
+    "computed_sha256": "f8e76f21a0f9852b70b6d9dd5318239f6b20cbcb4cdd995863263cecdc446f7a",
+    "expected_sha256": "f8e76f21a0f9852b70b6d9dd5318239f6b20cbcb4cdd995863263cecdc446f7a",
+    "tolerance_fallback_used": false,
+    "expected_hash_regenerated": false,
+    "evidence": "05_csi_proof_original.log",
+    "scope": "Replay of a committed synthetic CSI reference establishes pipeline reproducibility; it is not real CSI hardware capture, pose reconstruction or rescue validation."
+  },
+  "full_verify": {
+    "command": "./verify",
+    "modified": false,
+    "exit_code": 1,
+    "status": "FAIL",
+    "phases": [
+      {
+        "phase": 1,
+        "status": "PASS",
+        "upstream_summary": "v1 pipeline hash matches expected"
+      },
+      {
+        "phase": 2,
+        "status": "PASS",
+        "upstream_summary": "no random generators in production code"
+      },
+      {
+        "phase": 3,
+        "status": "SKIP",
+        "upstream_summary": "cargo or v2/ not present",
+        "interpretation": "Cargo was not installed; v2 and python binding are outside the sparse checkout. No Rust/PyO3 claim."
+      },
+      {
+        "phase": 4,
+        "status": "SKIP",
+        "upstream_summary": "cargo or python/ not present",
+        "interpretation": "Cargo was not installed; v2 and python binding are outside the sparse checkout. No Rust/PyO3 claim."
+      },
+      {
+        "phase": 5,
+        "status": "PASS",
+        "upstream_summary": "identity_risk_score is None at every gateway script"
+      },
+      {
+        "phase": 6,
+        "status": "FAIL",
+        "upstream_summary": "12 of 12 crates missing",
+        "interpretation": "The first endpoint returned HTTP403. The script conflates any curl failure with missing crates; absence of12packages was not established."
+      },
+      {
+        "phase": 7,
+        "status": "PASS",
+        "upstream_summary": "@ruvnet/rvagent v0.2.0 on npm"
+      },
+      {
+        "phase": 8,
+        "status": "PASS",
+        "upstream_summary": "multi-arch manifest (amd64 + arm64) live"
+      },
+      {
+        "phase": 9,
+        "status": "SKIP",
+        "upstream_summary": "docker pull or run unavailable",
+        "interpretation": "Docker CLI present, daemon unavailable. No image pulled, no daemon started, no runtime verified."
+      }
+    ],
+    "counts": {
+      "PASS": 5,
+      "FAIL": 1,
+      "SKIP": 3
+    },
+    "http_diagnostic": {
+      "endpoint": "https://crates.io/api/v1/crates/wifi-densepose-core",
+      "http_status": 403,
+      "evidence": "12_crates_http_diagnostic.log"
+    },
+    "evidence": "03_verify_original_shell.log"
+  },
+  "records": [
+    {
+      "label": "01_tutorial_unit_original_path",
+      "started_at_utc": "2026-09-09T06:18:49.709091+00:00",
+      "ended_at_utc": "2026-09-09T06:18:50.352297+00:00",
+      "argv": [
+        "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "v1/tests/unit/test_sensing.py",
+        "-v",
+        "-o",
+        "addopts="
+      ],
+      "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+      "env_overrides": {},
+      "exit_code": 4,
+      "timed_out": false,
+      "duration_seconds": 0.6410000000000764,
+      "log": "01_tutorial_unit_original_path.log",
+      "log_sha256": "219603d8f6f43b3a0b6e3e999bfb8e59375018cb48ab3a49572754446a666cfc",
+      "note": ""
+    },
+    {
+      "label": "02_unit_current_path_without_pythonpath",
+      "started_at_utc": "2026-09-09T06:18:50.355798+00:00",
+      "ended_at_utc": "2026-09-09T06:18:51.626935+00:00",
+      "argv": [
+        "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "archive/v1/tests/unit/test_sensing.py",
+        "-v",
+        "-o",
+        "addopts="
+      ],
+      "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+      "env_overrides": {},
+      "exit_code": 2,
+      "timed_out": false,
+      "duration_seconds": 1.280999999999949,
+      "log": "02_unit_current_path_without_pythonpath.log",
+      "log_sha256": "a39143ba97bf1ee75594028de4c21abf81b4e38cef50203c711e50d1204b5f3d",
+      "note": ""
+    },
+    {
+      "label": "03_verify_original_shell",
+      "started_at_utc": "2026-09-09T06:18:51.629932+00:00",
+      "ended_at_utc": "2026-09-09T06:19:16.629067+00:00",
+      "argv": [
+        "C:\\Program Files\\Git\\bin\\bash.exe",
+        "-c",
+        "./verify"
+      ],
+      "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+      "env_overrides": {},
+      "exit_code": 1,
+      "timed_out": false,
+      "duration_seconds": 25.0,
+      "log": "03_verify_original_shell.log",
+      "log_sha256": "d277a97472f942e54086b04a8c401938d17bb672f8a30db6375c858fae4b14ea",
+      "note": "Exact ./verify under installed Git Bash; no upstream modifications."
+    },
+    {
+      "label": "04_unit_archive_pythonpath",
+      "started_at_utc": "2026-09-09T06:19:08.069222+00:00",
+      "ended_at_utc": "2026-09-09T06:19:10.871675+00:00",
+      "argv": [
+        "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "archive/v1/tests/unit/test_sensing.py",
+        "-v",
+        "-o",
+        "addopts=",
+        "--junitxml=C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\outputs\\SwarmSignal\\evidence\\upstream\\unit.xml"
+      ],
+      "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+      "env_overrides": {
+        "PYTHONPATH": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView\\archive"
+      },
+      "exit_code": 0,
+      "timed_out": false,
+      "duration_seconds": 2.7970000000000255,
+      "log": "04_unit_archive_pythonpath.log",
+      "log_sha256": "8e6f0f03d26ed7de4e9556ae2358820054f7eb71f4ad9d40434f143e8f45d190",
+      "note": "Only import root adapted for archived v1 location; source tests unchanged."
+    },
+    {
+      "label": "05_csi_proof_original",
+      "started_at_utc": "2026-09-09T06:19:10.873674+00:00",
+      "ended_at_utc": "2026-09-09T06:19:13.042149+00:00",
+      "argv": [
+        "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+        "archive/v1/data/proof/verify.py",
+        "--verbose",
+        "--audit"
+      ],
+      "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+      "env_overrides": {},
+      "exit_code": 0,
+      "timed_out": false,
+      "duration_seconds": 2.1720000000000255,
+      "log": "05_csi_proof_original.log",
+      "log_sha256": "df556ef20ef5d1c14848ef33f1720ef5c0c529ac4874ffc9ed21d35befad03a8",
+      "note": "Original committed verifier, synthetic reference, hash and tolerance vector; no regenerated expectations."
+    },
+    {
+      "label": "06_tutorial_live_original_path",
+      "started_at_utc": "2026-09-09T06:20:56.999958+00:00",
+      "ended_at_utc": "2026-09-09T06:20:57.418789+00:00",
+      "argv": [
+        "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "v1/tests/integration/test_windows_live_sensing.py",
+        "-v",
+        "-o",
+        "addopts=",
+        "-s"
+      ],
+      "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+      "env_overrides": {},
+      "exit_code": 4,
+      "timed_out": false,
+      "duration_seconds": 0.42200000000002547,
+      "log": "06_tutorial_live_original_path.log",
+      "log_sha256": "a1841743bbe170a938e1512a77816346a788aca919092e669cc119e90a0efe82",
+      "note": ""
+    },
+    {
+      "label": "07_live_original_precheck",
+      "started_at_utc": "2026-09-09T06:20:57.421164+00:00",
+      "ended_at_utc": "2026-09-09T06:20:59.868450+00:00",
+      "argv": [
+        "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "archive/v1/tests/integration/test_windows_live_sensing.py",
+        "-v",
+        "-o",
+        "addopts=",
+        "-s",
+        "--junitxml=C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\outputs\\SwarmSignal\\evidence\\upstream\\live_original.xml"
+      ],
+      "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+      "env_overrides": {
+        "PYTHONPATH": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView\\archive"
+      },
+      "exit_code": 0,
+      "timed_out": false,
+      "duration_seconds": 2.4529999999999745,
+      "log": "07_live_original_precheck.log",
+      "log_sha256": "27db5e1874d1e416c53e94db5057c6c7c619858128adae56af968350d10bbcbc",
+      "note": "Original English-only Wi-Fi precheck retained; actual Spanish Windows connection may skip."
+    },
+    {
+      "label": "08_live_spanish_precheck",
+      "started_at_utc": "2026-09-09T06:21:26.715161+00:00",
+      "ended_at_utc": "2026-09-09T06:22:04.722924+00:00",
+      "argv": [
+        "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\verification\\test_windows_live_sensing_es.py",
+        "-v",
+        "-o",
+        "addopts=",
+        "-s",
+        "--junitxml=C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\outputs\\SwarmSignal\\evidence\\upstream\\live_adapted.xml"
+      ],
+      "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+      "env_overrides": {
+        "PYTHONPATH": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView\\archive"
+      },
+      "exit_code": 0,
+      "timed_out": false,
+      "duration_seconds": 38.016000000000076,
+      "log": "08_live_spanish_precheck.log",
+      "log_sha256": "5a21b074b232bd5a3c3aa773b1ae289976a51111c95f6d8d84f43e6b6f952378",
+      "note": "Only Wi-Fi precheck localized in separate test copy; original collector and all assertions retained."
+    },
+    {
+      "label": "10_pdf_unit_exact",
+      "started_at_utc": "2026-09-09T06:20:04.530455+00:00",
+      "ended_at_utc": "2026-09-09T06:20:05.426554+00:00",
+      "argv": [
+        "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "archive/v1/tests/unit/test_sensing.py",
+        "-v",
+        "-o",
+        "addopts="
+      ],
+      "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+      "env_overrides": {
+        "PYTHONPATH": "archive/v1"
+      },
+      "exit_code": 2,
+      "timed_out": false,
+      "duration_seconds": 0.9059999999999491,
+      "log": "10_pdf_unit_exact.log",
+      "log_sha256": "99244c9b7a1f29094848aae6950bc3180f9562bce8791ce3afe71b6acc86e34f",
+      "note": "Exact PDF tutorial command. archive/v1 does not expose the v1 package root required by current imports."
+    },
+    {
+      "label": "11_pdf_live_exact",
+      "started_at_utc": "2026-09-09T06:20:05.427548+00:00",
+      "ended_at_utc": "2026-09-09T06:20:06.794806+00:00",
+      "argv": [
+        "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "archive/v1/tests/integration/test_windows_live_sensing.py",
+        "-v",
+        "-o",
+        "addopts=",
+        "-s"
+      ],
+      "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+      "env_overrides": {
+        "PYTHONPATH": "archive/v1"
+      },
+      "exit_code": 2,
+      "timed_out": false,
+      "duration_seconds": 1.359000000000151,
+      "log": "11_pdf_live_exact.log",
+      "log_sha256": "28a3f8bb467692d68bd7abbf081522f045d3e93130f7fc6df1056b0c5a898653",
+      "note": "Exact PDF tutorial command. Original current upstream test and precheck retained."
+    },
+    {
+      "label": "12_crates_http_diagnostic",
+      "started_at_utc": "2026-09-09T06:20:06.945734+00:00",
+      "ended_at_utc": "2026-09-09T06:20:07.093228+00:00",
+      "argv": [
+        "curl.exe",
+        "-sS",
+        "-D",
+        "-",
+        "--max-time",
+        "20",
+        "https://crates.io/api/v1/crates/wifi-densepose-core"
+      ],
+      "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+      "env_overrides": {},
+      "exit_code": 0,
+      "timed_out": false,
+      "duration_seconds": 0.14099999999984902,
+      "log": "12_crates_http_diagnostic.log",
+      "log_sha256": "a75f2e186c6f242ef05d628518bfaf99b744cf66af454a9abacad725921e93c0",
+      "note": "Read-only HTTP diagnostic for first crate. 403 must not be represented as proof that a crate does not exist."
+    }
+  ],
+  "record_label_note": "Labels10_pdf/11_pdf identify commands from the tutorial linked by the PDF, not literal command text printed in that PDF. Labels01/06 instead reproduce outdated v1 paths also present in upstream module documentation.",
+  "portable_reproducer": {
+    "file": "reproduce.py",
+    "sha256": "71c48ecaecc4d95cf0e310a2eb8cc9d0d9ce3a7cf805ea57802c47ca7c785f2c",
+    "smoke_test": [
+      {
+        "label": "unit",
+        "exit_code": 0,
+        "log": "unit.log",
+        "started_at_utc": "2026-09-09T06:23:31.398409+00:00",
+        "ended_at_utc": "2026-09-09T06:23:34.399655+00:00",
+        "log_sha256": "b9dc99d6bcf6970044ef362234e2f2705895f6fce3fb4f5a65149b1a49a6b482"
+      },
+      {
+        "label": "csi-proof",
+        "exit_code": 0,
+        "log": "csi-proof.log",
+        "started_at_utc": "2026-09-09T06:23:34.400665+00:00",
+        "ended_at_utc": "2026-09-09T06:23:37.294741+00:00",
+        "log_sha256": "a7c51851a24a4622fd74d051b0f3dd061842e61093828651e18c87dfe39cbb28"
+      }
+    ],
+    "live_is_opt_in": true
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "date": "2026-09-09",
+  "capture_session": "swarm-audit",
+  "browser": "Isolated Edge via Playwright CLI, no persistent user profile",
+  "public_url": "https://edson-zepeda.github.io/swarm-signal-openlab/",
+  "local_url": "http://127.0.0.1:8766/",
+  "public_initial_navigation": {
+    "viewport": [1440, 900],
+    "reproductions": 2,
+    "result_hash": "#monitor",
+    "scrollY": 342,
+    "hero_top": -210.5,
+    "navigation_top": -88.90625,
+    "screenshot": "screens/01-public-entry.png"
+  },
+  "mobile_replay": {
+    "viewport": [390, 844],
+    "primary_label_while_playing": "Reproducir captura",
+    "secondary_accessible_label": "Pausar reproducción",
+    "navigation_top": -76.90625,
+    "pause_button_top": 752.390625,
+    "connection_status_top": -288.75,
+    "slider": {"min": "0", "max": "1000", "observed_value": "39", "aria-valuetext": null},
+    "screenshot": "screens/09-replay-mobile-playing.png"
+  },
+  "capture_dialog": {
+    "aria-label": null,
+    "aria-labelledby": null,
+    "initial_focused_element": "closeDialog",
+    "escape_returned_focus_to": "captureButton",
+    "axe_scoped_dialog_violations": [],
+    "physical_capture_started": false,
+    "walking_option_only_previewed_then_cancelled": true,
+    "screenshot": "screens/10-local-capture-dialog.png"
+  },
+  "quality_disclosure": {
+    "text": "Umbral de varianza: 0.30 dBm². Análisis de una ventana de 15 s. Es un indicio heurístico, no una detección confirmada de personas. Irregularidad del muestreo: 33.6%. Calidad: Muestreo irregular.",
+    "spectrum_caption": "Orientativo / muestreo irregular",
+    "variance_caption": "Ventana móvil / 5 s",
+    "screenshot": "screens/12-quality-details.png"
+  },
+  "limits": ["No full WCAG audit", "No screen reader session", "No hardware capture started", "No product code edited", "No old screenshots used as evidence"]
+}

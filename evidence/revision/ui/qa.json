@@ -1,0 +1,694 @@
+{
+  "timestamp": "2026-09-09T07:32:22.627Z",
+  "browser": "Isolated Chromium-compatible headless context",
+  "sources": [
+    "http://127.0.0.1:8766",
+    "http://127.0.0.1:8767/swarm-signal-openlab/"
+  ],
+  "checks": [
+    {
+      "name": "Entry stays at the top with delivery and mode visible",
+      "passed": true,
+      "detail": {
+        "scroll": 0,
+        "hash": "",
+        "heading": "RSSI bajo prueba.",
+        "navTop": 311.09375,
+        "deliveryTop": 253.09375,
+        "status": "Captura grabada"
+      }
+    },
+    {
+      "name": "Delivery opens evidence and browser Back restores Monitor",
+      "passed": true,
+      "detail": {
+        "history": "Back restores view"
+      }
+    },
+    {
+      "name": "Deep link ?view=propuesta",
+      "passed": true,
+      "detail": {
+        "url": "http://127.0.0.1:8767/swarm-signal-openlab/?view=propuesta",
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "Deep link #evidencia",
+      "passed": true,
+      "detail": {
+        "url": "http://127.0.0.1:8767/swarm-signal-openlab/?view=evidencia",
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "Deep link #monitor",
+      "passed": true,
+      "detail": {
+        "url": "http://127.0.0.1:8767/swarm-signal-openlab/",
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "Primary playback and pause are consistent",
+      "passed": true,
+      "detail": {
+        "speed": "8x",
+        "samples": 8,
+        "paused": true
+      }
+    },
+    {
+      "name": "Seek uses exact frames, quality abstention and no invented spectrum",
+      "passed": true,
+      "detail": [
+        {
+          "position": 0,
+          "count": 1,
+          "expected": "SIN VEREDICTO",
+          "bars": 0
+        },
+        {
+          "position": 50,
+          "count": 12,
+          "expected": "SIN VEREDICTO",
+          "bars": 0
+        },
+        {
+          "position": 125,
+          "count": 30,
+          "expected": "SIN VEREDICTO",
+          "bars": 0
+        },
+        {
+          "position": 250,
+          "count": 60,
+          "expected": "SIN VEREDICTO",
+          "bars": 0
+        },
+        {
+          "position": 500,
+          "count": 118,
+          "expected": "SEÑAL VARIABLE",
+          "bars": 15
+        },
+        {
+          "position": 750,
+          "count": 177,
+          "expected": "SIN VEREDICTO",
+          "bars": 0
+        },
+        {
+          "position": 1000,
+          "count": 233,
+          "expected": "SIN VEREDICTO",
+          "bars": 0
+        }
+      ]
+    },
+    {
+      "name": "Static CSV contains every original sample",
+      "passed": true,
+      "detail": {
+        "samples": 233
+      }
+    },
+    {
+      "name": "Comparison reports all real captures and data quality",
+      "passed": true,
+      "detail": {
+        "sources": [
+          {
+            "label": "Referencia de 120 s",
+            "count": 233,
+            "eligible": 8,
+            "valid": 3
+          },
+          {
+            "label": "Carga simultánea de CPU",
+            "count": 43,
+            "eligible": 3,
+            "valid": 0
+          },
+          {
+            "label": "Captura de 60 s",
+            "count": 118,
+            "eligible": 4,
+            "valid": 2
+          }
+        ],
+        "physicalConfirmed": 0
+      }
+    },
+    {
+      "name": "Local help has startup steps and returns keyboard focus",
+      "passed": true,
+      "detail": {
+        "labelled": true,
+        "violations": 0,
+        "focusRestored": true
+      }
+    },
+    {
+      "name": "Evidence statuses follow sources and stage five has a real image",
+      "passed": true,
+      "detail": {
+        "completed": 7,
+        "stages": 8,
+        "images": [
+          {
+            "src": "http://127.0.0.1:8767/swarm-signal-openlab/evidence/ui/monitor-live.png",
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Proposal and delivery documents resolve within subpath",
+      "passed": true,
+      "detail": {
+        "documents": "200",
+        "stationaryProposal": true
+      }
+    },
+    {
+      "name": "Responsive 320px monitor",
+      "passed": true,
+      "detail": {
+        "viewport": 320,
+        "pageWidth": 320,
+        "body": 16,
+        "labels": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "axes": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "Responsive 320px evidencia",
+      "passed": true,
+      "detail": {
+        "viewport": 320,
+        "pageWidth": 320,
+        "body": 16,
+        "labels": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "axes": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "Responsive 320px propuesta",
+      "passed": true,
+      "detail": {
+        "viewport": 320,
+        "pageWidth": 320,
+        "body": 16,
+        "labels": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "axes": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "Responsive 390px monitor",
+      "passed": true,
+      "detail": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "body": 16,
+        "labels": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "axes": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "Responsive 390px evidencia",
+      "passed": true,
+      "detail": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "body": 16,
+        "labels": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "axes": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "Responsive 390px propuesta",
+      "passed": true,
+      "detail": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "body": 16,
+        "labels": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "axes": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "Responsive 768px monitor",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "pageWidth": 768,
+        "body": 16,
+        "labels": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "axes": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "Responsive 768px evidencia",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "pageWidth": 768,
+        "body": 16,
+        "labels": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "axes": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "Responsive 768px propuesta",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "pageWidth": 768,
+        "body": 16,
+        "labels": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "axes": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "Responsive 1440px monitor",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "body": 16,
+        "labels": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "axes": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "Responsive 1440px evidencia",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "body": 16,
+        "labels": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "axes": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "Responsive 1440px propuesta",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "body": 16,
+        "labels": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "axes": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "Keyboard navigation between product views",
+      "passed": true,
+      "detail": "Tab and Enter"
+    },
+    {
+      "name": "Axe WCAG monitor",
+      "passed": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "name": "Axe WCAG evidencia",
+      "passed": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "name": "Axe WCAG propuesta",
+      "passed": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "name": "Real local server is reachable and offers local capture without starting it",
+      "passed": true,
+      "detail": {
+        "realApi": true,
+        "state": "ready",
+        "status": "Captura grabada",
+        "captureStarted": false
+      }
+    },
+    {
+      "name": "Local capture dialog is named, labelled by operator and selects adapter",
+      "passed": true,
+      "detail": {
+        "fixtureOnly": true,
+        "request": {
+          "label": "Captura Wi-Fi",
+          "duration_seconds": 60,
+          "ground_truth": "walking",
+          "interface": "Wi-Fi B"
+        },
+        "reset": "unconfirmed"
+      }
+    },
+    {
+      "name": "Pending save remains retryable and blocks new capture",
+      "passed": true,
+      "detail": {
+        "fixtureOnly": true,
+        "savedOnRetry": true
+      }
+    },
+    {
+      "name": "Disconnected receiver is never shown as live and recovers",
+      "passed": true,
+      "detail": {
+        "fixtureOnly": true,
+        "retainedLabel": true,
+        "recovered": true
+      }
+    },
+    {
+      "name": "Demo playback, seek, audio and captions",
+      "passed": true,
+      "detail": {
+        "duration": 104.8,
+        "width": 1920,
+        "height": 1080,
+        "captions": [
+          "es"
+        ],
+        "position": 63.514448,
+        "audio": 66783,
+        "error": null
+      }
+    },
+    {
+      "name": "Axe WCAG demo",
+      "passed": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "name": "Demo responsive 320",
+      "passed": true,
+      "detail": {
+        "width": 320,
+        "pageWidth": 320
+      }
+    },
+    {
+      "name": "Demo responsive 390",
+      "passed": true,
+      "detail": {
+        "width": 390,
+        "pageWidth": 390
+      }
+    },
+    {
+      "name": "Demo responsive 768",
+      "passed": true,
+      "detail": {
+        "width": 768,
+        "pageWidth": 768
+      }
+    },
+    {
+      "name": "No JavaScript exceptions",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "All requested static assets resolve",
+      "passed": true,
+      "detail": {
+        "resourceErrors": 0,
+        "expectedLocalStaticApiProbes": 5
+      }
+    }
+  ],
+  "screenshots": [
+    "evidence\\revision\\ui\\01-public-entry.png",
+    "evidence\\revision\\ui\\02-comparison.png",
+    "evidence\\revision\\ui\\03-local-help.png",
+    "evidence\\revision\\ui\\04-evidence.png",
+    "evidence\\revision\\ui\\05-proposal.png",
+    "evidence\\revision\\ui\\monitor-390.png",
+    "evidence\\revision\\ui\\evidencia-390.png",
+    "evidence\\revision\\ui\\propuesta-390.png",
+    "evidence\\revision\\ui\\monitor-768.png",
+    "evidence\\revision\\ui\\evidencia-768.png",
+    "evidence\\revision\\ui\\propuesta-768.png",
+    "evidence\\revision\\ui\\06-demo.png",
+    "evidence\\revision\\ui\\demo-390.png"
+  ],
+  "pageErrors": [],
+  "resourceErrors": [],
+  "expectedStaticApiProbes": [
+    {
+      "url": "http://127.0.0.1:8767/api/state",
+      "status": 404
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/state",
+      "status": 404
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/state",
+      "status": 404
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/state",
+      "status": 404
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/state",
+      "status": 404
+    }
+  ],
+  "browserVersion": "152.0.4191.66",
+  "passed": true,
+  "summary": {
+    "passed": 39,
+    "failed": 0
+  }
+}

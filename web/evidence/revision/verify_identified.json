@@ -1,0 +1,69 @@
+{
+  "at": "2026-09-09T07:09:26.482575+00:00",
+  "exit_code": 0,
+  "verify_sha256": "f67c92dbebe2ef843636588e85bb9f6ec602bbd7607f467c72675f601e91ce2a",
+  "source_unchanged": true,
+  "env_override": {
+    "CURL_HOME": "project/tmp/identified-api"
+  },
+  "curl_config": "user-agent = \"SwarmSignal/1.1 (+https://github.com/Edson-Zepeda/swarm-signal-openlab)\"\nmax-time = 25\n",
+  "log": "verify_identified.log",
+  "schema_version": 1,
+  "phases": [
+    {
+      "phase": 1,
+      "status": "PASS",
+      "detail": "v1 pipeline hash matches expected"
+    },
+    {
+      "phase": 2,
+      "status": "PASS",
+      "detail": "no random generators in production code"
+    },
+    {
+      "phase": 3,
+      "status": "SKIP",
+      "detail": "cargo or v2/ not present"
+    },
+    {
+      "phase": 4,
+      "status": "SKIP",
+      "detail": "cargo or python/ not present"
+    },
+    {
+      "phase": 5,
+      "status": "PASS",
+      "detail": "identity_risk_score is None at every gateway script"
+    },
+    {
+      "phase": 6,
+      "status": "PASS",
+      "detail": "12/12 crates on crates.io"
+    },
+    {
+      "phase": 7,
+      "status": "PASS",
+      "detail": "@ruvnet/rvagent v0.2.0 on npm"
+    },
+    {
+      "phase": 8,
+      "status": "PASS",
+      "detail": "multi-arch manifest (amd64 + arm64) live"
+    },
+    {
+      "phase": 9,
+      "status": "SKIP",
+      "detail": "docker pull or run unavailable"
+    }
+  ],
+  "counts": {
+    "pass": 6,
+    "fail": 0,
+    "skip": 3
+  },
+  "status": "PASS_WITH_SKIPS",
+  "expected_csi_sha256": "f8e76f21a0f9852b70b6d9dd5318239f6b20cbcb4cdd995863263cecdc446f7a",
+  "log_sha256": "d19738264c45511a698c18d5b6568c35c7a7ebfa322ce1e688679a58dab0b900",
+  "user_agent": "SwarmSignal/1.1 (+https://github.com/Edson-Zepeda/swarm-signal-openlab)",
+  "historical_failure": "evidence/upstream/03_verify_original_shell.log"
+}

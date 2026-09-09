@@ -1,10 +1,17 @@
 # Verificación de RuView
 
-Se ejecutó el código fijado en `d613a576ea848f96a9b15bac4e7f60b6be7c08e7`. Pasaron **45 pruebas unitarias**, **5 pruebas de integración con una adaptación de idioma** y la **prueba determinística CSI**. El `./verify` completo terminó en **FAIL**, por una consulta al registro de paquetes que devolvió HTTP 403. No se presenta ese resultado como una verificación integral aprobada.
+**Resultado vigente registrado: 6 fases PASS, 0 FAIL y 3 SKIP; código de salida 0 (`PASS_WITH_SKIPS`).** La nueva ejecución del 9 de septiembre de 2026 identificó la aplicación en las consultas HTTP mediante un User-Agent explícito. `./verify` se ejecutó sin modificaciones, sobre RuView fijado en `d613a576ea848f96a9b15bac4e7f60b6be7c08e7`. Las tres fases omitidas no se presentan como ejecutadas.
 
-Los registros originales, sus fechas UTC, argumentos, códigos de salida y SHA-256 están en [verification_summary.json](../evidence/upstream/verification_summary.json). El repositorio upstream terminó limpio; no se alteraron sus fuentes, pruebas ni valores esperados.
+La [nueva evidencia](../evidence/revision/verify_identified.json), registrada a las **07:09:26 UTC**, conserva configuración, estados, hashes y [log completo](../evidence/revision/verify_identified.log). Las 12 consultas de crates.io pasaron. Rust, PyO3 y la ejecución del contenedor siguieron omitidos; el manifiesto Docker publicado sí se consultó.
 
-## Resultados
+| Corrida del 09/09/2026 | PASS | FAIL | SKIP | Salida |
+|---|---:|---:|---:|---:|
+| Original, 06:18-06:19 UTC | 5 | 1 | 3 | 1 |
+| Cliente identificado, registro 07:09 UTC | 6 | 0 | 3 | 0 |
+
+El **FAIL con HTTP 403 se conserva como resultado histórico**. No se reemplazaron sus logs ni se cambió el hash esperado para conseguir una aprobación. Los registros originales, fechas, argumentos y hashes están en [verification_summary.json](../evidence/upstream/verification_summary.json). También se conservan las **45 unitarias**, las **5 integraciones con adaptación de idioma** y la **prueba CSI determinística** aprobadas en aquella ejecución.
+
+## Resultados históricos del 9 de septiembre de 2026
 
 | Ejecución | Resultado observado | Evidencia |
 |---|---|---|
@@ -27,7 +34,7 @@ La integración sí leyó el adaptador Wi-Fi real: una ventana produjo 20 muestr
 
 Las pruebas originales aceptan calidad de enlace 0, aunque en este equipo ese valor aparece porque el recolector no reconoce `Señal`. Su ruido fijo de −95 dBm y sus contadores de bytes incrementados artificialmente tampoco son mediciones. La prueba `test_rssi_varies_between_samples` imprime la variación, pero no contiene una aserción que la exija. Por eso, cinco pruebas aprobadas no eliminan estas limitaciones.
 
-## Prueba CSI y verificación completa
+## Prueba CSI y verificación completa histórica
 
 Se procesaron 100 de las 1,000 tramas de referencia sintética, obteniendo 100 vectores y 243,200 bytes canónicos. El SHA-256 calculado y el publicado coincidieron exactamente:
 
@@ -37,7 +44,9 @@ f8e76f21a0f9852b70b6d9dd5318239f6b20cbcb4cdd995863263cecdc446f7a
 
 No se regeneró el hash esperado ni se utilizó el fallback de tolerancia. La coincidencia se observó tanto con Python 3.11.9 / NumPy 2.3.4 / SciPy 1.16.2, elegidos por Git Bash, como con el entorno virtual registrado en el JSON. Esto comprueba reproducibilidad del procesamiento de la referencia; no equivale a captura CSI real, estimación de pose o validación de rescate.
 
-| Fase de `./verify` | Estado | Interpretación |
+La siguiente tabla describe exclusivamente el `./verify` original de las **06:18-06:19 UTC del 09/09/2026**. La fase 6 pasó después en la nueva ejecución; las demás conservaron su estado.
+
+| Fase de `./verify` histórico | Estado original | Interpretación |
 |---|---|---|
 | 1. Procesamiento Python | PASS | Hash idéntico a la referencia publicada |
 | 2. Búsqueda de patrones aleatorios | PASS | No hubo coincidencias del patrón buscado en `archive/v1/src` completo |
@@ -49,7 +58,18 @@ No se regeneró el hash esperado ni se utilizó el fallback de tolerancia. La co
 | 8. Manifest de Docker | PASS | Manifest publicado con `amd64` y `arm64` |
 | 9. Ejecutable HOMECORE | SKIP | Docker instalado, daemon no disponible |
 
-El mensaje upstream «12 crates missing» agrupa cualquier fallo de `curl`. El [HTTP 403 observado](../evidence/upstream/12_crates_http_diagnostic.log) impide concluir que los paquetes no existan. No se intentó eludir ese rechazo. Tampoco se instaló Rust, se inició Docker o se descargaron imágenes para convertir un SKIP en PASS.
+El mensaje upstream «12 crates missing» agrupa cualquier fallo de `curl`. El [HTTP 403 original](../evidence/upstream/12_crates_http_diagnostic.log) no demostraba que los paquetes no existieran. El diagnóstico posterior identificó el cliente con `SwarmSignal/1.1 (+https://github.com/Edson-Zepeda/swarm-signal-openlab)`; las 12 consultas pasaron en la nueva corrida. No se instaló Rust, se inició Docker ni se ejecutaron contenedores para convertir los tres SKIP en PASS.
+
+## Configuración de la nueva ejecución
+
+La evidencia registra `CURL_HOME=project/tmp/identified-api`, aplicado solo al proceso del verificador, con un archivo `.curlrc` de este contenido:
+
+```text
+user-agent = "SwarmSignal/1.1 (+https://github.com/Edson-Zepeda/swarm-signal-openlab)"
+max-time = 25
+```
+
+La identificación corresponde a esta aplicación y a su repositorio. El timeout limita cada consulta de curl a 25 segundos. No se modificó el perfil de shell ni la configuración permanente del usuario. El SHA-256 de `verify` siguió siendo `f67c92dbebe2ef843636588e85bb9f6ec602bbd7607f467c72675f601e91ce2a`; la expectativa CSI siguió siendo la indicada arriba. Estos valores y el hash del nuevo log están en `verify_identified.json`.
 
 ## Reproducción
 
@@ -61,6 +81,39 @@ python evidence/upstream/reproduce.py --repo RUTA_A_RUVIEW --python RUTA_AL_PYTH
 
 Añadir `--live` habilita unos 40 segundos de lecturas reales de Wi-Fi y genera una nueva copia de la adaptación de idioma. El script conserva logs y JUnit en `upstream-replay`; comprueba el commit y rechaza cambios en el código upstream. La ruta determinística del reproductor también se ejecutó y terminó con código 0.
 
-Para reproducir por separado las nueve fases, revisar primero `verify` y ejecutar `./verify` desde Git Bash en la raíz de RuView. Ese comando consulta servicios externos y puede ejecutar Docker cuando esté disponible; su resultado depende del entorno y del estado actual de esos servicios.
+### Repetir las nueve fases con identificación local al proceso
+
+Desde PowerShell, sustituye `RUTA_A_RUVIEW` por la copia del commit fijado. Ajusta la ruta de Git Bash si está instalado en otro lugar. El siguiente bloque crea la configuración y el log en una carpeta temporal; no escribe dentro de RuView ni modifica variables de entorno permanentes. No se ha vuelto a ejecutar el verificador al redactar esta guía.
+
+```powershell
+$taskRepo = (Resolve-Path 'RUTA_A_RUVIEW').Path
+$taskBash = 'C:\Program Files\Git\bin\bash.exe'
+$taskCurlDir = Join-Path ([IO.Path]::GetTempPath()) ('swarm-curl-' + [Guid]::NewGuid().ToString('N'))
+New-Item -ItemType Directory -Path $taskCurlDir | Out-Null
+$taskCurlConfig = @'
+user-agent = "SwarmSignal/1.1 (+https://github.com/Edson-Zepeda/swarm-signal-openlab)"
+max-time = 25
+'@
+[IO.File]::WriteAllText(
+    (Join-Path $taskCurlDir '.curlrc'),
+    $taskCurlConfig,
+    [Text.UTF8Encoding]::new($false)
+)
+$taskLog = Join-Path $taskCurlDir 'verify_identified_replay.log'
+
+Push-Location -LiteralPath $taskRepo
+try {
+    & $taskBash -c 'CURL_HOME="$1" ./verify' 'swarm-verify' ($taskCurlDir -replace '\\', '/') 2>&1 |
+        Tee-Object -FilePath $taskLog
+    $taskExit = $LASTEXITCODE
+}
+finally {
+    Pop-Location
+}
+Write-Output "Código de salida: $taskExit"
+Write-Output "Configuración y log: $taskCurlDir"
+```
+
+`CURL_HOME` se asigna en Git Bash únicamente al comando `./verify` y a sus procesos hijos. La carpeta temporal queda disponible para revisar `.curlrc` y el log; no se sustituye `evidence/upstream/` ni `evidence/revision/`. Antes de ejecutar, comprueba el commit y el SHA-256 indicados y revisa `verify`: consulta servicios externos y puede ejecutar Docker si está disponible. El resultado de una reproducción nueva depende de ese entorno y del estado de los servicios; no está garantizado que repita los conteos registrados.
 
 Fuentes del alcance: [tutorial, issue #36](https://github.com/ruvnet/RuView/issues/36), [tests fijados](https://github.com/ruvnet/RuView/blob/d613a576ea848f96a9b15bac4e7f60b6be7c08e7/archive/v1/tests/unit/test_sensing.py), [verificador fijado](https://github.com/ruvnet/RuView/blob/d613a576ea848f96a9b15bac4e7f60b6be7c08e7/verify).

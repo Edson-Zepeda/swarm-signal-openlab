@@ -12,6 +12,7 @@ import json
 import math
 from pathlib import Path
 import shutil
+import sys
 import subprocess
 import time
 import xml.etree.ElementTree as ET
@@ -51,48 +52,82 @@ def probe(path):
     return json.loads(subprocess.check_output([FFPROBE,'-v','error','-show_streams','-show_format','-of','json',str(path)],text=True))
 
 def load_evidence():
+    # Read the explicit manifest; never pick the first or largest recording.
+    sys.path.insert(0, str(ROOT))
+    from swarm_signal.analysis import analyze, from_rows, ANALYSIS_VERSION, MAX_JITTER_CV, MAX_INTERVAL_DEVIATION
+    config_path=ROOT/'project.json'
+    config=json.loads(config_path.read_text(encoding='utf-8'))
+    reference=next(r for r in config['recordings'] if r['id']==config['reference_session'])
+    session_path=ROOT/reference['source']
     tutorial_path=ROOT/'evidence/tutorial/04_pipeline_15s.json'
-    candidates=sorted((ROOT/'evidence/sessions').glob('*.json'))
-    # Pick the explicit saved120-second capture; never query live hardware.
-    session_path=next(p for p in candidates if json.loads(p.read_text())['session']['duration_seconds']==120)
-    verification_path=ROOT/'evidence/upstream/verification_summary.json'
+    historical_path=ROOT/'evidence/upstream/verification_summary.json'
+    verification_path=ROOT/config['verification']
+    comparison_path=ROOT/'web/data/comparison.json'
+    own_path=ROOT/config['own_tests']
     tutorial=json.loads(tutorial_path.read_text(encoding='utf-8'))
     session=json.loads(session_path.read_text(encoding='utf-8'))
-    verification=json.loads(verification_path.read_text(encoding='utf-8'))
-    own_path=ROOT/'evidence/own_tests.xml'
+    historical=json.loads(historical_path.read_text(encoding='utf-8'))
+    identified=json.loads(verification_path.read_text(encoding='utf-8'))
+    comparison=json.loads(comparison_path.read_text(encoding='utf-8'))
     own_cases=list(ET.parse(own_path).getroot().iter('testcase'))
     own_passed=sum(not any(n.find(tag) is not None for tag in ('failure','error','skipped')) for n in own_cases)
-    verification['own_tests_snapshot']={'tests':len(own_cases),'passed':own_passed,'source':'evidence/own_tests.xml','source_sha256':sha(own_path)}
+    assert own_passed==len(own_cases) and own_passed>0, 'Do not render a passing suite with failures or skips.'
+    for record in config['recordings']:
+        assert record['kind']=='recorded_real_wifi' and sha(ROOT/record['source'])==record['sha256']
+        compared=next(r for r in comparison['sessions'] if r['id']==record['id'])
+        assert compared['source_sha256']==record['sha256']
+        assert compared['ground_truth']=='unconfirmed'
+    assert not comparison['physical']['comparison_ready']
+    assert identified['counts']['fail']==0 and identified['source_unchanged']
     assert tutorial['ground_truth']=='unconfirmed' and session['session']['ground_truth']=='unconfirmed'
-    assert session['classification'] is None and session['quality']['ready'] is False
-    rows=session['samples']; y=np.array([s['rssi_dbm'] for s in rows]); t=np.array([s['timestamp'] for s in rows]); t-=t[0]
+    revised=analyze(from_rows(session['samples']))
+    session.update(revised)
+    assert session['classification'] is None and session['spectrum']==[]
+    rows=session['samples']; y=np.array([r['rssi_dbm'] for r in rows]); t=np.array([r['timestamp'] for r in rows]); t-=t[0]
     summary={'samples':len(rows),'duration_requested_seconds':session['session']['duration_seconds'],
         'duration_observed_seconds':float(t[-1]),'mean_dbm':float(y.mean()),'min_dbm':float(y.min()),'max_dbm':float(y.max()),
         'effective_hz':float((len(t)-1)/t[-1]),'last_window_samples':session['features']['n_samples'],
         'jitter_cv':session['quality']['jitter_cv'],'max_gap_seconds':session['quality']['max_gap_seconds'],
-        'nyquist_hz':session['quality']['nyquist_hz'],'quality_ready':False,'ground_truth':'unconfirmed'}
-    paths=[tutorial_path,session_path,verification_path,own_path,ROOT/'swarm_signal/analysis.py']
-    provenance=[{'path':str(p.relative_to(ROOT)).replace('\\','/'),'sha256':sha(p)} for p in paths]
+        'nyquist_hz':session['quality']['nyquist_hz'],'quality_ready':False,'ground_truth':'unconfirmed',
+        'analysis_policy_version':ANALYSIS_VERSION,'max_jitter_cv':MAX_JITTER_CV,
+        'max_interval_deviation':MAX_INTERVAL_DEVIATION,'motion_band_hz':session['quality']['motion_band']['configured_hz'],
+        'nominal_collector_hz':2.0,'nominal_nyquist_hz':1.0}
+    verification={**historical,'revision':identified,'comparison':comparison,'project_version':config['version'],
+        'own_tests_snapshot':{'tests':len(own_cases),'passed':own_passed,'source':config['own_tests'],
+                              'source_sha256':sha(own_path)}}
+    paths=[config_path,tutorial_path,historical_path,verification_path,comparison_path,own_path,
+           ROOT/'swarm_signal/analysis.py',ROOT/'swarm_signal/collector.py',ROOT/'swarm_signal/experiment.py']
+    paths.extend(ROOT/r['source'] for r in config['recordings'])
+    provenance=[]
+    for path in paths:
+        relative=path.relative_to(ROOT).as_posix()
+        snapshot=ASSETS/'sources/revision'/relative
+        snapshot.parent.mkdir(parents=True,exist_ok=True)
+        snapshot.write_bytes(path.read_bytes())
+        provenance.append({'path':relative,'sha256':sha(path),'snapshot_path':snapshot.relative_to(ROOT).as_posix()})
+    verification['own_tests_snapshot']['snapshot_path']=next(p['snapshot_path'] for p in provenance if p['path']==config['own_tests'])
     return tutorial,session,verification,summary,provenance
 
 def specification(tutorial,session,verification,summary):
     return [
-        {'title':'La señal. La evidencia.','label':'SWARM SIGNAL','kind':'intro','minimum':11,
-         'narration':'Swarm Signal convierte el Wi-Fi de una laptop en evidencia reproducible. Esta es una reproducción de lecturas reales, sin etiquetas humanas verificadas.'},
-        {'title':'Del Wi-Fi al análisis.','label':'PIPELINE REAL','kind':'pipeline','minimum':11,
-         'narration':f'El tutorial conecta el recolector con el extractor y Commodity Backend. La primera ventana registró {tutorial["features"]["n_samples"]} muestras. Son datos observados, no señales inventadas.'},
-        {'title':'Una captura, muestra a muestra.','label':'REPRODUCCIÓN ACELERADA','kind':'trace','minimum':12,
-         'narration':f'La sesión de ciento veinte segundos reunió {summary["samples"]} lecturas reales. Aquí se recorre su evolución completa. La variación de señal, por sí sola, no prueba movimiento humano.'},
-        {'title':'La calidad decide.','label':'VENTANA FINAL','kind':'quality','minimum':11,
-         'narration':'El muestreo irregular de la última ventana activa una abstención. Swarm Signal conserva la evidencia y deja la clasificación vacía, en lugar de convertir datos débiles en una afirmación.'},
-        {'title':'Frecuencias, con límites.','label':'ESPECTRO OBSERVADO','kind':'spectrum','minimum':11,
-         'narration':'El espectro describe las variaciones del RSSI. Su límite depende de la frecuencia efectiva de muestreo. Estos picos no son una medición de respiración.'},
-        {'title':'Pruebas que puedes repetir.','label':'VERIFICACIÓN DE SOFTWARE','kind':'tests','minimum':11,
-         'narration':f'Pasaron {verification["unit"]["passed"]} pruebas unitarias, {verification["live_adapted"]["passed"]} de integración y {verification["own_tests_snapshot"]["passed"]} propias. La adaptación de idioma conserva todas las aserciones.'},
-        {'title':'Una prueba, un hash.','label':'CSI · REFERENCIA SINTÉTICA','kind':'proof','minimum':13,
-         'narration':'La referencia sintética CSI reproduce exactamente el hash publicado. La verificación global sigue fallando: el registro externo respondió cuatrocientos tres. Ambos resultados permanecen visibles, sin esconder las omisiones.'},
-        {'title':'Primero, una base estable.','label':'PROPUESTA SWARM','kind':'proposal','minimum':12,
-         'narration':'Para SWARM proponemos comenzar con un receptor fijo y comparar escenarios etiquetados. Después, evaluar nodos móviles y su interferencia. La prioridad es medir antes de afirmar.'},
+        {'title':'La señal. La evidencia.','label':'SWARM SIGNAL · REVISIÓN 1.1','kind':'intro','minimum':9,
+         'narration':'Swarm Signal transforma lecturas reales de Wi-Fi en evidencia reproducible. Esta edición incorpora la auditoría técnica y sus correcciones.'},
+        {'title':'Del Wi-Fi al análisis.','label':'PIPELINE REAL','kind':'pipeline','minimum':9,
+         'narration':f'El tutorial registró {tutorial["features"]["n_samples"]} muestras con el recolector original. El sistema conecta lectura, extracción de características y clasificación, conservando los datos.'},
+        {'title':'Cada lectura cuenta.','label':'REPRODUCCIÓN ACELERADA','kind':'trace','minimum':10,
+         'narration':f'La captura de ciento veinte segundos contiene {summary["samples"]} lecturas. La señal varía, pero estas mediciones no tienen etiquetas de movimiento humano verificadas.'},
+        {'title':'La calidad cambia entre capturas.','label':'COMPARACIÓN · VENTANAS DE 15 s','kind':'comparison','minimum':12,
+         'narration':'Las tres capturas cumplen calidad en tres de ocho, cero de tres y dos de cuatro ventanas elegibles. Esta comparación describe el muestreo; no mide precisión de detección humana.'},
+        {'title':'Abstenerse también es un resultado.','label':'ÚLTIMA VENTANA · REFERENCIA DE 120 s','kind':'quality','minimum':11,
+         'narration':'La última ventana excede el límite de irregularidad del cinco por ciento. Se conservan las lecturas y se omiten el espectro y la clasificación.'},
+        {'title':'La banda completa no está observada.','label':'COBERTURA · ESQUEMA TEÓRICO','kind':'coverage','minimum':10,
+         'narration':'A dos muestras por segundo, el límite teórico es un hertz. La banda original de movimiento llega a tres. Su cobertura es parcial.'},
+        {'title':'Correcciones comprobadas.','label':'VERIFICACIÓN DE SOFTWARE','kind':'tests','minimum':10,
+         'narration':f'La revisión aprueba {verification["own_tests_snapshot"]["passed"]} pruebas propias. Se conservan las {verification["unit"]["passed"]} unitarias y {verification["live_adapted"]["passed"]} integraciones originales, con su evidencia histórica separada.'},
+        {'title':'Verificación con límites visibles.','label':'CSI · REFERENCIA SINTÉTICA','kind':'proof','minimum':14,
+         'narration':'La referencia sintética CSI conserva su hash exacto. Al identificar el cliente de consulta, la nueva verificación pasa seis fases y omite tres. El error cuatrocientos tres anterior permanece documentado.'},
+        {'title':'El siguiente paso: validar.','label':'PROPUESTA SWARM','kind':'proposal','minimum':10,
+         'narration':'Un receptor fijo permite comparar quietud y cruces declarados. Esa prueba física sigue pendiente. Después se podrá evaluar el efecto de nodos móviles.'},
     ]
 
 async def make_audio(scenes):
@@ -132,9 +167,9 @@ class Renderer:
         text(d,'OPEN LAB',1748,44,24,MUTED,anchor='rt',mono=True)
         d.line((72,103,1848,103),fill=LINE,width=2)
         text(d,scene['label'],75,144,26,LIME,True,mono=True)
-        text(d,scene['title'],72,197,68,WHITE,True)
+        text(d,scene['title'],72,197,62 if len(scene['title'])>34 else 68,WHITE,True)
         box(d,(1510,137,1848,178),color='#13262b',outline='#2d4750',radius=20)
-        badge={'tests':'PRUEBAS EJECUTADAS','proof':'REFERENCIA SINTÉTICA','proposal':'DISEÑO PROPUESTO'}.get(scene['kind'],'DATOS REPRODUCIDOS')
+        badge={'tests':'PRUEBAS EJECUTADAS','proof':'REFERENCIA SINTÉTICA','proposal':'DISEÑO PROPUESTO'}.get(scene['kind'],'ESQUEMA TEÓRICO' if scene['kind']=='coverage' else 'DATOS REPRODUCIDOS')
         text(d,badge,1679,156,20,CYAN,True,anchor='mm')
         text(d,'SWARM · SOFTWARE',75,1017,24,MUTED,mono=True)
         text(d,f'{i+1:02} / {len(self.scenes):02}',1848,1017,24,LIME,anchor='rt',mono=True)
@@ -156,9 +191,15 @@ class Renderer:
     def trace(self,d,ts,ys,rect,p=1,color=CYAN,xmax=None,ymin=None,ymax=None,marker=True):
         x,y,w,h=rect; xmax=xmax or float(ts[-1]); ymin=ymin if ymin is not None else math.floor(float(min(ys)))-1
         ymax=ymax if ymax is not None else math.ceil(float(max(ys)))+1
-        count=max(2,int(1+(len(ts)-1)*max(0,min(1,p))))
+        cursor=(len(ts)-1)*max(0,min(1,p)); count=int(cursor)+1
         coords=[(x+w*float(tt)/xmax,y+h-h*(float(v)-ymin)/(ymax-ymin)) for tt,v in zip(ts[:count],ys[:count])]
+        if count<len(ts):
+            fraction=cursor-int(cursor)
+            tt=float(ts[count-1]+fraction*(ts[count]-ts[count-1]))
+            value=float(ys[count-1]+fraction*(ys[count]-ys[count-1]))
+            coords.append((x+w*tt/xmax,y+h-h*(value-ymin)/(ymax-ymin)))
         if len(coords)>1:
+            # Smooth drawing between recorded vertices; never adds sample rows.
             d.line(coords,fill=color,width=4,joint='curve')
             if marker:
                 xx,yy=coords[-1]; d.line((xx,y,xx,y+h),fill='#385a63',width=2)
@@ -205,6 +246,26 @@ class Renderer:
             self.metric(d,'Rango',f'{self.m["min_dbm"]:.0f} / {self.m["max_dbm"]:.0f}','dBm',1470,539,374,CYAN)
             self.metric(d,'Muestreo efectivo',f'{self.m["effective_hz"]:.2f}','Hz',1470,722,374,PURPLE)
             text(d,'La variación del RSSI no confirma movimiento humano.',78,945,30,AMBER)
+        elif kind=='comparison':
+            rows=self.v['comparison']['sessions']
+            labels=['Referencia de 120 s','Carga simultánea de CPU','Captura de 60 s']
+            for j,(record,label) in enumerate(zip(rows,labels)):
+                yy=330+j*190
+                box(d,(76,yy,1844,yy+163))
+                text(d,label,109,yy+28,35,WHITE,True)
+                text(d,f'{record["count"]} lecturas · {record["effective_rate_hz"]:.2f} Hz',112,yy+87,28,MUTED)
+                windows=record['windows']; segment=76; gap=14; x=760
+                for k,window in enumerate(windows):
+                    color=LIME if window['ready'] else AMBER if window['eligible'] else MUTED
+                    alpha=ease((t-j*.2-k*.08)/1.8)
+                    rgb=tuple(int(int(color[i:i+2],16)*alpha) for i in (1,3,5))
+                    box(d,(x+k*(segment+gap),yy+49,x+k*(segment+gap)+segment,yy+113),color=rgb,outline=None,radius=10)
+                text(d,f'{record["windows_valid"]} / {record["windows_eligible"]}',1803,yy+70,62,LIME if record['windows_valid'] else AMBER,True,anchor='rm')
+                text(d,'ventanas aptas',1803,yy+120,24,MUTED,anchor='rm')
+            for x,color,label in [(80,LIME,'Cumple'),(340,AMBER,'Abstención'),(686,MUTED,'Fracción final no elegible')]:
+                box(d,(x,926,x+22,948),color=color,outline=None,radius=5)
+                text(d,label,x+35,920,27,MUTED)
+            text(d,'Calidad del muestreo',1840,922,29,WHITE,True,anchor='rt')
         elif kind=='quality':
             last=self.rows[-self.s['features']['n_samples']:];dt=np.diff([r['timestamp'] for r in last]); x,y,w,h=148,408,1020,350
             self.axes(d,(x,y,w,h),len(dt),0,1.5,4,3,'Intervalo entre muestras','Separación temporal (s)')
@@ -216,38 +277,48 @@ class Renderer:
             text(d,'Muestreo irregular',1300,388,36,AMBER,True)
             text(d,f'{self.m["jitter_cv"]*100:.1f}%',1300,465,80,WHITE,True)
             text(d,'Variación de intervalos (CV)',1303,566,26,MUTED)
-            text(d,f'Brecha máxima: {self.m["max_gap_seconds"]:.2f} s',1303,618,30,MUTED)
+            text(d,f'Límite CV: {self.m["max_jitter_cv"]*100:.0f} %',1303,614,30,AMBER)
+            text(d,f'Hueco máximo: {self.m["max_gap_seconds"]:.2f} s',1303,659,27,MUTED)
             box(d,(1296,722,1819,808),color='#30281e',outline='#725636',radius=18)
-            text(d,'SIN CLASIFICAR',1557,764,37,AMBER,True,anchor='mm')
+            text(d,'SIN ESPECTRO NI CLASE',1557,764,30,AMBER,True,anchor='mm')
             text(d,'La abstención conserva la incertidumbre.',78,934,34,WHITE,True)
-        elif kind=='spectrum':
-            spec=self.s['spectrum'];freq=np.array([r['hz'] for r in spec]);power=np.array([r['power'] for r in spec]);x,y,w,h=150,410,1160,380
-            self.axes(d,(x,y,w,h),1,0,1,5,4,'Frecuencia (Hz)','Potencia espectral (u. a.)')
-            limit=self.m['nyquist_hz'];right=x+w*limit
-            d.rectangle((right,y,x+w,y+h),fill='#30281e');d.line((right,y,right,y+h),fill=AMBER,width=3)
-            for j,(hz,pow_) in enumerate(zip(freq,power)):
-                xx=x+w*float(hz);half=21;hh=h*float(pow_)*ease((t-.05*j)/1.8)
-                box(d,(xx-half,y+h-hh,xx+half,y+h),color=LIME if j==int(power.argmax()) else CYAN,outline=None,radius=6)
-            box(d,(1410,372,1844,807))
-            text(d,'LÍMITE EFECTIVO',1440,414,26,MUTED,True)
-            text(d,f'{limit:.2f}',1440,485,94,LIME,True)
-            text(d,'Hz · Nyquist',1443,605,30,MUTED)
-            text(d,'Última ventana',1443,708,28,MUTED)
-            text(d,'Estos picos no miden respiración.',78,939,34,AMBER)
+        elif kind=='coverage':
+            x,w=145,1150; ymax=3.0; band_low,band_high=self.m['motion_band_hz']
+            limit=self.m['nominal_nyquist_hz']; x_limit=x+w*limit/ymax
+            text(d,'Banda original de movimiento',x,339,32,MUTED)
+            box(d,(x+w*band_low/ymax,407,x+w,486),color='#173238',outline=CYAN,radius=15)
+            text(d,'0.5 – 3 Hz',x+w*.58,446,33,CYAN,True,anchor='mm')
+            text(d,'Parte observable a 2 muestras/s',x,550,32,MUTED)
+            box(d,(x+w*band_low/ymax,620,x+w,699),color='#30281e',outline='#725636',radius=15)
+            end=x+w*band_low/ymax+(x_limit-(x+w*band_low/ymax))*ease(t/2)
+            if end>x+w*band_low/ymax+10:
+                box(d,(x+w*band_low/ymax,620,end,699),color=LIME,outline=None,radius=12)
+            text(d,'Fuera del alcance',x+w*.64,657,33,AMBER,True,anchor='mm')
+            d.line((x_limit,380,x_limit,785),fill=LIME,width=3)
+            for tick in [0,.5,1,2,3]:
+                xx=x+w*tick/ymax;d.line((xx,763,xx,779),fill=MUTED,width=2)
+                text(d,f'{tick:g}',xx,798,28,LIME if tick==limit else MUTED,anchor='mt',mono=True)
+            text(d,'Frecuencia (Hz)',x+w,855,27,MUTED,anchor='rt')
+            box(d,(1404,365,1844,834))
+            text(d,'LÍMITE TEÓRICO',1434,407,26,MUTED,True)
+            text(d,f'{limit:g} Hz',1434,476,92,LIME,True)
+            text(d,'Cobertura parcial',1436,619,33,WHITE,True)
+            text(d,'No mide respiración',1436,715,27,AMBER)
+            text(d,'Con muestreo irregular, el espectro no se publica.',78,939,34,AMBER)
         elif kind=='tests':
             cards=[('UNITARIAS',self.v['unit']['passed'],'Código original','Suite de RuView',LIME),
                    ('INTEGRACIÓN',self.v['live_adapted']['passed'],'Precheck en español',f'{self.v["live_adapted"]["adaptation"]["assertions_count"]} aserciones intactas',CYAN),
-                   ('SWARM SIGNAL',self.v['own_tests_snapshot']['passed'],'Pruebas propias','Suite del proyecto',PURPLE)]
+                   ('SWARM SIGNAL',self.v['own_tests_snapshot']['passed'],'Pruebas propias','Core + evidencia',PURPLE)]
             for j,(label,value,detail,sub,color) in enumerate(cards):
                 x=76+j*601;box(d,(x,350,x+566,810))
                 text(d,label,x+32,391,31,MUTED,True)
                 text(d,str(value),x+31,469,137,color,True)
-                text(d,'PASS',x+252,561,43,color,True)
+                text(d,'PASS',x+361,561,43,color,True)
                 text(d,detail,x+33,675,31,WHITE)
                 text(d,sub,x+33,734,27,MUTED)
                 for k in range(value):
-                    xx=x+33+(k%15)*33;yy=840+(k//15)*23
-                    if (k+1)/value<=ease(t/3):box(d,(xx,yy,xx+23,yy+10),color=color,outline=None,radius=4)
+                    xx=x+33+(k%20)*24;yy=842+(k//20)*14
+                    if (k+1)/value<=ease(t/3):box(d,(xx,yy,xx+16,yy+7),color=color,outline=None,radius=4)
             text(d,'Pruebas de software ≠ precisión de detección humana.',78,951,30,AMBER)
         elif kind=='proof':
             box(d,(76,339,1844,661));text(d,'CSI · REFERENCIA SINTÉTICA',109,372,28,MUTED,True)
@@ -255,11 +326,12 @@ class Renderer:
             text(d,f'{self.v["csi_proof"]["frames_processed"]} tramas procesadas',1255,459,35,WHITE)
             digest=self.v['csi_proof']['computed_sha256'];revealed=digest[:max(1,int(len(digest)*ease(t/3)))]
             text(d,revealed,110,552,33,CYAN,mono=True)
-            text(d,'./verify completo',82,709,31,WHITE,True,mono=True)
-            x=490
-            for label,count,color in [('PASS',self.v['full_verify']['counts']['PASS'],LIME),('FAIL',self.v['full_verify']['counts']['FAIL'],AMBER),('SKIP',self.v['full_verify']['counts']['SKIP'],MUTED)]:
-                box(d,(x,701,x+420,837));text(d,f'{count} {label}',x+209,769,48,color,True,anchor='mm');x+=451
-            text(d,'FAIL · Registro externo: HTTP 403',78,909,37,AMBER,True)
+            text(d,'./verify actual',82,709,31,WHITE,True,mono=True)
+            counts=self.v['revision']['counts']
+            for x,label,count,color in [(490,'PASS',counts['pass'],LIME),(1180,'SKIP',counts['skip'],MUTED)]:
+                box(d,(x,701,x+664,837));text(d,f'{count} {label}',x+332,769,48,color,True,anchor='mm')
+            text(d,'Cliente identificado · script original sin cambios',78,892,32,WHITE,True)
+            text(d,'HTTP 403 inicial: conservado en el historial',78,941,28,AMBER)
         elif kind=='proposal':
             text(d,'PROPUESTA · POR VALIDAR',77,314,27,AMBER,True)
             cx,cy=574,563
@@ -307,17 +379,23 @@ def main():
     voice_available=True
     try:asyncio.run(make_audio(scenes))
     except Exception as exc:
-        voice_available=False;(ASSETS/'voice_error.txt').write_text(str(exc),encoding='utf-8')
+        (ASSETS/'voice_error.txt').write_text(str(exc),encoding='utf-8')
+        raise RuntimeError('Narration could not be refreshed; do not publish stale audio.') from exc
     offset=0
     for i,scene in enumerate(scenes):
         audio=ASSETS/f'voice_{i+1:02}.mp3';audio_duration=float(probe(audio)['format']['duration']) if voice_available else 0
         seconds=math.ceil(max(scene['minimum'],audio_duration+.9)*FPS)/FPS
         scene.update(start=offset,end=offset+seconds,duration=seconds,audio_duration=audio_duration);offset+=seconds
-    assert 75<=offset<=110,f'Adjust narration pacing: planned video is {offset:.1f}s.'
+    assert 75<=offset<=120,f'Adjust narration pacing: planned video is {offset:.1f}s.'
     timeline={'resolution':[W,H],'fps':FPS,'duration_seconds':offset,'voice':VOICE if voice_available else None,
         'generated_voice':voice_available,'source_provenance':provenance,'capture_summary':summary,'scenes':scenes,
-        'all_quantitative_traces_are_measured_replays':True,'ground_truth':'unconfirmed','csi_reference_kind':'SYNTHETIC',
-        'upstream_commit':verification['upstream']['commit'],'own_tests_snapshot':verification['own_tests_snapshot']}
+        'all_recorded_signal_traces_are_measured_replays':True,
+        'non_measurement_visuals':['configured_frequency_coverage','proposed_receiver_nodes'],
+        'ground_truth':'unconfirmed','csi_reference_kind':'SYNTHETIC',
+        'upstream_commit':verification['upstream']['commit'],'own_tests_snapshot':verification['own_tests_snapshot'],
+        'revision':verification['project_version'],'analysis_policy_version':summary['analysis_policy_version'],
+        'verification_current':verification['revision'],'comparison_current':verification['comparison'],
+        'spectral_peaks_from_irregular_windows_shown':False}
     (ASSETS/'timeline.json').write_text(json.dumps(timeline,indent=2,ensure_ascii=False),encoding='utf-8')
     renderer=Renderer(tutorial,session,verification,summary,scenes)
     for i,scene in enumerate(scenes):renderer.frame(i,min(6,scene['duration']*.65),scene['duration']).save(ASSETS/f'preview_{i+1:02}.png')

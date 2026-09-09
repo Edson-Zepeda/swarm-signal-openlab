@@ -1,0 +1,47 @@
+{
+  "baseline": {
+    "exit": 1,
+    "tests": 62,
+    "failures": 49,
+    "errors": 3,
+    "passed": 10,
+    "command": [
+      "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "tests/test_audit_regressions.py",
+      "-q",
+      "-o",
+      "addopts=",
+      "--junitxml=C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\tmp\\swarm-audit-technical/core_baseline.xml"
+    ]
+  },
+  "after": {
+    "exit": 0,
+    "tests": 90,
+    "failures": 0,
+    "errors": 0,
+    "passed": 90,
+    "command": [
+      "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "tests/test_signal.py",
+      "tests/test_lifecycle.py",
+      "tests/test_audit_regressions.py",
+      "-q",
+      "-o",
+      "addopts=",
+      "--junitxml=C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\tmp\\swarm-audit-technical/core_after.xml"
+    ]
+  },
+  "baseline_commit": "5c8e242",
+  "fixture_kind": "synthetic; no netsh or physical capture",
+  "tested_sources": {
+    "swarm_signal\\analysis.py": "f6b62ea968a311926d22a72713ca0eba52a737bc59d4f0881589f6976660b6c7",
+    "swarm_signal\\server.py": "68e907528f45ea4124c7031fa8502011912a32cbf9937c4c777a7e87df1fa641",
+    "swarm_signal\\collector.py": "aea57af4ab717f616be20a5f18a3b8faf75d1e135d36edf69ff8505275d6a9ec",
+    "scripts\\capture.py": "a6ccd201a89103fb8e6bcf5b0ffc7b92e9fbeb4b3745f0d4865bcfbecda39970",
+    "tests\\test_audit_regressions.py": "e86f7e49c256076a0d84c0d75a8698fc2ea8ca18d44fcb05fbc2611fa215fc42"
+  }
+}
