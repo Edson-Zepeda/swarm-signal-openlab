@@ -1,0 +1,43 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\Lenovo\Documents\Codex\2026-09-04\real\outputs\SwarmSignal\media\SwarmSignal_Demo.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    title           : Swarm Signal | Evidencia Wi-Fi
+    encoder         : Lavf62.3.100
+  Duration: 00:01:44.80, start: 0.000000, bitrate: 362 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1920x1080, 218 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc62.11.100 libx264
+  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 96000 Hz, mono, fltp, 134 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+      vendor_id       : [0][0][0][0]
+  Stream #0:2[0x3](spa): Subtitle: mov_text (tx3g / 0x67337874), 0 kb/s (default)
+    Metadata:
+      handler_name    : SubtitleHandler
+[Parsed_volumedetect_0 @ 0000022dd2e6e880] n_samples: 0
+Stream mapping:
+  Stream #0:1 -> #0:0 (aac (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    title           : Swarm Signal | Evidencia Wi-Fi
+    encoder         : Lavf62.3.100
+  Stream #0:0(und): Audio: pcm_s16le, 96000 Hz, mono, s16, 1536 kb/s (default)
+    Metadata:
+      encoder         : Lavc62.11.100 pcm_s16le
+      handler_name    : SoundHandler
+      vendor_id       : [0][0][0][0]
+[Parsed_volumedetect_0 @ 0000022dd2b66b80] n_samples: 10060800
+[Parsed_volumedetect_0 @ 0000022dd2b66b80] mean_volume: -17.4 dB
+[Parsed_volumedetect_0 @ 0000022dd2b66b80] max_volume: -1.3 dB
+[Parsed_volumedetect_0 @ 0000022dd2b66b80] histogram_1db: 3318
+[Parsed_volumedetect_0 @ 0000022dd2b66b80] histogram_2db: 11243
+[out#0/null @ 0000022dd2dde740] video:0KiB audio:19650KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:01:44.80 bitrate=N/A speed= 986x elapsed=0:00:00.10    

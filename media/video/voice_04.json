@@ -1,0 +1,153 @@
+{
+  "voice": "es-MX-JorgeNeural",
+  "generated_voice": true,
+  "text_hash": "3fffcf770ef6dae52613cb809955bb03afa8fe106822bfc2c07a9d924f08a504",
+  "text": "El muestreo irregular de la última ventana activa una abstención. Swarm Signal conserva la evidencia y deja la clasificación vacía, en lugar de convertir datos débiles en una afirmación.",
+  "words": [
+    {
+      "text": "El",
+      "start": 0.098541,
+      "end": 0.268457
+    },
+    {
+      "text": "muestreo",
+      "start": 0.280583,
+      "end": 0.717458
+    },
+    {
+      "text": "irregular",
+      "start": 0.729625,
+      "end": 1.215041
+    },
+    {
+      "text": "de",
+      "start": 1.227166,
+      "end": 1.324249
+    },
+    {
+      "text": "la",
+      "start": 1.336416,
+      "end": 1.433499
+    },
+    {
+      "text": "última",
+      "start": 1.445625,
+      "end": 1.785416
+    },
+    {
+      "text": "ventana",
+      "start": 1.797583,
+      "end": 2.270874
+    },
+    {
+      "text": "activa",
+      "start": 2.283,
+      "end": 2.744166
+    },
+    {
+      "text": "una",
+      "start": 2.756291,
+      "end": 2.974749
+    },
+    {
+      "text": "abstención",
+      "start": 2.986875,
+      "end": 3.654333
+    },
+    {
+      "text": "Swarm",
+      "start": 4.490291,
+      "end": 4.890791
+    },
+    {
+      "text": "Signal",
+      "start": 4.902916,
+      "end": 5.266999
+    },
+    {
+      "text": "conserva",
+      "start": 5.279125,
+      "end": 5.776708
+    },
+    {
+      "text": "la",
+      "start": 5.788833,
+      "end": 5.910208
+    },
+    {
+      "text": "evidencia",
+      "start": 5.922333,
+      "end": 6.444166
+    },
+    {
+      "text": "y",
+      "start": 6.456291,
+      "end": 6.516957
+    },
+    {
+      "text": "deja",
+      "start": 6.529125,
+      "end": 6.820375
+    },
+    {
+      "text": "la",
+      "start": 6.832541,
+      "end": 6.941749
+    },
+    {
+      "text": "clasificación",
+      "start": 6.953875,
+      "end": 7.694166
+    },
+    {
+      "text": "vacía",
+      "start": 7.706291,
+      "end": 8.143166
+    },
+    {
+      "text": "en",
+      "start": 8.385916,
+      "end": 8.543666
+    },
+    {
+      "text": "lugar",
+      "start": 8.555833,
+      "end": 8.847083
+    },
+    {
+      "text": "de",
+      "start": 8.859208,
+      "end": 8.944166
+    },
+    {
+      "text": "convertir",
+      "start": 8.956291,
+      "end": 9.490291
+    },
+    {
+      "text": "datos",
+      "start": 9.502416,
+      "end": 9.854374
+    },
+    {
+      "text": "débiles",
+      "start": 9.8665,
+      "end": 10.315541
+    },
+    {
+      "text": "en",
+      "start": 10.327666,
+      "end": 10.485416
+    },
+    {
+      "text": "una",
+      "start": 10.497583,
+      "end": 10.679624
+    },
+    {
+      "text": "afirmación",
+      "start": 10.69175,
+      "end": 11.359208
+    }
+  ]
+}

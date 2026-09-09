@@ -1,0 +1,99 @@
+1
+00:00:00,349 --> 00:00:02,946
+Swarm Signal convierte el Wi-Fi de una laptop en
+
+2
+00:00:02,958 --> 00:00:07,362
+evidencia reproducible Esta es una reproducción de lecturas reales
+
+3
+00:00:07,580 --> 00:00:09,619
+sin etiquetas humanas verificadas
+
+4
+00:00:11,482 --> 00:00:14,140
+El tutorial conecta el recolector con el extractor y
+
+5
+00:00:14,152 --> 00:00:20,012
+Commodity Backend La primera ventana registró 30 muestras Son datos
+
+6
+00:00:20,024 --> 00:00:22,354
+observados no señales inventadas
+
+7
+00:00:24,215 --> 00:00:28,766
+La sesión de ciento veinte segundos reunió 233 lecturas reales
+
+8
+00:00:29,602 --> 00:00:33,206
+Aquí se recorre su evolución completa La variación de
+
+9
+00:00:33,219 --> 00:00:36,325
+señal por sí sola no prueba movimiento humano
+
+10
+00:00:38,182 --> 00:00:41,058
+El muestreo irregular de la última ventana activa una
+
+11
+00:00:41,070 --> 00:00:45,025
+abstención Swarm Signal conserva la evidencia y deja la
+
+12
+00:00:45,037 --> 00:00:48,569
+clasificación vacía en lugar de convertir datos débiles en
+
+13
+00:00:48,581 --> 00:00:49,443
+una afirmación
+
+14
+00:00:51,315 --> 00:00:55,974
+El espectro describe las variaciones del RSSI Su límite
+
+15
+00:00:55,986 --> 00:00:59,894
+depende de la frecuencia efectiva de muestreo Estos picos
+
+16
+00:00:59,906 --> 00:01:01,763
+no son una medición de respiración
+
+17
+00:01:03,615 --> 00:01:08,482
+Pasaron 45 pruebas unitarias 5 de integración y 31 propias
+
+18
+00:01:09,318 --> 00:01:12,364
+La adaptación de idioma conserva todas las aserciones
+
+19
+00:01:14,615 --> 00:01:19,118
+La referencia sintética CSI reproduce exactamente el hash publicado
+
+20
+00:01:19,954 --> 00:01:23,910
+La verificación global sigue fallando el registro externo respondió
+
+21
+00:01:23,922 --> 00:01:29,153
+cuatrocientos tres Ambos resultados permanecen visibles sin esconder las
+
+22
+00:01:29,165 --> 00:01:29,869
+omisiones
+
+23
+00:01:31,715 --> 00:01:34,591
+Para SWARM proponemos comenzar con un receptor fijo y
+
+24
+00:01:34,604 --> 00:01:39,602
+comparar escenarios etiquetados Después evaluar nodos móviles y su
+
+25
+00:01:39,614 --> 00:01:43,304
+interferencia La prioridad es medir antes de afirmar

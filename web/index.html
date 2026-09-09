@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080d13">
+  <meta name="description" content="SWARM SIGNAL: observa la variación de una señal Wi-Fi y explora capturas reales de RSSI.">
+  <title>SWARM SIGNAL — Observatorio Wi-Fi</title>
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Ir al contenido</a>
+  <div class="ambient" aria-hidden="true"></div>
+  <header class="masthead shell">
+    <a class="brand" href="#monitor" aria-label="SWARM SIGNAL, inicio"><img src="assets/icon.svg" width="38" height="38" alt=""><span>SWARM<span class="brand-divider">/</span><b>SIGNAL</b></span></a>
+    <div class="header-right"><span class="lab-label">OPENLAB <span>01</span></span><span class="status-pill" id="connectionStatus"><i></i> Cargando</span></div>
+  </header>
+  <main class="shell" id="main">
+    <div class="intro">
+      <div><p class="eyebrow"><span></span> OBSERVATORIO WI-FI</p><h1>Lee lo <span>invisible.</span></h1><p class="intro-copy">Movimiento, visto desde la señal.</p></div>
+      <div class="hero-orbit" aria-hidden="true"><div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="orbit-node"></div><span>2.4 <small>/</small> 5<small> GHz</small></span></div>
+    </div>
+    <div class="workspace-nav">
+      <nav class="tabs" aria-label="Secciones"><button class="tab active" data-tab="monitor" aria-current="page"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10h3l2-6 4 12 2-6h5"/></svg>Monitor</button><button class="tab" data-tab="evidencia"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 3h10v14H5zM8 7h4M8 10h4M8 13h2"/></svg>Evidencia</button><button class="tab" data-tab="propuesta"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 2 7 4v8l-7 4-7-4V6zM3 6l7 4 7-4M10 10v8"/></svg>Propuesta</button></nav>
+      <button class="icon-button fullscreen" id="fullscreenButton" aria-label="Pantalla completa" title="Pantalla completa"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4"/></svg></button>
+    </div>
+
+    <section id="monitor" class="view active" aria-label="Monitor de señal">
+      <div class="monitor-toolbar">
+        <div class="source-picker"><label for="sessionPicker">Captura</label><select id="sessionPicker"><option value="current">Sesión actual</option></select></div>
+        <div class="capture-actions"><span class="session-meta" id="sessionMeta">Esperando datos</span><button class="button primary" id="captureButton"><span class="capture-dot"></span>Iniciar captura</button><button class="button stop hidden" id="stopButton"><span></span>Detener</button></div>
+      </div>
+      <div class="notice hidden" id="notice" role="status"></div>
+      <div class="metric-grid">
+        <article class="metric"><span class="metric-label">Intensidad RSSI</span><div><strong id="metricRssi">—</strong><span class="metric-unit">dBm</span></div><span class="metric-foot" id="rssiFoot">Última lectura</span><svg class="metric-mini" id="miniRssi" viewBox="0 0 120 40" aria-hidden="true"></svg></article>
+        <article class="metric"><span class="metric-label">Variación</span><div><strong id="metricVariance">—</strong><span class="metric-unit">dBm²</span></div><span class="metric-foot">Varianza de la captura</span><span class="metric-symbol" aria-hidden="true">σ²</span></article>
+        <article class="metric"><span class="metric-label">Muestras</span><div><strong id="metricSamples">0</strong><span class="metric-unit">RSSI</span></div><span class="metric-foot" id="sampleRate">Sin lectura</span><div class="metric-ticks" aria-hidden="true"></div></article>
+        <article class="metric"><span class="metric-label">Duración</span><div><strong id="metricDuration">00:00</strong><span class="metric-unit">min:s</span></div><span class="metric-foot" id="sessionName">Sin sesión</span><span class="metric-symbol timer-symbol" aria-hidden="true">◷</span></article>
+      </div>
+
+      <div class="signal-layout">
+        <article class="panel signal-panel">
+          <div class="panel-heading"><div><p class="eyebrow muted">01 / SEÑAL</p><h2>El pulso de tu Wi-Fi</h2></div><span class="chart-key"><i></i>RSSI <span>· dBm</span></span></div>
+          <div class="chart-wrap"><svg id="signalChart" viewBox="0 0 960 270" role="img" aria-label="Intensidad de la señal Wi-Fi en el tiempo"><defs><linearGradient id="signalFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#b9f45b" stop-opacity=".23"/><stop offset="100%" stop-color="#b9f45b" stop-opacity="0"/></linearGradient><filter id="signalGlow"><feGaussianBlur stdDeviation="3"/></filter></defs><g id="signalGrid"></g><path id="signalArea" fill="url(#signalFill)"/><path id="signalGlowPath" class="signal-glow"/><path id="signalLine" class="signal-line"/><circle id="signalCursor" r="4" fill="#d6ff9a"/><g id="signalTicks"></g></svg><div class="chart-empty" id="chartEmpty"><span class="empty-wave" aria-hidden="true">∿</span><strong>Todo empieza con una señal.</strong><p>Inicia una captura o selecciona una sesión.</p></div></div>
+          <div class="chart-axis-label"><span>Intensidad / dBm</span><span>Tiempo / segundos</span></div>
+          <div class="replay-controls" id="replayControls"><button id="playButton" class="play-button" aria-label="Reproducir captura"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 9 6-9 6z"/></svg></button><span id="replayTime" class="replay-time">00:00</span><input id="replaySlider" type="range" min="0" max="1000" value="1000" aria-label="Posición en la captura"><span id="replayEnd" class="replay-time dim">00:00</span><select id="replaySpeed" aria-label="Velocidad de reproducción"><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option><option value="8">8×</option></select></div>
+        </article>
+        <aside class="panel reading-panel">
+          <p class="eyebrow muted">02 / INTERPRETACIÓN</p><div class="reading-glyph" id="readingGlyph" aria-hidden="true"><span></span><span></span><span></span><i></i></div><span class="reading-tag" id="readingTag">SIN DATOS</span><h2 id="readingTitle">Lista para escuchar.</h2><p id="readingDescription">La variación de RSSI permite explorar cambios en el entorno.</p>
+          <div class="reading-scale" aria-hidden="true"><span></span><span></span><span></span></div><div class="scale-labels"><span>Estable</span><span>Variable</span></div>
+          <details class="analysis-details"><summary>Ver criterio</summary><div id="classificationDetails">Se requiere una captura para analizar la señal.</div></details>
+        </aside>
+      </div>
+
+      <div class="analysis-grid">
+        <article class="panel compact-chart"><div class="panel-heading"><div><p class="eyebrow muted">03 / TIEMPO</p><h2>Dónde cambia</h2></div><span class="chart-key cyan"><i></i>Varianza <span>· dBm²</span></span></div><svg id="varianceChart" viewBox="0 0 600 165" role="img" aria-label="Varianza de RSSI en ventanas de tiempo"><g id="varianceGrid"></g><path id="varianceArea"/><path id="varianceLine"/><g id="varianceTicks"></g></svg><div class="compact-footer"><span id="varianceWindow">Ventanas móviles</span><span id="variancePeak">Pico —</span></div></article>
+        <article class="panel compact-chart"><div class="panel-heading"><div><p class="eyebrow muted">04 / FRECUENCIA</p><h2>El ritmo de la señal</h2></div><span class="chart-key purple"><i></i>Potencia relativa</span></div><svg id="spectrumChart" viewBox="0 0 600 165" role="img" aria-label="Espectro de potencia de las variaciones de RSSI"><g id="spectrumGrid"></g><g id="spectrumBars"></g><g id="spectrumTicks"></g></svg><div class="compact-footer"><span>Frecuencia / Hz</span><span id="spectrumPeak">Frecuencia dominante —</span></div></article>
+      </div>
+      <p class="physical-condition" id="physicalCondition">Movimiento físico sin etiquetar</p><div class="monitor-bottom"><p id="dataProvenance">Lecturas de RSSI. Los cambios pueden tener varias causas.</p><a class="text-link hidden" id="exportButton" href="#">Descargar CSV <span aria-hidden="true">↗</span></a></div>
+    </section>
+
+    <section id="evidencia" class="view" aria-label="Evidencia del experimento" hidden>
+      <div class="section-intro"><p class="eyebrow">DEL DATO A LA EVIDENCIA</p><h2>Una señal. Pruebas visibles.</h2><p>Capturas, procesamiento y resultados verificables.</p></div>
+      <div class="resource-bar" aria-label="Documentos y demostración"><a href="docs/SwarmSignal_Informe.pdf" target="_blank" rel="noopener">Informe <span aria-hidden="true">↗</span></a><a href="docs/SwarmSignal_Propuesta.pdf" target="_blank" rel="noopener">Propuesta <span aria-hidden="true">↗</span></a><a class="resource-demo" href="demo.html">Ver demo <span aria-hidden="true">→</span></a></div>
+      <div class="evidence-summary"><div><span class="metric-label">Etapas verificadas</span><strong id="evidenceProgress">—</strong></div><p id="evidenceSummary">La evidencia se actualizará al cargar la captura.</p></div>
+      <div class="evidence-grid" id="evidenceStages"></div>
+      <article class="panel evidence-data"><div class="panel-heading"><div><p class="eyebrow muted">TRAZABILIDAD</p><h2>La captura, a detalle</h2></div><span class="status-pill" id="evidenceMode">Sin sesión</span></div><dl class="metadata-grid" id="metadataGrid"></dl><details class="sample-details"><summary>Últimas 12 muestras</summary><div class="table-scroll"><table><thead><tr><th scope="col">Tiempo</th><th scope="col">RSSI / dBm</th><th scope="col">Calidad</th><th scope="col">Fase</th></tr></thead><tbody id="sampleTable"></tbody></table></div></details></article>
+    </section>
+
+    <section id="propuesta" class="view" aria-label="Propuesta del proyecto" hidden>
+      <div class="section-intro"><p class="eyebrow">SENSAR SIN CÁMARAS</p><h2>Llega. Aterriza. Escucha.</h2><p>Un dron traslada el sensor; la medición ocurre en reposo.</p></div>
+      <article class="panel system-panel"><div class="system-node"><span class="node-icon router" aria-hidden="true"><i></i><i></i><i></i></span><span class="eyebrow muted">EMITE</span><h3>Router controlado</h3><p>Punto de acceso conocido</p></div><div class="signal-bridge" aria-hidden="true"><i></i><i></i><i></i><i></i><span>RSSI</span></div><div class="system-node environment-node"><span class="node-icon room" aria-hidden="true"><i></i><i></i></span><span class="eyebrow muted">INTERACTÚA</span><h3>El entorno</h3><p>Cambios en la propagación</p></div><div class="signal-bridge" aria-hidden="true"><i></i><i></i><i></i><i></i><span>TIEMPO</span></div><div class="system-node"><span class="node-icon receiver" aria-hidden="true"><i></i></span><span class="eyebrow muted">OBSERVA</span><h3>Raspberry Pi fija</h3><p>Despliegue propuesto</p></div></article>
+      <div class="proposal-grid"><article class="panel proposal-card"><span class="proposal-number">01</span><h3>Transportar</h3><p>El dron lleva la Raspberry Pi a un punto de observación seguro.</p></article><article class="panel proposal-card"><span class="proposal-number">02</span><h3>Aterrizar</h3><p>Receptor fijo y motores apagados para reducir cambios por vibración.</p></article><article class="panel proposal-card"><span class="proposal-number">03</span><h3>Medir</h3><p>Capturar RSSI del router controlado y contrastar las condiciones observadas.</p></article></div>
+      <div class="scope-grid"><article><span class="scope-indicator"></span><h3>Prototipo actual</h3><p>Captura y análisis de RSSI real desde una laptop. El despliegue en dron es la siguiente fase.</p></article><article><span class="scope-indicator neutral"></span><h3>Lo que falta validar</h3><p>Que un cambio corresponda a una persona. RSSI también cambia por interferencia o por mover el equipo.</p></article><article><span class="scope-indicator neutral"></span><h3>Límite del prototipo</h3><p>No identifica personas ni mide respiración, pulso o signos vitales.</p></article></div>
+    </section>
+  </main>
+  <footer class="shell footer"><span>SWARM <b>/ SIGNAL</b></span><span>Explora. Mide. Comprueba.</span><span class="footer-code">OPENLAB · RSSI</span></footer>
+  <dialog id="captureDialog"><form id="captureForm"><div class="dialog-heading"><div><p class="eyebrow">NUEVA SESIÓN</p><h2>Escucha el entorno.</h2></div><button type="button" class="icon-button" id="closeDialog" aria-label="Cerrar">×</button></div><label for="captureLabel">Nombre de la captura</label><input id="captureLabel" name="label" maxlength="80" value="Captura Wi-Fi" required><label for="captureDuration">Duración</label><select id="captureDuration" name="duration_seconds"><option value="30">30 segundos</option><option value="60" selected>1 minuto</option><option value="120">2 minutos</option></select><label for="captureGroundTruth">Condición observada</label><select id="captureGroundTruth" name="ground_truth"><option value="unconfirmed">Sin etiqueta</option><option value="still">Quietud</option><option value="walking">Caminando</option></select><p class="dialog-note">Mantén el receptor fijo durante la captura.</p><p class="dialog-error hidden" id="captureError" role="alert"></p><button class="button primary" id="submitCapture" type="submit"><span class="capture-dot"></span>Comenzar</button></form></dialog>
+  <div class="toast hidden" id="toast" role="status"></div>
+</body>
+</html>
+
+

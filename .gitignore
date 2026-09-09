@@ -1,8 +1,13 @@
 .venv/
 __pycache__/
 .pytest_cache/
+tmp/
 *.pyc
 *.log.tmp
 private/
 .vercel/
 node_modules/
+media/video/video_silent.mp4
+media/video/narration.wav
+media/video/padded_*.wav
+media/video/motion_*.png

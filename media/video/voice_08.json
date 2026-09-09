@@ -1,0 +1,138 @@
+{
+  "voice": "es-MX-JorgeNeural",
+  "generated_voice": true,
+  "text_hash": "bd5e08e5da13ad89c9d845211baa2bca2ec53fc5cf88db7a079132cdc0f7a240",
+  "text": "Para SWARM proponemos comenzar con un receptor fijo y comparar escenarios etiquetados. Después, evaluar nodos móviles y su interferencia. La prioridad es medir antes de afirmar.",
+  "words": [
+    {
+      "text": "Para",
+      "start": 0.098541,
+      "end": 0.316999
+    },
+    {
+      "text": "SWARM",
+      "start": 0.329125,
+      "end": 0.705333
+    },
+    {
+      "text": "proponemos",
+      "start": 0.717458,
+      "end": 1.251458
+    },
+    {
+      "text": "comenzar",
+      "start": 1.263583,
+      "end": 1.748999
+    },
+    {
+      "text": "con",
+      "start": 1.761166,
+      "end": 1.931082
+    },
+    {
+      "text": "un",
+      "start": 1.943208,
+      "end": 2.052416
+    },
+    {
+      "text": "receptor",
+      "start": 2.064583,
+      "end": 2.574291
+    },
+    {
+      "text": "fijo",
+      "start": 2.586416,
+      "end": 2.901957
+    },
+    {
+      "text": "y",
+      "start": 2.914083,
+      "end": 2.974749
+    },
+    {
+      "text": "comparar",
+      "start": 2.986875,
+      "end": 3.460166
+    },
+    {
+      "text": "escenarios",
+      "start": 3.472333,
+      "end": 4.066999
+    },
+    {
+      "text": "etiquetados",
+      "start": 4.079125,
+      "end": 4.867958
+    },
+    {
+      "text": "Después",
+      "start": 5.703875,
+      "end": 6.25
+    },
+    {
+      "text": "evaluar",
+      "start": 6.480583,
+      "end": 6.893208
+    },
+    {
+      "text": "nodos",
+      "start": 6.905333,
+      "end": 7.293666
+    },
+    {
+      "text": "móviles",
+      "start": 7.305833,
+      "end": 7.791249
+    },
+    {
+      "text": "y",
+      "start": 7.803416,
+      "end": 7.864082
+    },
+    {
+      "text": "su",
+      "start": 7.876208,
+      "end": 7.985416
+    },
+    {
+      "text": "interferencia",
+      "start": 7.997583,
+      "end": 8.774291
+    },
+    {
+      "text": "La",
+      "start": 9.611666,
+      "end": 9.793707
+    },
+    {
+      "text": "prioridad",
+      "start": 9.805833,
+      "end": 10.315541
+    },
+    {
+      "text": "es",
+      "start": 10.327666,
+      "end": 10.449041
+    },
+    {
+      "text": "medir",
+      "start": 10.461166,
+      "end": 10.752416
+    },
+    {
+      "text": "antes",
+      "start": 10.764583,
+      "end": 11.055833
+    },
+    {
+      "text": "de",
+      "start": 11.067958,
+      "end": 11.128624
+    },
+    {
+      "text": "afirmar",
+      "start": 11.140791,
+      "end": 11.686916
+    }
+  ]
+}

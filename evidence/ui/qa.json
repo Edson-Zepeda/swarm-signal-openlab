@@ -1,0 +1,448 @@
+{
+  "timestamp": "2026-09-09T06:47:05.367Z",
+  "browser": "Isolated Chromium-compatible headless context",
+  "sources": [
+    "http://127.0.0.1:8766",
+    "http://127.0.0.1:8767/swarm-signal-openlab/"
+  ],
+  "checks": [
+    {
+      "name": "API recorded session is real and unlabelled",
+      "passed": true,
+      "detail": {
+        "samples": 233,
+        "status": "Muestreo irregular."
+      }
+    },
+    {
+      "name": "API CSV has all 233 samples",
+      "passed": true,
+      "detail": {
+        "rows": 233
+      }
+    },
+    {
+      "name": "API loss does not keep an alive status",
+      "passed": true,
+      "detail": "Receptor sin conexión"
+    },
+    {
+      "name": "Static subpath fallback loads actual capture",
+      "passed": true,
+      "detail": {
+        "samples": 233,
+        "mode": "Captura grabada"
+      }
+    },
+    {
+      "name": "Static playback, pause and speed",
+      "passed": true,
+      "detail": {
+        "activeCount": 17,
+        "pauseTime": "00:08",
+        "speed": "8x"
+      }
+    },
+    {
+      "name": "Replay uses exact recorded frame classifications",
+      "passed": true,
+      "detail": [
+        {
+          "position": 0,
+          "count": 1,
+          "expected": "SIN VEREDICTO",
+          "actual": "SIN VEREDICTO"
+        },
+        {
+          "position": 50,
+          "count": 12,
+          "expected": "SIN VEREDICTO",
+          "actual": "SIN VEREDICTO"
+        },
+        {
+          "position": 125,
+          "count": 30,
+          "expected": "SEÑAL VARIABLE",
+          "actual": "SEÑAL VARIABLE"
+        },
+        {
+          "position": 250,
+          "count": 60,
+          "expected": "SEÑAL VARIABLE",
+          "actual": "SEÑAL VARIABLE"
+        },
+        {
+          "position": 500,
+          "count": 118,
+          "expected": "SEÑAL VARIABLE",
+          "actual": "SEÑAL VARIABLE"
+        },
+        {
+          "position": 750,
+          "count": 177,
+          "expected": "SEÑAL VARIABLE",
+          "actual": "SEÑAL VARIABLE"
+        },
+        {
+          "position": 1000,
+          "count": 233,
+          "expected": "SIN VEREDICTO",
+          "actual": "SIN VEREDICTO"
+        }
+      ]
+    },
+    {
+      "name": "Static CSV has all real samples",
+      "passed": true,
+      "detail": {
+        "rows": 233
+      }
+    },
+    {
+      "name": "Responsive 320px monitor no overflow and legible",
+      "passed": true,
+      "detail": {
+        "viewport": 320,
+        "pageWidth": 320,
+        "bodyFont": 16,
+        "labelFonts": [
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "axisFonts": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "Responsive 390px monitor no overflow and legible",
+      "passed": true,
+      "detail": {
+        "viewport": 390,
+        "pageWidth": 390,
+        "bodyFont": 16,
+        "labelFonts": [
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "axisFonts": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "Responsive 768px monitor no overflow and legible",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "pageWidth": 768,
+        "bodyFont": 16,
+        "labelFonts": [
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "axisFonts": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "Responsive 1440px monitor no overflow and legible",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "pageWidth": 1440,
+        "bodyFont": 16,
+        "labelFonts": [
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "axisFonts": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ]
+      }
+    },
+    {
+      "name": "Evidence is six verified, two partial, with accessible links",
+      "passed": true,
+      "detail": [
+        {
+          "text": "Informe ↗",
+          "href": "http://127.0.0.1:8767/swarm-signal-openlab/docs/SwarmSignal_Informe.pdf",
+          "status": 200
+        },
+        {
+          "text": "Propuesta ↗",
+          "href": "http://127.0.0.1:8767/swarm-signal-openlab/docs/SwarmSignal_Propuesta.pdf",
+          "status": 200
+        },
+        {
+          "text": "Ver demo →",
+          "href": "http://127.0.0.1:8767/swarm-signal-openlab/demo.html",
+          "status": 200
+        },
+        {
+          "text": "Ver evidencia ↗",
+          "href": "http://127.0.0.1:8767/swarm-signal-openlab/evidence/tutorial/01_environment.json",
+          "status": 200
+        },
+        {
+          "text": "Ver evidencia ↗",
+          "href": "http://127.0.0.1:8767/swarm-signal-openlab/evidence/tutorial/02_netsh.txt",
+          "status": 200
+        },
+        {
+          "text": "Ver evidencia ↗",
+          "href": "http://127.0.0.1:8767/swarm-signal-openlab/evidence/tutorial/03_single_reading.json",
+          "status": 200
+        },
+        {
+          "text": "Ver evidencia ↗",
+          "href": "http://127.0.0.1:8767/swarm-signal-openlab/evidence/tutorial/04_pipeline_15s.json",
+          "status": 200
+        },
+        {
+          "text": "Ver evidencia ↗",
+          "href": "http://127.0.0.1:8767/swarm-signal-openlab/evidence/sessions/20260909T062522_420b46.json",
+          "status": 200
+        },
+        {
+          "text": "Ver evidencia ↗",
+          "href": "http://127.0.0.1:8767/swarm-signal-openlab/evidence/tutorial/06_commodity_backend.json",
+          "status": 200
+        },
+        {
+          "text": "Ver evidencia ↗",
+          "href": "http://127.0.0.1:8767/swarm-signal-openlab/evidence/upstream/verification_summary.json",
+          "status": 200
+        },
+        {
+          "text": "Ver evidencia ↗",
+          "href": "http://127.0.0.1:8767/swarm-signal-openlab/evidence/upstream/verification_summary.json",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "name": "Proposal has drone-specific boundaries",
+      "passed": true,
+      "detail": {
+        "boundedHardwareProposal": true
+      }
+    },
+    {
+      "name": "Responsive 320px evidencia no overflow",
+      "passed": true,
+      "detail": {
+        "viewport": 320,
+        "pageWidth": 320
+      }
+    },
+    {
+      "name": "Responsive 320px propuesta no overflow",
+      "passed": true,
+      "detail": {
+        "viewport": 320,
+        "pageWidth": 320
+      }
+    },
+    {
+      "name": "Responsive 390px evidencia no overflow",
+      "passed": true,
+      "detail": {
+        "viewport": 390,
+        "pageWidth": 390
+      }
+    },
+    {
+      "name": "Responsive 390px propuesta no overflow",
+      "passed": true,
+      "detail": {
+        "viewport": 390,
+        "pageWidth": 390
+      }
+    },
+    {
+      "name": "Responsive 768px evidencia no overflow",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "pageWidth": 768
+      }
+    },
+    {
+      "name": "Responsive 768px propuesta no overflow",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "pageWidth": 768
+      }
+    },
+    {
+      "name": "Keyboard section navigation",
+      "passed": true,
+      "detail": {
+        "navigation": "Tab and Enter"
+      }
+    },
+    {
+      "name": "Axe WCAG monitor",
+      "passed": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "name": "Axe WCAG evidencia",
+      "passed": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "name": "Axe WCAG propuesta",
+      "passed": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "name": "Demo duration, chapter seek, playback and audio track",
+      "passed": true,
+      "detail": {
+        "duration": 104.8,
+        "width": 1920,
+        "height": 1080,
+        "captions": [
+          {
+            "language": "es",
+            "label": "Español"
+          }
+        ],
+        "time": 63.511375,
+        "paused": false,
+        "audioDecodedBytes": 66783,
+        "muted": false,
+        "volume": 1,
+        "videoError": null
+      }
+    },
+    {
+      "name": "Responsive 320px demo no overflow",
+      "passed": true,
+      "detail": {
+        "viewport": 320,
+        "pageWidth": 320
+      }
+    },
+    {
+      "name": "Responsive 390px demo no overflow",
+      "passed": true,
+      "detail": {
+        "viewport": 390,
+        "pageWidth": 390
+      }
+    },
+    {
+      "name": "Responsive 768px demo no overflow",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "pageWidth": 768
+      }
+    },
+    {
+      "name": "Axe WCAG demo",
+      "passed": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "name": "No JavaScript exceptions",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "screenshots": [
+    "evidence\\ui\\monitor-320.png",
+    "evidence\\ui\\monitor-390.png",
+    "evidence\\ui\\monitor-768.png",
+    "evidence\\ui\\monitor-1440.png",
+    "evidence\\ui\\evidence-1440.png",
+    "evidence\\ui\\proposal-1440.png",
+    "evidence\\ui\\evidencia-320.png",
+    "evidence\\ui\\propuesta-320.png",
+    "evidence\\ui\\evidencia-390.png",
+    "evidence\\ui\\propuesta-390.png",
+    "evidence\\ui\\evidencia-768.png",
+    "evidence\\ui\\propuesta-768.png",
+    "evidence\\ui\\demo-1440.png",
+    "evidence\\ui\\demo-320.png",
+    "evidence\\ui\\demo-390.png",
+    "evidence\\ui\\demo-768.png"
+  ],
+  "pageErrors": [],
+  "networkFailures": [],
+  "browserVersion": "152.0.4191.66",
+  "videoMetadata": {
+    "duration": 104.8,
+    "width": 1920,
+    "height": 1080,
+    "captions": [
+      {
+        "language": "es",
+        "label": "Español"
+      }
+    ]
+  },
+  "passed": true,
+  "summary": {
+    "passed": 29,
+    "failed": 0
+  }
+}

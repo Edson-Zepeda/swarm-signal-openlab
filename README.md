@@ -4,7 +4,7 @@ Laboratorio de sensado WiFi para el Open Lab de VantTec. Lee RSSI real en Window
 
 ## Abrir
 
-Windows 10/11, WiFi conectado y Python 3.10+.
+Windows 10/11, WiFi conectado y Python 3.12+. El reto admite 3.10; las versiones fijadas en esta entrega requieren 3.12.
 
 ```powershell
 python -m venv .venv

@@ -24,9 +24,9 @@ print('CommodityBackend -> VerifiedWindowsCollector, 15 s...', flush=True)
 try:
     backend.start()
     time.sleep(15)
-    result = backend.get_result()
 finally:
     backend.stop()
+result = backend.get_result()
 samples = collector.get_samples()
 assert len(samples) >= 4
 assert all(-120 <= s.rssi_dbm <= -1 for s in samples)

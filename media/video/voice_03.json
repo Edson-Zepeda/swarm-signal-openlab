@@ -1,0 +1,138 @@
+{
+  "voice": "es-MX-JorgeNeural",
+  "generated_voice": true,
+  "text_hash": "fbcc78b262ddafb34e39740ac79a4e59146a26e0c4f6f4b674ebb668b1559d5b",
+  "text": "La sesión de ciento veinte segundos reunió 233 lecturas reales. Aquí se recorre su evolución completa. La variación de señal, por sí sola, no prueba movimiento humano.",
+  "words": [
+    {
+      "text": "La",
+      "start": 0.098541,
+      "end": 0.244166
+    },
+    {
+      "text": "sesión",
+      "start": 0.256291,
+      "end": 0.620374
+    },
+    {
+      "text": "de",
+      "start": 0.632541,
+      "end": 0.717499
+    },
+    {
+      "text": "ciento",
+      "start": 0.729625,
+      "end": 1.093708
+    },
+    {
+      "text": "veinte",
+      "start": 1.105833,
+      "end": 1.409249
+    },
+    {
+      "text": "segundos",
+      "start": 1.421375,
+      "end": 1.955375
+    },
+    {
+      "text": "reunió",
+      "start": 1.967458,
+      "end": 2.319416
+    },
+    {
+      "text": "233 lecturas",
+      "start": 2.331541,
+      "end": 4.091249
+    },
+    {
+      "text": "reales",
+      "start": 4.103416,
+      "end": 4.649541
+    },
+    {
+      "text": "Aquí",
+      "start": 5.485416,
+      "end": 5.788832
+    },
+    {
+      "text": "se",
+      "start": 5.800958,
+      "end": 5.946583
+    },
+    {
+      "text": "recorre",
+      "start": 5.95875,
+      "end": 6.35925
+    },
+    {
+      "text": "su",
+      "start": 6.371375,
+      "end": 6.480583
+    },
+    {
+      "text": "evolución",
+      "start": 6.492708,
+      "end": 6.978124
+    },
+    {
+      "text": "completa",
+      "start": 6.990291,
+      "end": 7.536416
+    },
+    {
+      "text": "La",
+      "start": 8.373791,
+      "end": 8.531541
+    },
+    {
+      "text": "variación",
+      "start": 8.543708,
+      "end": 9.004874
+    },
+    {
+      "text": "de",
+      "start": 9.017,
+      "end": 9.089833
+    },
+    {
+      "text": "señal",
+      "start": 9.101958,
+      "end": 9.538833
+    },
+    {
+      "text": "por",
+      "start": 9.757291,
+      "end": 9.927207
+    },
+    {
+      "text": "sí",
+      "start": 9.939333,
+      "end": 10.084958
+    },
+    {
+      "text": "sola",
+      "start": 10.097083,
+      "end": 10.461166
+    },
+    {
+      "text": "no",
+      "start": 10.776708,
+      "end": 10.898083
+    },
+    {
+      "text": "prueba",
+      "start": 10.910208,
+      "end": 11.189333
+    },
+    {
+      "text": "movimiento",
+      "start": 11.201458,
+      "end": 11.759708
+    },
+    {
+      "text": "humano",
+      "start": 11.771833,
+      "end": 12.208708
+    }
+  ]
+}

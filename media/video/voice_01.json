@@ -1,0 +1,118 @@
+{
+  "voice": "es-MX-JorgeNeural",
+  "generated_voice": true,
+  "text_hash": "ef003e7583cdfda9501bc6649de03df2a0f75c62e48f321b685538f02de118b4",
+  "text": "Swarm Signal convierte el Wi-Fi de una laptop en evidencia reproducible. Esta es una reproducción de lecturas reales, sin etiquetas humanas verificadas.",
+  "words": [
+    {
+      "text": "Swarm",
+      "start": 0.098541,
+      "end": 0.486874
+    },
+    {
+      "text": "Signal",
+      "start": 0.499041,
+      "end": 0.863124
+    },
+    {
+      "text": "convierte",
+      "start": 0.87525,
+      "end": 1.348541
+    },
+    {
+      "text": "el",
+      "start": 1.360666,
+      "end": 1.457749
+    },
+    {
+      "text": "Wi-Fi",
+      "start": 1.469916,
+      "end": 1.785457
+    },
+    {
+      "text": "de",
+      "start": 1.797583,
+      "end": 1.918958
+    },
+    {
+      "text": "una",
+      "start": 1.931083,
+      "end": 2.125249
+    },
+    {
+      "text": "laptop",
+      "start": 2.137375,
+      "end": 2.57425
+    },
+    {
+      "text": "en",
+      "start": 2.586416,
+      "end": 2.695624
+    },
+    {
+      "text": "evidencia",
+      "start": 2.70775,
+      "end": 3.205333
+    },
+    {
+      "text": "reproducible",
+      "start": 3.217458,
+      "end": 3.982041
+    },
+    {
+      "text": "Esta",
+      "start": 4.817958,
+      "end": 5.145624
+    },
+    {
+      "text": "es",
+      "start": 5.15775,
+      "end": 5.29125
+    },
+    {
+      "text": "una",
+      "start": 5.303416,
+      "end": 5.473332
+    },
+    {
+      "text": "reproducción",
+      "start": 5.485416,
+      "end": 6.092207
+    },
+    {
+      "text": "de",
+      "start": 6.104375,
+      "end": 6.177208
+    },
+    {
+      "text": "lecturas",
+      "start": 6.189333,
+      "end": 6.674749
+    },
+    {
+      "text": "reales",
+      "start": 6.686875,
+      "end": 7.111625
+    },
+    {
+      "text": "sin",
+      "start": 7.330083,
+      "end": 7.560666
+    },
+    {
+      "text": "etiquetas",
+      "start": 7.572833,
+      "end": 8.118958
+    },
+    {
+      "text": "humanas",
+      "start": 8.131083,
+      "end": 8.543708
+    },
+    {
+      "text": "verificadas",
+      "start": 8.555833,
+      "end": 9.368958
+    }
+  ]
+}

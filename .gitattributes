@@ -1,0 +1,10 @@
+evidence/** -text
+vendor/** -text
+web/evidence/** -text
+*.pdf -text
+*.png -text
+*.jpg -text
+*.mp4 -text
+*.webm -text
+*.mp3 -text
+*.wav -text

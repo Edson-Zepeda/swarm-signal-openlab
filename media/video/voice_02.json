@@ -1,0 +1,118 @@
+{
+  "voice": "es-MX-JorgeNeural",
+  "generated_voice": true,
+  "text_hash": "aedf92725db987b0f9b3c123011e19d846ac755e12eddf54d8d30b2eb8cba991",
+  "text": "El tutorial conecta el recolector con el extractor y Commodity Backend. La primera ventana registró 30 muestras. Son datos observados, no señales inventadas.",
+  "words": [
+    {
+      "text": "El",
+      "start": 0.098541,
+      "end": 0.304832
+    },
+    {
+      "text": "tutorial",
+      "start": 0.317,
+      "end": 0.766041
+    },
+    {
+      "text": "conecta",
+      "start": 0.778166,
+      "end": 1.178666
+    },
+    {
+      "text": "el",
+      "start": 1.190791,
+      "end": 1.263624
+    },
+    {
+      "text": "recolector",
+      "start": 1.275708,
+      "end": 1.858249
+    },
+    {
+      "text": "con",
+      "start": 1.870375,
+      "end": 2.028125
+    },
+    {
+      "text": "el",
+      "start": 2.040291,
+      "end": 2.137374
+    },
+    {
+      "text": "extractor",
+      "start": 2.1495,
+      "end": 2.6835
+    },
+    {
+      "text": "y",
+      "start": 2.695625,
+      "end": 2.756291
+    },
+    {
+      "text": "Commodity",
+      "start": 2.768458,
+      "end": 3.253874
+    },
+    {
+      "text": "Backend",
+      "start": 3.266,
+      "end": 3.787833
+    },
+    {
+      "text": "La",
+      "start": 4.623791,
+      "end": 4.793707
+    },
+    {
+      "text": "primera",
+      "start": 4.805833,
+      "end": 5.133499
+    },
+    {
+      "text": "ventana",
+      "start": 5.145625,
+      "end": 5.618916
+    },
+    {
+      "text": "registró",
+      "start": 5.631083,
+      "end": 6.140791
+    },
+    {
+      "text": "30 muestras",
+      "start": 6.152916,
+      "end": 7.1723329
+    },
+    {
+      "text": "Son",
+      "start": 8.009708,
+      "end": 8.313124
+    },
+    {
+      "text": "datos",
+      "start": 8.32525,
+      "end": 8.628666
+    },
+    {
+      "text": "observados",
+      "start": 8.640791,
+      "end": 9.283999
+    },
+    {
+      "text": "no",
+      "start": 9.502416,
+      "end": 9.672332
+    },
+    {
+      "text": "señales",
+      "start": 9.684458,
+      "end": 10.206291
+    },
+    {
+      "text": "inventadas",
+      "start": 10.218458,
+      "end": 10.970874
+    }
+  ]
+}

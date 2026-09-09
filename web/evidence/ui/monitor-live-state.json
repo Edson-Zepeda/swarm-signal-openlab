@@ -1,0 +1,785 @@
+{
+  "mode": "live",
+  "status": "collecting",
+  "error": null,
+  "session": {
+    "id": "20260909T064317_318983",
+    "label": "Monitor en vivo",
+    "started_at": "2026-09-09T00:43:17.819686-06:00",
+    "duration_seconds": 60,
+    "ground_truth": "unconfirmed",
+    "ground_truth_source": "not_observed"
+  },
+  "samples": [
+    {
+      "timestamp": 1788936198.4836235,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936198.961018,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936199.4789333,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936199.9913034,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936200.4977932,
+      "rssi_dbm": -62.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936200.9995306,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936201.520531,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936202.0199637,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936202.5207963,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936203.0111463,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936203.5263064,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936204.0329115,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936204.5346184,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936205.0641074,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936205.5889382,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936206.0654845,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936206.5531735,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936207.0582469,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936207.562204,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936208.0765784,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936208.6091304,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936209.1120005,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936209.6341164,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936210.1393974,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936210.6455488,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936211.1895614,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936211.63983,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936212.1431632,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936212.6372085,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936213.154683,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936213.6695406,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936214.1781175,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936214.6755807,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936215.1958995,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936215.6998186,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936216.207348,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936216.7067783,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936217.2383573,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936217.7106645,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936218.2271717,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936218.7292738,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936219.2370515,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936219.7430975,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936220.2479174,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936220.7683315,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936221.326527,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936221.796311,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936222.2933352,
+      "rssi_dbm": -58.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936222.8116734,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936223.3473873,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936223.8594263,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936224.387051,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936225.135495,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936225.642793,
+      "rssi_dbm": -62.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936226.0553226,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936226.5319378,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936227.036272,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936227.523886,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936228.0226874,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936228.5266716,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936229.0509706,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936229.5694706,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936230.0691214,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936230.6135044,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936231.086564,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936231.5857248,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936232.1199243,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936232.6207135,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936233.0982969,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936233.629839,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936234.0861242,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936234.610221,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936235.1203346,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936235.638829,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936236.1527052,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936236.681258,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936237.1672616,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936237.7080338,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936238.187203,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936238.7049718,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936239.2191508,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936239.7454438,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936240.2551334,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936240.7540708,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936241.2692416,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936241.7609718,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936242.304113,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936242.8065853,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936243.3012097,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936243.8008268,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936244.306257,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936244.8278766,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936245.3448231,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936245.862549,
+      "rssi_dbm": -59.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936246.3671575,
+      "rssi_dbm": -61.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788936246.8855243,
+      "rssi_dbm": -60.0,
+      "quality": 1.0,
+      "phase": "unconfirmed"
+    }
+  ],
+  "thresholds": {
+    "variance": 0.3,
+    "motion": 0.1
+  },
+  "features": {
+    "mean": -59.8,
+    "variance": 0.5103448275862068,
+    "std": 0.7143842296595067,
+    "skewness": -0.31617260920833834,
+    "kurtosis": -0.9112201004092837,
+    "range": 2.0,
+    "iqr": 1.0,
+    "dominant_freq_hz": 0.45827238190289477,
+    "breathing_band_power": 0.6681079133509543,
+    "motion_band_power": 0.7224335555423261,
+    "total_spectral_power": 1.666875165253233,
+    "change_points": [
+      4
+    ],
+    "n_change_points": 1,
+    "n_samples": 30,
+    "duration_seconds": 14.765599966049194,
+    "sample_rate_hz": 1.9640244938695492
+  },
+  "classification": {
+    "motion_level": "active",
+    "confidence": 1.0,
+    "presence_detected": true,
+    "rssi_variance": 0.5103448275862068,
+    "motion_band_energy": 0.7224335555423261,
+    "breathing_band_energy": 0.6681079133509543,
+    "n_change_points": 1,
+    "details": "var=0.5103 (thresh=0.3), motion_energy=0.7224 (thresh=0.1), breathing_energy=0.6681, change_points=1"
+  },
+  "spectrum": [
+    {
+      "hz": 0.06546748312898497,
+      "power": 0.2763336963599524
+    },
+    {
+      "hz": 0.13093496625796994,
+      "power": 0.03262644911728573
+    },
+    {
+      "hz": 0.1964024493869549,
+      "power": 0.0009955438824681493
+    },
+    {
+      "hz": 0.2618699325159399,
+      "power": 0.027792401339045793
+    },
+    {
+      "hz": 0.32733741564492486,
+      "power": 0.08827520390210428
+    },
+    {
+      "hz": 0.3928048987739098,
+      "power": 0.19105459138839204
+    },
+    {
+      "hz": 0.45827238190289477,
+      "power": 0.3273637237216583
+    },
+    {
+      "hz": 0.5237398650318797,
+      "power": 0.08429493075220161
+    },
+    {
+      "hz": 0.5892073481608647,
+      "power": 0.21531422297427677
+    },
+    {
+      "hz": 0.6546748312898497,
+      "power": 0.3015227852780422
+    },
+    {
+      "hz": 0.7201423144188347,
+      "power": 0.021022006713384514
+    },
+    {
+      "hz": 0.7856097975478196,
+      "power": 0.09131557320001364
+    },
+    {
+      "hz": 0.8510772806768045,
+      "power": 0.0043324728977921665
+    },
+    {
+      "hz": 0.9165447638057895,
+      "power": 0.0030782474506040993
+    },
+    {
+      "hz": 0.9820122469347745,
+      "power": 0.0015533162760113964
+    }
+  ],
+  "quality": {
+    "ready": true,
+    "nyquist_hz": 0.9820122469347746,
+    "max_gap_seconds": 0.5431411266326904,
+    "jitter_cv": 0.03693544530439149,
+    "full_window": true,
+    "reason": null
+  },
+  "capabilities": [
+    "MOTION",
+    "PRESENCE"
+  ],
+  "frames": [],
+  "sessions": [
+    {
+      "id": "20260909T063702_da2614",
+      "label": "Validacion del monitor en vivo",
+      "started_at": "2026-09-09T00:37:02.954416-06:00",
+      "duration_seconds": 60,
+      "ground_truth": "unconfirmed",
+      "ground_truth_source": "not_observed",
+      "stopped_at": "2026-09-09T00:38:06.246427-06:00",
+      "samples": 43
+    },
+    {
+      "id": "20260909T062522_420b46",
+      "label": "Observacion ambiental",
+      "started_at": "2026-09-09T00:25:22.734256-06:00",
+      "duration_seconds": 120,
+      "ground_truth": "unconfirmed",
+      "ground_truth_source": "not_observed",
+      "stopped_at": "2026-09-09T00:27:23.132699-06:00",
+      "samples": 233
+    }
+  ],
+  "evidence": {
+    "stages": [
+      {
+        "id": "01",
+        "title": "Entorno reproducible",
+        "status": "complete",
+        "summary": "Python y RuView fijados por versión.",
+        "artifact_url": "evidence/tutorial/01_environment.json"
+      },
+      {
+        "id": "02",
+        "title": "Conexión WiFi",
+        "status": "complete",
+        "summary": "Adaptador real conectado; identificadores omitidos.",
+        "artifact_url": "evidence/tutorial/02_netsh.txt"
+      },
+      {
+        "id": "03",
+        "title": "Lectura individual",
+        "status": "complete",
+        "summary": "−60 dBm con WindowsWifiCollector.",
+        "artifact_url": "evidence/tutorial/03_single_reading.json"
+      },
+      {
+        "id": "04",
+        "title": "Pipeline de 15 s",
+        "status": "complete",
+        "summary": "30 muestras · 1.99 Hz · salida active.",
+        "artifact_url": "evidence/tutorial/04_pipeline_15s.json"
+      },
+      {
+        "id": "05",
+        "title": "Monitor y movimiento",
+        "status": "partial",
+        "summary": "Monitor con RSSI real. Cruce humano pendiente de confirmar.",
+        "artifact_url": "evidence/sessions/20260909T062522_420b46.json"
+      },
+      {
+        "id": "06",
+        "title": "CommodityBackend",
+        "status": "complete",
+        "summary": "Integración propia con el colector validado.",
+        "artifact_url": "evidence/tutorial/06_commodity_backend.json"
+      },
+      {
+        "id": "07",
+        "title": "Pruebas",
+        "status": "complete",
+        "summary": "45 unitarias + 5 de hardware + 31 propias.",
+        "artifact_url": "evidence/upstream/verification_summary.json"
+      },
+      {
+        "id": "08",
+        "title": "Verificación determinística",
+        "status": "partial",
+        "summary": "CSI: hash exacto. ./verify ampliado: error HTTP 403 y 3 omisiones.",
+        "artifact_url": "evidence/upstream/verification_summary.json"
+      }
+    ],
+    "movement_ground_truth": "unconfirmed",
+    "own_tests_passed": 31,
+    "advanced": "Pendiente de repositorio y tutorial asignados por VantTec."
+  }
+}

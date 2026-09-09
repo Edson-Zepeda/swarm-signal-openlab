@@ -7,7 +7,9 @@ if (-not (Test-Path -LiteralPath $projectPython)) {
     } else {
         & python -m venv .venv
     }
-    if ($LASTEXITCODE -ne 0) { throw 'Instala Python 3.10 o superior y vuelve a ejecutar.' }
+    if ($LASTEXITCODE -ne 0) { throw 'Instala Python 3.12 o superior y vuelve a ejecutar.' }
+    & $projectPython -c "import sys; assert sys.version_info >= (3, 12), 'Se requiere Python 3.12 o superior'"
+    if ($LASTEXITCODE -ne 0) { throw 'Se requiere Python 3.12 o superior.' }
     & $projectPython -m pip install -r requirements.txt
     if ($LASTEXITCODE -ne 0) { throw 'No se pudieron instalar las dependencias.' }
 }

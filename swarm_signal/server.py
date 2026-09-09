@@ -39,6 +39,7 @@ class Lab:
         self.stopping = False
         self.error = None
         self.timer = None
+        self.replay_frames = []
 
     def sessions(self):
         result = []
@@ -67,6 +68,7 @@ class Lab:
                             'duration_seconds': duration_seconds, 'ground_truth': ground_truth,
                             'ground_truth_source': 'operator_label' if ground_truth != 'unconfirmed' else 'not_observed'}
             self.rows = []
+            self.replay_frames = []
             self.error = None
             ident = self.session['id']
             self.collector = VerifiedWindowsCollector(on_sample=lambda sample: self.append(sample, ident))
@@ -103,6 +105,8 @@ class Lab:
             if collector:
                 collector.stop()
             with self.lock:
+                recorded = from_rows(self.rows)
+                self.replay_frames = [{'index': i, **analyze(recorded[:i+1])} for i in range(len(recorded))]
                 state = self.snapshot()
                 state['session']['stopped_at'] = datetime.now(timezone.utc).isoformat()
                 state['capture_diagnostics'] = {
@@ -122,6 +126,12 @@ class Lab:
                 if available:
                     saved = self.saved(available[0]['id'])
                     saved.update(mode='replay', status='ready', sessions=available)
+                    stagefile = ROOT / 'web' / 'data' / 'evidence.json'
+                    if stagefile.exists():
+                        saved['evidence'] = json.loads(stagefile.read_text(encoding='utf-8'))
+                    if not saved.get('frames'):
+                        recorded = from_rows(saved['samples'])
+                        saved['frames'] = [{'index':i, **analyze(recorded[:i+1])} for i in range(len(recorded))]
                     return saved
             rows = list(self.rows)
             error = self.error or (self.collector.last_error if self.collector else None)
@@ -135,6 +145,7 @@ class Lab:
                     'status': 'error' if error else ('collecting' if self.active else ('ready' if rows else 'idle')),
                     'error': error, 'session': dict(self.session) if self.session else None,
                     'samples': rows, 'thresholds': THRESHOLDS, **calculated,
+                    'frames': self.replay_frames if not self.active else [],
                     'sessions': self.sessions(), 'evidence': evidence}
 
 
