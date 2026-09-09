@@ -1,0 +1,244 @@
+{
+  "timestamp": "2026-09-09T07:58:51.966Z",
+  "url": "https://edson-zepeda.github.io/swarm-signal-openlab/",
+  "authentication": "Fresh browser context; no account, stored cookies or user profile.",
+  "checks": [
+    {
+      "name": "Anonymous public dashboard is reachable",
+      "passed": true,
+      "detail": {
+        "finalUrl": "https://edson-zepeda.github.io/swarm-signal-openlab/",
+        "status": 200,
+        "title": "SWARM SIGNAL — Observatorio Wi-Fi",
+        "samples": 233,
+        "frames": 233
+      }
+    },
+    {
+      "name": "Published replay advances, pauses and seeks actual frames",
+      "passed": true,
+      "detail": {
+        "progressed": 13,
+        "paused": "00:07",
+        "inspected": [
+          {
+            "position": 250,
+            "count": 60,
+            "classification": "SIN VEREDICTO"
+          },
+          {
+            "position": 500,
+            "count": 118,
+            "classification": "SEÑAL VARIABLE"
+          },
+          {
+            "position": 1000,
+            "count": 233,
+            "classification": "SIN VEREDICTO"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Published CSV contains 233 rows",
+      "passed": true,
+      "detail": {
+        "rows": 233
+      }
+    },
+    {
+      "name": "Published comparison preserves actual capture denominators",
+      "passed": true,
+      "detail": [
+        {
+          "label": "Referencia de 120 s",
+          "samples": 233,
+          "valid": 3,
+          "eligible": 8
+        },
+        {
+          "label": "Carga simultánea de CPU",
+          "samples": 43,
+          "valid": 0,
+          "eligible": 3
+        },
+        {
+          "label": "Captura de 60 s",
+          "samples": 118,
+          "valid": 2,
+          "eligible": 4
+        }
+      ]
+    },
+    {
+      "name": "Published delivery and local setup are discoverable",
+      "passed": true,
+      "detail": {
+        "deliveryLinks": 5,
+        "setup": "Iniciar.cmd"
+      }
+    },
+    {
+      "name": "Published evidence and PDF links work",
+      "passed": true,
+      "detail": [
+        {
+          "text": "Informe ↗",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/docs/SwarmSignal_Informe.pdf",
+          "status": 200,
+          "contentType": "application/pdf"
+        },
+        {
+          "text": "Propuesta ↗",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/docs/SwarmSignal_Propuesta.pdf",
+          "status": 200,
+          "contentType": "application/pdf"
+        },
+        {
+          "text": "Ver demo →",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/demo.html",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8"
+        },
+        {
+          "text": "Ver evidencia ↗",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/evidence/tutorial/01_environment.json",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8"
+        },
+        {
+          "text": "Ver evidencia ↗",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/evidence/tutorial/02_netsh.txt",
+          "status": 200,
+          "contentType": "text/plain; charset=utf-8"
+        },
+        {
+          "text": "Ver evidencia ↗",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/evidence/tutorial/03_single_reading.json",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8"
+        },
+        {
+          "text": "Ver evidencia ↗",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/evidence/tutorial/04_pipeline_15s.json",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8"
+        },
+        {
+          "text": "",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/evidence/ui/monitor-live.png",
+          "status": 200,
+          "contentType": "image/png"
+        },
+        {
+          "text": "Captura del monitor ↗",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/evidence/ui/monitor-live.png",
+          "status": 200,
+          "contentType": "image/png"
+        },
+        {
+          "text": "Datos de la captura ↗",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/evidence/ui/monitor-live-state.json",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8"
+        },
+        {
+          "text": "Código de integración ↗",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/code/check_backend.py",
+          "status": 200,
+          "contentType": "application/octet-stream"
+        },
+        {
+          "text": "Pruebas originales ↗",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/evidence/upstream/verification_summary.json",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8"
+        },
+        {
+          "text": "Pruebas de la revisión ↗",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/evidence/revision/own_tests.xml",
+          "status": 200,
+          "contentType": "application/xml"
+        },
+        {
+          "text": "Ejecución actual ↗",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/evidence/revision/verify_identified.log",
+          "status": 200,
+          "contentType": "text/plain; charset=utf-8"
+        },
+        {
+          "text": "Fallo inicial conservado ↗",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/evidence/upstream/03_verify_original_shell.log",
+          "status": 200,
+          "contentType": "text/plain; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "name": "Published demo plays with audio, chapters and subtitles",
+      "passed": true,
+      "detail": {
+        "duration": 108.3,
+        "width": 1920,
+        "height": 1080,
+        "subtitles": [
+          "es"
+        ],
+        "chapters": [
+          0,
+          10.2666666667,
+          22.2333333333,
+          34.3666666667,
+          46.9,
+          57.9,
+          68.7666666667,
+          80.6,
+          96.4333333333
+        ],
+        "currentTime": 48.708745,
+        "paused": false,
+        "decodedAudioBytes": 116690,
+        "muted": false,
+        "error": null
+      }
+    },
+    {
+      "name": "Published mobile pages have no horizontal overflow",
+      "passed": true,
+      "detail": [
+        {
+          "page": "dashboard",
+          "viewport": 390,
+          "pageWidth": 390
+        },
+        {
+          "page": "demo.html",
+          "viewport": 390,
+          "pageWidth": 390
+        }
+      ]
+    },
+    {
+      "name": "No JavaScript errors or unexpected console failures",
+      "passed": true,
+      "detail": {
+        "javascriptErrors": 0,
+        "unexpectedConsoleErrors": 0,
+        "publicApiProbes": 0
+      }
+    }
+  ],
+  "consoleErrors": [],
+  "javascriptErrors": [],
+  "apiRequests": [],
+  "screenshots": [
+    "evidence\\revision\\ui\\public-monitor.png",
+    "evidence\\revision\\ui\\public-demo.png"
+  ],
+  "browserVersion": "152.0.4191.66",
+  "passed": true,
+  "summary": {
+    "passed": 9,
+    "failed": 0
+  }
+}
