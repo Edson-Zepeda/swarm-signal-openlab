@@ -1,0 +1,23 @@
+UTC START: 2026-09-09T06:20:06.945734+00:00
+CWD: C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView
+ARGV: ["curl.exe", "-sS", "-D", "-", "--max-time", "20", "https://crates.io/api/v1/crates/wifi-densepose-core"]
+ENV OVERRIDES: {}
+NOTE: Read-only HTTP diagnostic for first crate. 403 must not be represented as proof that a crate does not exist.
+--- RAW COMBINED STDOUT/STDERR ---
+HTTP/1.1 403 Forbidden
+Connection: keep-alive
+cache-control: private, no-store
+Accept-Ranges: bytes
+Date: Wed, 09 Sep 2026 06:20:08 GMT
+Via: 1.1 varnish
+X-Served-By: cache-qro-mmqt1070054-QRO, cache-qro-mmqt1070058-QRO
+X-Cache: MISS
+X-Cache-Hits: 0
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+transfer-encoding: chunked
+
+
+--- END RAW OUTPUT ---
+UTC END: 2026-09-09T06:20:07.093228+00:00
+EXIT CODE: 0
+TIMED OUT: False

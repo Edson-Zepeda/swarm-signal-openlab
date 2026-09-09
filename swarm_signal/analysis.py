@@ -49,12 +49,16 @@ def analyze(samples):
     classification = asdict(result)
     classification['motion_level'] = result.motion_level.value
     jitter = float(np.std(dt) / np.mean(dt))
-    return {'features': asdict(features), 'classification': classification,
+    full = features.duration_seconds >= 14
+    reliable = full and float(np.max(dt)) <= 2.0 and jitter <= .25
+    reason = ('Completando ventana de 15 s' if not full else
+              ('Pérdida de muestras' if float(np.max(dt)) > 2 else
+               ('Muestreo irregular' if jitter > .25 else None)))
+    return {'features': asdict(features), 'classification': classification if reliable else None,
             'spectrum': [{'hz': float(f), 'power': float(p)} for f, p in zip(hz[1:], spectrum[1:])],
-            'quality': {'ready': True, 'nyquist_hz': features.sample_rate_hz / 2,
+            'quality': {'ready': reliable, 'nyquist_hz': features.sample_rate_hz / 2,
                         'max_gap_seconds': float(np.max(dt)), 'jitter_cv': jitter,
-                        'full_window': features.duration_seconds >= 14,
-                        'reason': 'Muestreo irregular' if jitter > 0.25 else None},
+                        'full_window': full, 'reason': reason},
             'capabilities': sorted(c.name for c in backend.get_capabilities())}
 
 

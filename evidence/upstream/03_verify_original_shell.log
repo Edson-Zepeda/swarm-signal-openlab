@@ -1,0 +1,156 @@
+UTC START: 2026-09-09T06:18:51.629932+00:00
+CWD: C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView
+ARGV: ["C:\\Program Files\\Git\\bin\\bash.exe", "-c", "./verify"]
+ENV OVERRIDES: {}
+NOTE: Exact ./verify under installed Git Bash; no upstream modifications.
+--- RAW COMBINED STDOUT/STDERR ---
+
+======================================================================
+  WiFi-DensePose / RuView — Trust Kill Switch (multi-layer proof)
+======================================================================
+  python: Python 3.11.9
+  repo:   /c/Users/Lenovo/Documents/Codex/2026-09-04/real/work/swarm/RuView
+  HEAD:   d613a57
+
+[PHASE 1] Python signal-processing pipeline (SHA-256 round-trip)
+
+========================================================================
+  WiFi-DensePose: Trust Kill Switch -- Pipeline Proof Replay
+========================================================================
+
+  "If the public demo is a one-command replay that produces a matching
+   hash from a published real capture, 'it is mocked' becomes a
+   measurable claim that fails."
+
+[0/4] SOURCE PROVENANCE
+  SOURCE PROVENANCE (verify these are production modules):
+    CSIProcessor : C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView\archive\v1\src\core\csi_processor.py
+    CSIData      : C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView\archive\v1\src\hardware\csi_extractor.py
+    CSIFeatures  : C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView\archive\v1\src\core\csi_processor.py
+    numpy        : C:\Users\Lenovo\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\numpy\__init__.py
+    numpy version: 2.3.4
+    scipy        : C:\Users\Lenovo\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\scipy\__init__.py
+    scipy version: 1.16.2
+
+[1/4] LOADING REFERENCE SIGNAL
+    Path: C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView\archive\v1\data\proof\sample_csi_data.json
+    Size: 10,745,444 bytes
+
+[2/4] PROCESSING THROUGH PRODUCTION PIPELINE
+    This runs the SAME CSIProcessor.preprocess_csi_data() and
+    CSIProcessor.extract_features() used in production.
+
+    Reference signal: sample_csi_data.json
+    Signal description: SYNTHETIC deterministic CSI reference signal for pipeline verification. This is NOT a real WiFi capture. Generated mathematically with known parameters for reproducibility testing.
+    Generator: generate_reference_signal.py v1.0.0
+    Numpy seed used: 42
+    Total frames in file: 1000
+    Frames to process: 100
+    Subcarriers: 56
+    Antennas: 3
+    Frequency: 5.210 GHz
+    Bandwidth: 17.5 MHz
+    Sampling rate: 100 Hz
+
+    Configuring CSIProcessor with production parameters...
+    Window size: 56
+    Overlap: 0.5
+    Noise threshold: -60 dB
+    Preprocessing: ENABLED
+    Feature extraction: ENABLED
+
+    Processing complete.
+    Frames processed: 100
+    Feature vectors extracted: 100
+    Total feature bytes hashed: 243,200
+    Processing time: 0.0360s (2780 frames/sec)
+
+    FEATURE VECTOR DETAILS (from last frame):
+      amplitude_mean      : shape=(56,), min=0.267829, max=2.428930, mean=1.461506
+      amplitude_variance   : shape=(56,), min=0.006220, max=1.507347
+      phase_difference     : shape=(55,), mean=-0.014487
+      correlation_matrix   : shape=(3, 3)
+      doppler_shift        : shape=(64,), non-zero bins=64/64
+      power_spectral_density: shape=(128,)
+
+[3/4] SHA-256 HASH COMPARISON
+    Computed: f8e76f21a0f9852b70b6d9dd5318239f6b20cbcb4cdd995863263cecdc446f7a
+    Expected: f8e76f21a0f9852b70b6d9dd5318239f6b20cbcb4cdd995863263cecdc446f7a
+    Status:   MATCH (bit-exact)
+
+[4/4] CODEBASE AUDIT (skipped -- use --audit to enable)
+
+========================================================================
+  VERDICT: PASS
+
+  The pipeline produced a SHA-256 hash that matches the published
+  expected hash (bit-exact). This proves:
+    1. The SAME signal processing code ran on the reference signal
+    2. The output is DETERMINISTIC (same input -> same output)
+    3. No randomness was introduced
+    4. The code path includes: noise removal, Hamming windowing,
+       amplitude normalization, FFT-based Doppler extraction,
+       and power spectral density computation
+
+  Pipeline hash: f8e76f21a0f9852b70b6d9dd5318239f6b20cbcb4cdd995863263cecdc446f7a
+========================================================================
+
+[PHASE 2] Production-code mock scan (np.random.rand / np.random.randn)
+
+
+[PHASE 3] Rust workspace tests (cargo test --workspace --no-default-features)
+
+
+[PHASE 4] PyO3 BFLD binding (cargo check -p wifi-densepose-py)
+
+
+[PHASE 5] ADR-125 §2.1.d invariant — identity_risk_score never crosses HAP/MCP boundary
+
+
+[PHASE 6] Published crates.io packages
+
+    miss wifi-densepose-core
+    miss wifi-densepose-signal
+    miss wifi-densepose-sensing-server
+    miss wifi-densepose-hardware
+    miss wifi-densepose-nn
+    miss wifi-densepose-bfld
+    miss wifi-densepose-vitals
+    miss wifi-densepose-wifiscan
+    miss wifi-densepose-train
+    miss cog-ha-matter
+    miss cog-person-count
+    miss cog-pose-estimation
+
+[PHASE 7] Published npm packages (@ruvnet/rvagent)
+
+    @ruvnet/rvagent  0.2.0
+
+[PHASE 8] Docker Hub multi-arch manifest (ruvnet/wifi-densepose:latest)
+
+    archs: amd64,arm64
+
+[PHASE 9] HOMECORE binary in Docker image (homecore-server --help)
+
+
+======================================================================
+  SUMMARY (HEAD d613a57)
+
+  PASS  Phase 1: v1 pipeline hash matches expected
+  PASS  Phase 2: no random generators in production code
+  SKIP  Phase 3: cargo or v2/ not present
+  SKIP  Phase 4: cargo or python/ not present
+  PASS  Phase 5: identity_risk_score is None at every gateway script
+  FAIL  Phase 6: 12 of 12 crates missing
+  PASS  Phase 7: @ruvnet/rvagent v0.2.0 on npm
+  PASS  Phase 8: multi-arch manifest (amd64 + arm64) live
+  SKIP  Phase 9: docker pull or run unavailable
+
+  OVERALL: FAIL — at least one phase did not match its published evidence.
+
+======================================================================
+
+--- END RAW OUTPUT ---
+UTC END: 2026-09-09T06:19:16.629067+00:00
+EXIT CODE: 1
+TIMED OUT: False

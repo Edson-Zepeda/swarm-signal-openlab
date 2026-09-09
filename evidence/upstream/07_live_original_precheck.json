@@ -1,0 +1,26 @@
+{
+  "label": "07_live_original_precheck",
+  "started_at_utc": "2026-09-09T06:20:57.421164+00:00",
+  "ended_at_utc": "2026-09-09T06:20:59.868450+00:00",
+  "argv": [
+    "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "archive/v1/tests/integration/test_windows_live_sensing.py",
+    "-v",
+    "-o",
+    "addopts=",
+    "-s",
+    "--junitxml=C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\outputs\\SwarmSignal\\evidence\\upstream\\live_original.xml"
+  ],
+  "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+  "env_overrides": {
+    "PYTHONPATH": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView\\archive"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "duration_seconds": 2.4529999999999745,
+  "log": "07_live_original_precheck.log",
+  "log_sha256": "27db5e1874d1e416c53e94db5057c6c7c619858128adae56af968350d10bbcbc",
+  "note": "Original English-only Wi-Fi precheck retained; actual Spanish Windows connection may skip."
+}

@@ -1,0 +1,25 @@
+{
+  "label": "04_unit_archive_pythonpath",
+  "started_at_utc": "2026-09-09T06:19:08.069222+00:00",
+  "ended_at_utc": "2026-09-09T06:19:10.871675+00:00",
+  "argv": [
+    "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "archive/v1/tests/unit/test_sensing.py",
+    "-v",
+    "-o",
+    "addopts=",
+    "--junitxml=C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\outputs\\SwarmSignal\\evidence\\upstream\\unit.xml"
+  ],
+  "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+  "env_overrides": {
+    "PYTHONPATH": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView\\archive"
+  },
+  "exit_code": 0,
+  "timed_out": false,
+  "duration_seconds": 2.7970000000000255,
+  "log": "04_unit_archive_pythonpath.log",
+  "log_sha256": "8e6f0f03d26ed7de4e9556ae2358820054f7eb71f4ad9d40434f143e8f45d190",
+  "note": "Only import root adapted for archived v1 location; source tests unchanged."
+}

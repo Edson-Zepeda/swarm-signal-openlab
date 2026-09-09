@@ -1,0 +1,109 @@
+UTC START: 2026-09-09T06:19:10.873674+00:00
+CWD: C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView
+ARGV: ["C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe", "archive/v1/data/proof/verify.py", "--verbose", "--audit"]
+ENV OVERRIDES: {}
+NOTE: Original committed verifier, synthetic reference, hash and tolerance vector; no regenerated expectations.
+--- RAW COMBINED STDOUT/STDERR ---
+========================================================================
+  WiFi-DensePose: Trust Kill Switch -- Pipeline Proof Replay
+========================================================================
+
+  "If the public demo is a one-command replay that produces a matching
+   hash from a published real capture, 'it is mocked' becomes a
+   measurable claim that fails."
+
+[0/4] SOURCE PROVENANCE
+  SOURCE PROVENANCE (verify these are production modules):
+    CSIProcessor : C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView\archive\v1\src\core\csi_processor.py
+    CSIData      : C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView\archive\v1\src\hardware\csi_extractor.py
+    CSIFeatures  : C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView\archive\v1\src\core\csi_processor.py
+    numpy        : C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\venv\Lib\site-packages\numpy\__init__.py
+    numpy version: 2.5.3
+    scipy        : C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\venv\Lib\site-packages\scipy\__init__.py
+    scipy version: 1.18.1
+
+[1/4] LOADING REFERENCE SIGNAL
+    Path: C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView\archive\v1\data\proof\sample_csi_data.json
+    Size: 10,745,444 bytes
+
+[2/4] PROCESSING THROUGH PRODUCTION PIPELINE
+    This runs the SAME CSIProcessor.preprocess_csi_data() and
+    CSIProcessor.extract_features() used in production.
+
+    Reference signal: sample_csi_data.json
+    Signal description: SYNTHETIC deterministic CSI reference signal for pipeline verification. This is NOT a real WiFi capture. Generated mathematically with known parameters for reproducibility testing.
+    Generator: generate_reference_signal.py v1.0.0
+    Numpy seed used: 42
+    Total frames in file: 1000
+    Frames to process: 100
+    Subcarriers: 56
+    Antennas: 3
+    Frequency: 5.210 GHz
+    Bandwidth: 17.5 MHz
+    Sampling rate: 100 Hz
+
+    Configuring CSIProcessor with production parameters...
+    Window size: 56
+    Overlap: 0.5
+    Noise threshold: -60 dB
+    Preprocessing: ENABLED
+    Feature extraction: ENABLED
+
+      ... processed frame 25/100
+      ... processed frame 50/100
+      ... processed frame 75/100
+      ... processed frame 100/100
+    Processing complete.
+    Frames processed: 100
+    Feature vectors extracted: 100
+    Total feature bytes hashed: 243,200
+    Processing time: 0.0428s (2337 frames/sec)
+
+    FEATURE VECTOR DETAILS (from last frame):
+      amplitude_mean      : shape=(56,), min=0.267829, max=2.428930, mean=1.461506
+      amplitude_variance   : shape=(56,), min=0.006220, max=1.507347
+      phase_difference     : shape=(55,), mean=-0.014487
+      correlation_matrix   : shape=(3, 3)
+      doppler_shift        : shape=(64,), non-zero bins=64/64
+      power_spectral_density: shape=(128,)
+
+    DOPPLER SPECTRUM (proves real FFT, not random):
+      First 8 bins: [0.002887   0.00741854 0.00889146 0.00119542 0.0210992  0.01746317
+ 0.0339942  0.00077576]
+      Sum: 13.870348
+      Max bin index: 24
+      Spectral entropy: 16.6885
+
+    PSD DETAILS (proves scipy.fft, not random):
+      First 8 bins: [27931.12803201   112.02342643  4335.3050085     52.58351628
+   341.92251313   539.86082311   201.1907396     78.29362268]
+      Total power: 39302.7096
+      Peak frequency bin: 0
+
+[3/4] SHA-256 HASH COMPARISON
+    Computed: f8e76f21a0f9852b70b6d9dd5318239f6b20cbcb4cdd995863263cecdc446f7a
+    Expected: f8e76f21a0f9852b70b6d9dd5318239f6b20cbcb4cdd995863263cecdc446f7a
+    Status:   MATCH (bit-exact)
+
+[4/4] CODEBASE AUDIT -- scanning for mock/random patterns
+    CLEAN -- no mock/random patterns found in production code.
+
+========================================================================
+  VERDICT: PASS
+
+  The pipeline produced a SHA-256 hash that matches the published
+  expected hash (bit-exact). This proves:
+    1. The SAME signal processing code ran on the reference signal
+    2. The output is DETERMINISTIC (same input -> same output)
+    3. No randomness was introduced
+    4. The code path includes: noise removal, Hamming windowing,
+       amplitude normalization, FFT-based Doppler extraction,
+       and power spectral density computation
+
+  Pipeline hash: f8e76f21a0f9852b70b6d9dd5318239f6b20cbcb4cdd995863263cecdc446f7a
+========================================================================
+
+--- END RAW OUTPUT ---
+UTC END: 2026-09-09T06:19:13.042149+00:00
+EXIT CODE: 0
+TIMED OUT: False

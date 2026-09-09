@@ -1,0 +1,33 @@
+UTC START: 2026-09-09T06:20:57.421164+00:00
+CWD: C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView
+ARGV: ["C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe", "-m", "pytest", "archive/v1/tests/integration/test_windows_live_sensing.py", "-v", "-o", "addopts=", "-s", "--junitxml=C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\outputs\\SwarmSignal\\evidence\\upstream\\live_original.xml"]
+ENV OVERRIDES: {"PYTHONPATH": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView\\archive"}
+NOTE: Original English-only Wi-Fi precheck retained; actual Spanish Windows connection may skip.
+--- RAW COMBINED STDOUT/STDERR ---
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView
+configfile: pyproject.toml
+collecting ... collected 5 items
+
+archive/v1/tests/integration/test_windows_live_sensing.py::TestWindowsWifiCollectorLive::test_collect_once_returns_valid_sample SKIPPED
+archive/v1/tests/integration/test_windows_live_sensing.py::TestWindowsWifiCollectorLive::test_collect_multiple_samples_over_time SKIPPED
+archive/v1/tests/integration/test_windows_live_sensing.py::TestWindowsWifiCollectorLive::test_rssi_varies_between_samples SKIPPED
+archive/v1/tests/integration/test_windows_live_sensing.py::TestFullPipelineLive::test_full_pipeline_produces_sensing_result SKIPPED
+archive/v1/tests/integration/test_windows_live_sensing.py::TestFullPipelineLive::test_commodity_backend_with_windows_collector SKIPPED
+
+============================== warnings summary ===============================
+..\venv\Lib\site-packages\_pytest\config\__init__.py:1464
+  C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\venv\Lib\site-packages\_pytest\config\__init__.py:1464: PytestConfigWarning: Unknown config option: asyncio_mode
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\Lenovo\Documents\Codex\2026-09-04\real\outputs\SwarmSignal\evidence\upstream\live_original.xml -
+======================== 5 skipped, 1 warning in 1.78s ========================
+
+--- END RAW OUTPUT ---
+UTC END: 2026-09-09T06:20:59.868450+00:00
+EXIT CODE: 0
+TIMED OUT: False

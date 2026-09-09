@@ -21,12 +21,19 @@ def key(value: str) -> str:
                    if not unicodedata.combining(c)).strip()
 
 
+def decode_netsh(raw: bytes) -> str:
+    try:
+        return raw.decode('utf-8-sig', errors='strict')
+    except UnicodeDecodeError:
+        encoding = f'cp{ctypes.windll.kernel32.GetOEMCP()}' if hasattr(ctypes, 'windll') else 'cp850'
+        return raw.decode(encoding, errors='replace')
+
+
 def read_netsh() -> str:
     proc = subprocess.run(['netsh', 'wlan', 'show', 'interfaces'],
                           capture_output=True, timeout=5,
                           creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
-    encoding = f'cp{ctypes.windll.kernel32.GetOEMCP()}' if hasattr(ctypes, 'windll') else 'utf-8'
-    output = proc.stdout.decode(encoding, errors='replace')
+    output = decode_netsh(proc.stdout)
     if proc.returncode:
         raise RuntimeError(f'netsh terminó con código {proc.returncode}. Revisa conexión y permisos de ubicación.')
     return output
@@ -41,7 +48,9 @@ def redact_netsh(output: str) -> str:
                  'direccion', 'direccion fisica', 'physical address', 'name of profile'}:
             line = line.split(':', 1)[0] + ': [omitido: identificador de red]'
         lines.append(line)
-    return '\n'.join(lines)
+    text = '\n'.join(lines)
+    text = re.sub(r'(?i)\b[0-9a-f]{2}(?:[:-][0-9a-f]{2}){5}\b', '[MAC omitida]', text)
+    return re.sub(r'(?i)\b[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\b', '[GUID omitido]', text)
 
 
 @dataclass(frozen=True)

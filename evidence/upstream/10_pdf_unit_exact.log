@@ -1,0 +1,40 @@
+UTC START: 2026-09-09T06:20:04.530455+00:00
+CWD: C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView
+ARGV: ["C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe", "-m", "pytest", "archive/v1/tests/unit/test_sensing.py", "-v", "-o", "addopts="]
+ENV OVERRIDES: {"PYTHONPATH": "archive/v1"}
+NOTE: Exact PDF tutorial command. archive/v1 does not expose the v1 package root required by current imports.
+--- RAW COMBINED STDOUT/STDERR ---
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView
+configfile: pyproject.toml
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+___________ ERROR collecting archive/v1/tests/unit/test_sensing.py ____________
+ImportError while importing test module 'C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView\archive\v1\tests\unit\test_sensing.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\importlib\__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+archive\v1\tests\unit\test_sensing.py:21: in <module>
+    from v1.src.sensing.rssi_collector import (
+E   ModuleNotFoundError: No module named 'v1'
+============================== warnings summary ===============================
+..\venv\Lib\site-packages\_pytest\config\__init__.py:1464
+  C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\venv\Lib\site-packages\_pytest\config\__init__.py:1464: PytestConfigWarning: Unknown config option: asyncio_mode
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+ERROR archive/v1/tests/unit/test_sensing.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+========================= 1 warning, 1 error in 0.37s =========================
+
+--- END RAW OUTPUT ---
+UTC END: 2026-09-09T06:20:05.426554+00:00
+EXIT CODE: 2
+TIMED OUT: False

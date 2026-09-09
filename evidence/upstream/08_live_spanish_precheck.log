@@ -1,0 +1,59 @@
+UTC START: 2026-09-09T06:21:26.715161+00:00
+CWD: C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\RuView
+ARGV: ["C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe", "-m", "pytest", "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\verification\\test_windows_live_sensing_es.py", "-v", "-o", "addopts=", "-s", "--junitxml=C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\outputs\\SwarmSignal\\evidence\\upstream\\live_adapted.xml"]
+ENV OVERRIDES: {"PYTHONPATH": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView\\archive"}
+NOTE: Only Wi-Fi precheck localized in separate test copy; original collector and all assertions retained.
+--- RAW COMBINED STDOUT/STDERR ---
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Lenovo\Documents\Codex\2026-09-04\real\work\swarm
+collecting ... collected 5 items
+
+..\verification\test_windows_live_sensing_es.py::TestWindowsWifiCollectorLive::test_collect_once_returns_valid_sample 
+  Single sample: RSSI=-58.0 dBm, quality=0%, ts=1788934889.084
+PASSED
+..\verification\test_windows_live_sensing_es.py::TestWindowsWifiCollectorLive::test_collect_multiple_samples_over_time 
+  Collected 12 samples over ~6s
+  RSSI range: -58.0 to -56.0 dBm
+  RSSI values: ['-56.0', '-58.0', '-58.0', '-56.0', '-57.0', '-57.0', '-56.0', '-56.0', '-56.0', '-56.0', '-56.0', '-56.0']
+PASSED
+..\verification\test_windows_live_sensing_es.py::TestWindowsWifiCollectorLive::test_rssi_varies_between_samples 
+  16 samples, 4 unique RSSI values
+  Values: [-58.0, -58.0, -57.0, -56.0, -57.0, -57.0, -58.0, -56.0, -57.0, -57.0, -59.0, -57.0, -56.0, -58.0, -58.0, -57.0]
+PASSED
+..\verification\test_windows_live_sensing_es.py::TestFullPipelineLive::test_full_pipeline_produces_sensing_result 
+  Features from 20 samples:
+    mean=-57.00 dBm
+    variance=0.9474
+    std=0.9733
+    range=3.00
+    dominant_freq=0.910 Hz
+    breathing_band=1.2493
+    motion_band=2.8217
+    spectral_power=4.0710
+    change_points=0
+
+  Classification:
+    motion_level=active
+    presence=True
+    confidence=100.00%
+    details: var=0.9474 (thresh=0.5), motion_energy=2.8217 (thresh=0.1), breathing_energy=1.2493, change_points=0
+PASSED
+..\verification\test_windows_live_sensing_es.py::TestFullPipelineLive::test_commodity_backend_with_windows_collector 
+  CommodityBackend result:
+    motion=active
+    presence=True
+    confidence=100.00%
+    rssi_variance=1.0816
+    motion_energy=0.5380
+    breathing_energy=3.0900
+PASSED
+
+- generated xml file: C:\Users\Lenovo\Documents\Codex\2026-09-04\real\outputs\SwarmSignal\evidence\upstream\live_adapted.xml -
+============================= 5 passed in 37.26s ==============================
+
+--- END RAW OUTPUT ---
+UTC END: 2026-09-09T06:22:04.722924+00:00
+EXIT CODE: 0
+TIMED OUT: False

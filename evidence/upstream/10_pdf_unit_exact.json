@@ -1,0 +1,24 @@
+{
+  "label": "10_pdf_unit_exact",
+  "started_at_utc": "2026-09-09T06:20:04.530455+00:00",
+  "ended_at_utc": "2026-09-09T06:20:05.426554+00:00",
+  "argv": [
+    "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "archive/v1/tests/unit/test_sensing.py",
+    "-v",
+    "-o",
+    "addopts="
+  ],
+  "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+  "env_overrides": {
+    "PYTHONPATH": "archive/v1"
+  },
+  "exit_code": 2,
+  "timed_out": false,
+  "duration_seconds": 0.9059999999999491,
+  "log": "10_pdf_unit_exact.log",
+  "log_sha256": "99244c9b7a1f29094848aae6950bc3180f9562bce8791ce3afe71b6acc86e34f",
+  "note": "Exact PDF tutorial command. archive/v1 does not expose the v1 package root required by current imports."
+}

@@ -1,0 +1,9 @@
+{
+  "original_source": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView\\archive\\v1\\tests\\integration\\test_windows_live_sensing.py",
+  "adapted_copy": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\verification\\test_windows_live_sensing_es.py",
+  "original_source_sha256": "1536c34915be3dbc9897f9cb53be195d7cc4e5c6146770f6b82ccf57d1dbddaf",
+  "adapted_copy_sha256": "a899b73601bd9965f6663abce9df3a905d83adda150a5252f8b487642037fd88",
+  "assertions_unchanged": true,
+  "assertions_count": 15,
+  "changed_scope": "Only _wifi_connected return/precheck; collector and all assertions unchanged."
+}

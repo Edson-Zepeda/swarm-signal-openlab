@@ -1,0 +1,21 @@
+{
+  "time_utc": "2026-09-09T06:20:43.898776+00:00",
+  "source": "upstream WindowsWifiCollector.collect_once",
+  "sample": {
+    "timestamp": 1788934843.8987765,
+    "rssi_dbm": -60.0,
+    "noise_dbm": -95.0,
+    "link_quality": 0.0,
+    "tx_bytes": 1500,
+    "rx_bytes": 3000,
+    "retry_count": 0,
+    "interface": "Wi-Fi"
+  },
+  "unmeasured_upstream_fields": [
+    "noise_dbm",
+    "tx_bytes",
+    "rx_bytes",
+    "retry_count"
+  ],
+  "link_quality_issue": "Original parser recognizes Signal only; Spanish Señal ignored."
+}

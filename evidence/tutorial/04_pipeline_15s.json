@@ -1,0 +1,216 @@
+{
+  "time_utc": "2026-09-09T06:20:59.184046+00:00",
+  "duration_requested_seconds": 15,
+  "ground_truth": "unconfirmed",
+  "source": "unmodified upstream collector/extractor/classifier",
+  "features": {
+    "mean": -57.766666666666666,
+    "variance": 1.2885057471264365,
+    "std": 1.1351236704106018,
+    "skewness": -0.34196610863649646,
+    "kurtosis": -0.7991701687275823,
+    "range": 4.0,
+    "iqr": 2.0,
+    "dominant_freq_hz": 0.13277555182223927,
+    "breathing_band_power": 3.5410974263098187,
+    "motion_band_power": 1.4262797567840468,
+    "total_spectral_power": 6.118932395760036,
+    "change_points": [],
+    "n_change_points": 0,
+    "n_samples": 30,
+    "duration_seconds": 14.560913562774658,
+    "sample_rate_hz": 1.9916332773335892
+  },
+  "classification": {
+    "motion_level": "active",
+    "confidence": 1.0,
+    "presence_detected": true,
+    "rssi_variance": 1.2885057471264365,
+    "motion_band_energy": 1.4262797567840468,
+    "breathing_band_energy": 3.5410974263098187,
+    "n_change_points": 0,
+    "details": "var=1.2885 (thresh=0.3), motion_energy=1.4263 (thresh=0.1), breathing_energy=3.5411, change_points=0"
+  },
+  "samples": [
+    {
+      "timestamp": 1788934844.4170117,
+      "rssi_dbm": -59.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934844.9140313,
+      "rssi_dbm": -57.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934845.4397504,
+      "rssi_dbm": -59.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934845.9083526,
+      "rssi_dbm": -59.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934846.4114606,
+      "rssi_dbm": -56.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934846.9229577,
+      "rssi_dbm": -58.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934847.4256241,
+      "rssi_dbm": -57.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934847.9348736,
+      "rssi_dbm": -57.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934848.447147,
+      "rssi_dbm": -60.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934848.9406898,
+      "rssi_dbm": -58.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934849.4418,
+      "rssi_dbm": -59.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934849.9586084,
+      "rssi_dbm": -57.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934850.483723,
+      "rssi_dbm": -57.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934850.9474893,
+      "rssi_dbm": -57.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934851.441384,
+      "rssi_dbm": -57.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934851.9335046,
+      "rssi_dbm": -56.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934852.4357538,
+      "rssi_dbm": -56.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934852.9350445,
+      "rssi_dbm": -57.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934853.4530745,
+      "rssi_dbm": -58.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934853.977164,
+      "rssi_dbm": -58.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934854.4629977,
+      "rssi_dbm": -57.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934854.9356115,
+      "rssi_dbm": -58.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934855.47392,
+      "rssi_dbm": -59.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934855.9365585,
+      "rssi_dbm": -57.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934856.4899333,
+      "rssi_dbm": -59.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934856.9418218,
+      "rssi_dbm": -58.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934857.4301744,
+      "rssi_dbm": -60.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934857.948718,
+      "rssi_dbm": -59.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934858.47371,
+      "rssi_dbm": -57.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    },
+    {
+      "timestamp": 1788934858.9779253,
+      "rssi_dbm": -57.0,
+      "quality": null,
+      "phase": "unconfirmed"
+    }
+  ]
+}

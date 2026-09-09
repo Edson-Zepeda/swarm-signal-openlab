@@ -1,0 +1,18 @@
+{
+  "time_utc": "2026-09-09T06:20:43.568531+00:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "os": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "pytest": "9.1.1"
+  },
+  "source_commit": "d613a576ea848f96a9b15bac4e7f60b6be7c08e7",
+  "network_identifiers": "redacted",
+  "strict_netsh_reading": {
+    "interface": "Wi-Fi",
+    "rssi_dbm": -59.0,
+    "quality": 1.0
+  },
+  "netsh_decoding": "UTF-8 decoded; original numeric RSSI retained, network identifiers redacted"
+}

@@ -1,0 +1,22 @@
+{
+  "label": "02_unit_current_path_without_pythonpath",
+  "started_at_utc": "2026-09-09T06:18:50.355798+00:00",
+  "ended_at_utc": "2026-09-09T06:18:51.626935+00:00",
+  "argv": [
+    "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "archive/v1/tests/unit/test_sensing.py",
+    "-v",
+    "-o",
+    "addopts="
+  ],
+  "cwd": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-09-04\\real\\work\\swarm\\RuView",
+  "env_overrides": {},
+  "exit_code": 2,
+  "timed_out": false,
+  "duration_seconds": 1.280999999999949,
+  "log": "02_unit_current_path_without_pythonpath.log",
+  "log_sha256": "a39143ba97bf1ee75594028de4c21abf81b4e38cef50203c711e50d1204b5f3d",
+  "note": ""
+}
