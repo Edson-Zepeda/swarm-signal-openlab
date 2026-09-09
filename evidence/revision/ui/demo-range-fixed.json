@@ -1,0 +1,93 @@
+{
+  "timestamp": "2026-09-09T07:50:23.855Z",
+  "browser": "Isolated Chromium-compatible headless context",
+  "sources": [
+    "http://127.0.0.1:8766/demo.html"
+  ],
+  "checks": [
+    {
+      "name": "Demo playback, seek, audio and captions",
+      "passed": true,
+      "detail": {
+        "duration": 108,
+        "width": 1920,
+        "height": 1080,
+        "captions": [
+          "es"
+        ],
+        "chapters": [
+          0,
+          10.2666666667,
+          22.2333333333,
+          34.3666666667,
+          46.9,
+          57.9,
+          68.7666666667,
+          80.2666666667,
+          96.1
+        ],
+        "position": 48.710068,
+        "audio": 116690,
+        "error": null
+      }
+    },
+    {
+      "name": "Axe WCAG demo",
+      "passed": true,
+      "detail": {
+        "violations": 0
+      }
+    },
+    {
+      "name": "Demo responsive 320",
+      "passed": true,
+      "detail": {
+        "width": 320,
+        "pageWidth": 320
+      }
+    },
+    {
+      "name": "Demo responsive 390",
+      "passed": true,
+      "detail": {
+        "width": 390,
+        "pageWidth": 390
+      }
+    },
+    {
+      "name": "Demo responsive 768",
+      "passed": true,
+      "detail": {
+        "width": 768,
+        "pageWidth": 768
+      }
+    },
+    {
+      "name": "No JavaScript exceptions",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "All requested static assets resolve",
+      "passed": true,
+      "detail": {
+        "resourceErrors": 0,
+        "expectedLocalStaticApiProbes": 0
+      }
+    }
+  ],
+  "screenshots": [
+    "evidence\\revision\\ui\\07-demo-updated.png",
+    "evidence\\revision\\ui\\demo-updated-390.png"
+  ],
+  "pageErrors": [],
+  "resourceErrors": [],
+  "expectedStaticApiProbes": [],
+  "scope": "Updated demo only; dashboard QA is preserved in qa.json.",
+  "browserVersion": "152.0.4191.66",
+  "passed": true,
+  "summary": {
+    "passed": 7,
+    "failed": 0
+  }
+}

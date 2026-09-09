@@ -1,0 +1,50 @@
+{
+  "verified_at_utc": "2026-09-09T07:32:02.716738+00:00",
+  "status": "PASS",
+  "source_count": 5,
+  "sources": [
+    {
+      "original_path": "evidence/tutorial/04_pipeline_15s.json",
+      "verified_path": "evidence/tutorial/04_pipeline_15s.json",
+      "expected_sha256": "b12e3640ff48f90fe1a39d0c3f9505f41045dfbf4f0ef15b86fdc8097a128d38",
+      "actual_sha256": "b12e3640ff48f90fe1a39d0c3f9505f41045dfbf4f0ef15b86fdc8097a128d38",
+      "matches": true,
+      "original_current_sha256": "b12e3640ff48f90fe1a39d0c3f9505f41045dfbf4f0ef15b86fdc8097a128d38"
+    },
+    {
+      "original_path": "evidence/sessions/20260909T062522_420b46.json",
+      "verified_path": "evidence/sessions/20260909T062522_420b46.json",
+      "expected_sha256": "803d7abb4909d968ac786dab594212c5361efcb561c62c24335625dc976f1c2e",
+      "actual_sha256": "803d7abb4909d968ac786dab594212c5361efcb561c62c24335625dc976f1c2e",
+      "matches": true,
+      "original_current_sha256": "803d7abb4909d968ac786dab594212c5361efcb561c62c24335625dc976f1c2e"
+    },
+    {
+      "original_path": "evidence/upstream/verification_summary.json",
+      "verified_path": "evidence/upstream/verification_summary.json",
+      "expected_sha256": "2b8486857bd1f12ff5642ec2de2b6dc578eeeff81cc2ca978d027428ff83760e",
+      "actual_sha256": "2b8486857bd1f12ff5642ec2de2b6dc578eeeff81cc2ca978d027428ff83760e",
+      "matches": true,
+      "original_current_sha256": "2b8486857bd1f12ff5642ec2de2b6dc578eeeff81cc2ca978d027428ff83760e"
+    },
+    {
+      "original_path": "evidence/own_tests.xml",
+      "verified_path": "media/video/sources/own_tests.xml",
+      "expected_sha256": "3b1b19578b1ad0bacf339e5b31525e133b8ea7d50e4c0e135402e3a7a2abb4dc",
+      "actual_sha256": "3b1b19578b1ad0bacf339e5b31525e133b8ea7d50e4c0e135402e3a7a2abb4dc",
+      "matches": true,
+      "original_current_sha256": "3b1b19578b1ad0bacf339e5b31525e133b8ea7d50e4c0e135402e3a7a2abb4dc"
+    },
+    {
+      "original_path": "swarm_signal/analysis.py",
+      "verified_path": "media/video/sources/analysis-v1.py",
+      "expected_sha256": "9cd8f9a95d70b16bd00f86148a7b6cf09bc5d53c9d43a96c1f98903dde75f7fa",
+      "actual_sha256": "9cd8f9a95d70b16bd00f86148a7b6cf09bc5d53c9d43a96c1f98903dde75f7fa",
+      "matches": true,
+      "original_current_sha256": "f6b62ea968a311926d22a72713ca0eba52a737bc59d4f0881589f6976660b6c7"
+    }
+  ],
+  "video_rerendered": false,
+  "video_sha256": "7d091fa1b2a84cd90b9f7a1aa179c6346a5691e33c9ec1930534e8f5ec254b7a",
+  "note": "Historical source snapshots are byte-exact; revised analyzer is intentionally different. Git snapshot preservation follows existing media/video/sources/** -text rule."
+}

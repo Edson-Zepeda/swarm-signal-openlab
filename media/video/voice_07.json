@@ -1,8 +1,8 @@
 {
   "voice": "es-MX-JorgeNeural",
   "generated_voice": true,
-  "text_hash": "056849baa904f6e52e3bdf56fd5f938bf51a0f360526bf4f3472d09469d6791a",
-  "text": "La referencia sintética CSI reproduce exactamente el hash publicado. La verificación global sigue fallando: el registro externo respondió cuatrocientos tres. Ambos resultados permanecen visibles, sin esconder las omisiones.",
+  "text_hash": "7aae31a8013b1854e2aad433298d44cbe28b07f7aeed37b8cd9547049575db5f",
+  "text": "La revisión aprueba 125 pruebas propias. Se conservan las 45 unitarias y 5 integraciones originales, con su evidencia histórica separada.",
   "words": [
     {
       "text": "La",
@@ -10,139 +10,89 @@
       "end": 0.268457
     },
     {
-      "text": "referencia",
+      "text": "revisión",
       "start": 0.280583,
-      "end": 0.802416
+      "end": 0.717458
     },
     {
-      "text": "sintética",
-      "start": 0.814583,
-      "end": 1.469916
+      "text": "aprueba",
+      "start": 0.729625,
+      "end": 1.045166
     },
     {
-      "text": "CSI",
-      "start": 1.482041,
-      "end": 2.137374
+      "text": "125 pruebas",
+      "start": 1.057291,
+      "end": 2.501458
     },
     {
-      "text": "reproduce",
-      "start": 2.1495,
-      "end": 2.70775
+      "text": "propias",
+      "start": 2.513583,
+      "end": 3.096124
     },
     {
-      "text": "exactamente",
-      "start": 2.719916,
-      "end": 3.472332
+      "text": "Se",
+      "start": 3.932041,
+      "end": 4.138332
     },
     {
-      "text": "el",
-      "start": 3.484458,
-      "end": 3.593666
-    },
-    {
-      "text": "hash",
-      "start": 3.605833,
-      "end": 3.957791
-    },
-    {
-      "text": "publicado",
-      "start": 3.969916,
-      "end": 4.600999
-    },
-    {
-      "text": "La",
-      "start": 5.436875,
-      "end": 5.594625
-    },
-    {
-      "text": "verificación",
-      "start": 5.606791,
-      "end": 6.286416
-    },
-    {
-      "text": "global",
-      "start": 6.298541,
-      "end": 6.674749
-    },
-    {
-      "text": "sigue",
-      "start": 6.686875,
-      "end": 6.990291
-    },
-    {
-      "text": "fallando",
-      "start": 7.002416,
-      "end": 7.499999
-    },
-    {
-      "text": "el",
-      "start": 7.767,
-      "end": 7.912625
-    },
-    {
-      "text": "registro",
-      "start": 7.92475,
-      "end": 8.385916
-    },
-    {
-      "text": "externo",
-      "start": 8.398041,
-      "end": 8.859207
-    },
-    {
-      "text": "respondió",
-      "start": 8.871375,
-      "end": 9.393208
-    },
-    {
-      "text": "cuatrocientos",
-      "start": 9.405333,
-      "end": 10.145624
-    },
-    {
-      "text": "tres",
-      "start": 10.15775,
-      "end": 10.5825
-    },
-    {
-      "text": "Ambos",
-      "start": 11.419916,
-      "end": 11.747582
-    },
-    {
-      "text": "resultados",
-      "start": 11.759708,
-      "end": 12.354374
-    },
-    {
-      "text": "permanecen",
-      "start": 12.3665,
-      "end": 12.936875
-    },
-    {
-      "text": "visibles",
-      "start": 12.949041,
-      "end": 13.495166
-    },
-    {
-      "text": "sin",
-      "start": 13.713583,
-      "end": 13.944166
-    },
-    {
-      "text": "esconder",
-      "start": 13.956291,
-      "end": 14.453874
+      "text": "conservan",
+      "start": 4.1505,
+      "end": 4.648083
     },
     {
       "text": "las",
-      "start": 14.466,
-      "end": 14.635916
+      "start": 4.660208,
+      "end": 4.805833
     },
     {
-      "text": "omisiones",
-      "start": 14.648041,
-      "end": 15.351916
+      "text": "45",
+      "start": 4.817958,
+      "end": 5.5582489
+    },
+    {
+      "text": "unitarias",
+      "start": 5.570375,
+      "end": 6.152916
+    },
+    {
+      "text": "y",
+      "start": 6.165041,
+      "end": 6.225707
+    },
+    {
+      "text": "5 integraciones",
+      "start": 6.237875,
+      "end": 7.269416
+    },
+    {
+      "text": "originales",
+      "start": 7.281541,
+      "end": 7.961166
+    },
+    {
+      "text": "con",
+      "start": 8.167458,
+      "end": 8.337374
+    },
+    {
+      "text": "su",
+      "start": 8.3495,
+      "end": 8.446583
+    },
+    {
+      "text": "evidencia",
+      "start": 8.45875,
+      "end": 8.932041
+    },
+    {
+      "text": "histórica",
+      "start": 8.944166,
+      "end": 9.465999
+    },
+    {
+      "text": "separada",
+      "start": 9.478166,
+      "end": 10.072832
     }
   ]
 }

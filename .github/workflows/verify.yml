@@ -1,7 +1,7 @@
 name: Verify laboratory
 on:
   push:
-    branches: [main, fix/critical-review]
+    branches: [main]
   pull_request:
 permissions:
   contents: read

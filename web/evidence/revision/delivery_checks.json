@@ -1,0 +1,328 @@
+{
+  "at": "2026-09-09T07:55:48.984568+00:00",
+  "version": "1.1.0",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "original_recording:20260909T062522_420b46",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original_recording:20260909T063702_da2614",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original_recording:20260909T064317_318983",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "public_rows_are_original",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "public_source_hash",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "every_replay_frame_recomputed",
+      "status": "PASS",
+      "detail": 233
+    },
+    {
+      "name": "final_analysis_current",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "evidence_status_derived",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "comparison_recomputed",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "physical_confirmation_not_invented",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "artifact_exists:evidence/tutorial/01_environment.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "artifact_exists:evidence/tutorial/02_netsh.txt",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "artifact_exists:evidence/tutorial/03_single_reading.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "artifact_exists:evidence/tutorial/04_pipeline_15s.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "artifact_exists:evidence/ui/monitor-live-state.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "artifact_exists:evidence/ui/monitor-live.png",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "artifact_exists:evidence/tutorial/06_commodity_backend.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "artifact_exists:code/check_backend.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "artifact_exists:evidence/upstream/verification_summary.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "artifact_exists:evidence/revision/own_tests.xml",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "artifact_exists:evidence/upstream/03_verify_original_shell.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "artifact_exists:evidence/revision/verify_identified.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "artifact_exists:evidence/revision/verify_identified.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "reviewed_pdf:SwarmSignal_Informe.pdf",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "public_pdf:SwarmSignal_Informe.pdf",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "reviewed_pdf:SwarmSignal_Propuesta.pdf",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "public_pdf:SwarmSignal_Propuesta.pdf",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "reviewed_pdf:SwarmSignal_Auditoria.pdf",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "public_pdf:SwarmSignal_Auditoria.pdf",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "video_reviewed_file",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "video_format",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "video_visual_review",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "video_builder_preserved",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "public_media:SwarmSignal_Demo.mp4",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "public_media:SwarmSignal_Demo.vtt",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "public_media:SwarmSignal_Demo.srt",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "public_media:SwarmSignal_Poster.jpg",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "video_source:project.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "video_source:evidence/tutorial/04_pipeline_15s.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "video_source:evidence/upstream/verification_summary.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "video_source:evidence/revision/verify_identified.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "video_source:web/data/comparison.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "video_source:evidence/revision/own_tests.xml",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "video_source:swarm_signal/analysis.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "video_source:swarm_signal/collector.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "video_source:swarm_signal/experiment.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "video_source:evidence/sessions/20260909T062522_420b46.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "video_source:evidence/sessions/20260909T063702_da2614.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "video_source:evidence/sessions/20260909T064317_318983.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "tested_bootstrap",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "tested_requirements",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "test_report_matches_sources",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "tested_core:scripts/capture.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "tested_core:swarm_signal/__init__.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "tested_core:swarm_signal/analysis.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "tested_core:swarm_signal/collector.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "tested_core:swarm_signal/evidence.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "tested_core:swarm_signal/experiment.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "tested_core:swarm_signal/server.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "tested_core:tests/test_audit_regressions.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "tested_core:tests/test_evidence.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "tested_core:tests/test_lifecycle.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "tested_core:tests/test_media_http.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "tested_core:tests/test_signal.py",
+      "status": "PASS",
+      "detail": null
+    }
+  ],
+  "scope": "Artifact consistency. Does not validate human presence or skipped upstream phases."
+}

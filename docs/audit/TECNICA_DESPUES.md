@@ -2,7 +2,7 @@
 
 Fecha: 2026-09-09. Comparación contra `5c8e242`. Política actual: `2.0-quality-audit`.
 
-**Resultado del core: 90 pruebas aprobadas, cero fallos y cero errores.** Incluye las 31 pruebas anteriores y 59 casos nuevos de regresión y validación. Se ejecutaron con datos, lectores, temporizadores y servidores de prueba aislados; no se utilizó netsh ni se produjo una captura física. No se cambió el código vendorizado ni la evidencia histórica.
+**Primera aceptación del core: 90 pruebas aprobadas, cero fallos y cero errores.** Incluye las 31 pruebas anteriores y 59 casos nuevos de regresión y validación. Se ejecutaron con datos, lectores, temporizadores y servidores de prueba aislados; no se utilizó netsh ni se produjo una captura física. No se cambió el código vendorizado ni la evidencia histórica. La suite conjunta vigente incluye también las correcciones posteriores y se conserva en [own_tests.xml](../../evidence/revision/own_tests.xml).
 
 [Resultado XML](../../evidence/revision/core_tests.xml) · [Log](../../evidence/revision/core_tests.log) · [Comandos y hashes de código probado](../../evidence/revision/core_acceptance.json)
 
@@ -36,7 +36,9 @@ La banda original de movimiento es **0.5–3 Hz**. Se publican su intervalo conf
 
 Las sesiones cargadas se validan y se reanalizan con la política actual; sus características y cuadros v1 no se reutilizan como análisis actual. La caché usa **SHA-256 de los bytes y versión de política**, y `replay_source` identifica la fuente. Una prueba modifica los bytes conservando tamaño y fecha del archivo y comprueba que la caché se invalida. Otra comprueba que reanalizar no cambia un solo byte del JSON original.
 
-Antes de editar el analizador se guardó su versión exacta en [analysis-v1.py](../../media/video/sources/analysis-v1.py), SHA-256 `9cd8f9a95d70b16bd00f86148a7b6cf09bc5d53c9d43a96c1f98903dde75f7fa`. El timeline del video ahora resuelve esa copia mediante `snapshot_path`. Las cinco fuentes del video coinciden con sus hashes en la [nueva comprobación de procedencia](../../evidence/revision/video_source_provenance.json). No se renderizó de nuevo el video ni se alteró la auditoría histórica de sus fuentes.
+Antes de editar el analizador se guardó su versión exacta en [analysis-v1.py](../../media/video/sources/analysis-v1.py), SHA-256 `9cd8f9a95d70b16bd00f86148a7b6cf09bc5d53c9d43a96c1f98903dde75f7fa`. La [comprobación de cinco fuentes](../../evidence/revision/video_source_provenance.json) corresponde a ese momento y a la edición histórica, antes de volver a renderizar el video.
+
+Posteriormente se generó la edición revisada del video, que utiliza doce fuentes congeladas bajo `media/video/sources/revision/`. El [timeline vigente](../../media/video/timeline.json) identifica esas copias mediante `snapshot_path`; su [auditoría actual](../../media/video/provenance_audit.json) conserva los hashes del video y de sus fuentes. Los resultados del video histórico no sustituyen los de la edición vigente.
 
 ## Prueba negativa sobre la versión anterior
 
@@ -51,3 +53,15 @@ python -m pytest tests/test_signal.py tests/test_lifecycle.py tests/test_audit_r
 ```
 
 La aceptación conjunta del proyecto incorpora además exportación, comparación, arranque e interfaz. Este informe acredita el core y el CLI de captura; la prueba física con condiciones declaradas sigue requiriendo una ejecución real del participante.
+
+## Cierre posterior de la revisión
+
+La comprobación del MP4 nuevo encontró un fallo adicional en el servidor local: faltaban respuestas HTTP por rangos, necesarias para saltar a un capítulo. Se añadieron GET parcial, HEAD, cabeceras de tamaño y validación de rangos; 17 pruebas comprueban bytes, respuestas 206/416 y compatibilidad del archivo completo. También se acotó el comparador a 10,000 filas, 3,600 segundos y 16 MB por archivo, con cinco casos adicionales que evitan bloqueos por fechas corruptas.
+
+La suite final completa contiene **125 pruebas aprobadas en Python 3.12.14 y 3.11.9**. Los hashes de los archivos realmente probados, los comandos y ambos XML están registrados en [regression_verification.json](../../evidence/revision/regression_verification.json). Los 90 casos anteriores son una etapa documentada de esta revisión, no el conteo final.
+
+## Corrección posterior de reproducción local
+
+La revisión del reproductor en Edge detectó que el servidor entregaba el MP4 completo sin soporte de rangos: el archivo se reproducía, pero los capítulos no podían buscar su posición. `Handler` ahora anuncia `Accept-Ranges: bytes`, responde con 206 a un rango válido y con 416 a uno no satisfacible, limita la copia al rango pedido y conserva MIME, tamaño y fecha del archivo abierto. HEAD describe el archivo completo sin enviar su cuerpo. Las solicitudes múltiples o malformadas se ignoran y reciben el archivo completo, comportamiento permitido por HTTP.
+
+Las **17 pruebas** de `tests/test_media_http.py` verifican descarga completa, rangos cerrados, abiertos y de sufijo, límites y archivos vacíos, HEAD, If-Range y rechazo de Host no autorizado. Usan archivos artificiales y no capturan Wi-Fi. Se incorporan a la suite conjunta; la revisión del navegador verifica además el salto real entre capítulos.

@@ -1,38 +1,45 @@
-# Video de Swarm Signal
+# Video de Swarm Signal · revisión 1.1
 
-[Ver el video](../media/SwarmSignal_Demo.mp4) · [Subtítulos](../media/SwarmSignal_Demo.vtt)
+[Ver video](../media/SwarmSignal_Demo.mp4) · [Subtítulos](../media/SwarmSignal_Demo.vtt)
 
-**1:45 · 1920 × 1080 · 30 fps.** Narración en español, gráficos animados, transiciones y ocho capítulos. La identidad visual usa fondo oscuro, lima, cian y tipografía grande.
+**1:48 · 1920 × 1080 · 30 fps.** Nueve capítulos con narración en español, gráficos animados, transiciones y reproducción fluida de las lecturas guardadas.
 
-| Tiempo | Contenido | Evidencia |
+| Inicio aproximado | Contenido | Base verificable |
 |---|---|---|
-| 00:00 | Señal y alcance | Reproducción de una captura real |
-| 00:11 | Pipeline del tutorial | 30 muestras; media −57.77 dBm |
-| 00:24 | Captura de 120 segundos | 233 lecturas; recorrido acelerado |
-| 00:38 | Abstención por calidad | CV temporal 33.6 %; clasificación vacía |
-| 00:51 | Espectro de la última ventana | Nyquist efectivo de 0.94 Hz |
-| 01:03 | Pruebas de software | 45 unitarias, 5 integraciones adaptadas y 31 propias |
-| 01:14 | Reproducibilidad | CSI PASS; verificación global FAIL por HTTP 403 |
-| 01:31 | Propuesta SWARM | Receptor fijo y nodos móviles, por validar |
+| 00:00 | Señal y evidencia | Capturas reales, sin etiquetas humanas verificadas |
+| 00:10 | Pipeline del tutorial | 30 muestras; media −57.77 dBm |
+| 00:22 | Referencia de 120 s | 233 lecturas; reproducción acelerada |
+| 00:34 | Comparación de tres capturas | 3/8, 0/3 y 2/4 ventanas cumplen calidad |
+| 00:47 | Abstención | CV temporal 33.6 % en la última ventana; límite actual 5 % |
+| 00:58 | Cobertura de frecuencias | Esquema teórico a 2 muestras/s; banda original 0.5–3 Hz |
+| 01:09 | Pruebas | 125 propias actuales; 45 unitarias y 5 integraciones históricas |
+| 01:20 | Reproducibilidad | CSI sintético: hash exacto; verificación actual: 6 PASS, 3 SKIP |
+| 01:36 | Siguiente paso | Receptor fijo y condiciones declaradas; prueba física pendiente |
 
-Las curvas representan exclusivamente las muestras guardadas del tutorial y de la sesión `20260909T062522_420b46`. La visualización acelera su reproducción; no muestra una interfaz que finja estar en vivo. Los picos espectrales no se presentan como respiración, y no se asignan etiquetas de presencia o movimiento a las capturas. El diagrama de drones es una propuesta, no una prueba de vuelo.
+La comparación utiliza ventanas disjuntas de 15 segundos. El denominador conserva los huecos de las ventanas elegibles; la fracción final demasiado corta queda fuera. Los cocientes describen **calidad del muestreo**, no exactitud de detección humana. Las etiquetas de las sesiones describen el contexto registrado; la comparación no demuestra una relación causal con la carga de CPU.
 
-La prueba CSI utiliza la referencia **sintética** del repositorio. Su coincidencia de hash se distingue del resultado global de `./verify`: cinco fases PASS, una FAIL y tres SKIP. Las 31 pruebas propias corresponden al XML guardado que figura en la procedencia del video.
+La última ventana irregular no presenta picos espectrales. Se muestran sus intervalos temporales y la abstención del analizador revisado. El diagrama de cobertura es **teórico**: a 2 muestras/s el límite de Nyquist es 1 Hz y solo se observa parte de la banda 0.5–3 Hz. No representa un espectro medido ni una medición de respiración. Los nodos móviles son una propuesta, no una prueba de vuelo.
 
-El XML utilizado está congelado en [sources/own_tests.xml](../media/video/sources/own_tests.xml), recuperado sin cambios del commit `b6dae0c`. Su SHA-256 coincide con el registrado al construir el video. La [auditoría de procedencia](../media/video/provenance_audit.json) comprueba las cinco fuentes contra sus bytes locales y los objetos de Git; las reglas `-text` conservan los bytes de las fuentes verificadas al descargar o clonar.
+La nueva ejecución de `./verify` identificó honestamente el cliente de consulta y conservó el script original: seis fases aprobadas y tres omitidas. La ejecución inicial con HTTP 403 permanece en el historial. La coincidencia del hash CSI corresponde a una referencia sintética y no sustituye las fases omitidas.
 
-La voz es **sintética**, `es-MX-JorgeNeural`, generada con Microsoft Edge TTS a partir del guion del video. Solo se envió el texto explicativo al servicio; las muestras y los identificadores de red no se enviaron. El MP4 incluye audio AAC y subtítulos opcionales en español, también entregados como SRT y VTT.
+## Fuentes y versiones
 
-## Reproducción y revisión
+El constructor lee explícitamente [project.json](../project.json), las tres sesiones cuyos hashes aparecen en ese manifiesto, [comparison.json](../web/data/comparison.json), el XML de la revisión, la verificación actual y el resumen upstream histórico. La sesión de referencia se reanaliza con la política actual sin modificar sus datos originales.
 
-El [script](../scripts/build_video.py) requiere Python con NumPy, Pillow y `edge-tts`, además de FFmpeg y ffprobe. Ejecutar:
+El [timeline](../media/video/timeline.json) registra tiempos, narración, versión de análisis y hashes. Sus entradas `snapshot_path` resuelven copias exactas de las fuentes utilizadas, incluido el XML de **125 pruebas**, bajo `media/video/sources/revision/`. La [auditoría de procedencia](../media/video/provenance_audit.json) comprueba esas copias y el MP4 final. Las reglas `-text` preservan sus bytes al descargar o clonar.
+
+La edición 1.0 permanece en la versión publicada anterior. Sus 31 pruebas propias, el fallo HTTP 403 y el analizador original son hechos históricos; no se presentan como estado actual. El analizador v1 y su XML también permanecen congelados en `media/video/sources/`.
+
+La voz es **sintética**, `es-MX-JorgeNeural`, generada con Microsoft Edge TTS. Solo se envió la narración pública al servicio, sin muestras ni identificadores de red. El MP4 incluye audio AAC y subtítulos opcionales; también se entregan SRT y VTT.
+
+## Reconstrucción y revisión
+
+El constructor requiere las dependencias de `requirements-media.txt`, FFmpeg y ffprobe:
 
 ```powershell
 python scripts/build_video.py
 ```
 
-Con los MP3 almacenados y el mismo guion, la reconstrucción utiliza el audio local. `--preview` genera los ocho fotogramas de revisión. Las futuras codificaciones se limitan a dos hilos para reducir la interferencia con capturas simultáneas.
+`--preview` genera los nueve fotogramas de revisión. El audio se reutiliza cuando coincide el hash del guion; si no puede actualizarse, el constructor se detiene para evitar publicar narración desfasada. La codificación de video utiliza dos hilos y nunca inicia una captura de Wi-Fi. El servidor local admite rangos de bytes para que los capítulos puedan buscar su posición en Edge.
 
-[Timeline y hashes de las fuentes](../media/video/timeline.json) · [Verificación del archivo final](../media/video_verification.json)
-
-La revisión comprende dimensiones, duración, frecuencia de fotogramas, presencia de audio y subtítulos, decodificación del MP4 y fotogramas representativos extraídos del archivo final. Los resultados detallados se conservan en el JSON de verificación.
+La [verificación final](../media/video_verification.json) incluye resolución, duración, cuadros por segundo, decodificación completa, presencia y niveles de audio, sincronización de subtítulos y fotogramas extraídos del MP4. La inspección visual se realiza sobre esos cuadros decodificados, además de las vistas previas.

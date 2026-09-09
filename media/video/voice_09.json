@@ -1,0 +1,123 @@
+{
+  "voice": "es-MX-JorgeNeural",
+  "generated_voice": true,
+  "text_hash": "2d63ce8b19f8c89d4e7158600ab2ee7343dba6aa985141be842a097fbf48ea9e",
+  "text": "Un receptor fijo permite comparar quietud y cruces declarados. Esa prueba física sigue pendiente. Después se podrá evaluar el efecto de nodos móviles.",
+  "words": [
+    {
+      "text": "Un",
+      "start": 0.098541,
+      "end": 0.232041
+    },
+    {
+      "text": "receptor",
+      "start": 0.244166,
+      "end": 0.765999
+    },
+    {
+      "text": "fijo",
+      "start": 0.778166,
+      "end": 1.069416
+    },
+    {
+      "text": "permite",
+      "start": 1.081541,
+      "end": 1.494166
+    },
+    {
+      "text": "comparar",
+      "start": 1.506291,
+      "end": 1.967457
+    },
+    {
+      "text": "quietud",
+      "start": 1.979625,
+      "end": 2.367958
+    },
+    {
+      "text": "y",
+      "start": 2.380083,
+      "end": 2.440749
+    },
+    {
+      "text": "cruces",
+      "start": 2.452916,
+      "end": 2.829124
+    },
+    {
+      "text": "declarados",
+      "start": 2.84125,
+      "end": 3.545125
+    },
+    {
+      "text": "Esa",
+      "start": 4.381083,
+      "end": 4.660208
+    },
+    {
+      "text": "prueba",
+      "start": 4.672333,
+      "end": 4.963583
+    },
+    {
+      "text": "física",
+      "start": 4.975708,
+      "end": 5.424749
+    },
+    {
+      "text": "sigue",
+      "start": 5.436875,
+      "end": 5.776666
+    },
+    {
+      "text": "pendiente",
+      "start": 5.788833,
+      "end": 6.383499
+    },
+    {
+      "text": "Después",
+      "start": 7.220875,
+      "end": 7.6335
+    },
+    {
+      "text": "se",
+      "start": 7.645625,
+      "end": 7.742708
+    },
+    {
+      "text": "podrá",
+      "start": 7.754875,
+      "end": 8.082541
+    },
+    {
+      "text": "evaluar",
+      "start": 8.094666,
+      "end": 8.458749
+    },
+    {
+      "text": "el",
+      "start": 8.470875,
+      "end": 8.580083
+    },
+    {
+      "text": "efecto",
+      "start": 8.59225,
+      "end": 8.980583
+    },
+    {
+      "text": "de",
+      "start": 8.992708,
+      "end": 9.089791
+    },
+    {
+      "text": "nodos",
+      "start": 9.101958,
+      "end": 9.478166
+    },
+    {
+      "text": "móviles",
+      "start": 9.490291,
+      "end": 10.084957
+    }
+  ]
+}

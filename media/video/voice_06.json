@@ -1,93 +1,123 @@
 {
   "voice": "es-MX-JorgeNeural",
   "generated_voice": true,
-  "text_hash": "171bc5072ad58160c31295437283b4f310bb3a8aaf8f34bee96a9f8dc63971cb",
-  "text": "Pasaron 45 pruebas unitarias, 5 de integración y 31 propias. La adaptación de idioma conserva todas las aserciones.",
+  "text_hash": "b29c704bab21b799121c1cf8e5e71500b38576044fc15ddd9d9a53255ade4625",
+  "text": "A dos muestras por segundo, el límite teórico es un hertz. La banda original de movimiento llega a tres. Su cobertura es parcial.",
   "words": [
     {
-      "text": "Pasaron",
+      "text": "A",
       "start": 0.098541,
-      "end": 0.535416
+      "end": 0.219916
     },
     {
-      "text": "45 pruebas",
-      "start": 0.547583,
-      "end": 1.688374
+      "text": "dos",
+      "start": 0.232041,
+      "end": 0.499041
     },
     {
-      "text": "unitarias",
-      "start": 1.7005,
-      "end": 2.295166
+      "text": "muestras",
+      "start": 0.511166,
+      "end": 0.935916
     },
     {
-      "text": "5",
-      "start": 2.55,
-      "end": 2.926208
+      "text": "por",
+      "start": 0.948041,
+      "end": 1.093666
     },
     {
-      "text": "de",
-      "start": 2.938333,
+      "text": "segundo",
+      "start": 1.105833,
+      "end": 1.579124
+    },
+    {
+      "text": "el",
+      "start": 1.821833,
+      "end": 1.967458
+    },
+    {
+      "text": "límite",
+      "start": 1.979625,
+      "end": 2.367958
+    },
+    {
+      "text": "teórico",
+      "start": 2.380083,
+      "end": 2.853374
+    },
+    {
+      "text": "es",
+      "start": 2.865541,
       "end": 3.011166
     },
     {
-      "text": "integración",
+      "text": "un",
       "start": 3.023291,
-      "end": 3.642207
+      "end": 3.144666
     },
     {
-      "text": "y",
-      "start": 3.654375,
-      "end": 3.727208
-    },
-    {
-      "text": "31",
-      "start": 3.739333,
-      "end": 4.3582489
-    },
-    {
-      "text": "propias",
-      "start": 4.370375,
-      "end": 4.965041
+      "text": "hertz",
+      "start": 3.156791,
+      "end": 3.581541
     },
     {
       "text": "La",
-      "start": 5.800958,
-      "end": 5.970874
+      "start": 4.417458,
+      "end": 4.575208
     },
     {
-      "text": "adaptación",
-      "start": 5.983,
-      "end": 6.517
+      "text": "banda",
+      "start": 4.587375,
+      "end": 4.84225
+    },
+    {
+      "text": "original",
+      "start": 4.854375,
+      "end": 5.327666
     },
     {
       "text": "de",
-      "start": 6.529125,
-      "end": 6.614083
+      "start": 5.339791,
+      "end": 5.412624
     },
     {
-      "text": "idioma",
-      "start": 6.626208,
-      "end": 6.978166
+      "text": "movimiento",
+      "start": 5.42475,
+      "end": 5.995125
     },
     {
-      "text": "conserva",
-      "start": 6.990291,
-      "end": 7.524291
+      "text": "llega",
+      "start": 6.007291,
+      "end": 6.322832
     },
     {
-      "text": "todas",
-      "start": 7.536416,
-      "end": 7.936916
+      "text": "a",
+      "start": 6.334958,
+      "end": 6.3834989
     },
     {
-      "text": "las",
-      "start": 7.949041,
-      "end": 8.082541
+      "text": "tres",
+      "start": 6.395625,
+      "end": 6.844666
     },
     {
-      "text": "aserciones",
-      "start": 8.094666,
-      "end": 8.847082
+      "text": "Su",
+      "start": 7.682041,
+      "end": 7.900499
+    },
+    {
+      "text": "cobertura",
+      "start": 7.912625,
+      "end": 8.470875
+    },
+    {
+      "text": "es",
+      "start": 8.483,
+      "end": 8.604375
+    },
+    {
+      "text": "parcial",
+      "start": 8.6165,
+      "end": 9.114083
     }
   ]
 }

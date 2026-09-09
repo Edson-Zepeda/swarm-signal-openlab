@@ -1,0 +1,137 @@
+{
+  "timestamp": "2026-09-09T06:55:57.399Z",
+  "url": "https://edson-zepeda.github.io/swarm-signal-openlab/",
+  "authentication": "Fresh browser context; no account, stored cookies or user profile.",
+  "checks": [
+    {
+      "name": "Anonymous public dashboard is reachable",
+      "passed": true,
+      "detail": {
+        "finalUrl": "https://edson-zepeda.github.io/swarm-signal-openlab/#monitor",
+        "status": 200,
+        "title": "SWARM SIGNAL — Observatorio Wi-Fi",
+        "samples": 233,
+        "frames": 233
+      }
+    },
+    {
+      "name": "Published replay advances, pauses and seeks actual frames",
+      "passed": true,
+      "detail": {
+        "progressed": 13,
+        "paused": "00:06",
+        "inspected": [
+          {
+            "position": 250,
+            "count": 60,
+            "classification": "SEÑAL VARIABLE"
+          },
+          {
+            "position": 500,
+            "count": 118,
+            "classification": "SEÑAL VARIABLE"
+          },
+          {
+            "position": 1000,
+            "count": 233,
+            "classification": "SIN VEREDICTO"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Published CSV contains 233 rows",
+      "passed": true,
+      "detail": {
+        "rows": 233
+      }
+    },
+    {
+      "name": "Published evidence and PDF links work",
+      "passed": true,
+      "detail": [
+        {
+          "text": "Informe ↗",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/docs/SwarmSignal_Informe.pdf",
+          "status": 200,
+          "contentType": "application/pdf"
+        },
+        {
+          "text": "Propuesta ↗",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/docs/SwarmSignal_Propuesta.pdf",
+          "status": 200,
+          "contentType": "application/pdf"
+        },
+        {
+          "text": "Ver demo →",
+          "url": "https://edson-zepeda.github.io/swarm-signal-openlab/demo.html",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "name": "Published demo plays with audio, chapters and subtitles",
+      "passed": true,
+      "detail": {
+        "duration": 104.8,
+        "width": 1920,
+        "height": 1080,
+        "subtitles": [
+          "es"
+        ],
+        "currentTime": 63.5131,
+        "paused": false,
+        "decodedAudioBytes": 66783,
+        "muted": false,
+        "error": null
+      }
+    },
+    {
+      "name": "Published mobile pages have no horizontal overflow",
+      "passed": true,
+      "detail": [
+        {
+          "page": "dashboard",
+          "viewport": 390,
+          "pageWidth": 390
+        },
+        {
+          "page": "demo.html",
+          "viewport": 390,
+          "pageWidth": 390
+        }
+      ]
+    },
+    {
+      "name": "No JavaScript errors or unexpected console failures",
+      "passed": true,
+      "detail": {
+        "javascriptErrors": 0,
+        "unexpectedConsoleErrors": 0,
+        "expectedLocalApiProbe404": 2
+      }
+    }
+  ],
+  "consoleErrors": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://edson-zepeda.github.io/api/state"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "https://edson-zepeda.github.io/api/state"
+    }
+  ],
+  "javascriptErrors": [],
+  "screenshots": [
+    "evidence\\ui\\public-monitor.png",
+    "evidence\\ui\\public-demo.png"
+  ],
+  "browserVersion": "152.0.4191.66",
+  "passed": true,
+  "summary": {
+    "passed": 7,
+    "failed": 0
+  }
+}

@@ -5,15 +5,17 @@ import copy
 import csv
 import hashlib
 from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import io
 import json
 import math
+import os
 from pathlib import Path
 import re
 import threading
 import time
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import urlparse, parse_qs, unquote
 from uuid import uuid4
 
 from . import ROOT
@@ -319,6 +321,103 @@ class Handler(SimpleHTTPRequestHandler):
     lab: Lab
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(ROOT / 'web'), **kwargs)
+
+    def do_HEAD(self):
+        if self.headers.get('Host', '').split(':')[0] not in {'127.0.0.1', 'localhost'}:
+            self.send_error(403, 'Host not permitted')
+            return
+        super().do_HEAD()
+
+    def send_head(self):
+        """Serve seekable local media with one bounded byte range.
+
+        Multiple ranges and unsupported/malformed range syntax are ignored,
+        returning the complete representation, as allowed by HTTP. Range only
+        applies to GET; HEAD describes the complete representation without a body.
+        """
+        self._media_remaining = None
+        if not unquote(urlparse(self.path).path).startswith('/media/'):
+            return super().send_head()
+        path = Path(self.translate_path(self.path))
+        if not path.resolve().is_relative_to((ROOT / 'web' / 'media').resolve()):
+            self.send_error(403, 'Media path not permitted')
+            return None
+        if path.is_dir():
+            return super().send_head()
+        try:
+            stream = path.open('rb')
+        except OSError:
+            self.send_error(404, 'Media not found')
+            return None
+        try:
+            stat = os.fstat(stream.fileno())
+            size = stat.st_size
+            start, end, partial = 0, size - 1, False
+            header = self.headers.get('Range', '') if self.command == 'GET' else ''
+            # If-Range may use our Last-Modified validator. Unrecognized or
+            # invalid validators require a complete response, never stale bytes.
+            validator = self.headers.get('If-Range')
+            if header and validator:
+                try:
+                    date = parsedate_to_datetime(validator)
+                    if date.tzinfo is None:
+                        date = date.replace(tzinfo=timezone.utc)
+                    if int(stat.st_mtime) > date.timestamp():
+                        header = ''
+                except (ValueError, TypeError, OverflowError):
+                    header = ''
+            match = re.fullmatch(r'bytes=(\d*)-(\d*)', header.strip(), flags=re.I)
+            if match and (match[1] or match[2]):
+                first, last = match.groups()
+                def bounded_integer(value):
+                    digits = value.lstrip('0') or '0'
+                    return min(int(digits), size + 1) if len(digits) <= 20 else size + 1
+                if first:
+                    start = bounded_integer(first)
+                    end = min(bounded_integer(last), size - 1) if last else size - 1
+                else:
+                    length = bounded_integer(last)
+                    start, end = max(0, size - length), size - 1
+                if start >= size or end < start:
+                    stream.close()
+                    self.send_response(416)
+                    self.send_header('Accept-Ranges', 'bytes')
+                    self.send_header('Content-Range', f'bytes */{size}')
+                    self.send_header('Content-Length', '0')
+                    self.end_headers()
+                    return None
+                partial = True
+            length = max(0, end - start + 1)
+            stream.seek(start)
+            self._media_remaining = length
+            self.send_response(206 if partial else 200)
+            self.send_header('Content-Type', self.guess_type(str(path)))
+            self.send_header('Content-Length', str(length))
+            self.send_header('Accept-Ranges', 'bytes')
+            self.send_header('Last-Modified', self.date_time_string(stat.st_mtime))
+            if partial:
+                self.send_header('Content-Range', f'bytes {start}-{end}/{size}')
+            self.end_headers()
+            return stream
+        except Exception:
+            stream.close()
+            raise
+
+    def copyfile(self, source, outputfile):
+        remaining = getattr(self, '_media_remaining', None)
+        if remaining is None:
+            return super().copyfile(source, outputfile)
+        # Bound every write to the selected range, even for an open-ended GET.
+        try:
+            while remaining:
+                block = source.read(min(64 * 1024, remaining))
+                if not block:
+                    break
+                outputfile.write(block)
+                remaining -= len(block)
+        except (BrokenPipeError, ConnectionResetError):
+            # A seek cancels the previous transfer in normal browser playback.
+            pass
 
     def send_json(self, payload, status=200):
         body = json.dumps(payload, ensure_ascii=False, allow_nan=False).encode('utf-8')

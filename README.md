@@ -43,7 +43,7 @@ Para marcar una condición física usa `--condition still` o `--condition walkin
 - `evidence/upstream/`: comandos, errores originales, adaptaciones y verificación.
 - `evidence/ui/`: capturas reales y revisión de interfaz.
 - `web/`: laboratorio interactivo y reproducción.
-- `media/SwarmSignal_Demo.mp4`: demostración narrada de 1:45, con subtítulos.
+- `media/SwarmSignal_Demo.mp4`: demostración narrada de 1:48, con subtítulos.
 
 La prueba física de movimiento sigue pendiente. Los resultados completos y las limitaciones se conservan en los documentos y en `docs/PRUEBA_PENDIENTE.md`.
 
@@ -59,7 +59,7 @@ npx playwright install chromium
 npm run test:ui
 ```
 
-La comprobación pública se ejecuta con `node scripts/verify_public_ui.cjs`.
+La comprobación pública se ejecuta con `node scripts/verify_revision_public_ui.cjs`.
 
 ## Qué concluye
 
@@ -79,7 +79,7 @@ La batería upstream vigente tiene más pruebas que las 36 del tutorial. El deta
 
 La revisión identificó correctamente el cliente de la API de crates.io y volvió a ejecutar `./verify` sin modificarlo: 6 fases PASS y 3 SKIP, código 0. El fallo inicial permanece en la evidencia histórica. [Registro actual](evidence/revision/verify_identified.json).
 
-Las dependencias básicas están separadas de pruebas (`requirements-dev.txt`) y producción de documentos/video (`requirements-media.txt`). La automatización de GitHub ejecuta las pruebas sin hardware en Python 3.10, 3.11 y 3.12. Los resultados de instalación local y revisión están en `evidence/revision/`.
+Las dependencias básicas están separadas de pruebas (`requirements-dev.txt`) y producción de documentos/video (`requirements-media.txt`). La automatización de GitHub está configurada para Python 3.10, 3.11 y 3.12. La ejecución remota [34324619560](https://github.com/Edson-Zepeda/swarm-signal-openlab/actions/runs/34324619560) quedó bloqueada antes de iniciar por la facturación de GitHub; no ejecutó ni reprobó las pruebas. [Estado de CI](evidence/revision/ci_status.json). Los resultados de instalación y pruebas locales se conservan por separado en `evidence/revision/`.
 
 ## Avanzado Skybrush
 

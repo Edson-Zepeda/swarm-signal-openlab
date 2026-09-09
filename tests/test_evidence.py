@@ -96,3 +96,36 @@ def test_comparison_rejects_invalid_rssi_without_silently_dropping_it(bad):
 def test_zero_eligible_windows_produce_no_percent():
     report=describe_session(fixture([(0,-60),(0.5,-60)]),source='SYNTHETIC')
     assert report['windows_eligible']==0 and report['valid_fraction'] is None
+
+
+@pytest.mark.parametrize('span', [3600.1, 1e100])
+def test_corrupt_horizon_rejected_before_window_iteration(span, monkeypatch):
+    import swarm_signal.experiment as experiment
+    def forbidden(*args):
+        pytest.fail('Analysis must not run for an excessive timestamp horizon')
+    monkeypatch.setattr(experiment, 'analyze', forbidden)
+    with pytest.raises(ValueError, match='3600'):
+        describe_session(fixture([(0, -60), (span, -60)]), source='SYNTHETIC')
+
+
+def test_maximum_import_horizon_has_bounded_windows():
+    report = describe_session(fixture([(0, -60), (3600, -60)]), source='SYNTHETIC')
+    assert report['windows_total'] == 241
+    assert report['windows_eligible'] == 240 and report['windows_valid'] == 0
+
+
+def test_comparison_reuses_strict_row_count_limit():
+    with pytest.raises(ValueError, match='10000'):
+        describe_session(fixture([(i/10, -60) for i in range(10001)]), source='SYNTHETIC')
+
+
+def test_corrupt_comparison_neighbor_is_reported_without_hiding_valid_session(tmp_path):
+    from swarm_signal.experiment import build_comparison
+    bad = fixture([(0, -60), (1e100, -60)])
+    bad['session']['id'] = 'invalid'
+    write(tmp_path/'invalid.json', bad)
+    write(tmp_path/'fixture.json', fixture([(0, -60), (0.5, -60)]))
+    result = build_comparison(tmp_path)
+    assert [s['id'] for s in result['sessions']] == ['fixture']
+    assert result['ignored_sessions'][0]['file'] == 'invalid.json'
+    assert '3600' in result['ignored_sessions'][0]['reason']
