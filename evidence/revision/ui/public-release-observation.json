@@ -1,0 +1,24 @@
+{
+  "observedAt": "2026-09-09T08:00:53.791Z",
+  "authentication": "Anonymous fetch, no credentials or user profile",
+  "sources": [
+    {
+      "url": "https://edson-zepeda.github.io/swarm-signal-openlab/data/evidence.json",
+      "status": 200,
+      "testsSummary": "45 unitarias · 5 integraciones adaptadas · 125 propias."
+    },
+    {
+      "url": "https://edson-zepeda.github.io/swarm-signal-openlab/data/session.json",
+      "status": 200,
+      "testsSummary": "45 unitarias · 5 integraciones adaptadas · 125 propias."
+    }
+  ],
+  "samples": 233,
+  "frames": 233,
+  "publicBrowserQA": {
+    "passed": 9,
+    "failed": 0
+  },
+  "videoDuration": 108.3,
+  "videoSeekObserved": 48.708745
+}
